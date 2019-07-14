@@ -298,11 +298,11 @@ TIMER_CALLBACK_MEMBER( amiga_state::scanline_callback )
 	// render up to this scanline
 	if (!m_screen->update_partial(scanline))
 	{
-		bitmap_rgb32 dummy_bitmap;
+		bitmap_argb32 dummy_bitmap;
 		if (IS_AGA())
 			aga_render_scanline(dummy_bitmap, scanline);
 		else
-			render_scanline(dummy_bitmap, scanline);
+			render_scanline(nullptr, scanline);
 	}
 
 	// clock tod (if we actually render this scanline)

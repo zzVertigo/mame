@@ -39,8 +39,8 @@ private:
 
 	virtual void video_start() override;
 
-	uint32_t screen_update_sstrangr(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_sstrngr2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_sstrangr(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_sstrngr2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void sstrangr_io_map(address_map &map);
 	void sstrangr_map(address_map &map);
 };
@@ -58,7 +58,7 @@ void sstrangr_state::video_start()
 	save_item(NAME(m_flip_screen));
 }
 
-uint32_t sstrangr_state::screen_update_sstrangr(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t sstrangr_state::screen_update_sstrangr(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	offs_t offs;
 
@@ -94,7 +94,7 @@ uint32_t sstrangr_state::screen_update_sstrangr(screen_device &screen, bitmap_rg
 	return 0;
 }
 
-uint32_t sstrangr_state::screen_update_sstrngr2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t sstrangr_state::screen_update_sstrngr2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t *color_map_base = &memregion("proms")->base()[m_flip_screen ? 0x0000 : 0x0200];
 

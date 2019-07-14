@@ -61,12 +61,12 @@ K051316_CB_MEMBER(bottom9_state::zoom_callback)
 
 ***************************************************************************/
 
-uint32_t bottom9_state::screen_update_bottom9(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t bottom9_state::screen_update_bottom9(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_k052109->tilemap_update();
 
 	/* note: FIX layer is not used */
-	bitmap.fill(layer_colorbase[1], cliprect);
+	bitmap.fill(m_palette->pens()[layer_colorbase[1]], cliprect);
 	screen.priority().fill(0, cliprect);
 
 //  if (m_video_enable)

@@ -198,9 +198,9 @@ WRITE_LINE_MEMBER(zaccaria_state::flip_screen_y_w)
 offsets 1 and 2 are swapped if accessed from spriteram2
 
 */
-void zaccaria_state::draw_sprites(bitmap_ind16 &bitmap,const rectangle &cliprect,uint8_t *spriteram,int color,int section)
+void zaccaria_state::draw_sprites(bitmap_argb32 &bitmap,const rectangle &cliprect,uint8_t *spriteram,int color,int section)
 {
-	int offs,o1 = 1,o2 = 2;
+	int o1 = 1,o2 = 2;
 
 	if (section)
 	{
@@ -208,7 +208,7 @@ void zaccaria_state::draw_sprites(bitmap_ind16 &bitmap,const rectangle &cliprect
 		o2 = 1;
 	}
 
-	for (offs = 0;offs < 0x20;offs += 4)
+	for (int offs = 0;offs < 0x20;offs += 4)
 	{
 		int sx = spriteram[offs + 3] + 1;
 		int sy = 242 - spriteram[offs];
@@ -235,7 +235,7 @@ void zaccaria_state::draw_sprites(bitmap_ind16 &bitmap,const rectangle &cliprect
 	}
 }
 
-uint32_t zaccaria_state::screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t zaccaria_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bg_tilemap->draw(screen, bitmap, cliprect, 0,0);
 

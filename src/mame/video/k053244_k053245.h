@@ -36,7 +36,7 @@ public:
 	u8 k053244_r(offs_t offset);
 	void k053244_w(offs_t offset, u8 data);
 	void bankselect(int bank);    /* used by TMNT2, Asterix and Premier Soccer for ROM testing */
-	void sprites_draw(bitmap_ind16 &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap);
+	void sprites_draw(bitmap_argb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap);
 	void clear_buffer();
 	void update_buffer();
 	void set_z_rejection(int zcode); // common to k053244/5

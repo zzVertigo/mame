@@ -71,7 +71,7 @@ private:
 #if !TAITOWLF_ENABLE_VGA
 	void taitowlf_palette(palette_device &palette) const;
 #endif
-	uint32_t screen_update_taitowlf(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_taitowlf(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void intel82439tx_init();
 	void taitowlf_io(address_map &map);
 	void taitowlf_map(address_map &map);
@@ -91,7 +91,7 @@ private:
 };
 
 #if !TAITOWLF_ENABLE_VGA
-uint32_t taitowlf_state::screen_update_taitowlf(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t taitowlf_state::screen_update_taitowlf(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y,count;
 

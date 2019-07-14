@@ -39,7 +39,7 @@ protected:
 	virtual void machine_reset() override;
 
 private:
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void pio_pa_w(u8 data);
 	u8 pio_pb_r();
@@ -59,7 +59,7 @@ private:
 };
 
 
-u32 adm36_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 adm36_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

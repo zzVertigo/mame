@@ -32,7 +32,7 @@ void sshangha_state::video_start()
 
 /******************************************************************************/
 
-uint32_t sshangha_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t sshangha_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const bool combine_tilemaps = (m_video_control&4) ? false : true;
 

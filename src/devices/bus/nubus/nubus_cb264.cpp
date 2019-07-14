@@ -120,7 +120,7 @@ void nubus_cb264_device::device_reset()
 
 ***************************************************************************/
 
-uint32_t nubus_cb264_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t nubus_cb264_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t *scanline, *base;
 	int x, y;

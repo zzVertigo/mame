@@ -250,7 +250,7 @@ void generic_terminal_device::term_write(uint8_t data)
 /***************************************************************************
     VIDEO HARDWARE
 ***************************************************************************/
-uint32_t generic_terminal_device::update(screen_device &device, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t generic_terminal_device::update(screen_device &device, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint16_t const options = m_io_term_conf->read();
 	uint16_t const cursor = m_y_pos * m_width + m_x_pos;

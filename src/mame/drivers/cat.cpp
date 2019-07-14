@@ -292,7 +292,7 @@ public:
 	DECLARE_VIDEO_START(cat);
 	void init_cat();
 
-	uint32_t screen_update_cat(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_cat(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_WRITE_LINE_MEMBER(cat_duart_irq_handler);
 	DECLARE_WRITE_LINE_MEMBER(cat_duart_txa);
@@ -947,7 +947,7 @@ VIDEO_START_MEMBER(cat_state,cat)
 {
 }
 
-uint32_t cat_state::screen_update_cat(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t cat_state::screen_update_cat(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const rgb_t on_color = m_video_invert ? rgb_t::black() : rgb_t::white();
 	const rgb_t off_color = m_video_invert ? rgb_t::white() : rgb_t::black();

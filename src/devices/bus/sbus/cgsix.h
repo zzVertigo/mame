@@ -45,7 +45,7 @@ protected:
 	DECLARE_READ32_MEMBER(fbc_r);
 	DECLARE_WRITE32_MEMBER(fbc_w);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	uint8_t perform_rasterop(uint8_t src, uint8_t dst);
 	void handle_font_poke();
 	void handle_draw_command();

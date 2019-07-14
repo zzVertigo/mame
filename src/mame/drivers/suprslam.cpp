@@ -295,7 +295,6 @@ void suprslam_state::suprslam(machine_config &config)
 	screen.set_size(64*8, 64*8);
 	screen.set_visarea(0*8, 40*8-1, 0*8, 28*8-1);
 	screen.set_screen_update(FUNC(suprslam_state::screen_update_suprslam));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette).set_format(palette_device::xGBR_555, 0x800);
 

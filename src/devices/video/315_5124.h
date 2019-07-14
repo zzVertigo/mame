@@ -75,11 +75,11 @@ public:
 	void hcount_latch();
 	bool hcount_latched() { return m_hcounter_latched; }
 
-	bitmap_rgb32 &get_bitmap() { return m_tmpbitmap; };
+	bitmap_argb32 &get_bitmap() { return m_tmpbitmap; };
 	bitmap_ind8 &get_y1_bitmap() { return m_y1_bitmap; };
 
 	/* update the screen */
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	virtual void set_sega315_5124_compatibility_mode(bool sega315_5124_compatibility_mode) { }
 
@@ -159,7 +159,7 @@ protected:
 	u8               m_CRAM[SEGA315_5377_CRAM_SIZE];  /* CRAM */
 	const u8         *m_frame_timing;
 	const u8         *m_line_timing;
-	bitmap_rgb32     m_tmpbitmap;
+	bitmap_argb32     m_tmpbitmap;
 	bitmap_ind8      m_y1_bitmap;
 	const u8         m_palette_offset;
 	const u8         m_reg_num_mask;

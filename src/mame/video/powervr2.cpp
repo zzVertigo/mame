@@ -2362,7 +2362,7 @@ inline uint32_t powervr2_device::sample_textured(texinfo *ti, float u, float v, 
 }
 
 template <powervr2_device::pix_sample_fn sample_fn, int group_no>
-inline void powervr2_device::render_hline(bitmap_rgb32 &bitmap, texinfo *ti, int y, float xl, float xr, float ul, float ur, float vl, float vr, float wl, float wr, float const bl_in[4], float const br_in[4], float const offl_in[4], float const offr_in[4])
+inline void powervr2_device::render_hline(bitmap_argb32 &bitmap, texinfo *ti, int y, float xl, float xr, float ul, float ur, float vl, float vr, float wl, float wr, float const bl_in[4], float const br_in[4], float const offl_in[4], float const offr_in[4])
 {
 	int idx;
 	int xxl, xxr;
@@ -2456,7 +2456,7 @@ inline void powervr2_device::render_hline(bitmap_rgb32 &bitmap, texinfo *ti, int
 }
 
 template <powervr2_device::pix_sample_fn sample_fn, int group_no>
-inline void powervr2_device::render_span(bitmap_rgb32 &bitmap, texinfo *ti,
+inline void powervr2_device::render_span(bitmap_argb32 &bitmap, texinfo *ti,
 									float y0, float y1,
 									float xl, float xr,
 									float ul, float ur,
@@ -2587,7 +2587,7 @@ void powervr2_device::sort_vertices(const vert *v, int *i0, int *i1, int *i2)
 
 
 template <powervr2_device::pix_sample_fn sample_fn, int group_no>
-inline void powervr2_device::render_tri_sorted(bitmap_rgb32 &bitmap, texinfo *ti, const vert *v0, const vert *v1, const vert *v2)
+inline void powervr2_device::render_tri_sorted(bitmap_argb32 &bitmap, texinfo *ti, const vert *v0, const vert *v1, const vert *v2)
 {
 	float dy01, dy02, dy12;
 
@@ -2747,7 +2747,7 @@ inline void powervr2_device::render_tri_sorted(bitmap_rgb32 &bitmap, texinfo *ti
 }
 
 template <int group_no>
-void powervr2_device::render_tri(bitmap_rgb32 &bitmap, texinfo *ti, const vert *v)
+void powervr2_device::render_tri(bitmap_argb32 &bitmap, texinfo *ti, const vert *v)
 {
 	int i0, i1, i2;
 
@@ -2808,7 +2808,7 @@ void powervr2_device::render_tri(bitmap_rgb32 &bitmap, texinfo *ti, const vert *
 }
 
 template <int group_no>
-void powervr2_device::render_group_to_accumulation_buffer(bitmap_rgb32 &bitmap,const rectangle &cliprect)
+void powervr2_device::render_group_to_accumulation_buffer(bitmap_argb32 &bitmap,const rectangle &cliprect)
 {
 #if 0
 	int stride;
@@ -2853,7 +2853,7 @@ void powervr2_device::render_group_to_accumulation_buffer(bitmap_rgb32 &bitmap,c
 	}
 }
 
-void powervr2_device::render_to_accumulation_buffer(bitmap_rgb32 &bitmap, const rectangle &cliprect) {
+void powervr2_device::render_to_accumulation_buffer(bitmap_argb32 &bitmap, const rectangle &cliprect) {
 	if (renderselect < 0)
 		return;
 
@@ -3401,7 +3401,7 @@ void powervr2_device::pvr_accumulationbuffer_to_framebuffer(address_space &space
 
 }
 
-void powervr2_device::pvr_drawframebuffer(bitmap_rgb32 &bitmap,const rectangle &cliprect)
+void powervr2_device::pvr_drawframebuffer(bitmap_argb32 &bitmap,const rectangle &cliprect)
 {
 	int x,y,dy,xi;
 	uint32_t addrp;
@@ -3821,7 +3821,7 @@ TIMER_CALLBACK_MEMBER(powervr2_device::endofrender_isp)
 //  endofrender_timer_tsp->adjust(attotime::from_usec(500) );
 }
 
-uint32_t powervr2_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t powervr2_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/******************
 	  MAME note
@@ -4027,7 +4027,7 @@ void powervr2_device::device_start()
 	endofrender_timer_tsp = machine().scheduler().timer_alloc(timer_expired_delegate(FUNC(powervr2_device::endofrender_tsp),this));
 	endofrender_timer_video = machine().scheduler().timer_alloc(timer_expired_delegate(FUNC(powervr2_device::endofrender_video),this));
 
-	fake_accumulationbuffer_bitmap = std::make_unique<bitmap_rgb32>(2048,2048);
+	fake_accumulationbuffer_bitmap = std::make_unique<bitmap_argb32>(2048,2048);
 
 	softreset = 0;
 	param_base = 0;

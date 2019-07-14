@@ -129,7 +129,7 @@ void cgc7900_state::update_clut()
     draw_bitmap - draw bitmap image
 -------------------------------------------------*/
 
-void cgc7900_state::draw_bitmap(screen_device *screen, bitmap_rgb32 &bitmap)
+void cgc7900_state::draw_bitmap(screen_device *screen, bitmap_argb32 &bitmap)
 {
 }
 
@@ -137,7 +137,7 @@ void cgc7900_state::draw_bitmap(screen_device *screen, bitmap_rgb32 &bitmap)
     draw_overlay - draw text overlay
 -------------------------------------------------*/
 
-void cgc7900_state::draw_overlay(screen_device *screen, bitmap_rgb32 &bitmap)
+void cgc7900_state::draw_overlay(screen_device *screen, bitmap_argb32 &bitmap)
 {
 	const pen_t *pen = m_palette->pens();
 	for (int y = 0; y < 48 * 8; y++)
@@ -187,7 +187,7 @@ TIMER_DEVICE_CALLBACK_MEMBER(cgc7900_state::blink_tick)
 	m_blink = !m_blink;
 }
 
-uint32_t cgc7900_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t cgc7900_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	update_clut();
 	draw_bitmap(&screen, bitmap);

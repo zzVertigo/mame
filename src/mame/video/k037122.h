@@ -14,7 +14,7 @@ public:
 	// configuration
 	void set_gfx_index(int index) { m_gfx_index = index; }
 
-	void tile_draw( screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect );
+	void tile_draw( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect );
 	DECLARE_READ32_MEMBER( sram_r );
 	DECLARE_WRITE32_MEMBER( sram_w );
 	DECLARE_READ32_MEMBER( char_r );

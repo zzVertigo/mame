@@ -110,12 +110,12 @@ private:
 
 	K055673_CB_MEMBER(sprite_callback);
 
-	uint32_t screen_update_rng(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_rng(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
-	uint32_t screen_update_rng_dual_left(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_rng_dual_right(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	bitmap_ind16 m_rng_dual_demultiplex_left_temp;
-	bitmap_ind16 m_rng_dual_demultiplex_right_temp;
+	uint32_t screen_update_rng_dual_left(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_rng_dual_right(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	bitmap_argb32 m_rng_dual_demultiplex_left_temp;
+	bitmap_argb32 m_rng_dual_demultiplex_right_temp;
 	void   sprite_dma_trigger(void);
 
 	INTERRUPT_GEN_MEMBER(rng_interrupt);

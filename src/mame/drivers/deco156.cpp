@@ -57,7 +57,7 @@ private:
 	DECLARE_WRITE32_MEMBER(spriteram_w);
 	DECLARE_WRITE32_MEMBER(hvysmsh_oki_0_bank_w);
 	virtual void video_start() override;
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(vblank_interrupt);
 	void descramble_sound( const char *tag );
 	DECO16IC_BANK_CB_MEMBER(bank_callback);
@@ -92,7 +92,7 @@ void deco156_state::video_start()
 }
 
 
-uint32_t deco156_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t deco156_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// sprites are flipped relative to tilemaps
 	m_sprgen->set_flip_screen(true);

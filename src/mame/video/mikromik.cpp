@@ -80,7 +80,7 @@ UPD7220_DISPLAY_PIXELS_MEMBER( mm1_state::hgdc_display_pixels )
 }
 
 
-uint32_t mm1_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mm1_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* text */
 	m_crtc->screen_update(screen, bitmap, cliprect);

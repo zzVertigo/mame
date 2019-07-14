@@ -220,7 +220,7 @@ public:
 		set_threshold(0.3);
 	}
 
-	virtual uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	virtual uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	NETDEV_ANALOG_CALLBACK_MEMBER(update_composite_monochrome);
 	NETDEV_ANALOG_CALLBACK_MEMBER(update_red);
@@ -245,7 +245,7 @@ protected:
 
 private:
 
-	std::unique_ptr<bitmap_rgb32> m_bitmap[2];
+	std::unique_ptr<bitmap_argb32> m_bitmap[2];
 	int m_cur_bm;
 	int m_htotal;
 	int m_vtotal;

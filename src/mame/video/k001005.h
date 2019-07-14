@@ -52,7 +52,7 @@ public:
 	void render_polygons();
 	void swap_buffers();
 	bool fifo_filled();
-	void draw(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void draw(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void set_param(k001005_param param, uint32_t value);
 
 	void draw_scanline_2d(int32_t scanline, const extent_t &extent, const k001005_polydata &extradata, int threadid);
@@ -73,7 +73,7 @@ public:
 	static constexpr int POLY_B = 5;
 
 private:
-	std::unique_ptr<bitmap_rgb32> m_fb[2];
+	std::unique_ptr<bitmap_argb32> m_fb[2];
 	std::unique_ptr<bitmap_ind32> m_zb;
 	rectangle m_cliprect;
 	int m_fb_page;
@@ -114,7 +114,7 @@ public:
 
 	template <typename T> void set_texel_tag(T &&tag) { m_k001006.set_tag(std::forward<T>(tag)); }
 
-	void draw(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void draw(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void swap_buffers();
 
 	DECLARE_READ32_MEMBER( read );

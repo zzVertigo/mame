@@ -145,7 +145,7 @@ public:
 	// construction/destruction
 	isa8_cga_tetriskr_device(const machine_config &mconfig, const char *tag, device_t *owner, uint32_t clock);
 
-	virtual uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect) override;
+	virtual uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect) override;
 	virtual void device_start() override;
 	virtual const tiny_rom_entry *device_rom_region() const override;
 
@@ -187,7 +187,7 @@ READ8_MEMBER(isa8_cga_tetriskr_device::bg_bank_r)
 }
 
 
-uint32_t isa8_cga_tetriskr_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t isa8_cga_tetriskr_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y;
 	int yi;

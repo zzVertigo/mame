@@ -1050,7 +1050,7 @@ void towns_state::draw_sprites(const rectangle* rect)
 	m_video.sprite_timer->adjust(m_maincpu->cycles_to_attotime(128 * (1025-sprite_limit)));
 }
 
-void towns_state::towns_crtc_draw_scan_layer_hicolour(bitmap_rgb32 &bitmap,const rectangle* rect,int layer,int line,int scanline)
+void towns_state::towns_crtc_draw_scan_layer_hicolour(bitmap_argb32 &bitmap,const rectangle* rect,int layer,int line,int scanline)
 {
 	uint32_t off = 0;
 	int x;
@@ -1132,7 +1132,7 @@ void towns_state::towns_crtc_draw_scan_layer_hicolour(bitmap_rgb32 &bitmap,const
 	}
 }
 
-void towns_state::towns_crtc_draw_scan_layer_256(bitmap_rgb32 &bitmap,const rectangle* rect,int line,int scanline)
+void towns_state::towns_crtc_draw_scan_layer_256(bitmap_argb32 &bitmap,const rectangle* rect,int line,int scanline)
 {
 	int off = 0;
 	int x;
@@ -1183,7 +1183,7 @@ void towns_state::towns_crtc_draw_scan_layer_256(bitmap_rgb32 &bitmap,const rect
 	}
 }
 
-void towns_state::towns_crtc_draw_scan_layer_16(bitmap_rgb32 &bitmap,const rectangle* rect,int layer,int line,int scanline)
+void towns_state::towns_crtc_draw_scan_layer_16(bitmap_argb32 &bitmap,const rectangle* rect,int layer,int line,int scanline)
 {
 	int off = 0;
 	int x;
@@ -1265,7 +1265,7 @@ void towns_state::towns_crtc_draw_scan_layer_16(bitmap_rgb32 &bitmap,const recta
 	}
 }
 
-void towns_state::towns_crtc_draw_layer(bitmap_rgb32 &bitmap,const rectangle* rect,int layer)
+void towns_state::towns_crtc_draw_layer(bitmap_argb32 &bitmap,const rectangle* rect,int layer)
 {
 	int line;
 	int scanline;
@@ -1510,7 +1510,7 @@ void towns_state::video_start()
 	m_video.sprite_timer = machine().scheduler().timer_alloc(timer_expired_delegate(FUNC(towns_state::towns_sprite_done),this));
 }
 
-uint32_t towns_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t towns_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bool layer1_en = true, layer2_en = true;
 	bitmap.fill(0x00000000, cliprect);

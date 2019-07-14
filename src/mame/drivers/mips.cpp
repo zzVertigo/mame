@@ -638,7 +638,7 @@ void rx2030_state::rs2030(machine_config &config)
 	BT458(config, m_ramdac, pixclock);
 }
 
-u32 rx2030_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, rectangle const &cliprect)
+u32 rx2030_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, rectangle const &cliprect)
 {
 	/*
 	 * The graphics board has 1280KiB of video ram fitted, which is organised
@@ -945,7 +945,7 @@ template <u8 Source> WRITE_LINE_MEMBER(rx3230_state::irq_w)
 	}
 }
 
-u32 rx3230_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, rectangle const &cliprect)
+u32 rx3230_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, rectangle const &cliprect)
 {
 	m_ramdac->screen_update(screen, bitmap, cliprect, m_vram->pointer());
 

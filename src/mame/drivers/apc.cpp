@@ -128,7 +128,7 @@ private:
 	required_device<palette_device> m_palette;
 
 	// screen updates
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 
 	DECLARE_READ8_MEMBER(apc_port_28_r);
@@ -190,7 +190,7 @@ void apc_state::video_start()
 	m_aux_pcg = memregion("aux_pcg")->base();
 }
 
-uint32_t apc_state::screen_update( screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect )
+uint32_t apc_state::screen_update( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	bitmap.fill(m_palette->black_pen(), cliprect);
 

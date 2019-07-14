@@ -387,7 +387,7 @@ void upd65031_device::device_timer(emu_timer &timer, device_timer_id id, int par
 //  screen_update
 //-------------------------------------------------
 
-uint32_t upd65031_device::screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t upd65031_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (!m_screen_update_cb.isnull() && (m_com & COM_LCDON))
 		m_screen_update_cb(bitmap, m_lcd_regs[4], m_lcd_regs[2], m_lcd_regs[3], m_lcd_regs[0], m_lcd_regs[1], m_flash);

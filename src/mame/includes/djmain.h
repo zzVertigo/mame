@@ -65,10 +65,10 @@ private:
 	DECLARE_WRITE32_MEMBER(unknown802000_w);
 	DECLARE_WRITE32_MEMBER(unknownc02000_w);
 
-	uint32_t screen_update_djmain(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_djmain(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(vb_interrupt);
 	DECLARE_WRITE_LINE_MEMBER(ide_interrupt);
-	void draw_sprites( bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void draw_sprites( bitmap_argb32 &bitmap, const rectangle &cliprect);
 	K056832_CB_MEMBER(tile_callback);
 	void k054539_map(address_map &map);
 	void maincpu_djmain(address_map &map);

@@ -329,7 +329,7 @@ WRITE_LINE_MEMBER( m50458_device::set_clock_line )
 //  update_screen -
 //-------------------------------------------------
 
-uint32_t m50458_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t m50458_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y;
 	uint8_t *pcg = memregion("m50458")->base();

@@ -184,7 +184,7 @@ void namco_c355spr_device::zdrawgfxzoom(
 
 void namco_c355spr_device::zdrawgfxzoom(
 		screen_device &screen,
-		bitmap_rgb32 &dest_bmp,const rectangle &clip,gfx_element *gfx,
+		bitmap_argb32 &dest_bmp,const rectangle &clip,gfx_element *gfx,
 		u32 code,u32 color,bool flipx,bool flipy,int sx,int sy,
 		int scalex, int scaley, int zpos)
 {
@@ -499,7 +499,7 @@ void namco_c355spr_device::draw(screen_device &screen, bitmap_ind16 &bitmap, con
 	draw_sprites(screen, bitmap, cliprect, pri);
 }
 
-void namco_c355spr_device::draw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int pri)
+void namco_c355spr_device::draw(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int pri)
 {
 	draw_sprites(screen, bitmap, cliprect, pri);
 }

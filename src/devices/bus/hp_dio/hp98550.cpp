@@ -203,7 +203,7 @@ void dio32_98550_device::update_int()
 	irq7_out(line == 7 && state);
 }
 
-uint32_t dio32_98550_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t dio32_98550_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bool changed = false;
 	uint8_t mask = 0;

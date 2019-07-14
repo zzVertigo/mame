@@ -63,7 +63,7 @@ public:
 
 	// valtric specific
 	uint8_t m_valtric_mosaic;
-	bitmap_rgb32 m_mosaicbitmap;
+	bitmap_argb32 m_mosaicbitmap;
 	uint8_t m_valtric_unknown;
 	int m_mosaic;
 
@@ -114,9 +114,9 @@ public:
 	DECLARE_VIDEO_START(butasan);
 	DECLARE_VIDEO_RESET(butasan);
 
-	uint32_t screen_update_argus(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_valtric(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_butasan(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_argus(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_valtric(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_butasan(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	TIMER_DEVICE_CALLBACK_MEMBER(scanline);
 	TIMER_DEVICE_CALLBACK_MEMBER(butasan_scanline);
@@ -127,15 +127,15 @@ public:
 	void bg_setting();
 
 	// argus specific
-	void argus_draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect, int priority);
+	void argus_draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, int priority);
 
 	// butasan specific
-	void butasan_draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void butasan_draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void butasan_log_vram();
 
 	// valtric specific
-	void valtric_draw_mosaic(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void valtric_draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void valtric_draw_mosaic(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void valtric_draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void valtric(machine_config &config);
 	void argus(machine_config &config);
 	void butasan(machine_config &config);

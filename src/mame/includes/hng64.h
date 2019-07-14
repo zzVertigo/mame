@@ -25,7 +25,7 @@ enum hng64trans_t
 
 struct blit_parameters
 {
-	bitmap_rgb32 *      bitmap;
+	bitmap_argb32 *      bitmap;
 	rectangle           cliprect;
 	uint32_t              tilemap_priority_code;
 	uint8_t               mask;
@@ -118,14 +118,14 @@ public:
 	void render_scanline(int32_t scanline, const extent_t& extent, const hng64_poly_data& renderData, int threadid);
 
 	hng64_state& state() { return m_state; }
-	bitmap_rgb32& colorBuffer3d() { return m_colorBuffer3d; }
+	bitmap_argb32& colorBuffer3d() { return m_colorBuffer3d; }
 	float* depthBuffer3d() { return m_depthBuffer3d.get(); }
 
 private:
 	hng64_state& m_state;
 
 	// (Temporarily class members - someday they will live in the memory map)
-	bitmap_rgb32 m_colorBuffer3d;
+	bitmap_argb32 m_colorBuffer3d;
 	std::unique_ptr<float[]> m_depthBuffer3d;
 };
 
@@ -453,23 +453,23 @@ private:
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
 	virtual void video_start() override;
-	uint32_t screen_update_hng64(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_hng64(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(screen_vblank_hng64);
 	TIMER_DEVICE_CALLBACK_MEMBER(hng64_irq);
 	void do_dma(address_space &space);
 
 	void hng64_mark_all_tiles_dirty(int tilemap);
 	void hng64_mark_tile_dirty(int tilemap, int tile_index);
-	void hng64_drawtilemap(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int tm);
+	void hng64_drawtilemap(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int tm);
 
 	void hng64_tilemap_draw_roz_core(screen_device &screen, tilemap_t *tmap, const blit_parameters *blit,
 		uint32_t startx, uint32_t starty, int incxx, int incxy, int incyx, int incyy, int wraparound);
 
-	void hng64_tilemap_draw_roz(screen_device &screen, bitmap_rgb32 &dest, const rectangle &cliprect, tilemap_t *tmap,
+	void hng64_tilemap_draw_roz(screen_device &screen, bitmap_argb32 &dest, const rectangle &cliprect, tilemap_t *tmap,
 		uint32_t startx, uint32_t starty, int incxx, int incxy, int incyx, int incyy,
 		int wraparound, uint32_t flags, uint8_t priority, hng64trans_t drawformat);
 
-	void hng64_tilemap_draw_roz_primask(screen_device &screen, bitmap_rgb32 &dest, const rectangle &cliprect, tilemap_t *tmap,
+	void hng64_tilemap_draw_roz_primask(screen_device &screen, bitmap_argb32 &dest, const rectangle &cliprect, tilemap_t *tmap,
 		uint32_t startx, uint32_t starty, int incxx, int incxy, int incyx, int incyy,
 		int wraparound, uint32_t flags, uint8_t priority, uint8_t priority_mask, hng64trans_t drawformat);
 
@@ -487,8 +487,8 @@ private:
 
 	void clear3d();
 	void hng64_command3d(const uint16_t* packet);
-	void draw_sprites(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void transition_control(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void draw_sprites(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void transition_control(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void setCameraTransformation(const uint16_t* packet);
 	void setLighting(const uint16_t* packet);
 	void set3dFlags(const uint16_t* packet);

@@ -91,7 +91,7 @@ private:
 	DECLARE_WRITE8_MEMBER(meyc8080_dac_2_w);
 	DECLARE_WRITE8_MEMBER(meyc8080_dac_3_w);
 	DECLARE_WRITE8_MEMBER(meyc8080_dac_4_w);
-	uint32_t screen_update_meyc8080(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_meyc8080(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void meyc8080_map(address_map &map);
 
 	virtual void machine_start() override { m_lamps.resolve(); }
@@ -111,7 +111,7 @@ private:
  *
  *************************************/
 
-uint32_t meyc8080_state::screen_update_meyc8080(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t meyc8080_state::screen_update_meyc8080(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	offs_t offs;
 

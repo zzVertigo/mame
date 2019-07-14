@@ -947,7 +947,6 @@ void zaxxon_state::root(machine_config &config)
 	screen_device &screen(SCREEN(config, "screen", SCREEN_TYPE_RASTER));
 	screen.set_raw(PIXEL_CLOCK, HTOTAL, HBEND, HBSTART, VTOTAL, VBEND, VBSTART);
 	screen.set_screen_update(FUNC(zaxxon_state::screen_update_zaxxon));
-	screen.set_palette(m_palette);
 	screen.screen_vblank().set(FUNC(zaxxon_state::vblank_int));
 }
 

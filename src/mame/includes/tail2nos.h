@@ -69,9 +69,9 @@ private:
 	DECLARE_WRITE8_MEMBER(sound_bankswitch_w);
 	DECLARE_READ8_MEMBER(sound_semaphore_r);
 	TILE_GET_INFO_MEMBER(get_tile_info);
-	uint32_t screen_update_tail2nos(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_tail2nos(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void tail2nos_postload();
-	void draw_sprites( bitmap_ind16 &bitmap, const rectangle &cliprect );
+	void draw_sprites( bitmap_argb32 &bitmap, const rectangle &cliprect );
 	K051316_CB_MEMBER(zoom_callback);
 	void main_map(address_map &map);
 	void sound_map(address_map &map);

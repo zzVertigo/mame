@@ -45,7 +45,7 @@ private:
 
 	TIMER_CALLBACK_MEMBER(baud_clock);
 
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_WRITE_LINE_MEMBER(vblank_w);
 
@@ -132,7 +132,7 @@ TIMER_CALLBACK_MEMBER(microterm_f8_state::baud_clock)
 		m_baud_clock->adjust(attotime::from_hz(19200 * 32 / rate), !param);
 }
 
-u32 microterm_f8_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 microterm_f8_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (BIT(m_port00, 2))
 	{

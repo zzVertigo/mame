@@ -1285,13 +1285,13 @@ WRITE_LINE_MEMBER(sms_state::screen_vblank_sms1)
 	}
 }
 
-uint32_t sms_state::screen_update_sms1(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t sms_state::screen_update_sms1(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_vdp->screen_update(screen, bitmap, cliprect);
 	return 0;
 }
 
-uint32_t sms_state::screen_update_sms1_left(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t sms_state::screen_update_sms1_left(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t sscope = m_port_scope->read();
 
@@ -1321,7 +1321,7 @@ uint32_t sms_state::screen_update_sms1_left(screen_device &screen, bitmap_rgb32 
 	return 0;
 }
 
-uint32_t sms_state::screen_update_sms1_right(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t sms_state::screen_update_sms1_right(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t sscope = m_port_scope->read();
 
@@ -1351,7 +1351,7 @@ uint32_t sms_state::screen_update_sms1_right(screen_device &screen, bitmap_rgb32
 	return 0;
 }
 
-uint32_t sms_state::screen_update_sms(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t sms_state::screen_update_sms(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_vdp->screen_update(screen, bitmap, cliprect);
 	return 0;
@@ -1385,9 +1385,9 @@ VIDEO_RESET_MEMBER(sms_state,gamegear)
 }
 
 
-void sms_state::screen_gg_sms_mode_scaling(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void sms_state::screen_gg_sms_mode_scaling(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
-	bitmap_rgb32 &vdp_bitmap = m_vdp->get_bitmap();
+	bitmap_argb32 &vdp_bitmap = m_vdp->get_bitmap();
 	const rectangle visarea = screen.visible_area();
 
 	/* Plot positions relative to visarea minimum values */
@@ -1522,9 +1522,9 @@ void sms_state::screen_gg_sms_mode_scaling(screen_device &screen, bitmap_rgb32 &
 }
 
 
-uint32_t sms_state::screen_update_gamegear(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t sms_state::screen_update_gamegear(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
-	bitmap_rgb32 *source_bitmap;
+	bitmap_argb32 *source_bitmap;
 
 	if (m_cartslot->exists() && m_cartslot->get_sms_mode())
 	{

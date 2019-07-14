@@ -185,7 +185,7 @@ void namcos2_sprite_device::zdrawgfxzoom(
 
 void namcos2_sprite_device::zdrawgfxzoom(
 		screen_device &screen,
-		bitmap_rgb32 &dest_bmp,const rectangle &clip,gfx_element *gfx,
+		bitmap_argb32 &dest_bmp,const rectangle &clip,gfx_element *gfx,
 		u32 code,u32 color,bool flipx,bool flipy,int sx,int sy,
 		int scalex, int scaley, int zpos)
 {

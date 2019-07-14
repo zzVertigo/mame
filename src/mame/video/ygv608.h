@@ -87,7 +87,7 @@ public:
 	// TODO: is this even a real connection?
 	void set_gfxbank(uint8_t gfxbank);
 
-	uint32_t update_screen(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t update_screen(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 
 	auto vblank_callback() { return m_vblank_handler.bind(); }
@@ -128,9 +128,9 @@ private:
 	TILE_GET_INFO_MEMBER(get_tile_info_B_16);
 
 	void register_state_save();
-	void draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect);
-	void draw_layer_roz(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, tilemap_t *source_tilemap);
-	void ygv608_draw_mosaic(bitmap_ind16 &bitmap, const rectangle &cliprect, int n);
+	void draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_layer_roz(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, tilemap_t *source_tilemap);
+	void ygv608_draw_mosaic(bitmap_argb32 &bitmap, const rectangle &cliprect, int n);
 
 	uint8_t m_namcond1_gfxbank;
 
@@ -140,7 +140,7 @@ private:
 	tilemap_t *m_tilemap_B_cache_16[3];
 	tilemap_t *m_tilemap_A;
 	tilemap_t *m_tilemap_B;
-	bitmap_ind16 m_work_bitmap;
+	bitmap_argb32 m_work_bitmap;
 
 	void HandleReset();
 	void HandleRomTransfers(uint8_t type);

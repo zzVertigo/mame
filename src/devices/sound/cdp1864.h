@@ -105,7 +105,7 @@ public:
 	DECLARE_WRITE_LINE_MEMBER( aoe_w );
 	DECLARE_WRITE_LINE_MEMBER( evs_w );
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 protected:
 	// device-level overrides
@@ -139,7 +139,7 @@ private:
 	devcb_write_line       m_write_efx;
 	devcb_write_line       m_write_hsync;
 
-	bitmap_rgb32 m_bitmap;          // bitmap
+	bitmap_argb32 m_bitmap;          // bitmap
 	sound_stream *m_stream;         // sound output
 
 	// video state

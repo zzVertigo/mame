@@ -111,7 +111,7 @@ struct namcos22_object_data
 	rgbaint_t fadecolor;
 	rgbaint_t polycolor;
 	const pen_t *pens;
-	bitmap_rgb32 *destbase;
+	bitmap_argb32 *destbase;
 	bitmap_ind8 *primap;
 	int bn;
 	int flags;
@@ -141,7 +141,7 @@ class namcos22_renderer : public poly_manager<float, namcos22_object_data, 4, 80
 public:
 	namcos22_renderer(namcos22_state &state);
 
-	void render_scene(screen_device &screen, bitmap_rgb32 &bitmap);
+	void render_scene(screen_device &screen, bitmap_argb32 &bitmap);
 	struct namcos22_scenenode *new_scenenode(running_machine &machine, u32 zsort, namcos22_scenenode_type type);
 
 	void init();
@@ -159,10 +159,10 @@ private:
 	inline u8 nthbyte(const u32 *src, int n) { return (src[n / 4] << ((n & 3) * 8)) >> 24; }
 	inline u16 nthword(const u32 *src, int n) { return (src[n / 2] << ((n & 1) * 16)) >> 16; }
 
-	void render_scene_nodes(screen_device &screen, bitmap_rgb32 &bitmap, struct namcos22_scenenode *node);
-	void render_sprite(screen_device &screen, bitmap_rgb32 &bitmap, struct namcos22_scenenode *node);
-	void poly3d_drawquad(screen_device &screen, bitmap_rgb32 &bitmap, struct namcos22_scenenode *node);
-	void poly3d_drawsprite(screen_device &screen, bitmap_rgb32 &dest_bmp, u32 code, u32 color, int flipx, int flipy, int sx, int sy, int scalex, int scaley, int cz_factor, int prioverchar, int fade_enabled, int alpha);
+	void render_scene_nodes(screen_device &screen, bitmap_argb32 &bitmap, struct namcos22_scenenode *node);
+	void render_sprite(screen_device &screen, bitmap_argb32 &bitmap, struct namcos22_scenenode *node);
+	void poly3d_drawquad(screen_device &screen, bitmap_argb32 &bitmap, struct namcos22_scenenode *node);
+	void poly3d_drawsprite(screen_device &screen, bitmap_argb32 &dest_bmp, u32 code, u32 color, int flipx, int flipy, int sx, int sy, int scalex, int scaley, int cz_factor, int prioverchar, int fade_enabled, int alpha);
 
 	void free_scenenode(struct namcos22_scenenode *node);
 	struct namcos22_scenenode *alloc_scenenode(running_machine &machine, struct namcos22_scenenode *node);
@@ -381,13 +381,13 @@ protected:
 	void draw_polygons();
 	void draw_sprites();
 	void draw_sprite_group(const u32 *src, const u32 *attr, int num_sprites, int deltax, int deltay, int y_lowres);
-	void namcos22_mix_text_layer(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void namcos22_mix_text_layer(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void install_c74_speedup();
 
 	TILE_GET_INFO_MEMBER(get_text_tile_info);
-	virtual void draw_text_layer(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	u32 screen_update_namcos22(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	virtual void draw_text_layer(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update_namcos22(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(namcos22_interrupt);
 	INTERRUPT_GEN_MEMBER(dsp_vblank_irq);
 	TIMER_DEVICE_CALLBACK_MEMBER(dsp_serial_pulse);
@@ -538,7 +538,7 @@ protected:
 	virtual void machine_start() override;
 
 	virtual void init_tables() override;
-	virtual void draw_text_layer(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect) override;
+	virtual void draw_text_layer(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect) override;
 
 private:
 	DECLARE_MACHINE_START(adillor);
@@ -547,8 +547,8 @@ private:
 	void install_141_speedup();
 
 	void recalc_czram();
-	void namcos22s_mix_text_layer(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int prival);
-	u32 screen_update_namcos22s(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void namcos22s_mix_text_layer(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int prival);
+	u32 screen_update_namcos22s(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_WRITE16_MEMBER(namcos22s_czattr_w);
 	DECLARE_READ16_MEMBER(namcos22s_czattr_r);

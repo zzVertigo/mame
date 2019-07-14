@@ -70,7 +70,7 @@ private:
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
 	virtual void video_start() override;
-	uint32_t screen_update_gijoe(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_gijoe(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(gijoe_interrupt);
 	TIMER_CALLBACK_MEMBER(dmaend_callback);
 	void gijoe_objdma();

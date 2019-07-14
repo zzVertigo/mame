@@ -121,7 +121,7 @@ TIMER_CALLBACK_MEMBER(vectrex_base_state::vectrex_refresh)
 }
 
 
-uint32_t vectrex_base_state::screen_update_vectrex(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t vectrex_base_state::screen_update_vectrex(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i;
 

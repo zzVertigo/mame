@@ -110,7 +110,7 @@ void n64_state::video_start()
 	}
 }
 
-uint32_t n64_state::screen_update_n64(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t n64_state::screen_update_n64(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	//uint16_t* frame_buffer = (uint16_t*)&rdram[(m_rcp_periphs->vi_origin & 0xffffff) >> 2];
 	//uint8_t* cvg_buffer = &m_rdp.m_hidden_bits[((m_rcp_periphs->vi_origin & 0xffffff) >> 2) >> 1];
@@ -167,7 +167,7 @@ WRITE_LINE_MEMBER(n64_state::screen_vblank_n64)
 {
 }
 
-void n64_periphs::video_update(bitmap_rgb32 &bitmap)
+void n64_periphs::video_update(bitmap_argb32 &bitmap)
 {
 
 	if(vi_control & 0x40) /* Interlace */
@@ -195,7 +195,7 @@ void n64_periphs::video_update(bitmap_rgb32 &bitmap)
 	}
 }
 
-void n64_periphs::video_update16(bitmap_rgb32 &bitmap)
+void n64_periphs::video_update16(bitmap_argb32 &bitmap)
 {
 	//int32_t fsaa = (((n64->vi_control >> 8) & 3) < 2);
 	//int32_t divot = (n64->vi_control >> 4) & 1;
@@ -257,7 +257,7 @@ void n64_periphs::video_update16(bitmap_rgb32 &bitmap)
 	}
 }
 
-void n64_periphs::video_update32(bitmap_rgb32 &bitmap)
+void n64_periphs::video_update32(bitmap_argb32 &bitmap)
 {
 	int32_t gamma = (vi_control >> 3) & 1;
 	int32_t gamma_dither = (vi_control >> 2) & 1;

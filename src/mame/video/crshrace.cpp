@@ -97,27 +97,27 @@ WRITE16_MEMBER(crshrace_state::crshrace_gfxctrl_w)
 
 ***************************************************************************/
 
-void crshrace_state::draw_bg( screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect )
+void crshrace_state::draw_bg( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	m_tilemap2->draw(screen, bitmap, cliprect, 0, 0);
 }
 
 
-void crshrace_state::draw_fg(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+void crshrace_state::draw_fg(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_k053936->zoom_draw(screen, bitmap, cliprect, m_tilemap1, 0, 0, 1);
 }
 
 
-uint32_t crshrace_state::screen_update_crshrace(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t crshrace_state::screen_update_crshrace(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (m_gfxctrl & 0x04)   /* display disable? */
 	{
-		bitmap.fill(m_palette->black_pen(), cliprect);
+		bitmap.fill(m_palette->pens()[m_palette->black_pen()], cliprect);
 		return 0;
 	}
 
-	bitmap.fill(0x1ff, cliprect);
+	bitmap.fill(m_palette->pens()[0x1ff], cliprect);
 
 
 

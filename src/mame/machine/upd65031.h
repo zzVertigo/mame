@@ -16,10 +16,10 @@
 //  TYPE DEFINITIONS
 //**************************************************************************
 
-typedef device_delegate<void (bitmap_ind16 &bitmap, uint16_t sbf, uint16_t hires0, uint16_t hires1, uint16_t lores0, uint16_t lores1, int flash)> upd65031_screen_update_delegate;
+typedef device_delegate<void (bitmap_argb32 &bitmap, uint16_t sbf, uint16_t hires0, uint16_t hires1, uint16_t lores0, uint16_t lores1, int flash)> upd65031_screen_update_delegate;
 typedef device_delegate<void (int bank, uint16_t page, int rams)> upd65031_memory_update_delegate;
 
-#define UPD65031_SCREEN_UPDATE(_name) void _name(bitmap_ind16 &bitmap, uint16_t sbf, uint16_t hires0, uint16_t hires1, uint16_t lores0, uint16_t lores1, int flash)
+#define UPD65031_SCREEN_UPDATE(_name) void _name(bitmap_argb32 &bitmap, uint16_t sbf, uint16_t hires0, uint16_t hires1, uint16_t lores0, uint16_t lores1, int flash)
 #define UPD65031_MEMORY_UPDATE(_name) void _name(int bank, uint16_t page, int rams)
 
 
@@ -43,7 +43,7 @@ public:
 	DECLARE_WRITE8_MEMBER( write );
 	DECLARE_WRITE_LINE_MEMBER( flp_w );
 	DECLARE_WRITE_LINE_MEMBER( btl_w );
-	uint32_t screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 protected:
 	// device-level overrides

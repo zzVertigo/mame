@@ -123,10 +123,10 @@ protected:
 	TILE_GET_INFO_MEMBER(get_mid_tile_info);
 	TILE_GET_INFO_MEMBER(get_fore_tile_info);
 	TILE_GET_INFO_MEMBER(get_text_tile_info);
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
-	void blend_layer(bitmap_rgb32 &bitmap, const rectangle &cliprect, bitmap_ind16 &source, int layer);
-	void tilemap_draw_and_blend(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, tilemap_t *tilemap);
+	void blend_layer(bitmap_argb32 &bitmap, const rectangle &cliprect, bitmap_ind16 &source, int layer);
+	void tilemap_draw_and_blend(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, tilemap_t *tilemap);
 
 	void init_blending(const u16 *table);
 

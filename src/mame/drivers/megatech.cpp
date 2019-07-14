@@ -150,8 +150,8 @@ private:
 	DECLARE_DEVICE_IMAGE_LOAD_MEMBER( mt_cart7 ) { return load_cart(image, m_cart7, 6); }
 	DECLARE_DEVICE_IMAGE_LOAD_MEMBER( mt_cart8 ) { return load_cart(image, m_cart8, 7); }
 
-	uint32_t screen_update_main(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_menu(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_main(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_menu(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(screen_vblank_main);
 
 	void megatech_bios_map(address_map &map);
@@ -617,7 +617,7 @@ void mtech_state::init_mt_crt()
 }
 
 
-uint32_t mtech_state::screen_update_main(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mtech_state::screen_update_main(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// if we're running an sms game then use the SMS update.. maybe this should be moved to the megadrive emulation core as compatibility mode is a feature of the chip
 	if (!m_current_machine_is_sms)
@@ -674,7 +674,7 @@ MACHINE_RESET_MEMBER(mtech_state, megatech)
 	switch_cart(0);
 }
 
-uint32_t mtech_state::screen_update_menu(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mtech_state::screen_update_menu(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_vdp1->screen_update(screen, bitmap, cliprect);
 	return 0;

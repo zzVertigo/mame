@@ -12,10 +12,10 @@
 #include "includes/z88.h"
 
 
-inline void z88_state::plot_pixel(bitmap_ind16 &bitmap, int x, int y, uint16_t color)
+inline void z88_state::plot_pixel(bitmap_argb32 &bitmap, int x, int y, rgb_t color)
 {
 	if (x < Z88_SCREEN_WIDTH)
-		bitmap.pix16(y, x) = color;
+		bitmap.pix32(y, x) = color;
 }
 
 // convert absolute offset into correct address to get data from
@@ -49,7 +49,7 @@ void z88_state::z88_palette(palette_device &palette) const
 
 /* temp - change to gfxelement structure */
 
-void z88_state::vh_render_8x8(bitmap_ind16 &bitmap, int x, int y, uint16_t pen0, uint16_t pen1, uint8_t *gfx)
+void z88_state::vh_render_8x8(bitmap_argb32 &bitmap, int x, int y, rgb_t pen0, rgb_t pen1, uint8_t *gfx)
 {
 	for (int h = 0; h < 8; h++)
 	{
@@ -62,7 +62,7 @@ void z88_state::vh_render_8x8(bitmap_ind16 &bitmap, int x, int y, uint16_t pen0,
 	}
 }
 
-void z88_state::vh_render_6x8(bitmap_ind16 &bitmap, int x, int y, uint16_t pen0, uint16_t pen1, uint8_t *gfx)
+void z88_state::vh_render_6x8(bitmap_argb32 &bitmap, int x, int y, rgb_t pen0, rgb_t pen1, uint8_t *gfx)
 {
 	for (int h = 0; h < 8; h++)
 	{
@@ -75,7 +75,7 @@ void z88_state::vh_render_6x8(bitmap_ind16 &bitmap, int x, int y, uint16_t pen0,
 	}
 }
 
-void z88_state::vh_render_line(bitmap_ind16 &bitmap, int x, int y, uint16_t pen)
+void z88_state::vh_render_line(bitmap_argb32 &bitmap, int x, int y, rgb_t pen)
 {
 	for (int i = 0; i < 8; i++)
 	{
@@ -85,6 +85,8 @@ void z88_state::vh_render_line(bitmap_ind16 &bitmap, int x, int y, uint16_t pen)
 
 UPD65031_SCREEN_UPDATE(z88_state::lcd_update)
 {
+	const pen_t *pen = m_palette->pens();
+
 	if (sbf == 0)
 	{
 		// LCD disabled
@@ -104,12 +106,12 @@ UPD65031_SCREEN_UPDATE(z88_state::lcd_update)
 				uint8_t byte1 = vram[(y * 0x100) + c + 1];
 
 				// inverted graphics?
-				uint16_t pen0 = 0;
-				uint16_t pen1 = 0;
+				rgb_t pen0 = pen[0];
+				rgb_t pen1 = pen[0];
 				if (byte1 & Z88_SCR_HW_REV)
-					pen0 = (byte1 & Z88_SCR_HW_GRY) ? 2 : 1;
+					pen0 = pen[(byte1 & Z88_SCR_HW_GRY) ? 2 : 1];
 				else
-					pen1 = (byte1 & Z88_SCR_HW_GRY) ? 2 : 1;
+					pen1 = pen[(byte1 & Z88_SCR_HW_GRY) ? 2 : 1];
 
 				if ((byte1 & Z88_SCR_HW_NULL) == Z88_SCR_HW_NULL)
 				{

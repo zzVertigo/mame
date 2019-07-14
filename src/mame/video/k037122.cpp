@@ -111,7 +111,7 @@ TILE_GET_INFO_MEMBER(k037122_device::tile_info_layer1)
 }
 
 
-void k037122_device::tile_draw( screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect )
+void k037122_device::tile_draw( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	const rectangle &visarea = screen.visible_area();
 

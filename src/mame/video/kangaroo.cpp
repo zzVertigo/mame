@@ -129,7 +129,7 @@ void kangaroo_state::blitter_execute(  )
  *
  *************************************/
 
-uint32_t kangaroo_state::screen_update_kangaroo(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t kangaroo_state::screen_update_kangaroo(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t scrolly = m_video_control[6];
 	uint8_t scrollx = m_video_control[7];

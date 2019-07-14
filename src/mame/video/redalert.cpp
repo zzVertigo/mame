@@ -185,7 +185,7 @@ VIDEO_START_MEMBER(redalert_state,ww3)
  *
  *************************************/
 
-uint32_t redalert_state::screen_update_redalert(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t redalert_state::screen_update_redalert(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	pen_t pens[NUM_CHARMAP_PENS + NUM_BITMAP_PENS + 1];
 	offs_t offs;
@@ -257,7 +257,7 @@ uint32_t redalert_state::screen_update_redalert(screen_device &screen, bitmap_rg
  *
  *************************************/
 
-uint32_t redalert_state::screen_update_demoneye(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t redalert_state::screen_update_demoneye(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	pen_t pens[NUM_CHARMAP_PENS + NUM_BITMAP_PENS + 1];
 	offs_t offs;
@@ -331,7 +331,7 @@ uint32_t redalert_state::screen_update_demoneye(screen_device &screen, bitmap_rg
  *
  *************************************/
 
-uint32_t redalert_state::screen_update_panther(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t redalert_state::screen_update_panther(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	pen_t pens[NUM_CHARMAP_PENS + NUM_BITMAP_PENS + 1];
 	offs_t offs;

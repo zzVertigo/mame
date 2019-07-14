@@ -99,7 +99,7 @@ public:
 
 	DECLARE_WRITE_LINE_MEMBER( lp_w );
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void mos6560_colorram_map(address_map &map);
 	void mos6560_videoram_map(address_map &map);
@@ -146,7 +146,7 @@ protected:
 
 	uint8_t m_reg[16];
 
-	bitmap_rgb32 m_bitmap;
+	bitmap_argb32 m_bitmap;
 
 	int m_rasterline, m_lastline;
 	double m_lightpenreadtime;

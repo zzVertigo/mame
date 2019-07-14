@@ -652,7 +652,7 @@ if (machine().input().code_pressed(KEYCODE_F))
 #endif
 }
 
-void k052109_device::tilemap_draw( screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, int tmap_num, uint32_t flags, uint8_t priority )
+void k052109_device::tilemap_draw( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int tmap_num, uint32_t flags, uint8_t priority )
 {
 	m_tilemap[tmap_num]->draw(screen, bitmap, cliprect, flags, priority);
 }

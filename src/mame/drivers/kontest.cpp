@@ -48,7 +48,7 @@ private:
 	required_device<palette_device> m_palette;
 
 	// screen updates
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	// driver state
 	uint8_t m_control;
@@ -104,7 +104,7 @@ void kontest_state::video_start()
 {
 }
 
-uint32_t kontest_state::screen_update( screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect )
+uint32_t kontest_state::screen_update( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	int x,y;
 	int xi,yi;

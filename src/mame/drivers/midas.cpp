@@ -101,7 +101,7 @@ private:
 	DECLARE_WRITE8_MEMBER(eeprom_w);
 	DECLARE_WRITE16_MEMBER(zoomtable_w);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	required_device<cpu_device> m_maincpu;
 	required_device<eeprom_serial_93cxx_device> m_eeprom;
 	required_device<gfxdecode_device> m_gfxdecode;
@@ -126,7 +126,7 @@ void midas_state::video_start()
 {
 }
 
-uint32_t midas_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t midas_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// fill with background color first
 	bitmap.fill(0x0, cliprect);

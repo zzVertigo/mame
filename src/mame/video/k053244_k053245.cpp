@@ -286,7 +286,7 @@ void k05324x_device::set_z_rejection( int zcode )
  * The rest of the sprite remains normal.
  */
 
-void k05324x_device::sprites_draw( bitmap_ind16 &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap )
+void k05324x_device::sprites_draw( bitmap_argb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap )
 {
 #define NUM_SPRITES 128
 	int offs, pri_code, i;

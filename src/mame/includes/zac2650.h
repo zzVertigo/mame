@@ -40,8 +40,8 @@ private:
 	required_shared_ptr<uint8_t> m_videoram;
 	required_shared_ptr<uint8_t> m_s2636_0_ram;
 
-	bitmap_ind16 m_bitmap;
-	bitmap_ind16 m_spritebitmap;
+	bitmap_argb32 m_bitmap;
+	bitmap_argb32 m_spritebitmap;
 	int m_CollisionBackground;
 	int m_CollisionSprite;
 	tilemap_t *m_bg_tilemap;
@@ -53,9 +53,9 @@ private:
 	DECLARE_READ8_MEMBER(tinvader_port_0_r);
 	TILE_GET_INFO_MEMBER(get_bg_tile_info);
 	void zac2650_palette(palette_device &palette) const;
-	uint32_t screen_update_tinvader(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_tinvader(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	int SpriteCollision(int first,int second);
-	void draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect);
+	void draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void main_map(address_map &map);
 };

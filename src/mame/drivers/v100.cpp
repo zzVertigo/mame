@@ -56,7 +56,7 @@ private:
 	IRQ_CALLBACK_MEMBER(irq_ack);
 	void ppi_porta_w(u8 data);
 
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void io_map(address_map &map);
 	void mem_map(address_map &map);
@@ -78,7 +78,7 @@ private:
 	bool m_video_enable;
 };
 
-u32 v100_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 v100_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (m_vtac->screen_reset() || !m_video_enable)
 	{

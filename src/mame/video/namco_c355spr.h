@@ -36,7 +36,7 @@ public:
 	}
 
 	void draw(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, int pri);
-	void draw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int pri);
+	void draw(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int pri);
 
 
 protected:
@@ -62,7 +62,7 @@ private:
 
 	// general
 	void zdrawgfxzoom(screen_device &screen, bitmap_ind16 &dest_bmp, const rectangle &clip, gfx_element *gfx, u32 code, u32 color, bool flipx, bool flipy, int sx, int sy, int scalex, int scaley, int zpos);
-	void zdrawgfxzoom(screen_device &screen, bitmap_rgb32 &dest_bmp, const rectangle &clip, gfx_element *gfx, u32 code, u32 color, bool flipx, bool flipy, int sx, int sy, int scalex, int scaley, int zpos);
+	void zdrawgfxzoom(screen_device &screen, bitmap_argb32 &dest_bmp, const rectangle &clip, gfx_element *gfx, u32 code, u32 color, bool flipx, bool flipy, int sx, int sy, int scalex, int scaley, int zpos);
 
 	// C355 Motion Object Emulation
 	// for pal_xor, supply either 0x0 (normal) or 0xf (palette mapping reversed)

@@ -34,7 +34,7 @@ protected:
 	virtual void driver_start() override;
 
 private:
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void prog_map(address_map &map);
 	void ext_map(address_map &map);
@@ -47,7 +47,7 @@ void wy150_state::machine_start()
 {
 }
 
-u32 wy150_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 wy150_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

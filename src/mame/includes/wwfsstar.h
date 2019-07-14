@@ -63,8 +63,8 @@ private:
 	TILEMAP_MAPPER_MEMBER(bg0_scan);
 	TILE_GET_INFO_MEMBER(get_bg0_tile_info);
 
-	uint32_t screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	void draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect );
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect );
 
 	void main_map(address_map &map);
 	void sound_map(address_map &map);

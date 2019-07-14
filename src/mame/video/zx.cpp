@@ -52,6 +52,7 @@ void zx_state::zx_ula_hsync()
 
 WRITE8_MEMBER(zx_state::refresh_w)
 {
+	const pen_t *pen = m_palette->pens();
 	if((offset ^ m_prev_refresh) & 0x40)
 		m_maincpu->set_input_line(INPUT_LINE_IRQ0, offset & 0x40 ? CLEAR_LINE : ASSERT_LINE);
 	m_prev_refresh = offset;
@@ -67,9 +68,9 @@ WRITE8_MEMBER(zx_state::refresh_w)
 		if(m_ula_char_buffer & 0x80)
 			pixels = ~pixels;
 		if(x < 384-8 && y < 311) {
-			uint16_t *dest = &m_bitmap_render->pix16(y, x);
+			uint32_t *dest = &m_bitmap_render->pix32(y, x);
 			for(int i=0; i<8; i++)
-				*dest++ |= pixels & (0x80 >> i) ? 1 : 0;
+				*dest++ |= pen[pixels & (0x80 >> i) ? 1 : 0];
 		}
 		m_ula_char_buffer = 0xffff;
 	}
@@ -139,11 +140,11 @@ void zx_state::video_start()
 	m_ula_hsync = timer_alloc(TIMER_ULA_HSYNC);
 	m_ula_char_buffer = 0xffff;
 
-	m_bitmap_render = std::make_unique<bitmap_ind16>(384, 311);
-	m_bitmap_buffer = std::make_unique<bitmap_ind16>(384, 311);
+	m_bitmap_render = std::make_unique<bitmap_argb32>(384, 311);
+	m_bitmap_buffer = std::make_unique<bitmap_argb32>(384, 311);
 }
 
-uint32_t zx_state::screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t zx_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	copybitmap(bitmap, *m_bitmap_buffer, 0, 0, 0, 0, cliprect);
 	return 0;

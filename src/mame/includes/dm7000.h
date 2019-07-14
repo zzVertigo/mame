@@ -56,7 +56,7 @@ private:
 	uint32_t          dcr[1024];
 	virtual void machine_reset() override;
 	virtual void video_start() override;
-	uint32_t screen_update_dm7000(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_dm7000(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void dm7000_mem(address_map &map);
 };
 

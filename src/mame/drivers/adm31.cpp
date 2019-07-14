@@ -52,7 +52,7 @@ protected:
 	virtual void machine_reset() override;
 
 private:
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void kbd_scan_w(u8 data);
 	u8 kbd_scan_r();
@@ -87,7 +87,7 @@ void adm31_state::machine_reset()
 }
 
 
-u32 adm31_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 adm31_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

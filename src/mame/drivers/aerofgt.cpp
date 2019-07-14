@@ -1483,7 +1483,6 @@ void aerofgt_state::pspikes(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(0*8+4, 44*8+4-1, 0*8, 30*8-1);
 	screen.set_screen_update(FUNC(aerofgt_state::screen_update_pspikes));
-	screen.set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_pspikes);
 	PALETTE(config, m_palette).set_format(palette_device::xRGB_555, 2048);
@@ -1532,7 +1531,6 @@ void aerofgt_state::spikes91(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(0*8, 320-1, 0*8+4, 224+4-1);
 	screen.set_screen_update(FUNC(aerofgt_state::screen_update_spikes91));
-	screen.set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_spikes91);
 	PALETTE(config, m_palette).set_format(palette_device::xRGB_555, 2048);
@@ -1566,7 +1564,6 @@ void aerofgt_state::pspikesb(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(0*8+4, 44*8+4-1, 0*8, 30*8-1);
 	screen.set_screen_update(FUNC(aerofgt_state::screen_update_pspikesb));
-	screen.set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_pspikesb);
 	PALETTE(config, m_palette).set_format(palette_device::xRGB_555, 2048);
@@ -1610,7 +1607,6 @@ void aerofgt_state::kickball(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(0*8+4, 44*8+4-1, 0*8, 30*8-1);
 	screen.set_screen_update(FUNC(aerofgt_state::screen_update_pspikes));
-	screen.set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_kickball);
 	PALETTE(config, m_palette).set_format(palette_device::xRGB_555, 2048);
@@ -1656,7 +1652,6 @@ void aerofgt_state::pspikesc(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(0*8+4, 44*8+4-1, 0*8, 30*8-1);
 	screen.set_screen_update(FUNC(aerofgt_state::screen_update_pspikes));
-	screen.set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_pspikes);
 	PALETTE(config, m_palette).set_format(palette_device::xRGB_555, 2048);
@@ -1698,7 +1693,6 @@ void aerofgt_state::karatblz(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(1*8, 45*8-1, 0*8, 30*8-1);
 	screen.set_screen_update(FUNC(aerofgt_state::screen_update_karatblz));
-	screen.set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_turbofrc);
 	PALETTE(config, m_palette).set_format(palette_device::xRGB_555, 1024);
@@ -1754,7 +1748,6 @@ void aerofgt_state::karatblzbl(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(1*8, 45*8-1, 0*8, 30*8-1);
 	screen.set_screen_update(FUNC(aerofgt_state::screen_update_karatblz));
-	screen.set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_turbofrc);
 	PALETTE(config, m_palette).set_format(palette_device::xRGB_555, 1024);
@@ -1809,7 +1802,6 @@ void aerofgt_state::spinlbrk(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(1*8, 45*8-1, 0*8, 30*8-1);
 	screen.set_screen_update(FUNC(aerofgt_state::screen_update_spinlbrk));
-	screen.set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_turbofrc);
 	PALETTE(config, m_palette, palette_device::BLACK).set_format(palette_device::xRGB_555, 1024); // doesn't fully initialize palette at start-up ...
@@ -1866,7 +1858,6 @@ void aerofgt_state::turbofrc(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(0*8, 44*8-1, 0*8, 30*8-1);
 	screen.set_screen_update(FUNC(aerofgt_state::screen_update_turbofrc));
-	screen.set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_turbofrc);
 	PALETTE(config, m_palette).set_format(palette_device::xRGB_555, 1024);
@@ -1922,7 +1913,6 @@ void aerofgt_state::aerofgtb(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(0*8+12, 40*8-1+12, 0*8, 28*8-1);
 	screen.set_screen_update(FUNC(aerofgt_state::screen_update_turbofrc));
-	screen.set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_turbofrc);
 	PALETTE(config, m_palette).set_format(palette_device::xRGB_555, 1024);
@@ -1990,7 +1980,6 @@ void aerofgt_state::aerofgt(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(0*8, 40*8-1, 0*8, 28*8-1);
 	screen.set_screen_update(FUNC(aerofgt_state::screen_update_aerofgt));
-	screen.set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_aerofgt);
 	PALETTE(config, m_palette).set_format(palette_device::xRGB_555, 1024);
@@ -2038,7 +2027,6 @@ void aerofgt_state::aerfboot(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(0*8+12, 40*8-1+12, 0*8, 28*8-1);
 	screen.set_screen_update(FUNC(aerofgt_state::screen_update_aerfboot));
-	screen.set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_aerfboot);
 	PALETTE(config, m_palette).set_format(palette_device::xRGB_555, 1024);
@@ -2075,7 +2063,6 @@ void aerofgt_state::aerfboo2(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(0*8+12, 40*8-1+12, 0*8, 28*8-1);
 	screen.set_screen_update(FUNC(aerofgt_state::screen_update_aerfboo2));
-	screen.set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_aerfboo2);
 	PALETTE(config, m_palette).set_format(palette_device::xRGB_555, 1024);

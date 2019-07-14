@@ -72,7 +72,7 @@ public:
 	virtual void vram_map(address_map &map);
 	virtual void vio_map(address_map &map);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void nick_map(address_map &map);
 protected:
@@ -153,7 +153,7 @@ private:
 
 	int m_virq;
 
-	bitmap_rgb32 m_bitmap;
+	bitmap_argb32 m_bitmap;
 	rgb_t m_palette[256];
 
 	emu_timer *m_timer_scanline;

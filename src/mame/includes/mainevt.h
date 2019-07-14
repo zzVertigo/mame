@@ -47,8 +47,8 @@ private:
 	DECLARE_WRITE8_MEMBER(k052109_051960_w);
 	DECLARE_READ8_MEMBER(mainevt_sh_busy_r);
 	DECLARE_WRITE8_MEMBER(dv_sh_bankswitch_w);
-	uint32_t screen_update_mainevt(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_dv(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_mainevt(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_dv(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(mainevt_interrupt);
 	INTERRUPT_GEN_MEMBER(dv_interrupt);
 	INTERRUPT_GEN_MEMBER(mainevt_sound_timer_irq);

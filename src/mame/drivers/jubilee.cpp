@@ -225,7 +225,7 @@ private:
 	DECLARE_WRITE8_MEMBER(unk_w);
 	DECLARE_READ8_MEMBER(mux_port_r);
 	TILE_GET_INFO_MEMBER(get_bg_tile_info);
-	uint32_t screen_update_jubileep(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_jubileep(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(jubileep_interrupt);
 	void jubileep_cru_map(address_map &map);
 	void jubileep_map(address_map &map);
@@ -284,7 +284,7 @@ void jubilee_state::video_start()
 	m_bg_tilemap->set_scrolldx(8, 0); /* guess */
 }
 
-uint32_t jubilee_state::screen_update_jubileep(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t jubilee_state::screen_update_jubileep(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bg_tilemap->draw(screen, bitmap, cliprect, 0, 0);
 	return 0;

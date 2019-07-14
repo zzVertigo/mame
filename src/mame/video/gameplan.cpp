@@ -96,7 +96,7 @@ void gameplan_state::leprechn_get_pens( pen_t *pens )
  *
  *************************************/
 
-uint32_t gameplan_state::screen_update_gameplan(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t gameplan_state::screen_update_gameplan(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	pen_t pens[GAMEPLAN_NUM_PENS];
 	offs_t offs;
@@ -115,7 +115,7 @@ uint32_t gameplan_state::screen_update_gameplan(screen_device &screen, bitmap_rg
 }
 
 
-uint32_t gameplan_state::screen_update_leprechn(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t gameplan_state::screen_update_leprechn(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	pen_t pens[LEPRECHN_NUM_PENS];
 	offs_t offs;

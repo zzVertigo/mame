@@ -180,7 +180,7 @@ void fixedfreq_device::device_config_complete()
 			m_monitor.m_vbackporch);
 
 	if (!screen().has_screen_update())
-		screen().set_screen_update(screen_update_rgb32_delegate(FUNC(fixedfreq_device::screen_update), this));
+		screen().set_screen_update(FUNC(fixedfreq_device::screen_update));
 }
 
 void fixedfreq_device::device_start()
@@ -192,8 +192,8 @@ void fixedfreq_device::device_start()
 
 	m_htotal = m_monitor.m_hbackporch;
 	m_vtotal = m_monitor.m_vbackporch;
-	m_bitmap[0] = std::make_unique<bitmap_rgb32>(m_htotal * m_monitor.m_hscale, m_vtotal);
-	m_bitmap[1] = std::make_unique<bitmap_rgb32>(m_htotal * m_monitor.m_hscale, m_vtotal);
+	m_bitmap[0] = std::make_unique<bitmap_argb32>(m_htotal * m_monitor.m_hscale, m_vtotal);
+	m_bitmap[1] = std::make_unique<bitmap_argb32>(m_htotal * m_monitor.m_hscale, m_vtotal);
 
 	m_state.start();
 
@@ -231,7 +231,7 @@ void fixedfreq_device::device_post_load()
 	//recompute_parameters();
 }
 
-uint32_t fixedfreq_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t fixedfreq_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	copybitmap(bitmap, *m_bitmap[!m_cur_bm], 0, 0, 0, 0, cliprect);
 
@@ -251,7 +251,7 @@ void fixedfreq_device::vsync_start_cb(double refresh_time)
 
 void fixedfreq_device::plot_hline(int x, int y, int w, uint32_t col)
 {
-	bitmap_rgb32 *bm = m_bitmap[m_cur_bm].get();
+	bitmap_argb32 *bm = m_bitmap[m_cur_bm].get();
 	if (y < bm->height())
 		bm->plot_box(x, y, w, 1, col);
 }

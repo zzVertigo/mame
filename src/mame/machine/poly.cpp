@@ -220,7 +220,7 @@ WRITE8_MEMBER(polydev_state::fdc_inv_w)
 }
 
 
-uint32_t poly_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t poly_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/*
 	    PA0     Not used. Connected to CA2.

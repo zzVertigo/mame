@@ -195,7 +195,6 @@ void zerozone_state::zerozone(machine_config &config)
 	screen.set_vblank_time(ATTOSECONDS_IN_USEC(0));
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(1*8, 47*8-1, 2*8, 30*8-1);
-	screen.set_palette("palette");
 	screen.set_screen_update(FUNC(zerozone_state::screen_update));
 	screen.screen_vblank().set(FUNC(zerozone_state::vblank_w));
 

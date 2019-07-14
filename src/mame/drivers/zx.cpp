@@ -329,10 +329,9 @@ void zx_state::zx80(machine_config &config)
 	m_screen->set_refresh_hz(XTAL(6'500'000)/2/64159.0); // 54223 for NTSC
 	m_screen->set_size(384, 311);
 	m_screen->set_visarea(0, 383, 0, 310);
-	m_screen->set_palette("palette");
 	m_screen->set_screen_update(FUNC(zx_state::screen_update));
 
-	PALETTE(config, "palette", palette_device::MONOCHROME_INVERTED);
+	PALETTE(config, m_palette, palette_device::MONOCHROME_INVERTED);
 
 	SPEAKER(config, "mono").front_center();
 

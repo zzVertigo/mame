@@ -90,7 +90,7 @@ private:
 	TILE_GET_INFO_MEMBER(get_cb2001_reel2_tile_info);
 	TILE_GET_INFO_MEMBER(get_cb2001_reel3_tile_info);
 	void cb2001_palette(palette_device &palette) const;
-	uint32_t screen_update_cb2001(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_cb2001(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(vblank_irq);
 	DECLARE_READ8_MEMBER(irq_ack_r);
 	void cb2001_io(address_map &map);
@@ -355,7 +355,7 @@ e3 -> c6
 */
 
 
-uint32_t cb2001_state::screen_update_cb2001(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t cb2001_state::screen_update_cb2001(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int count,x,y;
 	bitmap.fill(m_palette->black_pen(), cliprect);

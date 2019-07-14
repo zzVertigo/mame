@@ -31,7 +31,7 @@ public:
 private:
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
-	uint32_t screen_update_ssem(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_ssem(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_QUICKLOAD_LOAD_MEMBER(quickload_cb);
 	inline uint32_t reverse(uint32_t v);
 	void strlower(char *buf);
@@ -39,7 +39,7 @@ private:
 	void ssem_map(address_map &map);
 
 	template <typename Format, typename... Params>
-	void glyph_print(bitmap_rgb32 &bitmap, int32_t x, int32_t y, Format &&fmt, Params &&...args);
+	void glyph_print(bitmap_argb32 &bitmap, int32_t x, int32_t y, Format &&fmt, Params &&...args);
 
 	required_device<ssem_device> m_maincpu;
 	required_shared_ptr<uint8_t> m_store;
@@ -420,7 +420,7 @@ static const uint8_t char_glyphs[0x80][8] =
 };
 
 template <typename Format, typename... Params>
-void ssem_state::glyph_print(bitmap_rgb32 &bitmap, int32_t x, int32_t y, Format &&fmt, Params &&...args)
+void ssem_state::glyph_print(bitmap_argb32 &bitmap, int32_t x, int32_t y, Format &&fmt, Params &&...args)
 {
 	const rectangle &visarea = m_screen->visible_area();
 
@@ -466,7 +466,7 @@ void ssem_state::glyph_print(bitmap_rgb32 &bitmap, int32_t x, int32_t y, Format 
 	}
 }
 
-uint32_t ssem_state::screen_update_ssem(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t ssem_state::screen_update_ssem(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t line = 0;
 	uint32_t accum = m_maincpu->state_int(SSEM_A);

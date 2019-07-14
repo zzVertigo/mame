@@ -70,7 +70,7 @@ WRITE8_MEMBER(speedatk_state::m6845_w)
 	}
 }
 
-uint32_t speedatk_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t speedatk_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y;
 	int count;

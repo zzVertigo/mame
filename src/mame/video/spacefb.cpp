@@ -144,7 +144,7 @@ void spacefb_state::get_starfield_pens(pen_t *pens)
 }
 
 
-void spacefb_state::draw_starfield(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void spacefb_state::draw_starfield(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int y;
 	pen_t pens[NUM_STARFIELD_PENS];
@@ -252,7 +252,7 @@ void spacefb_state::get_sprite_pens(pen_t *pens)
 }
 
 
-void spacefb_state::draw_bullet(offs_t offs, pen_t pen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int flip)
+void spacefb_state::draw_bullet(offs_t offs, pen_t pen, bitmap_argb32 &bitmap, const rectangle &cliprect, int flip)
 {
 	uint8_t sy;
 
@@ -303,7 +303,7 @@ void spacefb_state::draw_bullet(offs_t offs, pen_t pen, bitmap_rgb32 &bitmap, co
 }
 
 
-void spacefb_state::draw_sprite(offs_t offs, pen_t *pens, bitmap_rgb32 &bitmap, const rectangle &cliprect, int flip)
+void spacefb_state::draw_sprite(offs_t offs, pen_t *pens, bitmap_argb32 &bitmap, const rectangle &cliprect, int flip)
 {
 	uint8_t sy;
 
@@ -360,7 +360,7 @@ void spacefb_state::draw_sprite(offs_t offs, pen_t *pens, bitmap_rgb32 &bitmap, 
 }
 
 
-void spacefb_state::draw_objects(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void spacefb_state::draw_objects(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	pen_t sprite_pens[NUM_SPRITE_PENS];
 
@@ -398,7 +398,7 @@ void spacefb_state::draw_objects(bitmap_rgb32 &bitmap, const rectangle &cliprect
  *
  *************************************/
 
-uint32_t spacefb_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t spacefb_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	draw_objects(bitmap, cliprect);
 	draw_starfield(screen, bitmap, cliprect);

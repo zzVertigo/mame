@@ -205,7 +205,7 @@ WRITE8_MEMBER( mb90082_device::write )
 	m_cmd_ff ^= 1;
 }
 
-uint32_t mb90082_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mb90082_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y;
 	uint8_t *pcg = memregion("mb90082")->base();

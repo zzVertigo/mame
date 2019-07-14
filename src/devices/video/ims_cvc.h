@@ -20,7 +20,7 @@ public:
 	template <typename T> void set_vram(T &&tag) { m_vram.set_tag(std::forward<T>(tag)); }
 
 	virtual void map(address_map &map) = 0;
-	virtual u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect) = 0;
+	virtual u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect) = 0;
 
 protected:
 	ims_cvc_device(const machine_config &mconfig, device_type type, const char *tag, device_t *owner, uint32_t clock);
@@ -95,7 +95,7 @@ public:
 
 	virtual void map(address_map &map) override;
 
-	virtual u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect) override;
+	virtual u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect) override;
 
 protected:
 	virtual void device_start() override;
@@ -114,7 +114,7 @@ public:
 
 	virtual void map(address_map &map) override;
 
-	virtual u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect) override;
+	virtual u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect) override;
 
 	enum boot_mask : u32
 	{

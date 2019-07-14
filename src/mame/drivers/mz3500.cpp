@@ -105,7 +105,7 @@ private:
 	DECLARE_WRITE8_MEMBER(mz3500_pc_w);
 
 	// screen updates
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	UPD7220_DISPLAY_PIXELS_MEMBER( hgdc_display_pixels );
 	UPD7220_DRAW_TEXT_LINE_MEMBER( hgdc_draw_text );
 
@@ -246,7 +246,7 @@ UPD7220_DRAW_TEXT_LINE_MEMBER( mz3500_state::hgdc_draw_text )
 
 }
 
-uint32_t mz3500_state::screen_update( screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect )
+uint32_t mz3500_state::screen_update( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	bitmap.fill(m_palette->pen((m_crtc[4] & 2) ? m_crtc[3] & 7 : 0), cliprect);
 

@@ -1351,7 +1351,7 @@ public:
 	DECLARE_WRITE8_MEMBER(sound_w);
 	DECLARE_WRITE8_MEMBER(mux_w);
 
-	uint32_t screen_update_goldnpkr(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_goldnpkr(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 protected:
 	virtual void machine_start() override { m_lamps.resolve(); }
@@ -1510,7 +1510,7 @@ VIDEO_START_MEMBER(goldnpkr_state,wcrdxtnd)
 	m_bg_tilemap = &machine().tilemap().create(*m_gfxdecode, tilemap_get_info_delegate(FUNC(goldnpkr_state::wcrdxtnd_get_bg_tile_info),this), TILEMAP_SCAN_ROWS, 8, 8, 32, 32);
 }
 
-uint32_t goldnpkr_state::screen_update_goldnpkr(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t goldnpkr_state::screen_update_goldnpkr(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bg_tilemap->draw(screen, bitmap, cliprect, 0, 0);
 	return 0;

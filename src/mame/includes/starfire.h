@@ -58,7 +58,7 @@ private:
 	write8_delegate m_io2_write;
 
 	emu_timer* m_scanline_timer;
-	bitmap_rgb32 m_starfire_screen;
+	bitmap_argb32 m_starfire_screen;
 	DECLARE_WRITE8_MEMBER(starfire_scratch_w);
 	DECLARE_READ8_MEMBER(starfire_scratch_r);
 	DECLARE_READ8_MEMBER(starfire_input_r);
@@ -70,7 +70,7 @@ private:
 	DECLARE_WRITE8_MEMBER(starfire_videoram_w);
 	DECLARE_READ8_MEMBER(starfire_videoram_r);
 	virtual void video_start() override;
-	uint32_t screen_update_starfire(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_starfire(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_CALLBACK_MEMBER(starfire_scanline_callback);
 	INTERRUPT_GEN_MEMBER(vblank_int);
 	void get_pens(pen_t *pens);

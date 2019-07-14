@@ -477,7 +477,7 @@ WRITE_LINE_MEMBER( xerox820_state::fdc_drq_w )
 
 /* Video */
 
-uint32_t xerox820_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t xerox820_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t y,ra,chr,gfx;
 	uint16_t sy=0,ma=(m_scroll + 1) * 0x80,x;

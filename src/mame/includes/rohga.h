@@ -69,10 +69,10 @@ private:
 
 	DECLARE_VIDEO_START(wizdfire);
 	u32 screen_update_rohga(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	u32 screen_update_wizdfire(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	u32 screen_update_nitrobal(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void mixwizdfirelayer(bitmap_rgb32 &bitmap, const rectangle &cliprect, u16 pri, u16 primask);
-	void mixnitroballlayer(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update_wizdfire(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update_nitrobal(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void mixwizdfirelayer(bitmap_argb32 &bitmap, const rectangle &cliprect, u16 pri, u16 primask);
+	void mixnitroballlayer(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECO16IC_BANK_CB_MEMBER(bank_callback);
 	DECOSPR_PRIORITY_CB_MEMBER(rohga_pri_callback);
 	DECOSPR_COLOUR_CB_MEMBER(rohga_col_callback);

@@ -17,8 +17,8 @@ public:
 	void set_txt_mem_offset(int offs) { m_txt_mem_offset = offs; }
 	void set_roz_mem_offset(int offs) { m_roz_mem_offset = offs; }
 
-	void draw_back_layer( bitmap_rgb32 &bitmap, const rectangle &cliprect );
-	void draw_front_layer( screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect );
+	void draw_back_layer( bitmap_argb32 &bitmap, const rectangle &cliprect );
+	void draw_front_layer( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect );
 	DECLARE_WRITE32_MEMBER( tile_w );
 	DECLARE_READ32_MEMBER( tile_r );
 	DECLARE_WRITE32_MEMBER( char_w );

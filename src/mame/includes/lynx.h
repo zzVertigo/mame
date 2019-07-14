@@ -162,14 +162,14 @@ private:
 	UART m_uart;
 	LYNX_TIMER m_timer[NR_LYNX_TIMERS];
 
-	bitmap_rgb32 m_bitmap;
-	bitmap_rgb32 m_bitmap_temp;
+	bitmap_argb32 m_bitmap;
+	bitmap_argb32 m_bitmap_temp;
 
 	void lynx_mem(address_map &map);
 	void lynx_fc00_mem(address_map &map);
 	void lynx_fd00_mem(address_map &map);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ8_MEMBER(suzy_read);
 	DECLARE_WRITE8_MEMBER(suzy_write);

@@ -86,7 +86,7 @@ public:
 	uint8_t read(address_space &space, offs_t offset, int &cs0, int &cs1);
 	void write(address_space &space, offs_t offset, uint8_t data, int &cs0, int &cs1);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void mos7360_videoram_map(address_map &map);
 protected:
@@ -140,7 +140,7 @@ protected:
 	uint8_t m_reg[0x20];
 	uint8_t m_last_data;
 
-	bitmap_rgb32 m_bitmap;
+	bitmap_argb32 m_bitmap;
 
 	int m_rom;
 

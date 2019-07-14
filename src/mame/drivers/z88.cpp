@@ -609,7 +609,6 @@ void z88_state::z88(machine_config &config)
 	m_screen->set_vblank_time(ATTOSECONDS_IN_USEC(0));
 	m_screen->set_size(Z88_SCREEN_WIDTH, Z88_SCREEN_HEIGHT);
 	m_screen->set_visarea(0, (Z88_SCREEN_WIDTH - 1), 0, (Z88_SCREEN_HEIGHT - 1));
-	m_screen->set_palette(m_palette);
 	m_screen->set_screen_update("blink", FUNC(upd65031_device::screen_update));
 
 	PALETTE(config, m_palette, FUNC(z88_state::z88_palette), Z88_NUM_COLOURS);

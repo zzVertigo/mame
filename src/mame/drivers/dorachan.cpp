@@ -42,7 +42,7 @@ private:
 	DECLARE_WRITE8_MEMBER(protection_w);
 	DECLARE_READ8_MEMBER(protection_r);
 	DECLARE_READ8_MEMBER(v128_r);
-	uint32_t screen_update_dorachan(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_dorachan(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void dorachan_io_map(address_map &map);
 	void dorachan_map(address_map &map);
 
@@ -70,7 +70,7 @@ private:
  *
  *************************************/
 
-uint32_t dorachan_state::screen_update_dorachan(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t dorachan_state::screen_update_dorachan(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (offs_t offs = 0; offs < m_videoram.bytes(); offs++)
 	{

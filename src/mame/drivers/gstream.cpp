@@ -196,9 +196,9 @@ private:
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
 	virtual void video_start() override;
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_bg(bitmap_rgb32 &bitmap, const rectangle &cliprect, int map, uint32_t* ram);
-	void drawgfx_transpen_x2222(bitmap_rgb32 &dest, const rectangle &cliprect, gfx_element *gfx,gfx_element *gfx2,
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_bg(bitmap_argb32 &bitmap, const rectangle &cliprect, int map, uint32_t* ram);
+	void drawgfx_transpen_x2222(bitmap_argb32 &dest, const rectangle &cliprect, gfx_element *gfx,gfx_element *gfx2,
 	uint32_t code, int flipx, int flipy, int32_t destx, int32_t desty);
 
 	void rearrange_sprite_data(uint8_t* ROM, uint32_t* NEW, uint32_t* NEW2);
@@ -575,7 +575,7 @@ void gstream_state::video_start()
 
 
 // custom drawgfx function for x2222 to draw RGB data instead of indexed data, needed because our regular drawgfx and tilemap code don't support that
-void gstream_state::drawgfx_transpen_x2222(bitmap_rgb32 &dest, const rectangle &cliprect, gfx_element *gfx,gfx_element *gfx2,
+void gstream_state::drawgfx_transpen_x2222(bitmap_argb32 &dest, const rectangle &cliprect, gfx_element *gfx,gfx_element *gfx2,
 		uint32_t code, int flipx, int flipy, int32_t destx, int32_t desty)
 {
 	// use pen usage to optimize
@@ -722,7 +722,7 @@ void gstream_state::drawgfx_transpen_x2222(bitmap_rgb32 &dest, const rectangle &
 	} while (0);
 }
 
-void gstream_state::draw_bg(bitmap_rgb32 &bitmap, const rectangle &cliprect, int map, uint32_t* ram )
+void gstream_state::draw_bg(bitmap_argb32 &bitmap, const rectangle &cliprect, int map, uint32_t* ram )
 {
 	int scrollx;
 	int scrolly;
@@ -751,7 +751,7 @@ void gstream_state::draw_bg(bitmap_rgb32 &bitmap, const rectangle &cliprect, int
 	}
 }
 
-uint32_t gstream_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t gstream_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* The tilemaps and sprite are interleaved together.
 	   Even Words are tilemap tiles

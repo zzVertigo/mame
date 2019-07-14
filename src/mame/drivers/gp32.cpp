@@ -127,7 +127,7 @@ uint32_t gp32_state::s3c240x_lcd_dma_read( )
 
 void gp32_state::s3c240x_lcd_render_01( )
 {
-	bitmap_rgb32 &bitmap = m_bitmap;
+	bitmap_argb32 &bitmap = m_bitmap;
 	uint32_t *scanline = &bitmap.pix32(m_s3c240x_lcd.vpos, m_s3c240x_lcd.hpos);
 	int i, j;
 	for (i = 0; i < 4; i++)
@@ -150,7 +150,7 @@ void gp32_state::s3c240x_lcd_render_01( )
 
 void gp32_state::s3c240x_lcd_render_02( )
 {
-	bitmap_rgb32 &bitmap = m_bitmap;
+	bitmap_argb32 &bitmap = m_bitmap;
 	uint32_t *scanline = &bitmap.pix32(m_s3c240x_lcd.vpos, m_s3c240x_lcd.hpos);
 	int i, j;
 	for (i = 0; i < 4; i++)
@@ -173,7 +173,7 @@ void gp32_state::s3c240x_lcd_render_02( )
 
 void gp32_state::s3c240x_lcd_render_04( )
 {
-	bitmap_rgb32 &bitmap = m_bitmap;
+	bitmap_argb32 &bitmap = m_bitmap;
 	uint32_t *scanline = &bitmap.pix32(m_s3c240x_lcd.vpos, m_s3c240x_lcd.hpos);
 	int i, j;
 	for (i = 0; i < 4; i++)
@@ -196,7 +196,7 @@ void gp32_state::s3c240x_lcd_render_04( )
 
 void gp32_state::s3c240x_lcd_render_08( )
 {
-	bitmap_rgb32 &bitmap = m_bitmap;
+	bitmap_argb32 &bitmap = m_bitmap;
 	uint32_t *scanline = &bitmap.pix32(m_s3c240x_lcd.vpos, m_s3c240x_lcd.hpos);
 	int i, j;
 	for (i = 0; i < 4; i++)
@@ -219,7 +219,7 @@ void gp32_state::s3c240x_lcd_render_08( )
 
 void gp32_state::s3c240x_lcd_render_16( )
 {
-	bitmap_rgb32 &bitmap = m_bitmap;
+	bitmap_argb32 &bitmap = m_bitmap;
 	uint32_t *scanline = &bitmap.pix32(m_s3c240x_lcd.vpos, m_s3c240x_lcd.hpos);
 	int i, j;
 	for (i = 0; i < 4; i++)
@@ -272,7 +272,7 @@ void gp32_state::video_start()
 	m_screen->register_screen_bitmap(m_bitmap);
 }
 
-uint32_t gp32_state::screen_update_gp32(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t gp32_state::screen_update_gp32(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	copybitmap(bitmap, m_bitmap, 0, 0, 0, 0, cliprect);
 	s3c240x_lcd_dma_init();

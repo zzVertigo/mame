@@ -203,7 +203,6 @@ void xybots_state::xybots(machine_config &config)
 	/* the board uses a SYNGEN chip to generate video signals */
 	m_screen->set_raw(ATARI_CLOCK_14MHz/2, 456, 0, 336, 262, 0, 240);
 	m_screen->set_screen_update(FUNC(xybots_state::screen_update_xybots));
-	m_screen->set_palette("palette");
 	m_screen->screen_vblank().set(FUNC(xybots_state::video_int_write_line));
 
 	/* sound hardware */

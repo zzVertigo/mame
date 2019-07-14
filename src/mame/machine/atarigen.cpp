@@ -351,6 +351,7 @@ atarigen_state::atarigen_state(const machine_config &mconfig, device_type type, 
 	, m_maincpu(*this, "maincpu")
 	, m_gfxdecode(*this, "gfxdecode")
 	, m_screen(*this, "screen")
+	, m_palette(*this, "palette")
 	, m_slapstic_device(*this, ":slapstic")
 {
 }

@@ -100,13 +100,15 @@ private:
 	TILE_GET_INFO_MEMBER(get_bg_tile_info);
 	TILE_GET_INFO_MEMBER(get_screwloo_bg_tile_info);
 	DECLARE_VIDEO_START(screwloo);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void video_update(bitmap32_t &bitmap, const rectangle &cliprect, const rectangle &visarea);
+	void overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea);
 	INTERRUPT_GEN_MEMBER(interrupt);
 	TIMER_CALLBACK_MEMBER(laserdisc_philips_callback);
 	TIMER_CALLBACK_MEMBER(laserdisc_bit_off_callback);
 	TIMER_CALLBACK_MEMBER(laserdisc_bit_callback);
 	TIMER_CALLBACK_MEMBER(nmi_clear);
-	void draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void draw_sprites(bitmap32_t &bitmap, const rectangle &cliprect);
 	inline void audio_end_state();
 	void audio_process_clock(bool logit);
 	void audio_handle_zero_crossing(const attotime &zerotime, bool logit);

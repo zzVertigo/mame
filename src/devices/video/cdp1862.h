@@ -53,7 +53,7 @@ public:
 	DECLARE_WRITE_LINE_MEMBER( bkg_w );
 	DECLARE_WRITE_LINE_MEMBER( con_w );
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 protected:
 	// device-level overrides
@@ -67,7 +67,7 @@ private:
 	devcb_read_line m_read_bd;
 	devcb_read_line m_read_gd;
 
-	bitmap_rgb32 m_bitmap;          // bitmap
+	bitmap_argb32 m_bitmap;          // bitmap
 
 	double m_lum_r;             // red luminance resistor value
 	double m_lum_b;             // blue luminance resistor value

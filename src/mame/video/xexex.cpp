@@ -30,7 +30,7 @@ K056832_CB_MEMBER(xexex_state::tile_callback)
 
 void xexex_state::video_start()
 {
-	assert(m_screen->format() == BITMAP_FORMAT_RGB32);
+	assert(m_screen->format() == BITMAP_FORMAT_ARGB32);
 
 	m_cur_alpha = 0;
 
@@ -41,7 +41,7 @@ void xexex_state::video_start()
 	m_k056832->set_layer_offs(3,  6, 16);
 }
 
-uint32_t xexex_state::screen_update_xexex(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t xexex_state::screen_update_xexex(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	static const int K053251_CI[4] = { k053251_device::CI1, k053251_device::CI2, k053251_device::CI3, k053251_device::CI4 };
 	int layer[4];

@@ -43,11 +43,11 @@ public:
 	model3_renderer(model3_state &state, int width, int height)
 		: poly_manager<float, model3_polydata, 6, 50000>(state.machine())
 	{
-		m_fb = std::make_unique<bitmap_rgb32>(width, height);
+		m_fb = std::make_unique<bitmap_argb32>(width, height);
 		m_zb = std::make_unique<bitmap_ind32>(width, height);
 	}
 
-	void draw(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void draw(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void draw_opaque_triangles(const m3_triangle* tris, int num_tris);
 	void draw_alpha_triangles(const m3_triangle* tris, int num_tris);
 	void clear_fb();
@@ -62,7 +62,7 @@ public:
 	void wait_for_polys();
 
 private:
-	std::unique_ptr<bitmap_rgb32> m_fb;
+	std::unique_ptr<bitmap_argb32> m_fb;
 	std::unique_ptr<bitmap_ind32> m_zb;
 };
 
@@ -261,7 +261,7 @@ void model3_state::draw_texture_sheet(bitmap_ind16 &bitmap, const rectangle &cli
 }
 #endif
 
-void model3_state::draw_layer(bitmap_rgb32 &bitmap, const rectangle &cliprect, int layer, int sx, int sy, int prio)
+void model3_state::draw_layer(bitmap_argb32 &bitmap, const rectangle &cliprect, int layer, int sx, int sy, int prio)
 {
 	int bitdepth = (m_layer_priority & (0x10 << layer)) ? 1 : 0;
 //  int layer_prio = (m_layer_priority & (0x1 << layer)) ? 1 : 0;
@@ -337,7 +337,7 @@ void model3_state::draw_layer(bitmap_rgb32 &bitmap, const rectangle &cliprect, i
 	}
 }
 
-uint32_t model3_state::screen_update_model3(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t model3_state::screen_update_model3(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int layer_scroll_x[4], layer_scroll_y[4];
 	uint32_t layer_data[4];
@@ -2022,7 +2022,7 @@ void model3_state::real3d_traverse_display_list()
 	}
 }
 
-void model3_renderer::draw(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void model3_renderer::draw(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i, j;
 

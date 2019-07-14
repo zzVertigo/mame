@@ -93,7 +93,7 @@ private:
 	DECLARE_WRITE_LINE_MEMBER(apricot_hd6845_de) { m_display_enabled = state; };
 
 	MC6845_UPDATE_ROW(crtc_update_row);
-	uint32_t screen_update_apricot(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_apricot(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void apricot_io(address_map &map);
 	void apricot_mem(address_map &map);
@@ -265,7 +265,7 @@ static void apricot_floppies(device_slot_interface &device)
 //  VIDEO EMULATION
 //**************************************************************************
 
-uint32_t apricot_state::screen_update_apricot(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t apricot_state::screen_update_apricot(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (!m_display_on)
 		m_crtc->screen_update(screen, bitmap, cliprect);

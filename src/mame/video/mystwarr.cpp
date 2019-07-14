@@ -266,7 +266,7 @@ VIDEO_START_MEMBER(mystwarr_state, martchmp)
 
 
 
-uint32_t mystwarr_state::screen_update_mystwarr(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mystwarr_state::screen_update_mystwarr(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i, old, blendmode=0;
 
@@ -285,7 +285,7 @@ uint32_t mystwarr_state::screen_update_mystwarr(screen_device &screen, bitmap_rg
 	return 0;
 }
 
-uint32_t mystwarr_state::screen_update_metamrph(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mystwarr_state::screen_update_metamrph(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i, old;
 
@@ -302,7 +302,7 @@ uint32_t mystwarr_state::screen_update_metamrph(screen_device &screen, bitmap_rg
 	return 0;
 }
 
-uint32_t mystwarr_state::screen_update_martchmp(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mystwarr_state::screen_update_martchmp(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i, old, blendmode;
 
@@ -429,7 +429,7 @@ READ16_MEMBER(mystwarr_state::ddd_053936_tilerom_2_r)
 	return ROM[offset]<<8;
 }
 
-uint32_t mystwarr_state::screen_update_dadandrn(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)/* and gaiapols */
+uint32_t mystwarr_state::screen_update_dadandrn(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)/* and gaiapols */
 {
 	int i, newbase, dirty, rozmode;
 

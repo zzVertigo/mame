@@ -166,7 +166,7 @@ void jaleco_blend_device::drawgfx(palette_device &palette,bitmap_ind16 &dest_bmp
 							u32 code,u32 color,bool flipx,bool flipy,int offsx,int offsy,
 							u8 transparent_color)
 { jaleco_blend_device::drawgfx_common(palette,dest_bmp, clip, gfx, code, color, flipx, flipy, offsx, offsy, transparent_color); }
-void jaleco_blend_device::drawgfx(palette_device &palette,bitmap_rgb32 &dest_bmp,const rectangle &clip,gfx_element *gfx,
+void jaleco_blend_device::drawgfx(palette_device &palette,bitmap_argb32 &dest_bmp,const rectangle &clip,gfx_element *gfx,
 							u32 code,u32 color,bool flipx,bool flipy,int offsx,int offsy,
 							u8 transparent_color)
 { jaleco_blend_device::drawgfx_common(palette,dest_bmp, clip, gfx, code, color, flipx, flipy, offsx, offsy, transparent_color); }

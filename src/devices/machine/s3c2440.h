@@ -177,7 +177,7 @@ public:
 
 	DECLARE_WRITE_LINE_MEMBER( frnb_w );
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void s3c2440_touch_screen( int state);
 	void s3c2440_request_eint( uint32_t number);
@@ -216,8 +216,8 @@ protected:
 	void s3c24xx_lcd_render_tft_16();
 	TIMER_CALLBACK_MEMBER( s3c24xx_lcd_timer_exp );
 	void s3c24xx_video_start();
-	void bitmap_blend( bitmap_rgb32 &bitmap_dst, bitmap_rgb32 &bitmap_src_1, bitmap_rgb32 &bitmap_src_2);
-	uint32_t s3c24xx_video_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void bitmap_blend( bitmap_argb32 &bitmap_dst, bitmap_argb32 &bitmap_src_1, bitmap_argb32 &bitmap_src_2);
+	uint32_t s3c24xx_video_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	READ32_MEMBER( s3c24xx_lcd_r );
 	int s3c24xx_lcd_configure_tft();
 	int s3c24xx_lcd_configure_stn();
@@ -557,7 +557,7 @@ private:
 	{
 		lcd_regs_t regs;
 		emu_timer *timer;
-		std::unique_ptr<bitmap_rgb32> bitmap[2];
+		std::unique_ptr<bitmap_argb32> bitmap[2];
 		uint32_t vramaddr_cur;
 		uint32_t vramaddr_max;
 		uint32_t offsize;

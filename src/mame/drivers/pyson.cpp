@@ -168,7 +168,7 @@ public:
 	void pyson(machine_config &config);
 
 private:
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void ps2_map(address_map &map);
 
@@ -184,7 +184,7 @@ void pyson_state::video_start()
 {
 }
 
-uint32_t pyson_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t pyson_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

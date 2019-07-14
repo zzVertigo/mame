@@ -233,7 +233,7 @@ private:
 		TIMER_IRQ0_STOP
 	};
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(irq0_start);
 	DECLARE_READ32_MEMBER(control_r);
 	DECLARE_WRITE32_MEMBER(control_w);
@@ -315,7 +315,7 @@ void kinst_state::machine_reset()
  *
  *************************************/
 
-uint32_t kinst_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t kinst_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *pen = m_palette->pens();
 

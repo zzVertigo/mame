@@ -364,7 +364,7 @@ void seibuspi_state::sprite_dma_start_w(u16 data)
 
 /*****************************************************************************/
 
-void seibuspi_state::drawgfx_blend(bitmap_rgb32 &bitmap, const rectangle &cliprect, gfx_element *gfx, u32 code, u32 color, bool flipx, bool flipy, int sx, int sy, bitmap_ind8 &primap, u8 primask)
+void seibuspi_state::drawgfx_blend(bitmap_argb32 &bitmap, const rectangle &cliprect, gfx_element *gfx, u32 code, u32 color, bool flipx, bool flipy, int sx, int sy, bitmap_ind8 &primap, u8 primask)
 {
 	const int width = gfx->width();
 	const int height = gfx->height();
@@ -465,7 +465,7 @@ void seibuspi_state::drawgfx_blend(bitmap_rgb32 &bitmap, const rectangle &clipre
 	}
 }
 
-void seibuspi_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &primap, int priority)
+void seibuspi_state::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &primap, int priority)
 {
 	gfx_element *gfx = m_gfxdecode->gfx(0);
 	const bool has_tile_high = (gfx->elements() > 0x10000);
@@ -554,7 +554,7 @@ void seibuspi_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprec
 	}
 }
 
-void seibuspi_state::combine_tilemap(bitmap_rgb32 &bitmap, const rectangle &cliprect, tilemap_t *tile, int sx, int sy, int opaque, s16 *rowscroll)
+void seibuspi_state::combine_tilemap(bitmap_argb32 &bitmap, const rectangle &cliprect, tilemap_t *tile, int sx, int sy, int opaque, s16 *rowscroll)
 {
 	bitmap_ind16 &pen_bitmap = tile->pixmap();
 	bitmap_ind8 &flags_bitmap = tile->flagsmap();
@@ -588,7 +588,7 @@ void seibuspi_state::combine_tilemap(bitmap_rgb32 &bitmap, const rectangle &clip
 }
 
 
-u32 seibuspi_state::screen_update_spi(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 seibuspi_state::screen_update_spi(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	s16 *back_rowscroll, *midl_rowscroll, *fore_rowscroll;
 	if (m_rowscroll_enable)
@@ -641,7 +641,7 @@ u32 seibuspi_state::screen_update_spi(screen_device &screen, bitmap_rgb32 &bitma
 	return 0;
 }
 
-u32 seibuspi_state::screen_update_sys386f(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 seibuspi_state::screen_update_sys386f(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	screen.priority().fill(0, cliprect);
 	bitmap.fill(0, cliprect);

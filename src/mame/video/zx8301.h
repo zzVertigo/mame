@@ -61,7 +61,7 @@ public:
 	DECLARE_READ8_MEMBER( data_r );
 	DECLARE_WRITE8_MEMBER( data_w );
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void zx8301(address_map &map);
 protected:
@@ -78,8 +78,8 @@ protected:
 	inline uint8_t readbyte(offs_t address);
 	inline void writebyte(offs_t address, uint8_t data);
 
-	void draw_line_mode4(bitmap_rgb32 &bitmap, int y, uint16_t da);
-	void draw_line_mode8(bitmap_rgb32 &bitmap, int y, uint16_t da);
+	void draw_line_mode4(bitmap_argb32 &bitmap, int y, uint16_t da);
+	void draw_line_mode8(bitmap_argb32 &bitmap, int y, uint16_t da);
 
 private:
 	enum

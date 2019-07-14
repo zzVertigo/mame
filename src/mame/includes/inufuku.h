@@ -70,7 +70,7 @@ private:
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
 	virtual void video_start() override;
-	uint32_t screen_update_inufuku(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_inufuku(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(screen_vblank_inufuku);
 	void inufuku_map(address_map &map);
 	void inufuku_sound_io_map(address_map &map);

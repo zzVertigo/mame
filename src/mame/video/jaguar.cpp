@@ -834,7 +834,7 @@ void jaguar_state::device_postload()
  *
  *************************************/
 
-uint32_t jaguar_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t jaguar_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* if not enabled, just blank */
 	if (!(m_gpu_regs[VMODE] & 1))

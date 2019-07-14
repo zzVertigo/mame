@@ -580,7 +580,7 @@ uint32_t tetrisp2_state::screen_update_rockntread(screen_device &screen, bitmap_
 
 
 
-uint32_t tetrisp2_state::screen_update_rocknms_left(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t tetrisp2_state::screen_update_rocknms_left(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int asc_pri;
 	int scr_pri;
@@ -640,7 +640,7 @@ uint32_t tetrisp2_state::screen_update_rocknms_left(screen_device &screen, bitma
 	return 0;
 }
 
-uint32_t tetrisp2_state::screen_update_rocknms_right(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t tetrisp2_state::screen_update_rocknms_right(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int asc_pri;
 	int scr_pri;
@@ -737,7 +737,7 @@ VIDEO_START_MEMBER(stepstag_state,stepstag)
 	m_priority = std::make_unique<uint8_t[]>(0x40000);
 }
 
-uint32_t stepstag_state::screen_update_stepstag_left(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t stepstag_state::screen_update_stepstag_left(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(0, cliprect);
 	screen.priority().fill(0);
@@ -749,7 +749,7 @@ uint32_t stepstag_state::screen_update_stepstag_left(screen_device &screen, bitm
 	return 0;
 }
 
-uint32_t stepstag_state::screen_update_stepstag_mid(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t stepstag_state::screen_update_stepstag_mid(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(0, cliprect);
 	screen.priority().fill(0);

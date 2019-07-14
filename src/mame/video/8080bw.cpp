@@ -51,7 +51,7 @@ void _8080bw_state::sflush_palette(palette_device &palette) const
 }
 
 
-inline void _8080bw_state::set_pixel( bitmap_rgb32 &bitmap, uint8_t y, uint8_t x, int color )
+inline void _8080bw_state::set_pixel( bitmap_argb32 &bitmap, uint8_t y, uint8_t x, int color )
 {
 	if (y >= MW8080BW_VCOUNTER_START_NO_VBLANK)
 	{
@@ -63,7 +63,7 @@ inline void _8080bw_state::set_pixel( bitmap_rgb32 &bitmap, uint8_t y, uint8_t x
 }
 
 
-inline void _8080bw_state::set_8_pixels( bitmap_rgb32 &bitmap, uint8_t y, uint8_t x, uint8_t data, int fore_color, int back_color )
+inline void _8080bw_state::set_8_pixels( bitmap_argb32 &bitmap, uint8_t y, uint8_t x, uint8_t data, int fore_color, int back_color )
 {
 	int i;
 
@@ -78,7 +78,7 @@ inline void _8080bw_state::set_8_pixels( bitmap_rgb32 &bitmap, uint8_t y, uint8_
 
 
 /* this is needed as this driver doesn't emulate the shift register like mw8080bw does */
-void _8080bw_state::clear_extra_columns( bitmap_rgb32 &bitmap, int color )
+void _8080bw_state::clear_extra_columns( bitmap_argb32 &bitmap, int color )
 {
 	uint8_t x;
 
@@ -97,7 +97,7 @@ void _8080bw_state::clear_extra_columns( bitmap_rgb32 &bitmap, int color )
 }
 
 
-uint32_t _8080bw_state::screen_update_invadpt2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t _8080bw_state::screen_update_invadpt2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t *prom = memregion("proms")->base();
 	uint8_t *color_map_base = m_color_map ? &prom[0x0400] : &prom[0x0000];
@@ -121,7 +121,7 @@ uint32_t _8080bw_state::screen_update_invadpt2(screen_device &screen, bitmap_rgb
 }
 
 
-uint32_t _8080bw_state::screen_update_ballbomb(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t _8080bw_state::screen_update_ballbomb(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t *prom = memregion("proms")->base();
 	uint8_t *color_map_base = m_color_map ? &prom[0x0400] : &prom[0x0000];
@@ -146,7 +146,7 @@ uint32_t _8080bw_state::screen_update_ballbomb(screen_device &screen, bitmap_rgb
 }
 
 
-uint32_t _8080bw_state::screen_update_schaser(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t _8080bw_state::screen_update_schaser(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t *background_map_base = memregion("proms")->base();
 
@@ -180,7 +180,7 @@ uint32_t _8080bw_state::screen_update_schaser(screen_device &screen, bitmap_rgb3
 }
 
 
-uint32_t _8080bw_state::screen_update_schasercv(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t _8080bw_state::screen_update_schasercv(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (offs_t offs = 0; offs < m_main_ram.bytes(); offs++)
 	{
@@ -200,7 +200,7 @@ uint32_t _8080bw_state::screen_update_schasercv(screen_device &screen, bitmap_rg
 }
 
 
-uint32_t _8080bw_state::screen_update_rollingc(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t _8080bw_state::screen_update_rollingc(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (offs_t offs = 0; offs < m_main_ram.bytes(); offs++)
 	{
@@ -220,7 +220,7 @@ uint32_t _8080bw_state::screen_update_rollingc(screen_device &screen, bitmap_rgb
 }
 
 
-uint32_t _8080bw_state::screen_update_polaris(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t _8080bw_state::screen_update_polaris(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t *color_map_base = memregion("proms")->base();
 	uint8_t *cloud_gfx = memregion("user1")->base();
@@ -284,7 +284,7 @@ uint32_t _8080bw_state::screen_update_polaris(screen_device &screen, bitmap_rgb3
 }
 
 
-uint32_t _8080bw_state::screen_update_lupin3(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t _8080bw_state::screen_update_lupin3(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (offs_t offs = 0; offs < m_main_ram.bytes(); offs++)
 	{
@@ -303,7 +303,7 @@ uint32_t _8080bw_state::screen_update_lupin3(screen_device &screen, bitmap_rgb32
 }
 
 
-uint32_t _8080bw_state::screen_update_cosmo(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t _8080bw_state::screen_update_cosmo(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (offs_t offs = 0; offs < m_main_ram.bytes(); offs++)
 	{
@@ -324,7 +324,7 @@ uint32_t _8080bw_state::screen_update_cosmo(screen_device &screen, bitmap_rgb32 
 }
 
 
-uint32_t _8080bw_state::screen_update_indianbt(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t _8080bw_state::screen_update_indianbt(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t *prom = memregion("proms")->base();
 	uint8_t *color_map_base = m_color_map ? &prom[0x0400] : &prom[0x0000];
@@ -348,7 +348,7 @@ uint32_t _8080bw_state::screen_update_indianbt(screen_device &screen, bitmap_rgb
 }
 
 
-uint32_t _8080bw_state::screen_update_sflush(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t _8080bw_state::screen_update_sflush(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (offs_t offs = 0; offs < m_main_ram.bytes(); offs++)
 	{
@@ -367,7 +367,7 @@ uint32_t _8080bw_state::screen_update_sflush(screen_device &screen, bitmap_rgb32
 }
 
 
-uint32_t _8080bw_state::screen_update_shuttlei(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t _8080bw_state::screen_update_shuttlei(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (offs_t offs = 0; offs < m_main_ram.bytes(); offs++)
 	{
@@ -390,7 +390,7 @@ uint32_t _8080bw_state::screen_update_shuttlei(screen_device &screen, bitmap_rgb
 }
 
 
-uint32_t _8080bw_state::screen_update_spacecom(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t _8080bw_state::screen_update_spacecom(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (offs_t offs = 0; offs < 0x1c00; offs++)
 	{

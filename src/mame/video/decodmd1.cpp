@@ -258,7 +258,7 @@ void decodmd_type1_device::device_reset()
 	m_frameswap = false;
 }
 
-uint32_t decodmd_type1_device::screen_update( screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect )
+uint32_t decodmd_type1_device::screen_update( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	uint8_t ptr = 0;
 	uint8_t x,y,dot;

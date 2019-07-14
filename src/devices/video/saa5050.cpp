@@ -623,7 +623,7 @@ int saa5050_device::get_rgb()
 //  screen_update -
 //-------------------------------------------------
 
-uint32_t saa5050_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t saa5050_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	dew_w(1);
 	dew_w(0);

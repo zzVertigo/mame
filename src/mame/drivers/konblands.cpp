@@ -45,7 +45,7 @@ public:
 
 private:
 	// screen updates
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea);
 	void konblands_palette(palette_device &palette) const;
 	DECLARE_READ8_MEMBER(ldp_r);
 	DECLARE_WRITE8_MEMBER(ldp_w);
@@ -102,7 +102,7 @@ void konblands_state::video_start()
 {
 }
 
-uint32_t konblands_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void konblands_state::overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea)
 {
 	gfx_element *gfx = m_gfxdecode->gfx(0);
 	int count = 0;
@@ -118,8 +118,6 @@ uint32_t konblands_state::screen_update(screen_device &screen, bitmap_rgb32 &bit
 			count++;
 		}
 	}
-
-	return 0;
 }
 
 READ8_MEMBER(konblands_state::ldp_r)
@@ -287,7 +285,7 @@ void konblands_state::konblands(machine_config &config)
 	PIONEER_LDV1000(config, m_laserdisc, 0);
 	m_laserdisc->command_strobe_callback().set(FUNC(konblands_state::ld_command_strobe_cb));
 	// TODO: might be different
-	m_laserdisc->set_overlay(512, 256, FUNC(konblands_state::screen_update));
+	m_laserdisc->set_overlay(512, 256, FUNC(konblands_state::overlay_update));
 
 	/* video hardware */
 	m_laserdisc->add_ntsc_screen(config, "screen");

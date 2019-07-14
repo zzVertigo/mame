@@ -346,7 +346,7 @@ private:
 	TIMER_CALLBACK_MEMBER(assert_lp);
 	TILE_GET_INFO_MEMBER(get_bg_tile_info);
 	MC6845_ON_UPDATE_ADDR_CHANGED(crtc_addr);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void load_superdata(const char *bank_name);
 	void peplus_palette(palette_device &palette) const;
 	void handle_lightpen();
@@ -966,7 +966,7 @@ void peplus_state::video_start()
 	save_item(NAME(m_vid_address));
 }
 
-uint32_t peplus_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t peplus_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bg_tilemap->draw(screen, bitmap, cliprect, 0, 0);
 

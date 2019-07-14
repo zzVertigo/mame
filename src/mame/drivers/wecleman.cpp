@@ -1151,7 +1151,6 @@ void wecleman_state::hotchase(machine_config &config)
 	m_screen->set_size(320 +16, 256);
 	m_screen->set_visarea(0, 320-1, 0, 224-1);
 	m_screen->set_screen_update(FUNC(wecleman_state::screen_update_hotchase));
-	m_screen->set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_hotchase);
 	PALETTE(config, m_palette).set_entries(8192);

@@ -53,23 +53,23 @@ struct ui_gfx_info
 
 struct ui_gfx_state
 {
-	bool            started;        // have we called ui_gfx_count_devices() yet?
-	uint8_t           mode;           // which mode are we in?
+	bool              started;			// have we called ui_gfx_count_devices() yet?
+	uint8_t           mode;				// which mode are we in?
 
 	// intermediate bitmaps
-	bool            bitmap_dirty;   // is the bitmap dirty?
-	bitmap_rgb32 *  bitmap;         // bitmap for drawing gfx and tilemaps
-	render_texture *texture;        // texture for rendering the above bitmap
+	bool             bitmap_dirty;		// is the bitmap dirty?
+	bitmap_argb32 *  bitmap;			// bitmap for drawing gfx and tilemaps
+	render_texture * texture;			// texture for rendering the above bitmap
 
 	// palette-specific data
 	struct
 	{
 		device_palette_interface *interface; // pointer to current palette
-		int   devcount;             // how many palette devices exist
-		int   devindex;             // which palette device is visible
-		uint8_t which;                // which subset (pens or indirect colors)?
-		uint8_t columns;              // number of items per row
-		int   offset;               // current offset of top left item
+		int     devcount;				// how many palette devices exist
+		int     devindex;				// which palette device is visible
+		uint8_t which;					// which subset (pens or indirect colors)?
+		uint8_t columns;				// number of items per row
+		int     offset;                 // current offset of top left item
 	} palette;
 
 	// graphics-specific data
@@ -119,7 +119,7 @@ static void palette_handler(mame_ui_manager &mui, render_container &container, u
 
 // graphics set handling
 static void gfxset_handle_keys(running_machine &machine, ui_gfx_state &state, int xcells, int ycells);
-static void gfxset_draw_item(running_machine &machine, gfx_element &gfx, int index, bitmap_rgb32 &bitmap, int dstx, int dsty, int color, int rotate, device_palette_interface *dpalette);
+static void gfxset_draw_item(running_machine &machine, gfx_element &gfx, int index, bitmap_argb32 &bitmap, int dstx, int dsty, int color, int rotate, device_palette_interface *dpalette);
 static void gfxset_update_bitmap(running_machine &machine, ui_gfx_state &state, int xcells, int ycells, gfx_element &gfx);
 static void gfxset_handler(mame_ui_manager &mui, render_container &container, ui_gfx_state &state);
 
@@ -912,7 +912,7 @@ static void gfxset_update_bitmap(running_machine &machine, ui_gfx_state &state, 
 		global_free(state.bitmap);
 
 		// allocate new stuff
-		state.bitmap = global_alloc(bitmap_rgb32(cellxpix * xcells, cellypix * ycells));
+		state.bitmap = global_alloc(bitmap_argb32(cellxpix * xcells, cellypix * ycells));
 		state.texture = machine.render().texture_alloc();
 		state.texture->set_bitmap(*state.bitmap, state.bitmap->cliprect(), TEXFORMAT_ARGB32);
 
@@ -970,7 +970,7 @@ static void gfxset_update_bitmap(running_machine &machine, ui_gfx_state &state, 
 //  the view
 //-------------------------------------------------
 
-static void gfxset_draw_item(running_machine &machine, gfx_element &gfx, int index, bitmap_rgb32 &bitmap, int dstx, int dsty, int color, int rotate, device_palette_interface *dpalette)
+static void gfxset_draw_item(running_machine &machine, gfx_element &gfx, int index, bitmap_argb32 &bitmap, int dstx, int dsty, int color, int rotate, device_palette_interface *dpalette)
 {
 	int width = (rotate & ORIENTATION_SWAP_XY) ? gfx.height() : gfx.width();
 	int height = (rotate & ORIENTATION_SWAP_XY) ? gfx.width() : gfx.height();
@@ -1308,7 +1308,7 @@ static void tilemap_update_bitmap(running_machine &machine, ui_gfx_state &state,
 		global_free(state.bitmap);
 
 		// allocate new stuff
-		state.bitmap = global_alloc(bitmap_rgb32(width, height));
+		state.bitmap = global_alloc(bitmap_argb32(width, height));
 		state.texture = machine.render().texture_alloc();
 		state.texture->set_bitmap(*state.bitmap, state.bitmap->cliprect(), TEXFORMAT_RGB32);
 
@@ -1324,7 +1324,7 @@ static void tilemap_update_bitmap(running_machine &machine, ui_gfx_state &state,
 		screen_device *first_screen = screen_device_iterator(machine.root_device()).first();
 		if (first_screen)
 		{
-			tilemap->draw_debug(*first_screen, *state.bitmap, state.tilemap.xoffs, state.tilemap.yoffs, state.tilemap.flags);
+			tilemap->draw_debug(*state.bitmap, state.tilemap.xoffs, state.tilemap.yoffs, state.tilemap.flags);
 		}
 
 		// reset the texture to force an update

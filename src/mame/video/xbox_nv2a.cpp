@@ -991,7 +991,7 @@ void nv2a_renderer::geforce_read_dma_object(uint32_t handle, uint32_t &offset, u
 	offset = dma_frame + dma_adjust;
 }
 
-/*void myline(bitmap_rgb32 &bmp,float x1,float y1,float x2,float y2)
+/*void myline(bitmap_argb32 &bmp,float x1,float y1,float x2,float y2)
 {
 int xx1,yy1,xx2,yy2;
 
@@ -4527,10 +4527,10 @@ bool nv2a_renderer::update_interrupts()
 		return false;
 }
 
-uint32_t nv2a_renderer::screen_update_callback(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t nv2a_renderer::screen_update_callback(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (displayedtarget != nullptr) {
-		bitmap_rgb32 bm(displayedtarget, 640, 480, 640);
+		bitmap_argb32 bm(displayedtarget, 640, 480, 640);
 		uint32_t *dst = (uint32_t *)bitmap.raw_pixptr(0, 0);
 
 		//printf("updatescreen %08X\n\r",pcrtc[0x800/4]);

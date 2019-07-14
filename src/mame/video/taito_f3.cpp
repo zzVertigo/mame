@@ -299,7 +299,7 @@ void taito_f3_state::device_post_load()
 
 /******************************************************************************/
 
-void taito_f3_state::print_debug_info(bitmap_rgb32 &bitmap)
+void taito_f3_state::print_debug_info(bitmap_argb32 &bitmap)
 {
 /*  u16 *line_ram = m_line_ram;
     int l[16];
@@ -1330,7 +1330,7 @@ void taito_f3_state::init_alpha_blend_func()
 /*============================================================================*/
 
 inline void taito_f3_state::draw_scanlines(
-							bitmap_rgb32 &bitmap, int xsize, s16 *draw_line_num,
+							bitmap_argb32 &bitmap, int xsize, s16 *draw_line_num,
 							const struct f3_playfield_line_inf **line_t,
 							const int *sprite,
 							u32 orient,
@@ -2043,7 +2043,7 @@ void taito_f3_state::get_vram_info(tilemap_t *vram_tilemap, tilemap_t *pixel_til
 
 /******************************************************************************/
 
-void taito_f3_state::scanline_draw(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void taito_f3_state::scanline_draw(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i, ys, ye;
 	int y_start, y_end, y_start_next, y_end_next;
@@ -2455,7 +2455,7 @@ void taito_f3_state::scanline_draw(bitmap_rgb32 &bitmap, const rectangle &clipre
 	dest++;                     \
 	pri++;
 
-inline void taito_f3_state::f3_drawgfx(bitmap_rgb32 &dest_bmp, const rectangle &clip,
+inline void taito_f3_state::f3_drawgfx(bitmap_argb32 &dest_bmp, const rectangle &clip,
 		gfx_element *gfx,
 		int code,
 		int color,
@@ -2603,7 +2603,7 @@ inline void taito_f3_state::f3_drawgfx(bitmap_rgb32 &dest_bmp, const rectangle &
 #undef NEXT_P
 
 
-inline void taito_f3_state::f3_drawgfxzoom(bitmap_rgb32 &dest_bmp, const rectangle &clip,
+inline void taito_f3_state::f3_drawgfxzoom(bitmap_argb32 &dest_bmp, const rectangle &clip,
 		gfx_element *gfx,
 		int code,
 		int color,
@@ -3003,7 +3003,7 @@ void taito_f3_state::get_sprite_info(const u16 *spriteram16_ptr)
 #undef CALC_ZOOM
 
 
-void taito_f3_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void taito_f3_state::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const struct tempsprite *sprite_ptr;
 	gfx_element *sprite_gfx = m_gfxdecode->gfx(2);
@@ -3043,7 +3043,7 @@ void taito_f3_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprec
 
 /******************************************************************************/
 
-u32 taito_f3_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 taito_f3_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	u32 sy_fix[5], sx_fix[5];
 

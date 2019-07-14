@@ -551,12 +551,12 @@ void decospr_device::draw_sprites_common(_BitmapClass &bitmap, const rectangle &
 void decospr_device::draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect, uint16_t* spriteram, int sizewords)
 { draw_sprites_common(bitmap, cliprect, spriteram, sizewords); }
 
-void decospr_device::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint16_t* spriteram, int sizewords)
+void decospr_device::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, uint16_t* spriteram, int sizewords)
 { draw_sprites_common(bitmap, cliprect, spriteram, sizewords); }
 
 
 // inefficient, we should be able to mix in a single pass by comparing the existing priority bitmap from the tilemaps
-void decospr_device::inefficient_copy_sprite_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint16_t pri, uint16_t priority_mask, uint16_t colbase, uint16_t palmask, uint8_t alpha)
+void decospr_device::inefficient_copy_sprite_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect, uint16_t pri, uint16_t priority_mask, uint16_t colbase, uint16_t palmask, uint8_t alpha)
 {
 	if (!m_sprite_bitmap.valid())
 		fatalerror("decospr_device::inefficient_copy_sprite_bitmap with no m_sprite_bitmap\n");

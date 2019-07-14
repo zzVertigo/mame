@@ -528,7 +528,7 @@ WRITE_LINE_MEMBER( i82730_device::irst_w )
 	m_sint_handler(0);
 }
 
-uint32_t i82730_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t i82730_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	copybitmap(bitmap, m_bitmap, 0, 0, m_hfldstrt * 16, 0, cliprect);
 	return 0;

@@ -143,7 +143,7 @@ private:
 	virtual void machine_reset() override;
 	virtual void video_start() override;
 	void jantotsu_palette(palette_device &palette) const;
-	uint32_t screen_update_jantotsu(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_jantotsu(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(jan_adpcm_int);
 	required_device<cpu_device> m_maincpu;
 	required_device<msm5205_device> m_adpcm;
@@ -164,7 +164,7 @@ void jantotsu_state::video_start()
 	save_item(NAME(m_bitmap));
 }
 
-uint32_t jantotsu_state::screen_update_jantotsu(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t jantotsu_state::screen_update_jantotsu(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x, y, i;
 	int count = 0;

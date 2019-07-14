@@ -494,7 +494,7 @@ WRITE8_MEMBER(bt459_device::palette_w)
 		set_pen_color(index, m_palette_ram[index]);
 }
 
-void bt459_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, u8 *pixel_data)
+void bt459_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, u8 *pixel_data)
 {
 	// initialise the blink timer
 	if (m_blink_start > screen.frame_number())

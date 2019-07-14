@@ -530,7 +530,7 @@ WRITE_LINE_MEMBER(xbox_base_state::vblank_callback)
 	nvidia_nv2a->vblank_callback(state);
 }
 
-uint32_t xbox_base_state::screen_update_callback(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t xbox_base_state::screen_update_callback(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return nvidia_nv2a->screen_update_callback(screen, bitmap, cliprect);
 }

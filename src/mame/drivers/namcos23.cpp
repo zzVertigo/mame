@@ -1320,7 +1320,7 @@ struct namcos23_render_data
 {
 	running_machine *machine;
 	const pen_t *pens;
-	bitmap_rgb32 *bitmap;
+	bitmap_argb32 *bitmap;
 	uint32_t (*texture_lookup)(running_machine &machine, const pen_t *pens, float x, float y);
 };
 
@@ -1330,7 +1330,7 @@ class namcos23_renderer : public poly_manager<float, namcos23_render_data, 4, PO
 {
 public:
 	namcos23_renderer(namcos23_state &state);
-	void render_flush(bitmap_rgb32& bitmap);
+	void render_flush(bitmap_argb32& bitmap);
 	void render_scanline(int32_t scanline, const extent_t& extent, const namcos23_render_data& object, int threadid);
 	float* zBuffer() { return m_zBuffer; }
 
@@ -1507,7 +1507,7 @@ private:
 	TILE_GET_INFO_MEMBER(TextTilemapGetInfo);
 	DECLARE_VIDEO_START(s23);
 	DECLARE_MACHINE_RESET(gmen);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(interrupt);
 	TIMER_CALLBACK_MEMBER(c361_timer_cb);
 	DECLARE_WRITE_LINE_MEMBER(sub_irq);
@@ -1541,7 +1541,7 @@ private:
 	void render_apply_matrot(int32_t xi, int32_t yi, int32_t zi, const namcos23_render_entry *re, int32_t &x, int32_t &y, int32_t &z);
 	void render_project(poly_vertex &pv);
 	void render_one_model(const namcos23_render_entry *re);
-	void render_run(bitmap_rgb32 &bitmap);
+	void render_run(bitmap_argb32 &bitmap);
 
 	void gmen_mips_map(address_map &map);
 	void gmen_sh2_map(address_map &map);
@@ -2293,7 +2293,7 @@ static int render_poly_compare(const void *i1, const void *i2)
 	return p1->zkey < p2->zkey ? 1 : p1->zkey > p2->zkey ? -1 : 0;
 }
 
-void namcos23_renderer::render_flush(bitmap_rgb32& bitmap)
+void namcos23_renderer::render_flush(bitmap_argb32& bitmap)
 {
 	render_t &render = m_state.m_render;
 
@@ -2326,7 +2326,7 @@ void namcos23_renderer::render_flush(bitmap_rgb32& bitmap)
 	render.poly_count = 0;
 }
 
-void namcos23_state::render_run(bitmap_rgb32 &bitmap)
+void namcos23_state::render_run(bitmap_argb32 &bitmap)
 {
 	render_t &render = m_render;
 	const namcos23_render_entry *re = render.entries[!render.cur];
@@ -2420,7 +2420,7 @@ VIDEO_START_MEMBER(namcos23_state,s23)
 }
 
 
-uint32_t namcos23_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t namcos23_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	update_mixer();
 	bitmap.fill(m_c404.bgcolor, cliprect);

@@ -350,7 +350,7 @@ void ms32_state::draw_roz(screen_device &screen, bitmap_ind16 &bitmap, const rec
 
 
 
-uint32_t ms32_state::screen_update_ms32(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t ms32_state::screen_update_ms32(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int scrollx,scrolly;
 	int asc_pri;

@@ -150,7 +150,7 @@ void jmfb_device::device_timer(emu_timer &timer, device_timer_id tid, int param,
 	m_timer->adjust(m_screen->time_until_pos(479, 0), 0);
 }
 
-uint32_t jmfb_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t jmfb_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t *scanline, *base;
 	int x, y;

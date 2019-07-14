@@ -63,7 +63,7 @@ private:
 
 	TIMER_DEVICE_CALLBACK_MEMBER(scanline);
 
-	uint32_t screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void bootleg_map(address_map &map);
 	void main_map(address_map &map);
@@ -72,7 +72,7 @@ private:
 
 	int scanline_to_vcount(int scanline);
 
-	void draw_sprites(bitmap_ind16 &bitmap,const rectangle &cliprect);
+	void draw_sprites(bitmap_argb32 &bitmap,const rectangle &cliprect);
 
 	required_device<cpu_device>             m_maincpu;
 	required_device<cpu_device>             m_audiocpu;

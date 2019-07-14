@@ -138,7 +138,7 @@ public:
 	DECLARE_MACHINE_RESET(x1);
 	DECLARE_VIDEO_START(x1);
 	DECLARE_MACHINE_RESET(x1turbo);
-	uint32_t screen_update_x1(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_x1(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_INPUT_CHANGED_MEMBER(ipl_reset);
 	DECLARE_INPUT_CHANGED_MEMBER(nmi_reset);
 	TIMER_CALLBACK_MEMBER(x1_rtc_increment);
@@ -211,9 +211,9 @@ protected:
 		uint8_t sec, min, hour, day, wday, month, year;
 	};
 
-	void x1_draw_pixel(bitmap_rgb32 &bitmap,int y,int x,uint16_t pen,uint8_t width,uint8_t height);
-	void draw_fgtilemap(bitmap_rgb32 &bitmap,const rectangle &cliprect);
-	void draw_gfxbitmap(bitmap_rgb32 &bitmap,const rectangle &cliprect, int plane,int pri);
+	void x1_draw_pixel(bitmap_argb32 &bitmap,int y,int x,uint16_t pen,uint8_t width,uint8_t height);
+	void draw_fgtilemap(bitmap_argb32 &bitmap,const rectangle &cliprect);
+	void draw_gfxbitmap(bitmap_argb32 &bitmap,const rectangle &cliprect, int plane,int pri);
 	uint8_t check_prev_height(int x,int y,int x_size);
 	uint8_t check_line_valid_height(int y,int x_size,int height);
 

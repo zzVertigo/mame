@@ -359,7 +359,7 @@ void psxgpu_device::DebugCheckKeys()
 #endif
 }
 
-int psxgpu_device::DebugMeshDisplay( bitmap_rgb32 &bitmap, const rectangle &cliprect )
+int psxgpu_device::DebugMeshDisplay( bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	if( m_debug.b_mesh )
 	{
@@ -371,7 +371,7 @@ int psxgpu_device::DebugMeshDisplay( bitmap_rgb32 &bitmap, const rectangle &clip
 	return m_debug.b_mesh;
 }
 
-int psxgpu_device::DebugTextureDisplay( bitmap_rgb32 &bitmap )
+int psxgpu_device::DebugTextureDisplay( bitmap_argb32 &bitmap )
 {
 	if( m_debug.b_texture )
 	{
@@ -649,7 +649,7 @@ void psxgpu_device::device_post_load()
 	updatevisiblearea();
 }
 
-uint32_t psxgpu_device::update_screen(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t psxgpu_device::update_screen(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t n_x;
 	uint32_t n_y;
@@ -3542,5 +3542,5 @@ void psxgpu_device::device_config_complete()
 	}
 
 	if (!screen().has_screen_update())
-		screen().set_screen_update(screen_update_rgb32_delegate(FUNC(psxgpu_device::update_screen), this));
+		screen().set_screen_update(FUNC(psxgpu_device::update_screen));
 }

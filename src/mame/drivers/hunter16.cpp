@@ -32,7 +32,7 @@ public:
 	void hunter1680(machine_config &config);
 
 protected:
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void mem_map(address_map &map);
 	void io_16_map(address_map &map);

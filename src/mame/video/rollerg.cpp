@@ -43,12 +43,12 @@ K051316_CB_MEMBER(rollerg_state::zoom_callback)
 
 ***************************************************************************/
 
-uint32_t rollerg_state::screen_update_rollerg(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t rollerg_state::screen_update_rollerg(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int bg_colorbase = 16;
 
 	screen.priority().fill(0, cliprect);
-	bitmap.fill(16 * bg_colorbase, cliprect);
+	bitmap.fill(m_palette->pens()[16 * bg_colorbase], cliprect);
 	m_k051316->zoom_draw(screen, bitmap, cliprect, 0, 1);
 	m_k053244->sprites_draw(bitmap, cliprect, screen.priority());
 	return 0;

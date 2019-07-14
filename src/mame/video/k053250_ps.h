@@ -41,7 +41,7 @@ public:
 	DECLARE_WRITE_LINE_MEMBER(vblank_w);
 	DECLARE_READ_LINE_MEMBER(dmairq_r);
 
-	void draw( bitmap_rgb32 &bitmap, const rectangle &cliprect, int colorbase, int flags, bitmap_ind8 &priority_bitmap, int priority );
+	void draw( bitmap_argb32 &bitmap, const rectangle &cliprect, int colorbase, int flags, bitmap_ind8 &priority_bitmap, int priority );
 
 protected:
 	// device-level overrides
@@ -76,7 +76,7 @@ private:
 
 	// internal helpers
 	void unpack_nibbles();
-	static void pdraw_scanline32(bitmap_rgb32 &bitmap, const pen_t *pal_base, uint8_t *source,
+	static void pdraw_scanline32(bitmap_argb32 &bitmap, const pen_t *pal_base, uint8_t *source,
 									const rectangle &cliprect, int linepos, int scroll, int zoom,
 									uint32_t clipmask, uint32_t wrapmask, uint32_t orientation, bitmap_ind8 &priority, uint8_t pri);
 };

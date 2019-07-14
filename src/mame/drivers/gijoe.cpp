@@ -311,7 +311,6 @@ void gijoe_state::gijoe(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(24, 24+288-1, 16, 16+224-1);
 	screen.set_screen_update(FUNC(gijoe_state::screen_update_gijoe));
-	screen.set_palette("palette");
 
 	PALETTE(config, "palette").set_format(palette_device::xBGR_555, 2048).enable_shadows();
 

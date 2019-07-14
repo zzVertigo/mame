@@ -342,7 +342,7 @@ void grchamp_state::draw_objects(int y, uint8_t *objdata)
 }
 
 
-uint32_t grchamp_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t grchamp_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	static const rgb_t objpix_lookup[8] =
 	{

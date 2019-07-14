@@ -385,7 +385,7 @@ void super80_state::mc6845_cursor_configure()
 			m_mc6845_cursor[i] = 0; // now take a bite out of the middle
 }
 
-uint32_t super80_state::screen_update_super80v(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t super80_state::screen_update_super80v(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_s_options = m_io_config->read();
 	m_cass_led = BIT(m_portf0, 5);

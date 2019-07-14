@@ -51,9 +51,9 @@ protected:
 	DECLARE_WRITE_LINE_MEMBER(flip_screen_y_w);
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
-	uint32_t screen_update_tutankhm_bootleg(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_tutankhm_scramble(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_tutankhm(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_tutankhm_bootleg(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_tutankhm_scramble(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_tutankhm(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(vblank_irq);
 	void main_map(address_map &map);
 	virtual void video_start() override;
@@ -85,9 +85,9 @@ protected:
 	void stars_init();
 	void stars_init_scramble();
 	void stars_init_bootleg();
-	void stars_draw_row(bitmap_rgb32 &bitmap, int maxx, int y, uint32_t star_offs);
-	void scramble_draw_stars(bitmap_rgb32 &bitmap, const rectangle &cliprect, int maxx);
-	void scramble_draw_background(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void stars_draw_row(bitmap_argb32 &bitmap, int maxx, int y, uint32_t star_offs);
+	void scramble_draw_stars(bitmap_argb32 &bitmap, const rectangle &cliprect, int maxx);
+	void scramble_draw_background(bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	uint8_t m_star_mode;
 	rgb_t m_star_color[64];

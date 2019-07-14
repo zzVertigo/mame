@@ -145,7 +145,7 @@ private:
 
 	static const device_timer_id TIMER_IOWQ = 0;
 
-	uint32_t screen_update_hazl1500(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_hazl1500(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ8_MEMBER(ram_r);
 	DECLARE_WRITE8_MEMBER(ram_w);
@@ -259,7 +259,7 @@ void hazl1500_state::device_timer(emu_timer &timer, device_timer_id id, int para
 	m_cpu_ba4->write(1);
 }
 
-uint32_t hazl1500_state::screen_update_hazl1500(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t hazl1500_state::screen_update_hazl1500(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int last_index = m_last_vpos * SCREEN_HTOTAL + m_last_hpos;
 	while (last_index < SCREEN_HTOTAL * SCREEN_VTOTAL)

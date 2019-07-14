@@ -88,7 +88,7 @@ void dbz_state::video_start()
 	m_k056832->set_layer_offs(3, -31, -16); //?
 }
 
-uint32_t dbz_state::screen_update_dbz(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t dbz_state::screen_update_dbz(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	static const int K053251_CI[6] = { k053251_device::CI3, k053251_device::CI4, k053251_device::CI4, k053251_device::CI4, k053251_device::CI2, k053251_device::CI1 };
 	int layer[5], plane, new_colorbase;

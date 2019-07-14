@@ -442,7 +442,6 @@ void mainevt_state::mainevt(machine_config &config)
 //  screen.set_visarea(14*8, (64-14)*8-1, 2*8, 30*8-1);
 	screen.set_raw(XTAL(24'000'000)/3, 528, 14*8, (64-14)*8, 256, 16, 240); // same hardware as Devastators so assume 59.17
 	screen.set_screen_update(FUNC(mainevt_state::screen_update_mainevt));
-	screen.set_palette("palette");
 
 	PALETTE(config, "palette").set_format(palette_device::xBGR_555, 256).enable_shadows();
 
@@ -489,7 +488,6 @@ void mainevt_state::devstors(machine_config &config)
 //  screen.set_visarea(13*8, (64-13)*8-1, 2*8, 30*8-1);
 	screen.set_raw(XTAL(24'000'000)/3, 528, 13*8, (64-13)*8, 256, 16, 240); // measured 59.17
 	screen.set_screen_update(FUNC(mainevt_state::screen_update_dv));
-	screen.set_palette("palette");
 
 	PALETTE(config, "palette").set_format(palette_device::xBGR_555, 256).enable_shadows();
 

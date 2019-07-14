@@ -17,7 +17,7 @@
 #include "emu.h"
 #include "includes/malzak.h"
 
-uint32_t malzak_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t malzak_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const rgb_t *palette = m_palette->palette()->entry_list_raw();
 

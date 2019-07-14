@@ -406,7 +406,7 @@ private:
 	void hikaru_map(address_map &map);
 	void hikaru_map_slave(address_map &map);
 
-	uint32_t screen_update_hikaru(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_hikaru(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	required_device<sh4_device> m_maincpu;
 	required_device<sh4_device> m_slave;
@@ -416,7 +416,7 @@ void hikaru_state::video_start()
 {
 }
 
-uint32_t hikaru_state::screen_update_hikaru(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t hikaru_state::screen_update_hikaru(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

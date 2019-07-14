@@ -70,9 +70,9 @@ private:
 	DECLARE_WRITE16_MEMBER(subdatabank_select_w);
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
-	uint32_t screen_update_galpani2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void copybg8(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int layer);
-	void copybg15(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_galpani2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void copybg8(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int layer);
+	void copybg15(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	TIMER_DEVICE_CALLBACK_MEMBER(galpani2_interrupt1);
 	TIMER_DEVICE_CALLBACK_MEMBER(galpani2_interrupt2);

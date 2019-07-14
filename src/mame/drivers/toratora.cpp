@@ -94,7 +94,7 @@ private:
 	DECLARE_WRITE_LINE_MEMBER(sn2_ca2_u2_w);
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
-	uint32_t screen_update_toratora(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_toratora(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(toratora_timer);
 	void main_map(address_map &map);
 };
@@ -119,7 +119,7 @@ WRITE_LINE_MEMBER(toratora_state::cb2_u2_w)
  *
  *************************************/
 
-uint32_t toratora_state::screen_update_toratora(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t toratora_state::screen_update_toratora(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	offs_t offs;
 

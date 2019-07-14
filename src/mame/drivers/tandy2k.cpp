@@ -483,7 +483,7 @@ INPUT_CHANGED_MEMBER(tandy2k_state::input_changed)
 
 // Video
 
-uint32_t tandy2k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t tandy2k_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *cpen = m_colpal->pens();
 	address_space &program = m_maincpu->space(AS_PROGRAM);

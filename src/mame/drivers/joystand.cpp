@@ -179,7 +179,7 @@ private:
 	TILE_GET_INFO_MEMBER(get_bg2_tile_info);
 
 	// r5g5b5 layers
-	bitmap_rgb32 m_bg15_bitmap[2];
+	bitmap_argb32 m_bg15_bitmap[2];
 	DECLARE_WRITE16_MEMBER(bg15_0_w);
 	DECLARE_WRITE16_MEMBER(bg15_1_w);
 	static const rgb_t BG15_TRANSPARENT;
@@ -203,7 +203,7 @@ private:
 	DECLARE_WRITE16_MEMBER(outputs_w);
 
 	// screen updates
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	// machine
 	INTERRUPT_GEN_MEMBER(joystand_interrupt);
@@ -322,7 +322,7 @@ void joystand_state::video_start()
 	bg15_tiles_dirty = true;
 }
 
-uint32_t joystand_state::screen_update( screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect )
+uint32_t joystand_state::screen_update( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	int layers_ctrl = -1;
 

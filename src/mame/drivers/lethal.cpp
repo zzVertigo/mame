@@ -510,7 +510,6 @@ void lethal_state::lethalen(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(216, 504-1, 16, 240-1);
 	screen.set_screen_update(FUNC(lethal_state::screen_update_lethalen));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette).set_format(palette_device::xBGR_555, 8192);
 	m_palette->enable_shadows();

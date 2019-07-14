@@ -390,7 +390,6 @@ void f1gp_state::f1gp(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(0*8, 40*8-1, 1*8, 31*8-1);
 	screen.set_screen_update(FUNC(f1gp_state::screen_update_f1gp));
-	screen.set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_f1gp);
 	PALETTE(config, m_palette).set_format(palette_device::xRGB_555, 2048);
@@ -457,7 +456,6 @@ void f1gp_state::f1gpb(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(0*8, 40*8-1, 1*8, 31*8-1);
 	screen.set_screen_update(FUNC(f1gp_state::screen_update_f1gpb));
-	screen.set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_f1gp);
 	PALETTE(config, m_palette).set_format(palette_device::xRGB_555, 2048);

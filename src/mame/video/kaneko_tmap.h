@@ -40,11 +40,11 @@ public:
 	void render_tilemap_alt_common(screen_device &screen, _BitmapClass &bitmap, const rectangle &cliprect, int pri, int v2pri);
 
 	void prepare(bitmap_ind16 &bitmap, const rectangle &cliprect);
-	void prepare(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void prepare(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void render_tilemap(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, int pri);
-	void render_tilemap(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int pri);
+	void render_tilemap(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int pri);
 	void render_tilemap_alt(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, int pri, int v2pri);
-	void render_tilemap_alt(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int pri, int v2pri);
+	void render_tilemap_alt(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int pri, int v2pri);
 
 
 	// access

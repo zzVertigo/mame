@@ -1270,7 +1270,7 @@ void cave_state::sprite_draw_donpachi_zbuf(int chip, int priority)
 ***************************************************************************/
 
 inline void cave_state::tilemap_draw(int chip,
-	screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect,
+	screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect,
 	u32 flags, u32 priority, u32 priority2, int GFX)
 {
 	tilemap_t *TILEMAP = m_tilemap[GFX];
@@ -1387,7 +1387,7 @@ inline void cave_state::tilemap_draw(int chip,
 }
 
 
-u32 cave_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 cave_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int layers_ctrl = -1;
 
@@ -1533,7 +1533,7 @@ void cave_state::device_post_load()
 
 // Poka Poka Satan: 3 screens * (1 Sprite chip + 1 Tilemap chip)
 
-u32 cave_state::screen_update_ppsatan_core(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int chip)
+u32 cave_state::screen_update_ppsatan_core(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int chip)
 {
 	m_blit.baseaddr = reinterpret_cast<u8 *>(bitmap.raw_pixptr(0));
 	m_blit.line_offset = bitmap.rowbytes();
@@ -1560,16 +1560,16 @@ u32 cave_state::screen_update_ppsatan_core(screen_device &screen, bitmap_rgb32 &
 	return 0;
 }
 
-u32 cave_state::screen_update_ppsatan_top(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 cave_state::screen_update_ppsatan_top(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return screen_update_ppsatan_core(screen, bitmap, cliprect, 0);
 }
-u32 cave_state::screen_update_ppsatan_left(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 cave_state::screen_update_ppsatan_left(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	machine().crosshair().get_crosshair(1).set_screen(&screen);
 	return screen_update_ppsatan_core(screen, bitmap, cliprect, 1);
 }
-u32 cave_state::screen_update_ppsatan_right(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 cave_state::screen_update_ppsatan_right(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	machine().crosshair().get_crosshair(0).set_screen(&screen);
 	return screen_update_ppsatan_core(screen, bitmap, cliprect, 2);

@@ -2420,7 +2420,7 @@ void saturn_state::stv_vdp2_compute_color_offset_UINT32(rgb_t *rgb, int cor)
 }
 
 void saturn_state::stv_vdp2_drawgfxzoom(
-		bitmap_rgb32 &dest_bmp,const rectangle &clip,gfx_element *gfx,
+		bitmap_argb32 &dest_bmp,const rectangle &clip,gfx_element *gfx,
 		uint32_t code,uint32_t color,int flipx,int flipy,int sx,int sy,
 		int transparency,int scalex, int scaley,
 		int sprite_screen_width, int sprite_screen_height, int alpha)
@@ -2598,7 +2598,7 @@ void saturn_state::stv_vdp2_drawgfxzoom(
 }
 
 void saturn_state::stv_vdp2_drawgfxzoom_rgb555(
-		bitmap_rgb32 &dest_bmp,const rectangle &clip,
+		bitmap_argb32 &dest_bmp,const rectangle &clip,
 		uint32_t code,uint32_t color,int flipx,int flipy,int sx,int sy,
 		int transparency,int scalex, int scaley,
 		int sprite_screen_width, int sprite_screen_height, int alpha)
@@ -2800,7 +2800,7 @@ void saturn_state::stv_vdp2_drawgfxzoom_rgb555(
 }
 
 
-void saturn_state::stv_vdp2_drawgfx_rgb555( bitmap_rgb32 &dest_bmp, const rectangle &clip, uint32_t code, int flipx, int flipy, int sx, int sy, int transparency, int alpha)
+void saturn_state::stv_vdp2_drawgfx_rgb555( bitmap_argb32 &dest_bmp, const rectangle &clip, uint32_t code, int flipx, int flipy, int sx, int sy, int transparency, int alpha)
 {
 	rectangle myclip;
 	uint8_t* gfxdata;
@@ -2913,7 +2913,7 @@ void saturn_state::stv_vdp2_drawgfx_rgb555( bitmap_rgb32 &dest_bmp, const rectan
 }
 
 
-void saturn_state::stv_vdp2_drawgfx_rgb888( bitmap_rgb32 &dest_bmp, const rectangle &clip, uint32_t code, int flipx, int flipy,
+void saturn_state::stv_vdp2_drawgfx_rgb888( bitmap_argb32 &dest_bmp, const rectangle &clip, uint32_t code, int flipx, int flipy,
 										int sx, int sy, int transparency, int alpha)
 {
 	rectangle myclip;
@@ -3026,7 +3026,7 @@ void saturn_state::stv_vdp2_drawgfx_rgb888( bitmap_rgb32 &dest_bmp, const rectan
 	}
 }
 
-void saturn_state::stv_vdp2_drawgfx_alpha(bitmap_rgb32 &dest_bmp,const rectangle &clip,gfx_element *gfx,
+void saturn_state::stv_vdp2_drawgfx_alpha(bitmap_argb32 &dest_bmp,const rectangle &clip,gfx_element *gfx,
 							uint32_t code,uint32_t color, int flipx,int flipy,int offsx,int offsy,
 							int transparency, int alpha)
 {
@@ -3103,7 +3103,7 @@ void saturn_state::stv_vdp2_drawgfx_alpha(bitmap_rgb32 &dest_bmp,const rectangle
 	}
 }
 
-void saturn_state::stv_vdp2_drawgfx_transpen(bitmap_rgb32 &dest_bmp,const rectangle &clip,gfx_element *gfx,
+void saturn_state::stv_vdp2_drawgfx_transpen(bitmap_argb32 &dest_bmp,const rectangle &clip,gfx_element *gfx,
 							uint32_t code,uint32_t color, int flipx,int flipy,int offsx,int offsy,
 							int transparency)
 {
@@ -3180,7 +3180,7 @@ void saturn_state::stv_vdp2_drawgfx_transpen(bitmap_rgb32 &dest_bmp,const rectan
 	}
 }
 
-void saturn_state::draw_4bpp_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void saturn_state::draw_4bpp_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int xsize, ysize, xsize_mask, ysize_mask;
 	int xsrc,ysrc,xdst,ydst;
@@ -3236,7 +3236,7 @@ void saturn_state::draw_4bpp_bitmap(bitmap_rgb32 &bitmap, const rectangle &clipr
 }
 
 
-void saturn_state::draw_8bpp_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void saturn_state::draw_8bpp_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int xsize, ysize, xsize_mask, ysize_mask;
 	int xsrc,ysrc,xdst,ydst;
@@ -3295,7 +3295,7 @@ void saturn_state::draw_8bpp_bitmap(bitmap_rgb32 &bitmap, const rectangle &clipr
 	}
 }
 
-void saturn_state::draw_11bpp_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void saturn_state::draw_11bpp_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int xsize, ysize, xsize_mask, ysize_mask;
 	int xsrc,ysrc,xdst,ydst;
@@ -3353,7 +3353,7 @@ void saturn_state::draw_11bpp_bitmap(bitmap_rgb32 &bitmap, const rectangle &clip
 }
 
 
-void saturn_state::draw_rgb15_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void saturn_state::draw_rgb15_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int xsize, ysize, xsize_mask, ysize_mask;
 	int xsrc,ysrc,xdst,ydst;
@@ -3411,7 +3411,7 @@ void saturn_state::draw_rgb15_bitmap(bitmap_rgb32 &bitmap, const rectangle &clip
 	}
 }
 
-void saturn_state::draw_rgb32_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void saturn_state::draw_rgb32_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int xsize, ysize, xsize_mask, ysize_mask;
 	int xsrc,ysrc,xdst,ydst;
@@ -3470,7 +3470,7 @@ void saturn_state::draw_rgb32_bitmap(bitmap_rgb32 &bitmap, const rectangle &clip
 }
 
 
-void saturn_state::stv_vdp2_draw_basic_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void saturn_state::stv_vdp2_draw_basic_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (!stv2_current_tilemap.enabled) return;
 
@@ -3679,7 +3679,7 @@ void saturn_state::stv_vdp2_get_map_page( int x, int y, int *_map, int *_page )
 	*_map = map;
 }
 
-void saturn_state::stv_vdp2_draw_basic_tilemap(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void saturn_state::stv_vdp2_draw_basic_tilemap(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* hopefully this is easier to follow than it is efficient .. */
 
@@ -4191,7 +4191,7 @@ void saturn_state::stv_vdp2_draw_basic_tilemap(bitmap_rgb32 &bitmap, const recta
 	}
 
 
-void saturn_state::stv_vdp2_check_tilemap_with_linescroll(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void saturn_state::stv_vdp2_check_tilemap_with_linescroll(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	rectangle mycliprect;
 	int cur_line = cliprect.top();
@@ -4329,7 +4329,7 @@ void saturn_state::stv_vdp2_check_tilemap_with_linescroll(bitmap_rgb32 &bitmap, 
 	}
 }
 
-void saturn_state::stv_vdp2_draw_line(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void saturn_state::stv_vdp2_draw_line(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y;
 	uint8_t* gfxdata = m_vdp2.gfx_decode.get();
@@ -4362,7 +4362,7 @@ void saturn_state::stv_vdp2_draw_line(bitmap_rgb32 &bitmap, const rectangle &cli
 	}
 }
 
-void saturn_state::stv_vdp2_draw_mosaic(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint8_t is_roz)
+void saturn_state::stv_vdp2_draw_mosaic(bitmap_argb32 &bitmap, const rectangle &cliprect, uint8_t is_roz)
 {
 	int x,y,xi,yi;
 	uint8_t h_size,v_size;
@@ -4393,7 +4393,7 @@ void saturn_state::stv_vdp2_draw_mosaic(bitmap_rgb32 &bitmap, const rectangle &c
 	}
 }
 
-void saturn_state::stv_vdp2_check_tilemap(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void saturn_state::stv_vdp2_check_tilemap(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* the idea is here we check the tilemap capabilities / whats enabled and call an appropriate tilemap drawing routine, or
 	  at the very list throw up a few errors if the tilemaps want to do something we don't support yet */
@@ -4568,8 +4568,8 @@ void saturn_state::stv_vdp2_check_tilemap(bitmap_rgb32 &bitmap, const rectangle 
 }
 
 
-void saturn_state::stv_vdp2_copy_roz_bitmap(bitmap_rgb32 &bitmap,
-										bitmap_rgb32 &roz_bitmap,
+void saturn_state::stv_vdp2_copy_roz_bitmap(bitmap_argb32 &bitmap,
+										bitmap_argb32 &roz_bitmap,
 										const rectangle &cliprect,
 										int iRP,
 										int planesizex,
@@ -5017,7 +5017,7 @@ inline int saturn_state::get_roz_window_pixel(int s_x,int e_x,int s_y,int e_y,in
 }
 
 
-void saturn_state::stv_vdp2_draw_NBG0(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void saturn_state::stv_vdp2_draw_NBG0(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t base_mask;
 
@@ -5119,7 +5119,7 @@ void saturn_state::stv_vdp2_draw_NBG0(bitmap_rgb32 &bitmap, const rectangle &cli
 		stv_vdp2_check_tilemap(bitmap, cliprect);
 }
 
-void saturn_state::stv_vdp2_draw_NBG1(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void saturn_state::stv_vdp2_draw_NBG1(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t base_mask;
 
@@ -5217,7 +5217,7 @@ void saturn_state::stv_vdp2_draw_NBG1(bitmap_rgb32 &bitmap, const rectangle &cli
 	stv_vdp2_check_tilemap(bitmap, cliprect);
 }
 
-void saturn_state::stv_vdp2_draw_NBG2(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void saturn_state::stv_vdp2_draw_NBG2(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/*
 	   NBG2 is the first of the 2 more basic tilemaps, it has exactly the same capabilities as NBG3
@@ -5321,7 +5321,7 @@ void saturn_state::stv_vdp2_draw_NBG2(bitmap_rgb32 &bitmap, const rectangle &cli
 	stv_vdp2_check_tilemap(bitmap, cliprect);
 }
 
-void saturn_state::stv_vdp2_draw_NBG3(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void saturn_state::stv_vdp2_draw_NBG3(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/*
 	   NBG3 is the second of the 2 more basic tilemaps, it has exactly the same capabilities as NBG2
@@ -5426,7 +5426,7 @@ void saturn_state::stv_vdp2_draw_NBG3(bitmap_rgb32 &bitmap, const rectangle &cli
 }
 
 
-void saturn_state::stv_vdp2_draw_rotation_screen(bitmap_rgb32 &bitmap, const rectangle &cliprect, int iRP)
+void saturn_state::stv_vdp2_draw_rotation_screen(bitmap_argb32 &bitmap, const rectangle &cliprect, int iRP)
 {
 	rectangle roz_clip_rect;
 	int planesizex = 0, planesizey = 0;
@@ -5642,7 +5642,7 @@ void saturn_state::stv_vdp2_draw_rotation_screen(bitmap_rgb32 &bitmap, const rec
 
 }
 
-void saturn_state::stv_vdp2_draw_RBG0(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void saturn_state::stv_vdp2_draw_RBG0(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/*
 	   Colours           : 16, 256, 2048, 32768, 16770000
@@ -5751,7 +5751,7 @@ void saturn_state::stv_vdp2_draw_RBG0(bitmap_rgb32 &bitmap, const rectangle &cli
 
 }
 
-void saturn_state::stv_vdp2_draw_back(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void saturn_state::stv_vdp2_draw_back(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y;
 	uint8_t* gfxdata = m_vdp2.gfx_decode.get();
@@ -6612,7 +6612,7 @@ int saturn_state::stv_vdp2_apply_window_on_layer(rectangle &cliprect)
 	}
 }
 
-void saturn_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint8_t pri)
+void saturn_state::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, uint8_t pri)
 {
 	int x,y,r,g,b;
 	int i;
@@ -7143,7 +7143,7 @@ void saturn_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect,
 	stv_sprite_priorities_usage_valid = 1;
 }
 
-uint32_t saturn_state::screen_update_stv_vdp2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t saturn_state::screen_update_stv_vdp2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	stv_vdp2_fade_effects();
 

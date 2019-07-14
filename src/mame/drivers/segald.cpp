@@ -69,9 +69,9 @@ private:
 	DECLARE_WRITE8_MEMBER(astron_FIX_write);
 	DECLARE_WRITE8_MEMBER(astron_io_bankswitch_w);
 	virtual void machine_start() override;
-	uint32_t screen_update_astron(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void astron_draw_characters(bitmap_rgb32 &bitmap,const rectangle &cliprect);
-	void astron_draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea);
+	void astron_draw_characters(bitmap_argb32 &bitmap,const rectangle &cliprect);
+	void astron_draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	required_device<cpu_device> m_maincpu;
 	required_device<gfxdecode_device> m_gfxdecode;
 	required_device<palette_device> m_palette;
@@ -80,7 +80,7 @@ private:
 };
 
 /* VIDEO GOODS */
-void segald_state::astron_draw_characters(bitmap_rgb32 &bitmap,const rectangle &cliprect)
+void segald_state::astron_draw_characters(bitmap_argb32 &bitmap,const rectangle &cliprect)
 {
 	for (uint8_t character_x = 0; character_x < 32; character_x++)
 	{
@@ -93,7 +93,7 @@ void segald_state::astron_draw_characters(bitmap_rgb32 &bitmap,const rectangle &
 	}
 }
 
-void segald_state::astron_draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void segald_state::astron_draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* Heisted from Daphne */
 	const uint8_t SPR_Y_TOP     = 0;
@@ -117,14 +117,12 @@ void segald_state::astron_draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cl
 }
 
 
-uint32_t segald_state::screen_update_astron(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void segald_state::overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea)
 {
 	bitmap.fill(0, cliprect);
 
 	astron_draw_characters(bitmap, cliprect);
 	astron_draw_sprites(bitmap, cliprect);
-
-	return 0;
 }
 
 
@@ -380,7 +378,7 @@ void segald_state::astron(machine_config &config)
 	m_maincpu->set_periodic_int(FUNC(segald_state::nmi_line_pulse), attotime::from_hz(1000.0/59.94));
 
 	PIONEER_LDV1000(config, m_laserdisc, 0);
-	m_laserdisc->set_overlay(256, 256, FUNC(segald_state::screen_update_astron));
+	m_laserdisc->set_overlay(256, 256, FUNC(segald_state::overlay_update));
 	m_laserdisc->add_route(0, "lspeaker", 1.0);
 	m_laserdisc->add_route(1, "rspeaker", 1.0);
 

@@ -72,13 +72,13 @@ K051316_CB_MEMBER(ajax_state::zoom_callback)
 
 ***************************************************************************/
 
-uint32_t ajax_state::screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t ajax_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_k052109->tilemap_update();
 
 	screen.priority().fill(0, cliprect);
 
-	bitmap.fill(m_palette->black_pen(), cliprect);
+	bitmap.fill(m_palette->pen_color(m_palette->black_pen()), cliprect);
 	m_k052109->tilemap_draw(screen, bitmap, cliprect, 2, 0, 1);
 	if (m_priority)
 	{

@@ -139,7 +139,7 @@ public:
 	void invqix(machine_config &config);
 
 private:
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ16_MEMBER(port3_r);
 	DECLARE_WRITE16_MEMBER(port3_w);
@@ -172,7 +172,7 @@ void invqix_state::video_start()
 	save_item(NAME(m_vctl));
 }
 
-uint32_t invqix_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t invqix_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y;
 

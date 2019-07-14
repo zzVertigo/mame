@@ -26,7 +26,7 @@ device_palette_interface::device_palette_interface(const machine_config &mconfig
 	: device_interface(device, "palette"),
 		m_palette(nullptr),
 		m_pens(nullptr),
-		m_format(BITMAP_FORMAT_RGB32),
+		m_format(BITMAP_FORMAT_ARGB32),
 		m_shadow_table(nullptr),
 		m_shadow_group(0),
 		m_hilight_group(0),
@@ -318,7 +318,7 @@ void device_palette_interface::set_shadow_dRGB32(int mode, int dr, int dg, int d
 		rgb_t final = rgb_t(r, g, b);
 
 		// store either 16 or 32 bit
-		if (m_format == BITMAP_FORMAT_RGB32)
+		if (m_format == BITMAP_FORMAT_ARGB32)
 			stable.base[i] = final;
 		else
 			stable.base[i] = final.as_rgb15();
@@ -374,7 +374,7 @@ void device_palette_interface::allocate_palette(u32 numentries)
 			break;
 
 		// 32-bit direct case
-		case BITMAP_FORMAT_RGB32:
+		case BITMAP_FORMAT_ARGB32:
 			m_black_pen = rgb_t::black();
 			m_white_pen = rgb_t::white();
 			break;
@@ -410,7 +410,7 @@ void device_palette_interface::allocate_color_tables()
 			}
 			break;
 
-		case BITMAP_FORMAT_RGB32:
+		case BITMAP_FORMAT_ARGB32:
 			m_pens = reinterpret_cast<const pen_t *>(m_palette->entry_list_adjusted());
 			break;
 
@@ -504,7 +504,7 @@ void device_palette_interface::configure_rgb_shadows(int mode, float factor)
 
 		// store either 16 or 32 bit
 		rgb_t final = rgb_t(r, g, b);
-		if (m_format == BITMAP_FORMAT_RGB32)
+		if (m_format == BITMAP_FORMAT_ARGB32)
 			stable.base[rgb555] = final;
 		else
 			stable.base[rgb555] = final.as_rgb15();

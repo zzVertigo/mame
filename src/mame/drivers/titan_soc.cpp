@@ -46,7 +46,7 @@ private:
 
 	virtual void machine_reset() override;
 	virtual void video_start() override;
-	uint32_t screen_update_titan_soc(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_titan_soc(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void map(address_map &map);
 };
 
@@ -66,7 +66,7 @@ void titan_soc_state::video_start()
 {
 }
 
-uint32_t titan_soc_state::screen_update_titan_soc(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t titan_soc_state::screen_update_titan_soc(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

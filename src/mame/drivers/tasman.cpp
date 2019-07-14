@@ -80,7 +80,7 @@ private:
 	uint8_t m_irq_mask;
 
 	virtual void machine_reset() override { m_irq_mask = 0; };
-	uint32_t screen_update_kongambl(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_kongambl(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	WRITE_LINE_MEMBER(vblank_irq_ack_w);
 	WRITE_LINE_MEMBER(hblank_irq_ack_w);
 	TIMER_DEVICE_CALLBACK_MEMBER(kongambl_vblank);
@@ -105,7 +105,7 @@ VIDEO_START_MEMBER(kongambl_state,kongambl)
 	#endif
 }
 
-uint32_t kongambl_state::screen_update_kongambl(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t kongambl_state::screen_update_kongambl(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	#if CUSTOM_DRAW
 	gfx_element *gfx = m_gfxdecode->gfx(0);
@@ -143,7 +143,7 @@ uint32_t kongambl_state::screen_update_kongambl(screen_device &screen, bitmap_in
 
 
 	#else
-	bitmap.fill(0, cliprect);
+	bitmap.fill(m_palette->pens()[0], cliprect);
 	screen.priority().fill(0, cliprect);
 
 	m_k056832->tilemap_draw(screen, bitmap, cliprect, 3, 0, 0);
@@ -666,7 +666,6 @@ void kongambl_state::kongambl(machine_config &config)
 	SCREEN(config, m_screen, SCREEN_TYPE_RASTER);
 	m_screen->set_raw(25000000, 288+16+32+48, 0, 287, 224+16+8+16, 0, 223); // fake, they'll be changed by CCU anyway, TBD
 	m_screen->set_screen_update(FUNC(kongambl_state::screen_update_kongambl));
-	m_screen->set_palette(m_palette);
 
 	PALETTE(config, m_palette).set_format(palette_device::xRGB_888, 32768);
 

@@ -746,7 +746,7 @@ void md_base_state::megadriv_z80_io_map(address_map &map)
 	map(0x0000, 0xff).noprw();
 }
 
-uint32_t md_base_state::screen_update_megadriv(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t md_base_state::screen_update_megadriv(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* Copy our screen buffer here */
 	for (int y = cliprect.min_y; y <= cliprect.max_y; y++)

@@ -317,7 +317,7 @@ TIMER_CALLBACK_MEMBER(mips_rambo_device::buzzer)
 	m_buzzer_out_cb(m_buzzer_out_state);
 }
 
-u32 mips_rambo_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 mips_rambo_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	dma_t &channel = m_channel[1];
 

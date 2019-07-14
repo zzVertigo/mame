@@ -52,7 +52,7 @@ WRITE8_MEMBER( abc800_state::hrc_w )
 //  hr_update - high resolution screen update
 //-------------------------------------------------
 
-void abc800c_state::hr_update(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void abc800c_state::hr_update(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *pen = m_palette->pens();
 
@@ -99,7 +99,7 @@ void abc800c_state::hr_update(bitmap_rgb32 &bitmap, const rectangle &cliprect)
 //  SCREEN_UPDATE( abc800c )
 //-------------------------------------------------
 
-uint32_t abc800c_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t abc800c_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// clear screen
 	bitmap.fill(rgb_t::black(), cliprect);
@@ -182,7 +182,7 @@ void abc800c_state::abc800c_video(machine_config &config)
 //  hr_update - high resolution screen update
 //-------------------------------------------------
 
-void abc800m_state::hr_update(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void abc800m_state::hr_update(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint16_t addr = 0;
 
@@ -255,7 +255,7 @@ MC6845_UPDATE_ROW( abc800m_state::abc800m_update_row )
 //  SCREEN_UPDATE( abc800m )
 //-------------------------------------------------
 
-uint32_t abc800m_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t abc800m_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// clear screen
 	bitmap.fill(rgb_t::black(), cliprect);

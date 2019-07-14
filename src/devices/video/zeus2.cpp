@@ -218,7 +218,7 @@ void zeus2_device::device_stop()
  *
  *************************************/
 
-uint32_t zeus2_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t zeus2_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// Wait until configuration is completed before transfering anything
 	if (!(m_zeusbase[0x10] & 0x20))

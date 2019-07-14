@@ -169,7 +169,7 @@ void v99x8_device::device_config_complete()
 			(m_pal_config ? VVISIBLE_PAL : VVISIBLE_NTSC) * 2 - 1 - VERTICAL_ADJUST * 2);
 
 	if (!screen().has_screen_update())
-		screen().set_screen_update(screen_update_rgb32_delegate(FUNC(v99x8_device::screen_update), this));
+		screen().set_screen_update(FUNC(v99x8_device::screen_update));
 }
 
 
@@ -363,7 +363,7 @@ void v9958_device::palette_init()
 	}
 }
 
-uint32_t v99x8_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t v99x8_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	copybitmap(bitmap, m_bitmap, 0, 0, 0, 0, cliprect);
 	return 0;

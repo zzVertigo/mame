@@ -411,7 +411,7 @@ public:
 	apollo_graphics_15i(const machine_config &mconfig, const char *tag, device_t *owner, uint32_t clock);
 	~apollo_graphics_15i();
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	// monochrome control
 	DECLARE_READ8_MEMBER( apollo_mcr_r );
@@ -498,7 +498,7 @@ protected:
 	uint8_t c4p_read_adc(uint8_t data);
 	uint8_t c8p_read_adc(uint8_t data);
 
-	void screen_update1(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void screen_update1(bitmap_argb32 &bitmap, const rectangle &cliprect);
 protected:
 	uint16_t m_n_planes;
 	uint16_t m_width;

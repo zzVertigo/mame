@@ -294,7 +294,7 @@ void gaiden_state::drgnbowl_draw_sprites(screen_device &screen, bitmap_ind16 &bi
 	}
 }
 
-uint32_t gaiden_state::screen_update_gaiden(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t gaiden_state::screen_update_gaiden(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_tile_bitmap_bg.fill(0, cliprect);
 	m_tile_bitmap_fg.fill(0, cliprect);
@@ -313,7 +313,7 @@ uint32_t gaiden_state::screen_update_gaiden(screen_device &screen, bitmap_rgb32 
 	return 0;
 }
 
-uint32_t gaiden_state::screen_update_raiga(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t gaiden_state::screen_update_raiga(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_tile_bitmap_bg.fill(0, cliprect);
 	m_tile_bitmap_fg.fill(0, cliprect);

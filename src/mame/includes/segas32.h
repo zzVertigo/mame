@@ -51,9 +51,9 @@ public:
 
 	cpu_device* maincpu() { return m_maincpu; }
 
-	uint32_t screen_update_system32(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_multi32_left(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_multi32_right(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_system32(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_multi32_left(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_multi32_right(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_WRITE_LINE_MEMBER(ym3438_irq_handler);
 	TIMER_DEVICE_CALLBACK_MEMBER(signal_v60_irq_callback);
@@ -149,9 +149,9 @@ protected:
 	inline uint8_t compute_color_offsets(int which, int layerbit, int layerflag);
 	inline uint16_t compute_sprite_blend(uint8_t encoding);
 	inline uint16_t *get_layer_scanline(int layer, int scanline);
-	void mix_all_layers(int which, int xoffs, bitmap_rgb32 &bitmap, const rectangle &cliprect, uint8_t enablemask);
+	void mix_all_layers(int which, int xoffs, bitmap_argb32 &bitmap, const rectangle &cliprect, uint8_t enablemask);
 	void print_mixer_data(int which);
-	uint32_t multi32_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int index);
+	uint32_t multi32_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int index);
 	void update_irq_state();
 	void signal_v60_irq(int which);
 	void update_sound_irq_state();

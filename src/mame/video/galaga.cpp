@@ -564,7 +564,7 @@ WRITE_LINE_MEMBER(galaga_state::gatsbee_bank_w)
 
 ***************************************************************************/
 
-void galaga_state::draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect )
+void galaga_state::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	uint8_t *spriteram = m_galaga_ram1 + 0x380;
 	uint8_t *spriteram_2 = m_galaga_ram2 + 0x380;
@@ -614,41 +614,38 @@ void galaga_state::draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect 
 }
 
 
-void galaga_state::draw_stars(bitmap_ind16 &bitmap, const rectangle &cliprect )
+void galaga_state::draw_stars(bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
+	const pen_t *pen = m_palette->pens();
+
 	/* draw the stars */
 
 	/* $a005 controls the stars ON/OFF */
 	if ( m_videolatch->q5_r() == 1 )
 	{
-		int star_cntr;
-		int set_a, set_b;
-
 		/* two sets of stars controlled by these bits */
-		set_a = m_videolatch->q3_r();
-		set_b = m_videolatch->q4_r() | 2;
+		int set_a = m_videolatch->q3_r();
+		int set_b = m_videolatch->q4_r() | 2;
 
-		for (star_cntr = 0;star_cntr < MAX_STARS ;star_cntr++)
+		for (int star_cntr = 0;star_cntr < MAX_STARS ;star_cntr++)
 		{
-			int x,y;
-
 			if ((set_a == s_star_seed_tab[star_cntr].set) || (set_b == s_star_seed_tab[star_cntr].set))
 			{
-				x = (s_star_seed_tab[star_cntr].x + m_stars_scrollx) % 256 + 16;
-				y = (112 + s_star_seed_tab[star_cntr].y + m_stars_scrolly) % 256;
+				int x = (s_star_seed_tab[star_cntr].x + m_stars_scrollx) % 256 + 16;
+				int y = (112 + s_star_seed_tab[star_cntr].y + m_stars_scrolly) % 256;
 				/* 112 is a tweak to get alignment about perfect */
 
 				if (cliprect.contains(x, y))
-					bitmap.pix16(y, x) = STARS_COLOR_BASE + s_star_seed_tab[ star_cntr ].col;
+					bitmap.pix32(y, x) = pen[STARS_COLOR_BASE + s_star_seed_tab[ star_cntr ].col];
 			}
 
 		}
 	}
 }
 
-uint32_t galaga_state::screen_update_galaga(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t galaga_state::screen_update_galaga(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
-	bitmap.fill(m_palette->black_pen(), cliprect);
+	bitmap.fill(m_palette->pens()[m_palette->black_pen()], cliprect);
 	draw_stars(bitmap,cliprect);
 	draw_sprites(bitmap,cliprect);
 	m_fg_tilemap->draw(screen, bitmap, cliprect, 0,0);

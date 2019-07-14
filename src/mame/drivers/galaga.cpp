@@ -1659,7 +1659,6 @@ void bosco_state::bosco(machine_config &config)
 	m_screen->set_screen_update(FUNC(bosco_state::screen_update_bosco));
 	m_screen->screen_vblank().set(FUNC(bosco_state::screen_vblank_bosco));
 	m_screen->screen_vblank().append(FUNC(galaga_state::vblank_irq));
-	m_screen->set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_bosco);
 	PALETTE(config, m_palette, FUNC(bosco_state::bosco_palette), 64*4 + 64*4 + 4 + 64, 32+64);
@@ -1729,7 +1728,6 @@ void galaga_state::galaga(machine_config &config)
 	m_screen->set_screen_update(FUNC(galaga_state::screen_update_galaga));
 	m_screen->screen_vblank().set(FUNC(galaga_state::screen_vblank_galaga));
 	m_screen->screen_vblank().append(FUNC(galaga_state::vblank_irq));
-	m_screen->set_palette("palette");
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_galaga);
 	PALETTE(config, m_palette, FUNC(galaga_state::galaga_palette), 64*4 + 64*4 + 4 + 64, 32+64);
@@ -1829,7 +1827,6 @@ void xevious_state::xevious(machine_config &config)
 	SCREEN(config, m_screen, SCREEN_TYPE_RASTER);
 	m_screen->set_raw(MASTER_CLOCK/3, 384, 0, 288, 264, 0, 224);
 	m_screen->set_screen_update(FUNC(xevious_state::screen_update_xevious));
-	m_screen->set_palette(m_palette);
 	m_screen->screen_vblank().set(FUNC(galaga_state::vblank_irq));
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_xevious);
@@ -1941,7 +1938,6 @@ void digdug_state::digdug(machine_config &config)
 	SCREEN(config, m_screen, SCREEN_TYPE_RASTER);
 	m_screen->set_raw(MASTER_CLOCK/3, 384, 0, 288, 264, 0, 224);
 	m_screen->set_screen_update(FUNC(digdug_state::screen_update_digdug));
-	m_screen->set_palette(m_palette);
 	m_screen->screen_vblank().set(FUNC(galaga_state::vblank_irq));
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_digdug);

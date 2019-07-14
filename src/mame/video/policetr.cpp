@@ -334,7 +334,7 @@ WRITE8_MEMBER(policetr_state::palette_data_w)
  *
  *************************************/
 
-uint32_t policetr_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t policetr_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const int width = cliprect.width();
 	const rgb_t *palette = m_palette->palette()->entry_list_raw();

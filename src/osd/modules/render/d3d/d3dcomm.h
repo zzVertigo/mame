@@ -100,7 +100,7 @@ private:
 	DWORD                   m_texture_max_width;        // texture maximum width
 	DWORD                   m_texture_max_height;       // texture maximum height
 
-	bitmap_rgb32            m_default_bitmap;           // experimental: default bitmap
+	bitmap_argb32           m_default_bitmap;           // experimental: default bitmap
 	texture_info *          m_default_texture;          // experimental: default texture
 };
 

@@ -69,7 +69,7 @@ private:
 	DECLARE_READ32_MEMBER(s3c2440_gpio_port_r);
 	DECLARE_WRITE32_MEMBER(s3c2440_gpio_port_w);
 
-	bitmap_rgb32 m_bitmap;
+	bitmap_argb32 m_bitmap;
 	void gizmondo_map(address_map &map);
 };
 

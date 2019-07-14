@@ -34,7 +34,7 @@ public:
 	virtual void video_start() override;
 	void n64_machine_stop();
 
-	uint32_t screen_update_n64(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_n64(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(screen_vblank_n64);
 
 	// Getters
@@ -125,7 +125,7 @@ public:
 	void pi_dma_tick();
 	void si_dma_tick();
 	void reset_tick();
-	void video_update(bitmap_rgb32 &bitmap);
+	void video_update(bitmap_argb32 &bitmap);
 
 	// Video Interface (VI) registers
 	uint32_t vi_width;
@@ -299,8 +299,8 @@ private:
 
 	// Video Interface (VI) functions
 	void vi_recalculate_resolution();
-	void video_update16(bitmap_rgb32 &bitmap);
-	void video_update32(bitmap_rgb32 &bitmap);
+	void video_update16(bitmap_argb32 &bitmap);
+	void video_update32(bitmap_argb32 &bitmap);
 	uint8_t random_seed;        // %HACK%, adds 19 each time it's read and is more or less random
 	uint8_t get_random() { return random_seed += 0x13; }
 

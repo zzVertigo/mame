@@ -164,7 +164,7 @@ private:
 
 	TILE_GET_INFO_MEMBER(get_tilemap_A_tile_info);
 	TILE_GET_INFO_MEMBER(get_tilemap_B_tile_info);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_DEVICE_CALLBACK_MEMBER(interrupt_callback);
 	TIMER_DEVICE_CALLBACK_MEMBER(irq);
 	void draw_roz(bitmap_ind16 &bitmap, bitmap_ind8& bitmapflags, const rectangle &cliprect, tilemap_t *tmap, uint32_t startx, uint32_t starty, int incxx, int incxy, int incyx, int incyy, int wraparound, int columnscroll, uint32_t* scrollram);

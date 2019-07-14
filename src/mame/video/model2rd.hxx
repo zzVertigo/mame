@@ -60,7 +60,7 @@ void MODEL2_FUNC_NAME(int32_t scanline, const extent_t& extent, const m2_poly_ex
 {
 #if !defined( MODEL2_TRANSLUCENT)
 	model2_state *state = object.state;
-	bitmap_rgb32 *destmap = (bitmap_rgb32 *)&m_destmap;
+	bitmap_argb32 *destmap = (bitmap_argb32 *)&m_destmap;
 	uint32_t *p = &destmap->pix32(scanline);
 //  uint8_t  *gamma_value = &state->m_gamma_table[0];
 
@@ -119,7 +119,7 @@ void MODEL2_FUNC_NAME(int32_t scanline, const extent_t& extent, const m2_poly_ex
 void MODEL2_FUNC_NAME(int32_t scanline, const extent_t& extent, const m2_poly_extra_data& object, int threadid)
 {
 	model2_state *state = object.state;
-	bitmap_rgb32 *destmap = (bitmap_rgb32 *)&m_destmap;
+	bitmap_argb32 *destmap = (bitmap_argb32 *)&m_destmap;
 	uint32_t *p = &destmap->pix32(scanline);
 
 	uint32_t  tex_width = object.texwidth;

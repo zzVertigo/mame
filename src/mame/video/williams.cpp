@@ -204,7 +204,7 @@ VIDEO_START_MEMBER(williams2_state,williams2)
  *
  *************************************/
 
-uint32_t williams_state::screen_update_williams(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t williams_state::screen_update_williams(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	rgb_t pens[16];
 	int x, y;
@@ -231,7 +231,7 @@ uint32_t williams_state::screen_update_williams(screen_device &screen, bitmap_rg
 }
 
 
-uint32_t blaster_state::screen_update_blaster(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t blaster_state::screen_update_blaster(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	rgb_t pens[16];
 	int x, y;
@@ -273,7 +273,7 @@ uint32_t blaster_state::screen_update_blaster(screen_device &screen, bitmap_rgb3
 }
 
 
-uint32_t williams2_state::screen_update_williams2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t williams2_state::screen_update_williams2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	rgb_t pens[16];
 	int x, y;

@@ -264,7 +264,7 @@ public:
 	DECLARE_WRITE_LINE_MEMBER( pia_q219_irqa );
 	DECLARE_WRITE_LINE_MEMBER( pia_q219_irqb );
 	DECLARE_WRITE_LINE_MEMBER( ptm_q219_irq );
-	uint32_t screen_update_cmi2x(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_cmi2x(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	// Memory mapping
 	template<int cpunum> DECLARE_READ8_MEMBER( rom_r );
@@ -425,7 +425,7 @@ private:
  *
  *************************************/
 
-uint32_t cmi_state::screen_update_cmi2x(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t cmi_state::screen_update_cmi2x(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *pen = m_palette->pens();
 	uint8_t y_scroll = m_q219_pia->a_output();

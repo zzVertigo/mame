@@ -91,7 +91,7 @@ void toaplan_scu_device::draw_sprites_to_tempbitmap(const rectangle &cliprect, u
     Draw the game screen in the given bitmap.
 ***************************************************************************/
 
-void toaplan_scu_device::copy_sprites_from_tempbitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect, int priority)
+void toaplan_scu_device::copy_sprites_from_tempbitmap(bitmap_argb32 &bitmap, const rectangle &cliprect, int priority)
 {
 	const pen_t *pens = &palette().pen(gfx(0)->colorbase());
 

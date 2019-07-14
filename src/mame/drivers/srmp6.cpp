@@ -125,7 +125,7 @@ private:
 	DECLARE_READ16_MEMBER(irq_ack_r);
 	virtual void machine_start() override;
 	virtual void video_start() override;
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void update_palette();
 	u32 process(u8 b,u32 dst_offset);
 	required_device<cpu_device> m_maincpu;
@@ -203,7 +203,7 @@ void srmp6_state::video_start()
 static int xixi = 0;
 #endif
 
-u32 srmp6_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 srmp6_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int alpha;
 	int x,y,tileno,height,width,xw,yw,sprite,xb,yb;

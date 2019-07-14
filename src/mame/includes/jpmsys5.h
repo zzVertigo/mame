@@ -117,7 +117,7 @@ private:
 	DECLARE_READ16_MEMBER(sys5_tms34061_r);
 	DECLARE_WRITE16_MEMBER(ramdac_w);
 	DECLARE_WRITE16_MEMBER(rombank_w);
-	uint32_t screen_update_jpmsys5v(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_jpmsys5v(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_CALLBACK_MEMBER(touch_cb);
 
 	void m68000_map(address_map &map);

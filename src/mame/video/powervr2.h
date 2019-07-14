@@ -53,7 +53,7 @@ public:
 
 	// the real accumulation buffer is a 32x32x8bpp buffer into which tiles get rendered before they get copied to the framebuffer
 	//  our implementation is not currently tile based, and thus the accumulation buffer is screen sized
-	std::unique_ptr<bitmap_rgb32> fake_accumulationbuffer_bitmap;
+	std::unique_ptr<bitmap_argb32> fake_accumulationbuffer_bitmap;
 
 	/*
 	 * Per-polygon base and offset colors.  These are scaled by per-vertex
@@ -331,7 +331,7 @@ public:
 
 	void pvr_dma_execute(address_space &space);
 	void pvr_scanline_timer(int vpos);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	typedef uint32_t(powervr2_device::*pix_sample_fn)(texinfo*,float,float,uint32_t,uint32_t);
 
@@ -498,7 +498,7 @@ private:
 	void tex_get_info(texinfo *t);
 
 	template <pix_sample_fn sample_fn, int group_no>
-		inline void render_hline(bitmap_rgb32 &bitmap, texinfo *ti,
+		inline void render_hline(bitmap_argb32 &bitmap, texinfo *ti,
 									int y, float xl, float xr,
 									float ul, float ur, float vl, float vr,
 									float wl, float wr,
@@ -506,7 +506,7 @@ private:
 									float const offl[4], float const offr[4]);
 
 	template <pix_sample_fn sample_fn, int group_no>
-		inline void render_span(bitmap_rgb32 &bitmap, texinfo *ti,
+		inline void render_span(bitmap_argb32 &bitmap, texinfo *ti,
 								float y0, float y1,
 								float xl, float xr,
 								float ul, float ur,
@@ -522,20 +522,20 @@ private:
 								float const doldy[4], float const dordy[4]);
 
 	template <pix_sample_fn sample_fn, int group_no>
-		inline void render_tri_sorted(bitmap_rgb32 &bitmap, texinfo *ti,
+		inline void render_tri_sorted(bitmap_argb32 &bitmap, texinfo *ti,
 										const vert *v0,
 										const vert *v1, const vert *v2);
 
 	template <int group_no>
-		void render_tri(bitmap_rgb32 &bitmap, texinfo *ti, const vert *v);
+		void render_tri(bitmap_argb32 &bitmap, texinfo *ti, const vert *v);
 
 	template <int group_no>
-		void render_group_to_accumulation_buffer(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+		void render_group_to_accumulation_buffer(bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void sort_vertices(const vert *v, int *i0, int *i1, int *i2);
-	void render_to_accumulation_buffer(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void render_to_accumulation_buffer(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void pvr_accumulationbuffer_to_framebuffer(address_space &space, int x, int y);
-	void pvr_drawframebuffer(bitmap_rgb32 &bitmap,const rectangle &cliprect);
+	void pvr_drawframebuffer(bitmap_argb32 &bitmap,const rectangle &cliprect);
 	static uint32_t dilate0(uint32_t value,int bits);
 	static uint32_t dilate1(uint32_t value,int bits);
 	void computedilated();

@@ -302,7 +302,7 @@ protected:
 	template<unsigned Layer> TILE_GET_INFO_MEMBER(get_tile_info);
 	TILE_GET_INFO_MEMBER(get_tile_info_text);
 	TILE_GET_INFO_MEMBER(get_tile_info_pixel);
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(screen_vblank);
 
 	void bubsympb_map(address_map &map);
@@ -310,11 +310,11 @@ protected:
 
 	void tile_decode();
 
-	inline void f3_drawgfx(bitmap_rgb32 &dest_bmp, const rectangle &clip, gfx_element *gfx, int code, int color, int flipx, int flipy, int sx, int sy, u8 pri_dst);
-	inline void f3_drawgfxzoom(bitmap_rgb32 &dest_bmp, const rectangle &clip, gfx_element *gfx, int code, int color, int flipx, int flipy, int sx, int sy, int scalex, int scaley, u8 pri_dst);
-	void draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	inline void f3_drawgfx(bitmap_argb32 &dest_bmp, const rectangle &clip, gfx_element *gfx, int code, int color, int flipx, int flipy, int sx, int sy, u8 pri_dst);
+	inline void f3_drawgfxzoom(bitmap_argb32 &dest_bmp, const rectangle &clip, gfx_element *gfx, int code, int color, int flipx, int flipy, int sx, int sy, int scalex, int scaley, u8 pri_dst);
+	void draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void get_sprite_info(const u16 *spriteram16_ptr);
-	void print_debug_info(bitmap_rgb32 &bitmap);
+	void print_debug_info(bitmap_argb32 &bitmap);
 	inline void alpha_set_level();
 	inline void alpha_blend32_s(int alphas, u32 s);
 	inline void alpha_blend32_d(int alphas, u32 s);
@@ -370,13 +370,13 @@ protected:
 	inline void dpix_1_sprite(u32 s_pix);
 	inline void dpix_bg(u32 bgcolor);
 	void init_alpha_blend_func();
-	inline void draw_scanlines(bitmap_rgb32 &bitmap, int xsize, s16 *draw_line_num, const struct f3_playfield_line_inf **line_t, const int *sprite, u32 orient, int skip_layer_num);
+	inline void draw_scanlines(bitmap_argb32 &bitmap, int xsize, s16 *draw_line_num, const struct f3_playfield_line_inf **line_t, const int *sprite, u32 orient, int skip_layer_num);
 	void visible_tile_check(struct f3_playfield_line_inf *line_t, int line, u32 x_index_fx, u32 y_index, u16 *pf_data_n);
 	void calculate_clip(int y, u16 pri, u32* clip0, u32* clip1, int *line_enable);
 	void get_spritealphaclip_info();
 	void get_line_ram_info(tilemap_t *tmap, int sx, int sy, int pos, u16 *pf_data_n);
 	void get_vram_info(tilemap_t *vram_tilemap, tilemap_t *pixel_tilemap, int sx, int sy);
-	void scanline_draw(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void scanline_draw(bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 private:
 	optional_device<cpu_device> m_audiocpu;

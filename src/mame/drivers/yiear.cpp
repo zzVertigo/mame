@@ -295,7 +295,6 @@ void yiear_state::yiear(machine_config &config)
 	m_screen->set_size(32*8, 32*8);
 	m_screen->set_visarea(0*8, 32*8-1, 2*8, 30*8-1);
 	m_screen->set_screen_update(FUNC(yiear_state::screen_update_yiear));
-	m_screen->set_palette(m_palette);
 	m_screen->screen_vblank().set(FUNC(yiear_state::vblank_irq));
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_yiear);

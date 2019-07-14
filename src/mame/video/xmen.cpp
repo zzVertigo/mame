@@ -53,8 +53,8 @@ VIDEO_START_MEMBER(xmen_state,xmen6p)
 {
 	m_k053246->k053247_get_ram( &m_k053247_ram);
 
-	m_screen_left  = std::make_unique<bitmap_ind16>(64 * 8, 32 * 8);
-	m_screen_right = std::make_unique<bitmap_ind16>(64 * 8, 32 * 8);
+	m_screen_left  = std::make_unique<bitmap_argb32>(64 * 8, 32 * 8);
+	m_screen_right = std::make_unique<bitmap_argb32>(64 * 8, 32 * 8);
 
 	save_item(NAME(*m_screen_left));
 	save_item(NAME(*m_screen_right));
@@ -67,7 +67,7 @@ VIDEO_START_MEMBER(xmen_state,xmen6p)
 
 ***************************************************************************/
 
-uint32_t xmen_state::screen_update_xmen(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t xmen_state::screen_update_xmen(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int layer[3], bg_colorbase;
 
@@ -102,32 +102,28 @@ uint32_t xmen_state::screen_update_xmen(screen_device &screen, bitmap_ind16 &bit
 }
 
 
-uint32_t xmen_state::screen_update_xmen6p_left(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t xmen_state::screen_update_xmen6p_left(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
-	int x, y;
-
-	for(y = 0; y < 32 * 8; y++)
+	for(int y = 0; y < 32 * 8; y++)
 	{
-		uint16_t* line_dest = &bitmap.pix16(y);
-		uint16_t* line_src = &m_screen_left->pix16(y);
+		uint32_t* line_dest = &bitmap.pix32(y);
+		uint32_t* line_src = &m_screen_left->pix32(y);
 
-		for (x = 12 * 8; x < 52 * 8; x++)
+		for (int x = 12 * 8; x < 52 * 8; x++)
 			line_dest[x] = line_src[x];
 	}
 
 	return 0;
 }
 
-uint32_t xmen_state::screen_update_xmen6p_right(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t xmen_state::screen_update_xmen6p_right(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
-	int x, y;
-
-	for(y = 0; y < 32 * 8; y++)
+	for(int y = 0; y < 32 * 8; y++)
 	{
-		uint16_t* line_dest = &bitmap.pix16(y);
-		uint16_t* line_src = &m_screen_right->pix16(y);
+		uint32_t* line_dest = &bitmap.pix32(y);
+		uint32_t* line_src = &m_screen_right->pix32(y);
 
-		for (x = 12 * 8; x < 52 * 8; x++)
+		for (int x = 12 * 8; x < 52 * 8; x++)
 			line_dest[x] = line_src[x];
 	}
 
@@ -140,10 +136,10 @@ WRITE_LINE_MEMBER(xmen_state::screen_vblank_xmen6p)
 	// rising edge
 	if (state)
 	{
+		const pen_t *pen = m_palette->pens();
 		int layer[3], bg_colorbase;
-		bitmap_ind16 * renderbitmap;
+		bitmap_argb32 * renderbitmap;
 		rectangle cliprect;
-		int offset;
 
 	//  const rectangle *visarea = m_screen->visible_area();
 	//  cliprect = *visarea;
@@ -160,7 +156,7 @@ WRITE_LINE_MEMBER(xmen_state::screen_vblank_xmen6p)
 			   everything gets marked as dirty and the desired tilemap is rendered
 			   this is not very efficient!
 			   */
-			for (offset = 0; offset < (0xc000 / 2); offset++)
+			for (int offset = 0; offset < (0xc000 / 2); offset++)
 			{
 				m_k052109->write(offset, m_xmen6p_tilemapright[offset] & 0x00ff);
 			}
@@ -178,7 +174,7 @@ WRITE_LINE_MEMBER(xmen_state::screen_vblank_xmen6p)
 
 			   this is not very efficient!
 			   */
-			for (offset = 0; offset < (0xc000 / 2); offset++)
+			for (int offset = 0; offset < (0xc000 / 2); offset++)
 			{
 				m_k052109->write(offset, m_xmen6p_tilemapleft[offset] & 0x00ff);
 			}
@@ -207,7 +203,7 @@ WRITE_LINE_MEMBER(xmen_state::screen_vblank_xmen6p)
 
 		m_screen->priority().fill(0, cliprect);
 		/* note the '+1' in the background color!!! */
-		renderbitmap->fill(16 * bg_colorbase + 1, cliprect);
+		renderbitmap->fill(pen[16 * bg_colorbase + 1], cliprect);
 		m_k052109->tilemap_draw(*m_screen, *renderbitmap, cliprect, layer[0], 0, 1);
 		m_k052109->tilemap_draw(*m_screen, *renderbitmap, cliprect, layer[1], 0, 2);
 		m_k052109->tilemap_draw(*m_screen, *renderbitmap, cliprect, layer[2], 0, 4);

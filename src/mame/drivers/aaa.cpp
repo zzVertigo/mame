@@ -32,7 +32,7 @@ public:
 	void aaa(machine_config &config);
 
 private:
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void display_ram_w(offs_t offset, u8 data);
 	template<int N> u8 usart_r(offs_t offset);
@@ -51,7 +51,7 @@ private:
 	required_shared_ptr<u8> m_linecount;
 };
 
-u32 aaa_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 aaa_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

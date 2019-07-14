@@ -28,7 +28,7 @@
 
 #define DMA_REG(a) m_dma_regs[a - 0x4300]   // regs 0x4300-0x437f
 
-uint32_t snes_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t snes_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* NTSC SNES draw range is 1-225. */
 	for (int y = cliprect.min_y; y <= cliprect.max_y; y++)

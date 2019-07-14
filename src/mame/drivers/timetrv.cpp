@@ -53,7 +53,7 @@ private:
 	DECLARE_READ8_MEMBER(test2_r);
 	DECLARE_READ8_MEMBER(in_r);
 	virtual void video_start() override;
-	uint32_t screen_update_timetrv(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_timetrv(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	required_device<cpu_device> m_maincpu;
 	void timetrv_io(address_map &map);
 	void timetrv_map(address_map &map);
@@ -65,7 +65,7 @@ void timetrv_state::video_start()
 {
 }
 
-uint32_t timetrv_state::screen_update_timetrv(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t timetrv_state::screen_update_timetrv(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	popmessage("%s%s",reinterpret_cast<char *>(m_led_vram_lo.target()),reinterpret_cast<char *>(m_led_vram_hi.target()));
 	return 0;

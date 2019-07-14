@@ -163,14 +163,14 @@ private:
 	DECLARE_READ8_MEMBER(sound_status_r);
 	DECLARE_WRITE8_MEMBER(decold_sound_cmd_w);
 	virtual void machine_start() override;
-	uint32_t screen_update_rblaster(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea);
 	INTERRUPT_GEN_MEMBER(sound_interrupt);
-	void draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint8_t *spriteram, uint16_t tile_bank );
+	void draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, uint8_t *spriteram, uint16_t tile_bank );
 	void rblaster_map(address_map &map);
 	void rblaster_sound_map(address_map &map);
 };
 
-void deco_ld_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint8_t *spriteram, uint16_t tile_bank )
+void deco_ld_state::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, uint8_t *spriteram, uint16_t tile_bank )
 {
 	gfx_element *gfx = m_gfxdecode->gfx(1);
 
@@ -214,7 +214,7 @@ void deco_ld_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect
 	}
 }
 
-uint32_t deco_ld_state::screen_update_rblaster(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void deco_ld_state::overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea)
 {
 	gfx_element *gfx = m_gfxdecode->gfx(0);
 
@@ -246,8 +246,6 @@ uint32_t deco_ld_state::screen_update_rblaster(screen_device &screen, bitmap_rgb
 			gfx->transpen(bitmap, cliprect, tile, colour, 0, 0, x * 8, y * 8, 0);
 		}
 	}
-
-	return 0;
 }
 
 
@@ -474,7 +472,7 @@ void deco_ld_state::rblaster(machine_config &config)
 //  config.m_minimum_quantum = attotime::from_hz(6000);
 
 	SONY_LDP1000(config, m_laserdisc, 0);
-	m_laserdisc->set_overlay(256, 256, FUNC(deco_ld_state::screen_update_rblaster));
+	m_laserdisc->set_overlay(256, 256, FUNC(deco_ld_state::overlay_update));
 	//m_laserdisc->set_overlay_clip(0, 256-1, 8, 240-1);
 	m_laserdisc->add_route(0, "lspeaker", 1.0);
 	m_laserdisc->add_route(1, "rspeaker", 1.0);

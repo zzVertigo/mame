@@ -613,7 +613,7 @@ WRITE16_MEMBER(spg110_video_device::palette_w)
 	m_palette->set_pen_color(offset, r_real, g_real, b_real);
 }
 
-uint32_t spg110_video_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t spg110_video_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	memset(&m_screenbuf[320 * cliprect.min_y], 0, 4 * 320 * ((cliprect.max_y - cliprect.min_y) + 1));
 

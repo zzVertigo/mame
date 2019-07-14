@@ -152,7 +152,7 @@ private:
 	DECLARE_WRITE16_MEMBER(video_pri_w);
 	DECLARE_READ8_MEMBER(backupram_dsw_r);
 	DECLARE_WRITE8_MEMBER(sys_port1_w);
-	uint32_t screen_update_pc88va(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_pc88va(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(pc88va_vrtc_irq);
 	DECLARE_READ8_MEMBER(cpu_8255_c_r);
 	DECLARE_WRITE8_MEMBER(cpu_8255_c_w);
@@ -186,9 +186,9 @@ private:
 	DECLARE_WRITE_LINE_MEMBER(fdc_drq);
 	DECLARE_FLOPPY_FORMATS( floppy_formats );
 	void pc88va_fdc_update_ready(floppy_image_device *, int);
-	void draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	uint32_t calc_kanji_rom_addr(uint8_t jis1,uint8_t jis2,int x,int y);
-	void draw_text(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void draw_text(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void tsp_sprite_enable(uint32_t spr_offset, uint16_t sw_bit);
 	void execute_sync_cmd();
 	void execute_dspon_cmd();

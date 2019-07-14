@@ -88,7 +88,7 @@ private:
 //  DECLARE_WRITE8_MEMBER(snd_3004_w);
 	DECLARE_WRITE8_MEMBER(snd_3005_w);
 
-	uint32_t screen_update_scyclone(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_scyclone(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	INTERRUPT_GEN_MEMBER(irq);
 
@@ -128,8 +128,8 @@ private:
 	/* video-related */
 	const uint8_t get_sprite_pixel(int x, int y);
 	const uint8_t get_bitmap_pixel(int x, int y);
-	uint32_t draw_starfield(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t draw_bitmap_and_sprite(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t draw_starfield(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t draw_bitmap_and_sprite(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 };
 
 
@@ -203,7 +203,7 @@ const uint8_t scyclone_state::get_bitmap_pixel(int x, int y)
 	return pal;
 }
 
-uint32_t scyclone_state::draw_starfield(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t scyclone_state::draw_starfield(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *paldata = m_palette->pens();
 
@@ -245,7 +245,7 @@ uint32_t scyclone_state::draw_starfield(screen_device &screen, bitmap_rgb32 &bit
 	return 0;
 }
 
-uint32_t scyclone_state::draw_bitmap_and_sprite(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t scyclone_state::draw_bitmap_and_sprite(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *paldata = m_palette->pens();
 	m_hascollided = 0;
@@ -290,7 +290,7 @@ uint32_t scyclone_state::draw_bitmap_and_sprite(screen_device &screen, bitmap_rg
 }
 
 
-uint32_t scyclone_state::screen_update_scyclone(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t scyclone_state::screen_update_scyclone(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	draw_starfield(screen,bitmap,cliprect);
 	draw_bitmap_and_sprite(screen,bitmap,cliprect);

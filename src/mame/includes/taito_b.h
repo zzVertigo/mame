@@ -153,7 +153,7 @@ protected:
 	void realpunc_hd63484_map(address_map &map);
 
 	DECLARE_VIDEO_START(realpunc);
-	uint32_t screen_update_realpunc(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_realpunc(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 private:
 	std::unique_ptr<bitmap_ind16> m_realpunc_bitmap;

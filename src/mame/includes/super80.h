@@ -98,7 +98,7 @@ private:
 	DECLARE_QUICKLOAD_LOAD_MEMBER(quickload_cb);
 	MC6845_UPDATE_ROW(crtc_update_row);
 	uint32_t screen_update_super80(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_super80v(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_super80v(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	uint32_t screen_update_super80d(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
 	uint32_t screen_update_super80e(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
 	uint32_t screen_update_super80m(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);

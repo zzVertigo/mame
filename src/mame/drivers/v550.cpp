@@ -40,7 +40,7 @@ public:
 	void v550(machine_config &config);
 
 private:
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect) { return 0; }
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect) { return 0; }
 
 	void mem_map(address_map &map);
 	void io_map(address_map &map);

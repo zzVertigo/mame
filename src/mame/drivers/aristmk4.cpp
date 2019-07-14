@@ -453,7 +453,7 @@ private:
 	virtual void video_start() override;
 	void aristmk4_palette(palette_device &palette) const;
 	void lions_palette(palette_device &palette) const;
-	uint32_t screen_update_aristmk4(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_aristmk4(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_CALLBACK_MEMBER(note_input_reset);
 	TIMER_CALLBACK_MEMBER(coin_input_reset);
 	TIMER_CALLBACK_MEMBER(hopper_reset);
@@ -509,7 +509,7 @@ void aristmk4_state::uBackgroundColour()
 	}
 }
 
-uint32_t aristmk4_state::screen_update_aristmk4(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t aristmk4_state::screen_update_aristmk4(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	gfx_element *gfx = m_gfxdecode->gfx(0);
 	int x,y;

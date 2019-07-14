@@ -132,7 +132,7 @@ void crt9028_device::device_config_complete()
 	}
 
 	if (!screen().has_screen_update())
-		screen().set_screen_update(screen_update_rgb32_delegate(FUNC(crt9028_device::screen_update), this));
+		screen().set_screen_update(FUNC(crt9028_device::screen_update));
 }
 
 
@@ -176,7 +176,7 @@ void crt9028_device::device_start()
 //  screen_update - screen update method
 //-------------------------------------------------
 
-u32 crt9028_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 crt9028_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

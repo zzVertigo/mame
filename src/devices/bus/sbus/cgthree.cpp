@@ -65,7 +65,7 @@ void sbus_cgthree_device::install_device()
 	m_sbus->install_device(m_base, m_base + 0x1ffffff, *this, &sbus_cgthree_device::mem_map);
 }
 
-uint32_t sbus_cgthree_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t sbus_cgthree_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *pens = m_ramdac->pens();
 	uint8_t *vram = (uint8_t *)&m_vram[0];

@@ -92,7 +92,7 @@ public:
 	{ }
 
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_WRITE8_MEMBER( keylatch_w );
 	DECLARE_READ_LINE_MEMBER( clear_r );

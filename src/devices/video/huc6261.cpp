@@ -224,7 +224,7 @@ void huc6261_device::device_timer(emu_timer &timer, device_timer_id id, int para
 }
 
 
-void huc6261_device::video_update( bitmap_rgb32 &bitmap, const rectangle &cliprect )
+void huc6261_device::video_update( bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	copybitmap( bitmap, *m_bmp, 0, 0, 0, 0, cliprect );
 }
@@ -416,7 +416,7 @@ void huc6261_device::device_start()
 {
 	m_timer = timer_alloc();
 
-	m_bmp = std::make_unique<bitmap_rgb32>(WPF, LPF);
+	m_bmp = std::make_unique<bitmap_argb32>(WPF, LPF);
 
 	save_item(NAME(m_last_h));
 	save_item(NAME(m_last_v));

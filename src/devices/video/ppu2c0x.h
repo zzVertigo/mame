@@ -84,7 +84,7 @@ public:
 
 	virtual void read_sprite_plane_data(int address);
 	virtual void make_sprite_pixel_data(uint8_t &pixel_data, int flipx);
-	virtual void draw_sprite_pixel(int sprite_xpos, int color, int pixel, uint8_t pixel_data, bitmap_rgb32 &bitmap);
+	virtual void draw_sprite_pixel(int sprite_xpos, int color, int pixel, uint8_t pixel_data, bitmap_argb32 &bitmap);
 	virtual void read_extra_sprite_bits(int sprite_index);
 
 	void draw_sprites(uint8_t *line_priority);
@@ -92,8 +92,8 @@ public:
 	void update_scanline();
 
 	void spriteram_dma(address_space &space, const uint8_t page);
-	void render(bitmap_rgb32 &bitmap, int flipx, int flipy, int sx, int sy, const rectangle &cliprect);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void render(bitmap_argb32 &bitmap, int flipx, int flipy, int sx, int sy, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	int get_current_scanline() { return m_scanline; }
 	void set_scanline_callback( scanline_delegate &&cb ) { m_scanline_callback_proc = std::move(cb); m_scanline_callback_proc.bind_relative_to(*owner()); }
@@ -186,7 +186,7 @@ private:
 	inline uint8_t readbyte(offs_t address);
 	inline void writebyte(offs_t address, uint8_t data);
 
-	std::unique_ptr<bitmap_rgb32>                m_bitmap;          /* target bitmap */
+	std::unique_ptr<bitmap_argb32>                m_bitmap;          /* target bitmap */
 	std::unique_ptr<pen_t[]>    m_colortable;          /* color table modified at run time */
 	std::unique_ptr<pen_t[]>    m_colortable_mono;     /* monochromatic color table modified at run time */
 

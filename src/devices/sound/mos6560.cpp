@@ -481,7 +481,7 @@ void mos6560_device::raster_interrupt_gen()
      main screen bitmap
 -------------------------------------------------*/
 
-uint32_t mos6560_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mos6560_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	copybitmap(bitmap, m_bitmap, 0, 0, 0, 0, cliprect);
 

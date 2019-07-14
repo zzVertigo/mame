@@ -35,7 +35,7 @@ public:
 	static constexpr int CATSEYE_COUNT = 8;
 
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 protected:
 	required_device<nereid_device> m_nereid;
 	required_device_array<catseye_device, CATSEYE_COUNT> m_catseye;

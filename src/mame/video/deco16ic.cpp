@@ -929,7 +929,7 @@ void deco16ic_device::tilemap_1_draw_common(screen_device &screen, _BitmapClass 
 void deco16ic_device::tilemap_1_draw(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, int flags, u8 priority, u8 pmask)
 { tilemap_1_draw_common(screen, bitmap, cliprect, flags, priority, pmask); }
 
-void deco16ic_device::tilemap_1_draw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int flags, u8 priority, u8 pmask)
+void deco16ic_device::tilemap_1_draw(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int flags, u8 priority, u8 pmask)
 { tilemap_1_draw_common(screen, bitmap, cliprect, flags, priority, pmask); }
 
 
@@ -952,7 +952,7 @@ void deco16ic_device::tilemap_2_draw_common(screen_device &screen, _BitmapClass 
 void deco16ic_device::tilemap_2_draw(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, int flags, u8 priority, u8 pmask)
 { tilemap_2_draw_common(screen, bitmap, cliprect, flags, priority, pmask); }
 
-void deco16ic_device::tilemap_2_draw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int flags, u8 priority, u8 pmask)
+void deco16ic_device::tilemap_2_draw(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int flags, u8 priority, u8 pmask)
 { tilemap_2_draw_common(screen, bitmap, cliprect, flags, priority, pmask); }
 
 
@@ -964,7 +964,7 @@ void deco16ic_device::tilemap_12_combine_draw(screen_device &screen, bitmap_ind1
 	custom_tilemap_draw(screen, bitmap, cliprect, nullptr, m_pf1_tilemap_16x16, nullptr, m_pf2_tilemap_16x16, m_pf1_rowscroll_ptr, m_pf12_control[1], m_pf12_control[2], m_pf12_control[5] & 0xff, m_pf12_control[6] & 0xff, 0xf, 4, 0xff, flags, priority, is_tattoo, pmask);
 }
 
-void deco16ic_device::tilemap_12_combine_draw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int flags, u8 priority, int is_tattoo, u8 pmask)
+void deco16ic_device::tilemap_12_combine_draw(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int flags, u8 priority, int is_tattoo, u8 pmask)
 {
 	custom_tilemap_draw(screen, bitmap, cliprect, nullptr, m_pf1_tilemap_16x16, nullptr, m_pf2_tilemap_16x16, m_pf1_rowscroll_ptr, m_pf12_control[1], m_pf12_control[2], m_pf12_control[5] & 0xff, m_pf12_control[6] & 0xff, 0xf, 4, 0xff, flags, priority, is_tattoo, pmask);
 }

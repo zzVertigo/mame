@@ -177,9 +177,9 @@ public:
 	required_memory_region m_fgctl_prom;
 	required_memory_region m_char_rom;
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
-	void hr_update(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void hr_update(bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	MC6845_UPDATE_ROW( abc800m_update_row );
 	void abc800m(machine_config &config);
@@ -203,9 +203,9 @@ public:
 	required_device<palette_device> m_palette;
 	required_memory_region m_fgctl_prom;
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
-	void hr_update(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void hr_update(bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ8_MEMBER( m1_r ) override;
 	DECLARE_READ8_MEMBER( char_ram_r );
@@ -288,10 +288,10 @@ public:
 	virtual void machine_reset() override;
 
 	virtual void video_start() override;
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void read_pal_p4(offs_t offset, bool m1l, bool xml, offs_t &m, bool &romd, bool &ramd, bool &hre, bool &vr);
-	void hr_update(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void hr_update(bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ8_MEMBER( read );
 	DECLARE_WRITE8_MEMBER( write );

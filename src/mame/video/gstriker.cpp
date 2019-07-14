@@ -33,9 +33,10 @@ WRITE_LINE_MEMBER(gstriker_state::screen_vblank)
 }
 
 
-uint32_t gstriker_state::screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t gstriker_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
-	bitmap.fill(m_mixerregs[8]&0x07ff, cliprect); // complete guess, causes green behind test grid in twc94 and blue behind title screen on gstriker
+	// complete guess, causes green behind test grid in twc94 and blue behind title screen on gstriker
+	bitmap.fill(m_palette->pens()[m_mixerregs[8] & 0x07ff], cliprect);
 
 	/*
 	[4] AAAA BBBB ---- ---- sprite priority number A/B?

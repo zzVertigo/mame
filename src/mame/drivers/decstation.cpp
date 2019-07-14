@@ -130,8 +130,8 @@ private:
 	virtual void machine_reset() override;
 	virtual void video_start() override;
 
-	uint32_t kn01_screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t kn01_screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	required_device<mips1_device_base> m_maincpu;
 	required_device<screen_device> m_screen;
@@ -169,7 +169,7 @@ void decstation_state::video_start()
 {
 }
 
-uint32_t decstation_state::kn01_screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t decstation_state::kn01_screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t *scanline;
 	int x, y;
@@ -189,7 +189,7 @@ uint32_t decstation_state::kn01_screen_update(screen_device &screen, bitmap_rgb3
 	return 0;
 }
 
-uint32_t decstation_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t decstation_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bt459->screen_update(screen, bitmap, cliprect, (uint8_t *)m_sfb->get_vram());
 	return 0;

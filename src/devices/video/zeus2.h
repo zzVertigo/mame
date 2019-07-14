@@ -106,7 +106,7 @@ class zeus2_device : public device_t, public device_video_interface
 public:
 	zeus2_device(const machine_config &mconfig, const char *tag, device_t *owner, uint32_t clock);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_READ32_MEMBER( zeus2_r );
 	DECLARE_WRITE32_MEMBER( zeus2_w );
 	TIMER_CALLBACK_MEMBER(display_irq_off);

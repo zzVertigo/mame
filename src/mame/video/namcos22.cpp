@@ -231,7 +231,7 @@ void namcos22_renderer::renderscanline_sprite(int32_t scanline, const extent_t &
 
 /*********************************************************************************************/
 
-void namcos22_renderer::poly3d_drawquad(screen_device &screen, bitmap_rgb32 &bitmap, struct namcos22_scenenode *node)
+void namcos22_renderer::poly3d_drawquad(screen_device &screen, bitmap_argb32 &bitmap, struct namcos22_scenenode *node)
 {
 	vertex_t v[4];
 	vertex_t clipv[6];
@@ -396,7 +396,7 @@ void namcos22_renderer::poly3d_drawquad(screen_device &screen, bitmap_rgb32 &bit
 
 void namcos22_renderer::poly3d_drawsprite(
 	screen_device &screen,
-	bitmap_rgb32 &dest_bmp,
+	bitmap_argb32 &dest_bmp,
 	u32 code,
 	u32 color,
 	int flipx, int flipy,
@@ -472,7 +472,7 @@ void namcos22_renderer::poly3d_drawsprite(
 	}
 }
 
-void namcos22_renderer::render_sprite(screen_device &screen, bitmap_rgb32 &bitmap, struct namcos22_scenenode *node)
+void namcos22_renderer::render_sprite(screen_device &screen, bitmap_argb32 &bitmap, struct namcos22_scenenode *node)
 {
 	// scene clip
 	m_cliprect.set(node->data.sprite.cx_min, node->data.sprite.cx_max, node->data.sprite.cy_min, node->data.sprite.cy_max);
@@ -574,7 +574,7 @@ struct namcos22_scenenode *namcos22_renderer::new_scenenode(running_machine &mac
 	}
 }
 
-void namcos22_renderer::render_scene_nodes(screen_device &screen, bitmap_rgb32 &bitmap, struct namcos22_scenenode *node)
+void namcos22_renderer::render_scene_nodes(screen_device &screen, bitmap_argb32 &bitmap, struct namcos22_scenenode *node)
 {
 	if (node)
 	{
@@ -612,7 +612,7 @@ void namcos22_renderer::render_scene_nodes(screen_device &screen, bitmap_rgb32 &
 	}
 }
 
-void namcos22_renderer::render_scene(screen_device &screen, bitmap_rgb32 &bitmap)
+void namcos22_renderer::render_scene(screen_device &screen, bitmap_argb32 &bitmap)
 {
 	struct namcos22_scenenode *node = &m_scenenode_root;
 	for (int i = NAMCOS22_RADIX_BUCKETS - 1; i >= 0; i--)
@@ -1921,7 +1921,7 @@ WRITE16_MEMBER(namcos22s_state::spotram_w)
 	}
 }
 
-void namcos22s_state::namcos22s_mix_text_layer(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int prival)
+void namcos22s_state::namcos22s_mix_text_layer(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int prival)
 {
 	const pen_t *pens = m_palette->pens();
 	u8 pen = 0;
@@ -1994,7 +1994,7 @@ void namcos22s_state::namcos22s_mix_text_layer(screen_device &screen, bitmap_rgb
 	}
 }
 
-void namcos22_state::namcos22_mix_text_layer(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void namcos22_state::namcos22_mix_text_layer(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *pens = m_palette->pens();
 	const u8 *rlut = &m_gamma_proms[0x000];
@@ -2063,7 +2063,7 @@ void namcos22_state::namcos22_mix_text_layer(screen_device &screen, bitmap_rgb32
 	}
 }
 
-void namcos22_state::draw_text_layer(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void namcos22_state::draw_text_layer(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int scroll_x = m_tilemapattr[0] - 0x35c;
 	int scroll_y = m_tilemapattr[1];
@@ -2076,7 +2076,7 @@ void namcos22_state::draw_text_layer(screen_device &screen, bitmap_rgb32 &bitmap
 	namcos22_mix_text_layer(screen, bitmap, cliprect);
 }
 
-void namcos22s_state::draw_text_layer(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void namcos22s_state::draw_text_layer(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int scroll_x = m_tilemapattr[0] - 0x35c;
 	int scroll_y = m_tilemapattr[1];
@@ -2374,7 +2374,7 @@ void namcos22_state::update_mixer()
 
 /*********************************************************************************************/
 
-u32 namcos22s_state::screen_update_namcos22s(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 namcos22s_state::screen_update_namcos22s(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	render_frame_active();
 	update_mixer();
@@ -2419,7 +2419,7 @@ u32 namcos22s_state::screen_update_namcos22s(screen_device &screen, bitmap_rgb32
 	return 0;
 }
 
-u32 namcos22_state::screen_update_namcos22(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 namcos22_state::screen_update_namcos22(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	render_frame_active();
 	update_mixer();

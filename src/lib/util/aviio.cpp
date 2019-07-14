@@ -356,7 +356,7 @@ public:
 	std::uint64_t &saved_indx_offset() { return m_saved_indx_offset; }
 
 	// RGB helpers
-	avi_file::error rgb32_compress_to_rgb(const bitmap_rgb32 &bitmap, std::uint8_t *data, std::uint32_t numbytes) const;
+	avi_file::error rgb32_compress_to_rgb(const bitmap_argb32 &bitmap, std::uint8_t *data, std::uint32_t numbytes) const;
 
 	// YUY helpers
 	avi_file::error yuv_decompress_to_yuy16(const std::uint8_t *data, std::uint32_t numbytes, bitmap_yuy16 &bitmap) const;
@@ -460,7 +460,7 @@ public:
 	virtual error read_sound_samples(int channel, std::uint32_t firstsample, std::uint32_t numsamples, std::int16_t *output) override;
 
 	virtual error append_video_frame(bitmap_yuy16 &bitmap) override;
-	virtual error append_video_frame(bitmap_rgb32 &bitmap) override;
+	virtual error append_video_frame(bitmap_argb32 &bitmap) override;
 	virtual error append_sound_samples(int channel, std::int16_t const *samples, std::uint32_t numsamples, std::uint32_t sampleskip) override;
 
 	error read_movie_data();
@@ -972,7 +972,7 @@ inline avi_file::error avi_file_impl::expand_tempbuffer(std::uint32_t length)
 -------------------------------------------------*/
 
 /**
- * @fn  static avi_error rgb32_compress_to_rgb(avi_stream *stream, const bitmap_rgb32 &bitmap, std::uint8_t *data, std::uint32_t numbytes)
+ * @fn  static avi_error rgb32_compress_to_rgb(avi_stream *stream, const bitmap_argb32 &bitmap, std::uint8_t *data, std::uint32_t numbytes)
  *
  * @brief   RGB 32 compress to RGB.
  *
@@ -984,7 +984,7 @@ inline avi_file::error avi_file_impl::expand_tempbuffer(std::uint32_t length)
  * @return  An avi_error.
  */
 
-avi_file::error avi_stream::rgb32_compress_to_rgb(const bitmap_rgb32 &bitmap, std::uint8_t *data, std::uint32_t numbytes) const
+avi_file::error avi_stream::rgb32_compress_to_rgb(const bitmap_argb32 &bitmap, std::uint8_t *data, std::uint32_t numbytes) const
 {
 	int const height = (std::min<int>)(m_height, bitmap.height());
 	int const width = (std::min<int>)(m_width, bitmap.width());
@@ -1848,7 +1848,7 @@ avi_file::error avi_file_impl::append_video_frame(bitmap_yuy16 &bitmap)
 -------------------------------------------------*/
 
 /**
- * @fn  avi_error avi_append_video_frame(avi_file *file, bitmap_rgb32 &bitmap)
+ * @fn  avi_error avi_append_video_frame(avi_file *file, bitmap_argb32 &bitmap)
  *
  * @brief   Avi append video frame.
  *
@@ -1858,7 +1858,7 @@ avi_file::error avi_file_impl::append_video_frame(bitmap_yuy16 &bitmap)
  * @return  An avi_error.
  */
 
-avi_file::error avi_file_impl::append_video_frame(bitmap_rgb32 &bitmap)
+avi_file::error avi_file_impl::append_video_frame(bitmap_argb32 &bitmap)
 {
 	avi_stream *const stream = get_video_stream();
 	error avierr;

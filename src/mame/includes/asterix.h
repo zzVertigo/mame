@@ -14,6 +14,7 @@
 #include "video/k054156_k054157_k056832.h"
 #include "video/k053244_k053245.h"
 #include "video/konami_helper.h"
+#include "emupal.h"
 
 class asterix_state : public driver_device
 {
@@ -29,7 +30,8 @@ public:
 		m_audiocpu(*this, "audiocpu"),
 		m_k056832(*this, "k056832"),
 		m_k053244(*this, "k053244"),
-		m_k053251(*this, "k053251")
+		m_k053251(*this, "k053251"),
+		m_palette(*this, "palette")
 	{ }
 
 	/* video-related */
@@ -50,6 +52,7 @@ public:
 	required_device<k056832_device> m_k056832;
 	required_device<k05324x_device> m_k053244;
 	required_device<k053251_device> m_k053251;
+	required_device<palette_device> m_palette;
 	DECLARE_WRITE16_MEMBER(control2_w);
 	DECLARE_WRITE8_MEMBER(sound_arm_nmi_w);
 	DECLARE_WRITE16_MEMBER(sound_irq_w);
@@ -58,7 +61,7 @@ public:
 	void init_asterix();
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
-	uint32_t screen_update_asterix(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_asterix(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(asterix_interrupt);
 	K05324X_CB_MEMBER(sprite_callback);
 	K056832_CB_MEMBER(tile_callback);

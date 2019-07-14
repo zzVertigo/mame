@@ -90,9 +90,9 @@ private:
 	DECLARE_WRITE8_MEMBER(demoneye_audio_command_w);
 	DECLARE_VIDEO_START(redalert);
 	DECLARE_VIDEO_START(ww3);
-	uint32_t screen_update_redalert(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_demoneye(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_panther(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_redalert(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_demoneye(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_panther(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(redalert_vblank_interrupt);
 	DECLARE_WRITE8_MEMBER(redalert_analog_w);
 	DECLARE_WRITE8_MEMBER(redalert_AY8910_w);

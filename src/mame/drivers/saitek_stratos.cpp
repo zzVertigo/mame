@@ -39,7 +39,7 @@ private:
 	DECLARE_WRITE8_MEMBER(lcd_w);
 
 	TIMER_DEVICE_CALLBACK_MEMBER(irq_timer);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void stratos_mem(address_map &map);
 
@@ -119,7 +119,7 @@ TIMER_DEVICE_CALLBACK_MEMBER(stratos_state::irq_timer)
 	maincpu->set_input_line(M65C02_IRQ_LINE, HOLD_LINE);
 }
 
-uint32_t stratos_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t stratos_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	static bool nmi=false;
 

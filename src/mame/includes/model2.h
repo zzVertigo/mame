@@ -140,7 +140,7 @@ protected:
 	uint32_t m_geo_write_start_address;
 	raster_state *m_raster;
 	geo_state *m_geo;
-	bitmap_rgb32 m_sys24_bitmap;
+	bitmap_argb32 m_sys24_bitmap;
 //  uint32_t m_soundack;
 	void model2_check_irq_state();
 	void model2_check_irqack_state(uint32_t data);
@@ -215,7 +215,7 @@ protected:
 	void push_geo_data(uint32_t data);
 	DECLARE_VIDEO_START(model2);
 	void reset_model2_scsp();
-	uint32_t screen_update_model2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_model2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 //  DECLARE_WRITE_LINE_MEMBER(screen_vblank_model2);
 //  DECLARE_WRITE_LINE_MEMBER(sound_ready_w);
 	TIMER_DEVICE_CALLBACK_MEMBER(model2_timer_cb);
@@ -223,8 +223,8 @@ protected:
 
 	void model2_3d_frame_start( void );
 	void geo_parse( void );
-	void model2_3d_frame_end( bitmap_rgb32 &bitmap, const rectangle &cliprect );
-	void draw_framebuffer(bitmap_rgb32 &bitmap, const rectangle &cliprect );
+	void model2_3d_frame_end( bitmap_argb32 &bitmap, const rectangle &cliprect );
+	void draw_framebuffer(bitmap_argb32 &bitmap, const rectangle &cliprect );
 
 	void model2_timers(machine_config &config);
 	void model2_screen(machine_config &config);
@@ -639,7 +639,7 @@ public:
 		m_yoffs = -8;
 	}
 
-	bitmap_rgb32& destmap() { return m_destmap; }
+	bitmap_argb32& destmap() { return m_destmap; }
 
 	void model2_3d_render(triangle *tri, const rectangle &cliprect);
 	void set_xoffset(int16 xoffs) { m_xoffs = xoffs; }
@@ -705,7 +705,7 @@ public:
 
 private:
 	model2_state& m_state;
-	bitmap_rgb32 m_destmap;
+	bitmap_argb32 m_destmap;
 	int16_t m_xoffs,m_yoffs;
 };
 

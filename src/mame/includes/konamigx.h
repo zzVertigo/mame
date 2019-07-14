@@ -102,9 +102,9 @@ public:
 	DECLARE_VIDEO_START(konamigx_type4);
 	DECLARE_VIDEO_START(konamigx_type4_vsn);
 	DECLARE_VIDEO_START(konamigx_type4_sd2);
-	uint32_t screen_update_konamigx(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_konamigx_left(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_konamigx_right(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_konamigx(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_konamigx_left(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_konamigx_right(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(konamigx_type2_vblank_irq);
 	TIMER_DEVICE_CALLBACK_MEMBER(konamigx_type2_scanline);
 	TIMER_DEVICE_CALLBACK_MEMBER(konamigx_type4_scanline);
@@ -121,8 +121,8 @@ public:
 
 	void common_init();
 	DECLARE_READ32_MEMBER( k_6bpp_rom_long_r );
-	void konamigx_mixer     (screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect,tilemap_t *sub1, int sub1flags,tilemap_t *sub2, int sub2flags,int mixerflags, bitmap_ind16 *extra_bitmap, int rushingheroes_hack);
-	void konamigx_mixer_draw(screen_device &Screen, bitmap_rgb32 &bitmap, const rectangle &cliprect,
+	void konamigx_mixer     (screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect,tilemap_t *sub1, int sub1flags,tilemap_t *sub2, int sub2flags,int mixerflags, bitmap_ind16 *extra_bitmap, int rushingheroes_hack);
+	void konamigx_mixer_draw(screen_device &Screen, bitmap_argb32 &bitmap, const rectangle &cliprect,
 						tilemap_t *sub1, int sub1flags,
 						tilemap_t *sub2, int sub2flags,
 						int mixerflags, bitmap_ind16 *extra_bitmap, int rushingheroes_hack,
@@ -132,9 +132,9 @@ public:
 						);
 
 
-	void gx_draw_basic_tilemaps(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int mixerflags, int code);
-	void gx_draw_basic_extended_tilemaps_1(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int mixerflags, int code, tilemap_t *sub1, int sub1flags, int rushingheroes_hack, int offs);
-	void gx_draw_basic_extended_tilemaps_2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int mixerflags, int code, tilemap_t *sub2, int sub2flags, bitmap_ind16 *extra_bitmap, int offs);
+	void gx_draw_basic_tilemaps(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int mixerflags, int code);
+	void gx_draw_basic_extended_tilemaps_1(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int mixerflags, int code, tilemap_t *sub1, int sub1flags, int rushingheroes_hack, int offs);
+	void gx_draw_basic_extended_tilemaps_2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int mixerflags, int code, tilemap_t *sub2, int sub2flags, bitmap_ind16 *extra_bitmap, int offs);
 
 	void konamigx_esc_alert(uint32_t *srcbase, int srcoffs, int count, int mode);
 	void konamigx_precache_registers(void);
@@ -267,8 +267,8 @@ protected:
 	tilemap_t *m_gx_psac_tilemap_alt;
 	int m_konamigx_has_dual_screen;
 	int m_konamigx_palformat;
-	std::unique_ptr<bitmap_rgb32> m_dualscreen_left_tempbitmap;
-	std::unique_ptr<bitmap_rgb32> m_dualscreen_right_tempbitmap;
+	std::unique_ptr<bitmap_argb32> m_dualscreen_left_tempbitmap;
+	std::unique_ptr<bitmap_argb32> m_dualscreen_right_tempbitmap;
 
 	/* On Type-1 the K053936 output is rendered to these temporary bitmaps as raw data
 	the 'voxel' effect to give the pixels height is a post-process operation on the

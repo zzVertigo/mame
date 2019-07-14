@@ -124,7 +124,7 @@ private:
 	DECLARE_MACHINE_RESET(mbee128);
 	DECLARE_MACHINE_RESET(mbee256);
 	DECLARE_MACHINE_RESET(mbeett);
-	uint32_t screen_update_mbee(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_mbee(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_CALLBACK_MEMBER(timer_newkb);
 	DECLARE_QUICKLOAD_LOAD_MEMBER(quickload_bee);
 	DECLARE_QUICKLOAD_LOAD_MEMBER(quickload_bin);

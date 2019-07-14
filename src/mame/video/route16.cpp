@@ -57,7 +57,7 @@ WRITE8_MEMBER(route16_state::out1_w)
  *  a black output.
  */
 
-uint32_t route16_state::screen_update_route16(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t route16_state::screen_update_route16(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	offs_t offs;
 
@@ -109,7 +109,7 @@ uint32_t route16_state::screen_update_route16(screen_device &screen, bitmap_rgb3
  *  The Stratovox video connections have been verified from the schematics
  */
 
-uint32_t route16_state::screen_update_jongpute(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t route16_state::screen_update_jongpute(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	offs_t offs;
 

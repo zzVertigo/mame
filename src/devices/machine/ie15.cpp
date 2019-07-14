@@ -542,7 +542,7 @@ void ie15_device::scanline_callback()
 	}
 }
 
-uint32_t ie15_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t ie15_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	update_leds();
 	memcpy(&bitmap.pix32(0), &m_tmpbmp[0], sizeof(uint32_t) * IE15_TOTAL_HORZ * IE15_TOTAL_VERT);

@@ -50,7 +50,7 @@ protected:
 	virtual void machine_reset() override;
 
 private:
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void rombank_w(u8 data);
 
@@ -65,7 +65,7 @@ private:
 	//required_shared_ptr<u8> m_aram; // 1x or 2x NEC D43256C-10L
 };
 
-u32 falco5220_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 falco5220_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

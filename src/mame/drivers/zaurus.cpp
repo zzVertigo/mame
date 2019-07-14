@@ -1439,7 +1439,7 @@ private:
 	TIMER_DEVICE_CALLBACK_MEMBER(rtc_irq_callback);
 
 	// screen updates
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void zaurus_map(address_map &map);
 
@@ -1455,7 +1455,7 @@ void zaurus_state::video_start()
 {
 }
 
-uint32_t zaurus_state::screen_update( screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect )
+uint32_t zaurus_state::screen_update( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	return 0;
 }

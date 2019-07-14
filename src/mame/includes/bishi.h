@@ -40,7 +40,7 @@ public:
 	DECLARE_WRITE16_MEMBER(control2_w);
 	DECLARE_READ16_MEMBER(bishi_mirror_r);
 	DECLARE_READ16_MEMBER(bishi_K056832_rom_r);
-	uint32_t screen_update_bishi(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_bishi(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_DEVICE_CALLBACK_MEMBER(bishi_scanline);
 	K056832_CB_MEMBER(tile_callback);
 

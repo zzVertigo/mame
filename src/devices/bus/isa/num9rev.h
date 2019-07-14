@@ -35,7 +35,7 @@ protected:
 private:
 	UPD7220_DISPLAY_PIXELS_MEMBER(hgdc_display_pixels);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ8_MEMBER(pal8_r);
 	DECLARE_WRITE8_MEMBER(pal8_w);

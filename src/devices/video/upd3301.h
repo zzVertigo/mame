@@ -40,7 +40,7 @@
 //  INTERFACE CONFIGURATION MACROS
 //**************************************************************************
 
-#define UPD3301_DRAW_CHARACTER_MEMBER(_name) void _name(bitmap_rgb32 &bitmap, int y, int sx, uint8_t cc, uint8_t lc, int hlgt, int rvv, int vsp, int sl0, int sl12, int csr, int gpa)
+#define UPD3301_DRAW_CHARACTER_MEMBER(_name) void _name(bitmap_argb32 &bitmap, int y, int sx, uint8_t cc, uint8_t lc, int hlgt, int rvv, int vsp, int sl0, int sl12, int csr, int gpa)
 
 
 //**************************************************************************
@@ -54,7 +54,7 @@ class upd3301_device :  public device_t,
 						public device_video_interface
 {
 public:
-	typedef device_delegate<void (bitmap_rgb32 &bitmap, int y, int sx, uint8_t cc, uint8_t lc, int hlgt, int rvv, int vsp, int sl0, int sl12, int csr, int gpa)> draw_character_delegate;
+	typedef device_delegate<void (bitmap_argb32 &bitmap, int y, int sx, uint8_t cc, uint8_t lc, int hlgt, int rvv, int vsp, int sl0, int sl12, int csr, int gpa)> draw_character_delegate;
 
 	// construction/destruction
 	upd3301_device(const machine_config &mconfig, const char *tag, device_t *owner, uint32_t clock);
@@ -63,12 +63,12 @@ public:
 	template <typename... T> void set_display_callback(T &&... args) { m_display_cb = draw_character_delegate(std::forward<T>(args)...); }
 	void set_display_callback(draw_character_delegate callback) { m_display_cb = callback; }
 	template <class FunctionClass> void set_display_callback(const char *devname,
-		void (FunctionClass::*callback)(bitmap_rgb32 &, int, int, uint8_t, uint8_t, int, int, int, int, int, int, int), const char *name)
+		void (FunctionClass::*callback)(bitmap_argb32 &, int, int, uint8_t, uint8_t, int, int, int, int, int, int, int), const char *name)
 	{
 		set_display_callback(draw_character_delegate(callback, name, devname, static_cast<FunctionClass *>(nullptr)));
 	}
 	template <class FunctionClass> void set_display_callback(
-		void (FunctionClass::*callback)(bitmap_rgb32 &, int, int, uint8_t, uint8_t, int, int, int, int, int, int, int), const char *name)
+		void (FunctionClass::*callback)(bitmap_argb32 &, int, int, uint8_t, uint8_t, int, int, int, int, int, int, int), const char *name)
 	{
 		set_display_callback(draw_character_delegate(callback, name, nullptr, static_cast<FunctionClass *>(nullptr)));
 	}
@@ -85,7 +85,7 @@ public:
 	DECLARE_READ_LINE_MEMBER( hrtc_r );
 	DECLARE_READ_LINE_MEMBER( vrtc_r );
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 protected:
 	// device-level overrides
@@ -121,7 +121,7 @@ private:
 	int m_width;
 
 	// screen drawing
-	bitmap_rgb32 m_bitmap;     // bitmap
+	bitmap_argb32 m_bitmap;     // bitmap
 	int m_y;                        // current scanline
 	int m_hrtc;                     // horizontal retrace
 	int m_vrtc;                     // vertical retrace

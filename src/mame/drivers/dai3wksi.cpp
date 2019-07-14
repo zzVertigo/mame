@@ -86,7 +86,7 @@ private:
 	int         m_dai3wksi_flipscreen;
 	int         m_dai3wksi_redscreen;
 	int         m_dai3wksi_redterop;
-	uint32_t screen_update_dai3wksi(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_dai3wksi(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	/* sound */
 	uint8_t       m_port_last1;
@@ -152,7 +152,7 @@ static const uint8_t vr_prom2[64*8*2]={
 	3, 3,3,2,2,6,6,6,6, 6,6,6,6,6,6,6,6, 3,3,3,3,3,3,3,3, 7,7,7,7,7,7,7,7, 3,3,3,3,3,3,3,3, 2,2,2,2,2,2,2,2, 6,6,6,6,6,6,6,6, 4,4,4,4,4,4,4,
 };
 
-uint32_t dai3wksi_state::screen_update_dai3wksi(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t dai3wksi_state::screen_update_dai3wksi(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (offs_t offs = 0; offs < m_dai3wksi_videoram.bytes(); offs++)
 	{

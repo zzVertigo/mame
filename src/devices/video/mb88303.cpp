@@ -315,7 +315,7 @@ bool mb88303_device::enable_blinking()
 	return BIT(m_display_ctrl, BLINK_BIT);
 }
 
-void mb88303_device::update_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void mb88303_device::update_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (blank_display())
 	{

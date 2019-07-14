@@ -63,7 +63,7 @@ public:
 	u8 k051937_r(offs_t offset);
 	void k051937_w(offs_t offset, u8 data);
 
-	void k051960_sprites_draw(bitmap_ind16 &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap, int min_priority, int max_priority);
+	void k051960_sprites_draw(bitmap_argb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap, int min_priority, int max_priority);
 
 	TIMER_CALLBACK_MEMBER(scanline_callback);
 

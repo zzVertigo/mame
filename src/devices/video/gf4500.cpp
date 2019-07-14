@@ -87,7 +87,7 @@ static rgb_t gf4500_get_color_16( uint16_t data )
 	return rgb_t(r, g, b);
 }
 
-uint32_t gf4500_device::screen_update(screen_device &device, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t gf4500_device::screen_update(screen_device &device, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint16_t *vram = (uint16_t *)(m_data.get() + GF4500_FRAMEBUF_OFFSET / 4);
 	int x, y;

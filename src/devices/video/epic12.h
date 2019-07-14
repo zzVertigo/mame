@@ -32,7 +32,7 @@ public:
 	u64 fpga_r();
 	void fpga_w(offs_t offset, u64 data, u64 mem_mask = ~0);
 
-	void draw_screen(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void draw_screen(bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	u16* m_ram16;
 	u32 m_gfx_addr;
@@ -40,7 +40,7 @@ public:
 	u32 m_gfx_scroll_1_x, m_gfx_scroll_1_y;
 
 	int m_gfx_size;
-	std::unique_ptr<bitmap_rgb32> m_bitmaps;
+	std::unique_ptr<bitmap_argb32> m_bitmaps;
 	rectangle m_clip;
 
 	u16* m_use_ram;
@@ -225,7 +225,7 @@ protected:
 	};
 
 	typedef void (*blitfunction)(
-			bitmap_rgb32 *,
+			bitmap_argb32 *,
 			const rectangle *,
 			u32 *gfx,
 			int src_x,
@@ -242,7 +242,7 @@ protected:
 
 
 #define BLIT_FUNCTION static void
-#define BLIT_PARAMS bitmap_rgb32 *bitmap, const rectangle *clip, u32 *gfx, int src_x, int src_y, const int dst_x_start, const int dst_y_start, int dimx, int dimy, const bool flipy, const u8 s_alpha, const u8 d_alpha, const clr_t *tint_clr
+#define BLIT_PARAMS bitmap_argb32 *bitmap, const rectangle *clip, u32 *gfx, int src_x, int src_y, const int dst_x_start, const int dst_y_start, int dimx, int dimy, const bool flipy, const u8 s_alpha, const u8 d_alpha, const clr_t *tint_clr
 
 	BLIT_FUNCTION draw_sprite_f0_ti0_plain(BLIT_PARAMS);
 	BLIT_FUNCTION draw_sprite_f0_ti0_tr1_s0_d0(BLIT_PARAMS);

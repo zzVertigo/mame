@@ -76,7 +76,7 @@ void _20pacgal_state::starpal_init(palette_device &palette) const
 }
 
 
-void _20pacgal_state::do_pen_lookup(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void _20pacgal_state::do_pen_lookup(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *pen = m_palette->pens();
 
@@ -93,7 +93,7 @@ void _20pacgal_state::do_pen_lookup(bitmap_rgb32 &bitmap, const rectangle &clipr
  *
  *************************************/
 
-void _20pacgal_state::draw_sprite(bitmap_rgb32 &bitmap, const rectangle &cliprect, int y, int x,
+void _20pacgal_state::draw_sprite(bitmap_argb32 &bitmap, const rectangle &cliprect, int y, int x,
 						uint8_t code, uint8_t color, int flip_y, int flip_x)
 {
 	int sy;
@@ -163,7 +163,7 @@ void _20pacgal_state::draw_sprite(bitmap_rgb32 &bitmap, const rectangle &cliprec
 }
 
 
-void _20pacgal_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void _20pacgal_state::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int offs;
 
@@ -215,7 +215,7 @@ void _20pacgal_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &clipre
  *
  *************************************/
 
-void _20pacgal_state::draw_chars(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void _20pacgal_state::draw_chars(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	offs_t offs;
 
@@ -355,7 +355,7 @@ void _20pacgal_state::draw_chars(bitmap_rgb32 &bitmap, const rectangle &cliprect
  *
  */
 
-void _20pacgal_state::draw_stars(bitmap_rgb32 &bitmap, const rectangle &cliprect )
+void _20pacgal_state::draw_stars(bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	if ( (m_stars_ctrl[0] >> 5) & 1 )
 	{
@@ -412,7 +412,7 @@ void _20pacgal_state::draw_stars(bitmap_rgb32 &bitmap, const rectangle &cliprect
  *
  *************************************/
 
-uint32_t _20pacgal_state::screen_update_20pacgal(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t _20pacgal_state::screen_update_20pacgal(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(0, cliprect);
 	draw_stars(bitmap,cliprect);

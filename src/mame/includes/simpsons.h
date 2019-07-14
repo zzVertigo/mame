@@ -11,6 +11,7 @@
 #include "video/k053251.h"
 #include "video/k053246_k053247_k055673.h"
 #include "video/konami_helper.h"
+#include "emupal.h"
 
 class simpsons_state : public driver_device
 {
@@ -23,7 +24,8 @@ public:
 		m_bank2000(*this, "bank2000"),
 		m_k052109(*this, "k052109"),
 		m_k053246(*this, "k053246"),
-		m_k053251(*this, "k053251")
+		m_k053251(*this, "k053251"),
+		m_palette(*this, "palette")
 	{ }
 
 	void simpsons(machine_config &config);
@@ -55,6 +57,7 @@ private:
 	required_device<k052109_device> m_k052109;
 	required_device<k053247_device> m_k053246;
 	required_device<k053251_device> m_k053251;
+	required_device<palette_device> m_palette;
 	DECLARE_WRITE8_MEMBER(z80_bankswitch_w);
 	DECLARE_WRITE8_MEMBER(z80_arm_nmi_w);
 	DECLARE_WRITE8_MEMBER(simpsons_eeprom_w);
@@ -66,7 +69,7 @@ private:
 	DECLARE_WRITE8_MEMBER(simpsons_k053247_w);
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
-	uint32_t screen_update_simpsons(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_simpsons(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(simpsons_irq);
 	void simpsons_video_banking(int bank);
 	void simpsons_objdma();

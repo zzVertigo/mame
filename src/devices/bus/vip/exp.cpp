@@ -170,7 +170,7 @@ void vip_expansion_slot_device::dma_w(offs_t offset, uint8_t data)
 //  screen_update -
 //-------------------------------------------------
 
-uint32_t vip_expansion_slot_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t vip_expansion_slot_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bool value = false;
 

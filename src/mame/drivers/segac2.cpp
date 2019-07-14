@@ -169,7 +169,7 @@ private:
 	DECLARE_MACHINE_START(segac2);
 	DECLARE_MACHINE_RESET(segac2);
 
-	uint32_t screen_update_segac2_new(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_segac2_new(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	int m_segac2_bg_pal_lookup[4];
 	int m_segac2_sp_pal_lookup[4];
 	void recompute_palette_tables();
@@ -1458,7 +1458,7 @@ VIDEO_START_MEMBER(segac2_state,segac2_new)
 
 // C2 doesn't use the internal VDP CRAM, instead it uses the digital output of the chip
 //  and applies it's own external colour circuity
-uint32_t segac2_state::screen_update_segac2_new(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t segac2_state::screen_update_segac2_new(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *paldata = m_palette->pens();
 	if (!m_segac2_enable_display)

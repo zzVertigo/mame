@@ -518,7 +518,6 @@ void gstriker_state::base(machine_config &config)
 	m_screen->set_visarea(0*8, 40*8-1, 0*8, 28*8-1);
 	m_screen->set_screen_update(FUNC(gstriker_state::screen_update));
 	m_screen->screen_vblank().set(FUNC(gstriker_state::screen_vblank));
-	m_screen->set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_gstriker);
 	PALETTE(config, m_palette).set_format(palette_device::xRGB_555, 0x800);

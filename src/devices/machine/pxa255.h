@@ -66,7 +66,7 @@ protected:
 	void pxa255_lcd_dma_kickoff(int channel);
 	void pxa255_lcd_check_load_next_branch(int channel);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	TIMER_CALLBACK_MEMBER(pxa255_dma_dma_end);
 	TIMER_CALLBACK_MEMBER(pxa255_ostimer_match);

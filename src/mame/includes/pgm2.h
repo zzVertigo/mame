@@ -115,7 +115,7 @@ private:
 	TILE_GET_INFO_MEMBER(get_fg_tile_info);
 	TILE_GET_INFO_MEMBER(get_bg_tile_info);
 
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(screen_vblank);
 	DECLARE_WRITE_LINE_MEMBER(irq);
 
@@ -135,7 +135,7 @@ private:
 	void draw_sprite_line(const rectangle &cliprect, u32 &mask_offset, u32 &palette_offset, s16 x, s16 realy,
 			bool flipx, bool reverse, u16 sizex, u16 pal, u8 zoomybit, u32 zoomx_bits, u8 xrepeats);
 	void draw_sprites(const rectangle &cliprect);
-	void copy_sprites_from_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect, u16 pri);
+	void copy_sprites_from_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect, u16 pri);
 
 	void common_encryption_init();
 	u8 m_encryption_table[0x100];

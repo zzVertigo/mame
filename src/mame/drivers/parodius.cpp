@@ -251,7 +251,6 @@ void parodius_state::parodius(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(14*8, (64-14)*8-1, 2*8, 30*8-1);
 	screen.set_screen_update(FUNC(parodius_state::screen_update_parodius));
-	screen.set_palette("palette");
 
 	PALETTE(config, "palette").set_format(palette_device::xBGR_555, 2048).enable_shadows();
 

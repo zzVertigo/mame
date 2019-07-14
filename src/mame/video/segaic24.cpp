@@ -234,7 +234,7 @@ void segas24_tile_device::draw_rect(screen_device &screen, bitmap_ind16 &bm, bit
 // about sprite priority hence the lack of support for the
 // priority_bitmap
 
-void segas24_tile_device::draw_rect(screen_device &screen, bitmap_ind16 &bm, bitmap_ind8 &tm, bitmap_rgb32 &dm, const uint16_t *mask,
+void segas24_tile_device::draw_rect(screen_device &screen, bitmap_ind16 &bm, bitmap_ind8 &tm, bitmap_argb32 &dm, const uint16_t *mask,
 								uint16_t tpri, uint8_t lpri, int win, int sx, int sy, int xx1, int yy1, int xx2, int yy2)
 {
 	int y;
@@ -525,7 +525,7 @@ void segas24_tile_device::draw_common(screen_device &screen, _BitmapClass &bitma
 void segas24_tile_device::draw(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, int layer, int lpri, int flags)
 { draw_common(screen, bitmap, cliprect, layer, lpri, flags); }
 
-void segas24_tile_device::draw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int layer, int lpri, int flags)
+void segas24_tile_device::draw(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int layer, int lpri, int flags)
 { draw_common(screen, bitmap, cliprect, layer, lpri, flags); }
 
 READ16_MEMBER(segas24_tile_device::tile_r)

@@ -294,7 +294,7 @@ void sega315_5313_device::device_start()
 	memset(m_palette_lookup.get(),0x00,0x40*2);
 
 	if (!m_use_alt_timing)
-		m_render_bitmap = std::make_unique<bitmap_rgb32>(320, 512); // allocate maximum sizes we're going to use, it's safer.
+		m_render_bitmap = std::make_unique<bitmap_argb32>(320, 512); // allocate maximum sizes we're going to use, it's safer.
 	else
 		m_render_line = std::make_unique<uint32_t[]>(320);
 

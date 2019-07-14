@@ -65,10 +65,10 @@ private:
 	virtual void machine_reset() override;
 	virtual void video_start() override;
 	void yiear_palette(palette_device &palette) const;
-	uint32_t screen_update_yiear(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_yiear(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(vblank_irq);
 	INTERRUPT_GEN_MEMBER(yiear_nmi_interrupt);
-	void draw_sprites( bitmap_ind16 &bitmap, const rectangle &cliprect );
+	void draw_sprites( bitmap_argb32 &bitmap, const rectangle &cliprect );
 
 	void main_map(address_map &map);
 	void vlm_map(address_map &map);

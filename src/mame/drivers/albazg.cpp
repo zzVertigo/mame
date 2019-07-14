@@ -75,7 +75,7 @@ private:
 	DECLARE_WRITE8_MEMBER(mux_w);
 	DECLARE_WRITE8_MEMBER(yumefuda_output_w);
 	TILE_GET_INFO_MEMBER(y_get_bg_tile_info);
-	uint32_t screen_update_yumefuda(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_yumefuda(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void main_map(address_map &map);
 	void port_map(address_map &map);
@@ -114,7 +114,7 @@ void albazg_state::video_start()
 	m_bg_tilemap = &machine().tilemap().create(*m_gfxdecode, tilemap_get_info_delegate(FUNC(albazg_state::y_get_bg_tile_info),this), TILEMAP_SCAN_ROWS, 8, 8, 32, 32);
 }
 
-uint32_t albazg_state::screen_update_yumefuda(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t albazg_state::screen_update_yumefuda(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bg_tilemap->draw(screen, bitmap, cliprect, 0, 0);
 	return 0;

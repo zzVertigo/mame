@@ -204,7 +204,7 @@ void vsystem_spr2_device::turbofrc_draw_sprites(uint16_t const *spriteram3,  int
 	turbofrc_draw_sprites_common(spriteram3, spriteram3_bytes, spritepalettebank, bitmap, cliprect, priority_bitmap, pri_param, flip_screen);
 }
 
-void vsystem_spr2_device::turbofrc_draw_sprites(uint16_t const *spriteram3,  int spriteram3_bytes, int spritepalettebank, bitmap_rgb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap, int pri_param, bool flip_screen)
+void vsystem_spr2_device::turbofrc_draw_sprites(uint16_t const *spriteram3,  int spriteram3_bytes, int spritepalettebank, bitmap_argb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap, int pri_param, bool flip_screen)
 {
 	turbofrc_draw_sprites_common(spriteram3, spriteram3_bytes, spritepalettebank, bitmap, cliprect, priority_bitmap, pri_param, flip_screen);
 }

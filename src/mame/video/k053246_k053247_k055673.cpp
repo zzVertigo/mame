@@ -407,7 +407,7 @@ void k053247_device::k053247_sprites_draw_common(_BitmapClass &bitmap, const rec
 void k053247_device::k053247_sprites_draw(bitmap_ind16 &bitmap, const rectangle &cliprect)
 { k053247_sprites_draw_common(bitmap, cliprect); }
 
-void k053247_device::k053247_sprites_draw(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void k053247_device::k053247_sprites_draw(bitmap_argb32 &bitmap, const rectangle &cliprect)
 { k053247_sprites_draw_common(bitmap, cliprect); }
 
 
@@ -428,7 +428,7 @@ void k053247_device::k053247_sprites_draw(bitmap_rgb32 &bitmap, const rectangle 
 */
 
 void k053247_device::zdrawgfxzoom32GP(
-		bitmap_rgb32 &bitmap, const rectangle &cliprect,
+		bitmap_argb32 &bitmap, const rectangle &cliprect,
 		u32 code, u32 color, int flipx, int flipy, int sx, int sy,
 		int scalex, int scaley, int alpha, int drawmode, int zcode, int pri, u8* gx_objzbuf, u8* gx_shdzbuf)
 {
@@ -1092,7 +1092,7 @@ void k053247_device::device_start()
 
 	if (VERBOSE)
 	{
-		if (screen().format() == BITMAP_FORMAT_RGB32)
+		if (screen().format() == BITMAP_FORMAT_ARGB32)
 		{
 			if (!palette().shadows_enabled() || !palette().hilights_enabled())
 				popmessage("driver missing SHADOWS or HIGHLIGHTS flag");

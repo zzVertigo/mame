@@ -38,7 +38,7 @@ private:
 	DECLARE_READ32_MEMBER(viking_enable_r);
 	DECLARE_WRITE32_MEMBER(viking_disable_w);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	std::vector<uint8_t> m_vram;
 	uint32_t m_vbl_disable, m_palette[2];

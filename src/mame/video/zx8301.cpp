@@ -246,7 +246,7 @@ WRITE8_MEMBER( zx8301_device::data_w )
 //  draw_line_mode4 - draw mode 4 line
 //-------------------------------------------------
 
-void zx8301_device::draw_line_mode4(bitmap_rgb32 &bitmap, int y, uint16_t da)
+void zx8301_device::draw_line_mode4(bitmap_argb32 &bitmap, int y, uint16_t da)
 {
 	int x = 0;
 
@@ -274,7 +274,7 @@ void zx8301_device::draw_line_mode4(bitmap_rgb32 &bitmap, int y, uint16_t da)
 //  draw_line_mode8 - draw mode 8 line
 //-------------------------------------------------
 
-void zx8301_device::draw_line_mode8(bitmap_rgb32 &bitmap, int y, uint16_t da)
+void zx8301_device::draw_line_mode8(bitmap_argb32 &bitmap, int y, uint16_t da)
 {
 	int x = 0;
 
@@ -320,7 +320,7 @@ void zx8301_device::draw_line_mode8(bitmap_rgb32 &bitmap, int y, uint16_t da)
 //  screen_update -
 //-------------------------------------------------
 
-uint32_t zx8301_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t zx8301_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (!m_dispoff)
 	{

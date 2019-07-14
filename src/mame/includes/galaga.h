@@ -49,12 +49,12 @@ public:
 	TILE_GET_INFO_MEMBER(get_tile_info);
 	DECLARE_VIDEO_START(galaga);
 	void galaga_palette(palette_device &palette) const;
-	uint32_t screen_update_galaga(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_galaga(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(screen_vblank_galaga);
 	DECLARE_WRITE_LINE_MEMBER(vblank_irq);
 	TIMER_CALLBACK_MEMBER(cpu3_interrupt_callback);
-	void draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect );
-	void draw_stars(bitmap_ind16 &bitmap, const rectangle &cliprect );
+	void draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect );
+	void draw_stars(bitmap_argb32 &bitmap, const rectangle &cliprect );
 	void galaga(machine_config &config);
 	void gatsbee(machine_config &config);
 	void galagab(machine_config &config);

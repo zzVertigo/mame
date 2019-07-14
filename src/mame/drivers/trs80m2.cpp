@@ -441,7 +441,7 @@ void trs80m2_state::video_start()
 	m_video_ram.allocate(0x800);
 }
 
-uint32_t trs80m2_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t trs80m2_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (m_blnkvid)
 	{

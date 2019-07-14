@@ -31,7 +31,7 @@ private:
 	void mem_map(address_map &map);
 	void io_map(address_map &map);
 
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	required_device<cpu_device> m_maincpu;
 };
@@ -55,7 +55,7 @@ void lee1214_state::machine_start()
 {
 }
 
-u32 lee1214_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 lee1214_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

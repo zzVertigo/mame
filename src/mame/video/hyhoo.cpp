@@ -245,7 +245,7 @@ void hyhoo_state::video_start()
 }
 
 
-uint32_t hyhoo_state::screen_update_hyhoo(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t hyhoo_state::screen_update_hyhoo(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (m_dispflag)
 		copybitmap(bitmap, m_tmpbitmap, m_flipscreen, m_flipscreen, 0, 0, cliprect);

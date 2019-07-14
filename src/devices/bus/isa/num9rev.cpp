@@ -309,7 +309,7 @@ WRITE8_MEMBER(isa8_number_9_rev_device::ctrl_w)
 	}
 }
 
-uint32_t isa8_number_9_rev_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t isa8_number_9_rev_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	rectangle visarea = screen.visible_area();
 	// try to support the 1024x8 or at least don't crash as there's no way to detect it

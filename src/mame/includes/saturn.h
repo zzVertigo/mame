@@ -109,7 +109,7 @@ protected:
 
 	struct {
 		std::unique_ptr<uint8_t[]>      gfx_decode;
-		bitmap_rgb32 roz_bitmap[2];
+		bitmap_argb32 roz_bitmap[2];
 		uint8_t     dotsel;
 		uint8_t     pal;
 		uint8_t     odd;
@@ -131,9 +131,9 @@ protected:
 	required_device<screen_device> m_screen;
 	required_device<palette_device> m_palette;
 
-	bitmap_rgb32 m_tmpbitmap;
+	bitmap_argb32 m_tmpbitmap;
 	DECLARE_VIDEO_START(stv_vdp2);
-	uint32_t screen_update_stv_vdp2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_stv_vdp2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_DEVICE_CALLBACK_MEMBER(saturn_scanline);
 	TIMER_DEVICE_CALLBACK_MEMBER(saturn_slave_scanline);
 
@@ -284,27 +284,27 @@ protected:
 	int get_window_pixel(int s_x,int e_x,int s_y,int e_y,int x, int y,uint8_t win_num);
 	int stv_vdp2_apply_window_on_layer(rectangle &cliprect);
 
-	void stv_vdp2_draw_basic_tilemap(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void stv_vdp2_draw_basic_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_4bpp_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_8bpp_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_11bpp_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_rgb15_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_rgb32_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void stv_vdp2_draw_basic_tilemap(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void stv_vdp2_draw_basic_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_4bpp_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_8bpp_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_11bpp_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_rgb15_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_rgb32_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect);
 
-	void stv_vdp2_drawgfxzoom(bitmap_rgb32 &dest_bmp,const rectangle &clip,gfx_element *gfx, uint32_t code,uint32_t color,int flipx,int flipy,int sx,int sy,int transparency,int scalex, int scaley,int sprite_screen_width, int sprite_screen_height, int alpha);
-	void stv_vdp2_drawgfxzoom_rgb555(bitmap_rgb32 &dest_bmp,const rectangle &clip,uint32_t code,uint32_t color,int flipx,int flipy,int sx,int sy,int transparency,int scalex, int scaley,int sprite_screen_width, int sprite_screen_height, int alpha);
-	void stv_vdp2_drawgfx_rgb555( bitmap_rgb32 &dest_bmp, const rectangle &clip, uint32_t code, int flipx, int flipy, int sx, int sy, int transparency, int alpha);
-	void stv_vdp2_drawgfx_rgb888( bitmap_rgb32 &dest_bmp, const rectangle &clip, uint32_t code, int flipx, int flipy, int sx, int sy, int transparency, int alpha);
+	void stv_vdp2_drawgfxzoom(bitmap_argb32 &dest_bmp,const rectangle &clip,gfx_element *gfx, uint32_t code,uint32_t color,int flipx,int flipy,int sx,int sy,int transparency,int scalex, int scaley,int sprite_screen_width, int sprite_screen_height, int alpha);
+	void stv_vdp2_drawgfxzoom_rgb555(bitmap_argb32 &dest_bmp,const rectangle &clip,uint32_t code,uint32_t color,int flipx,int flipy,int sx,int sy,int transparency,int scalex, int scaley,int sprite_screen_width, int sprite_screen_height, int alpha);
+	void stv_vdp2_drawgfx_rgb555( bitmap_argb32 &dest_bmp, const rectangle &clip, uint32_t code, int flipx, int flipy, int sx, int sy, int transparency, int alpha);
+	void stv_vdp2_drawgfx_rgb888( bitmap_argb32 &dest_bmp, const rectangle &clip, uint32_t code, int flipx, int flipy, int sx, int sy, int transparency, int alpha);
 
-	void stv_vdp2_drawgfx_alpha(bitmap_rgb32 &dest_bmp,const rectangle &clip,gfx_element *gfx, uint32_t code,uint32_t color, int flipx,int flipy,int offsx,int offsy, int transparency, int alpha);
-	void stv_vdp2_drawgfx_transpen(bitmap_rgb32 &dest_bmp,const rectangle &clip,gfx_element *gfx, uint32_t code,uint32_t color, int flipx,int flipy,int offsx,int offsy, int transparency);
+	void stv_vdp2_drawgfx_alpha(bitmap_argb32 &dest_bmp,const rectangle &clip,gfx_element *gfx, uint32_t code,uint32_t color, int flipx,int flipy,int offsx,int offsy, int transparency, int alpha);
+	void stv_vdp2_drawgfx_transpen(bitmap_argb32 &dest_bmp,const rectangle &clip,gfx_element *gfx, uint32_t code,uint32_t color, int flipx,int flipy,int offsx,int offsy, int transparency);
 
 
-	void stv_vdp2_draw_rotation_screen(bitmap_rgb32 &bitmap, const rectangle &cliprect, int iRP);
-	void stv_vdp2_check_tilemap_with_linescroll(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void stv_vdp2_check_tilemap(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void stv_vdp2_copy_roz_bitmap(bitmap_rgb32 &bitmap, bitmap_rgb32 &roz_bitmap, const rectangle &cliprect, int iRP, int planesizex, int planesizey, int planerenderedsizex, int planerenderedsizey);
+	void stv_vdp2_draw_rotation_screen(bitmap_argb32 &bitmap, const rectangle &cliprect, int iRP);
+	void stv_vdp2_check_tilemap_with_linescroll(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void stv_vdp2_check_tilemap(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void stv_vdp2_copy_roz_bitmap(bitmap_argb32 &bitmap, bitmap_argb32 &roz_bitmap, const rectangle &cliprect, int iRP, int planesizex, int planesizey, int planerenderedsizex, int planerenderedsizey);
 	inline bool stv_vdp2_roz_window(int x, int y);
 	inline bool stv_vdp2_roz_mode3_window(int x, int y, int rot_parameter);
 	inline int get_roz_window_pixel(int s_x,int e_x,int s_y,int e_y,int x, int y,uint8_t winenable,uint8_t winarea);
@@ -314,20 +314,20 @@ protected:
 	uint8_t stv_vdp2_are_map_registers_equal(void);
 	void stv_vdp2_get_map_page( int x, int y, int *_map, int *_page );
 
-	void stv_vdp2_draw_mosaic(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint8_t is_roz);
+	void stv_vdp2_draw_mosaic(bitmap_argb32 &bitmap, const rectangle &cliprect, uint8_t is_roz);
 	void stv_vdp2_fade_effects( void );
 	void stv_vdp2_compute_color_offset( int *r, int *g, int *b, int cor );
 	void stv_vdp2_compute_color_offset_UINT32(rgb_t *rgb, int cor);
 	void stv_vdp2_check_fade_control_for_layer( void );
 
-	void stv_vdp2_draw_line(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void stv_vdp2_draw_back(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void stv_vdp2_draw_NBG0(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void stv_vdp2_draw_NBG1(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void stv_vdp2_draw_NBG2(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void stv_vdp2_draw_NBG3(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void stv_vdp2_draw_RBG0(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint8_t pri);
+	void stv_vdp2_draw_line(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void stv_vdp2_draw_back(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void stv_vdp2_draw_NBG0(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void stv_vdp2_draw_NBG1(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void stv_vdp2_draw_NBG2(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void stv_vdp2_draw_NBG3(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void stv_vdp2_draw_RBG0(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, uint8_t pri);
 	int true_vcount[263][4];
 
 	void stv_vdp2_state_save_postload( void );

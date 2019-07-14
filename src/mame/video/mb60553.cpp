@@ -172,7 +172,7 @@ TILEMAP_MAPPER_MEMBER(mb60553_zooming_tilemap_device::twc94_scan)
 	return (row << 6) + (col & 0x003f) + (BIT(col, 6) << 12);
 }
 
-void mb60553_zooming_tilemap_device::draw_roz_core(screen_device &screen, bitmap_ind16 &destbitmap, const rectangle &cliprect,
+void mb60553_zooming_tilemap_device::draw_roz_core(screen_device &screen, bitmap_argb32 &destbitmap, const rectangle &cliprect,
 		uint32_t startx, uint32_t starty, int incxx, int incxy, int incyx, int incyy, bool wraparound)
 {
 	// pre-cache all the inner loop values
@@ -197,7 +197,7 @@ void mb60553_zooming_tilemap_device::draw_roz_core(screen_device &screen, bitmap
 		int sx = cliprect.min_x;
 		int ex = cliprect.max_x;
 
-		uint16_t *dest = &destbitmap.pix(sy, sx);
+		uint32_t *dest = &destbitmap.pix(sy, sx);
 
 		// loop over columns
 		while (sx <= ex)
@@ -245,7 +245,7 @@ void mb60553_zooming_tilemap_device::draw_roz_core(screen_device &screen, bitmap
 
 
 /* THIS IS STILL WRONG! */
-void mb60553_zooming_tilemap_device::draw( screen_device &screen, bitmap_ind16& bitmap, const rectangle &cliprect, int priority)
+void mb60553_zooming_tilemap_device::draw( screen_device &screen, bitmap_argb32& bitmap, const rectangle &cliprect, int priority)
 {
 	int line;
 	rectangle clip;

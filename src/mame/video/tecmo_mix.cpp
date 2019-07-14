@@ -67,7 +67,7 @@ uint32_t tecmo_mix_device::sum_colors(const pen_t *pal, int c1_idx, int c2_idx)
 	return ((a << 24) | (r << 16) | (g << 8) | b);
 }
 
-void tecmo_mix_device::mix_bitmaps(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, palette_device &palette, bitmap_ind16* bitmap_bg, bitmap_ind16* bitmap_fg, bitmap_ind16* bitmap_tx, bitmap_ind16* bitmap_sp)
+void tecmo_mix_device::mix_bitmaps(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, palette_device &palette, bitmap_ind16* bitmap_bg, bitmap_ind16* bitmap_fg, bitmap_ind16* bitmap_tx, bitmap_ind16* bitmap_sp)
 {
 	//int frame = (screen.frame_number()) & 1;
 	// note this game has no tx layer, comments relate to other drivers

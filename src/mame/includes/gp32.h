@@ -143,7 +143,7 @@ private:
 	uint32_t m_s3c240x_adc_regs[0x08/4];
 	uint32_t m_s3c240x_spi_regs[0x18/4];
 	uint32_t m_s3c240x_mmc_regs[0x40/4];
-	bitmap_rgb32 m_bitmap;
+	bitmap_argb32 m_bitmap;
 	DECLARE_READ32_MEMBER(s3c240x_lcd_r);
 	DECLARE_WRITE32_MEMBER(s3c240x_lcd_w);
 	DECLARE_READ32_MEMBER(s3c240x_lcd_palette_r);
@@ -184,7 +184,7 @@ private:
 	DECLARE_WRITE32_MEMBER(s3c240x_mmc_w);
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
-	uint32_t screen_update_gp32(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_gp32(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_CALLBACK_MEMBER(s3c240x_lcd_timer_exp);
 	TIMER_CALLBACK_MEMBER(s3c240x_pwm_timer_exp);
 	TIMER_CALLBACK_MEMBER(s3c240x_dma_timer_exp);

@@ -47,6 +47,9 @@ void zx_state::zx_tape_input()
 
 void zx_state::drop_sync()
 {
+	const pen_t *pen = m_palette->pens();
+	pen_t white = pen[1];
+
 	if (m_vsync_active) {
 		uint64_t time = m_maincpu->total_cycles();
 		m_vsync_active = false;
@@ -70,21 +73,21 @@ void zx_state::drop_sync()
 				xe = 0;
 			}
 			if(ys == ye) {
-				uint16_t *dest = &m_bitmap_render->pix16(ys, xs);
+				uint32_t *dest = &m_bitmap_render->pix32(ys, xs);
 				for(int x = xs; x < xe; x++)
-					*dest++ = 1;
+					*dest++ = white;
 			} else {
-				uint16_t *dest = &m_bitmap_render->pix16(ys, xs);
+				uint32_t *dest = &m_bitmap_render->pix32(ys, xs);
 				for(int x = xs; x < 384; x++)
-					*dest++ = 1;
+					*dest++ = white;
 				for(int y = ys+1; y < ye; y++) {
-					dest = &m_bitmap_render->pix16(y, 0);
+					dest = &m_bitmap_render->pix32(y, 0);
 					for(int x = 0; x<384; x++)
-						*dest++ = 1;
+						*dest++ = white;
 				}
-				dest = &m_bitmap_render->pix16(ye, 0);
+				dest = &m_bitmap_render->pix32(ye, 0);
 				for(int x = 0; x < xe; x++)
-					*dest++ = 1;
+					*dest++ = white;
 			}
 		}
 

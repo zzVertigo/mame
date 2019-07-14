@@ -444,7 +444,7 @@ void galaxian_state::state_save_register()
  *
  *************************************/
 
-uint32_t galaxian_state::screen_update_galaxian(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t galaxian_state::screen_update_galaxian(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* draw the background layer (including stars) */
 	(this->*m_draw_background_ptr)(bitmap, cliprect);
@@ -541,7 +541,7 @@ WRITE8_MEMBER(galaxian_state::galaxian_objram_w)
  *
  *************************************/
 
-void galaxian_state::sprites_draw(bitmap_rgb32 &bitmap, const rectangle &cliprect, const uint8_t *spritebase)
+void galaxian_state::sprites_draw(bitmap_argb32 &bitmap, const rectangle &cliprect, const uint8_t *spritebase)
 {
 	rectangle clip = cliprect;
 	int sprnum;
@@ -606,7 +606,7 @@ void galaxian_state::sprites_draw(bitmap_rgb32 &bitmap, const rectangle &cliprec
  *
  *************************************/
 
-void galaxian_state::bullets_draw(bitmap_rgb32 &bitmap, const rectangle &cliprect, const uint8_t *base)
+void galaxian_state::bullets_draw(bitmap_argb32 &bitmap, const rectangle &cliprect, const uint8_t *base)
 {
 	int y;
 
@@ -870,7 +870,7 @@ TIMER_DEVICE_CALLBACK_MEMBER(galaxian_state::scramble_stars_blink_timer)
  *
  *************************************/
 
-void galaxian_state::stars_draw_row(bitmap_rgb32 &bitmap, int maxx, int y, uint32_t star_offs, uint8_t starmask)
+void galaxian_state::stars_draw_row(bitmap_argb32 &bitmap, int maxx, int y, uint32_t star_offs, uint8_t starmask)
 {
 	int x;
 
@@ -928,7 +928,7 @@ void galaxian_state::stars_draw_row(bitmap_rgb32 &bitmap, int maxx, int y, uint3
  *
  *************************************/
 
-void galaxian_state::null_draw_background(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void galaxian_state::null_draw_background(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* erase the background to black */
 	bitmap.fill(rgb_t::black(), cliprect);
@@ -936,7 +936,7 @@ void galaxian_state::null_draw_background(bitmap_rgb32 &bitmap, const rectangle 
 
 
 
-void galaxian_state::galaxian_draw_background(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void galaxian_state::galaxian_draw_background(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* erase the background to black first */
 	bitmap.fill(rgb_t::black(), cliprect);
@@ -959,7 +959,7 @@ void galaxian_state::galaxian_draw_background(bitmap_rgb32 &bitmap, const rectan
 }
 
 
-void galaxian_state::background_draw_colorsplit(bitmap_rgb32 &bitmap, const rectangle &cliprect, rgb_t color, int split, int split_flipped)
+void galaxian_state::background_draw_colorsplit(bitmap_argb32 &bitmap, const rectangle &cliprect, rgb_t color, int split, int split_flipped)
 {
 	/* horizontal bgcolor split */
 	if (m_flipscreen_x)
@@ -989,7 +989,7 @@ void galaxian_state::background_draw_colorsplit(bitmap_rgb32 &bitmap, const rect
 }
 
 
-void galaxian_state::scramble_draw_stars(bitmap_rgb32 &bitmap, const rectangle &cliprect, int maxx)
+void galaxian_state::scramble_draw_stars(bitmap_argb32 &bitmap, const rectangle &cliprect, int maxx)
 {
 	/* update the star origin to the current frame */
 	stars_update_origin();
@@ -1015,7 +1015,7 @@ void galaxian_state::scramble_draw_stars(bitmap_rgb32 &bitmap, const rectangle &
 }
 
 
-void galaxian_state::scramble_draw_background(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void galaxian_state::scramble_draw_background(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* blue background - 390 ohm resistor */
 	bitmap.fill(m_background_enable ? rgb_t(0,0,0x56) : rgb_t::black(), cliprect);
@@ -1024,7 +1024,7 @@ void galaxian_state::scramble_draw_background(bitmap_rgb32 &bitmap, const rectan
 }
 
 
-void galaxian_state::anteater_draw_background(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void galaxian_state::anteater_draw_background(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* blue background, horizontal split as seen on flyer and real cabinet */
 	background_draw_colorsplit(bitmap, cliprect, m_background_enable ? rgb_t(0,0,0x56) : rgb_t::black(), 56, 256-56);
@@ -1033,7 +1033,7 @@ void galaxian_state::anteater_draw_background(bitmap_rgb32 &bitmap, const rectan
 }
 
 
-void galaxian_state::jumpbug_draw_background(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void galaxian_state::jumpbug_draw_background(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* blue background - 390 ohm resistor */
 	bitmap.fill(m_background_enable ? rgb_t(0,0,0x56) : rgb_t::black(), cliprect);
@@ -1058,7 +1058,7 @@ void galaxian_state::jumpbug_draw_background(bitmap_rgb32 &bitmap, const rectang
 }
 
 
-void galaxian_state::turtles_draw_background(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void galaxian_state::turtles_draw_background(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/*
 	    The background color generator is connected this way:
@@ -1071,7 +1071,7 @@ void galaxian_state::turtles_draw_background(bitmap_rgb32 &bitmap, const rectang
 }
 
 
-void galaxian_state::sfx_draw_background(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void galaxian_state::sfx_draw_background(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* current schematics are unreadable, assuming like Turtles */
 	bitmap.fill(rgb_t(m_background_red * 0x55, m_background_green * 0x47, m_background_blue * 0x55), cliprect);
@@ -1079,7 +1079,7 @@ void galaxian_state::sfx_draw_background(bitmap_rgb32 &bitmap, const rectangle &
 }
 
 
-void galaxian_state::frogger_draw_background(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void galaxian_state::frogger_draw_background(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* according to schematics it is at 128+8; but it has been verified different on real machine.
 	Video proof: http://www.youtube.com/watch?v=ssr69mQf224 */
@@ -1105,7 +1105,7 @@ int galaxian_state::flip_and_clip(rectangle &draw, int xstart, int xend, const r
 	return (draw.min_x <= draw.max_x);
 }
 
-void galaxian_state::amidar_draw_background(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void galaxian_state::amidar_draw_background(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const uint8_t *prom = memregion("user1")->base();
 	rectangle draw;
@@ -1144,7 +1144,7 @@ void galaxian_state::amidar_draw_background(bitmap_rgb32 &bitmap, const rectangl
  *
  *************************************/
 
-inline void galaxian_state::galaxian_draw_pixel(bitmap_rgb32 &bitmap, const rectangle &cliprect, int y, int x, rgb_t color)
+inline void galaxian_state::galaxian_draw_pixel(bitmap_argb32 &bitmap, const rectangle &cliprect, int y, int x, rgb_t color)
 {
 	if (y >= cliprect.min_y && y <= cliprect.max_y)
 	{
@@ -1164,7 +1164,7 @@ inline void galaxian_state::galaxian_draw_pixel(bitmap_rgb32 &bitmap, const rect
 }
 
 
-void galaxian_state::galaxian_draw_bullet(bitmap_rgb32 &bitmap, const rectangle &cliprect, int offs, int x, int y)
+void galaxian_state::galaxian_draw_bullet(bitmap_argb32 &bitmap, const rectangle &cliprect, int offs, int x, int y)
 {
 	/*
 	    Both "shells" and "missiles" begin displaying when the horizontal counter
@@ -1180,7 +1180,7 @@ void galaxian_state::galaxian_draw_bullet(bitmap_rgb32 &bitmap, const rectangle 
 }
 
 
-void galaxian_state::mshuttle_draw_bullet(bitmap_rgb32 &bitmap, const rectangle &cliprect, int offs, int x, int y)
+void galaxian_state::mshuttle_draw_bullet(bitmap_argb32 &bitmap, const rectangle &cliprect, int offs, int x, int y)
 {
 	/* verified by schematics:
 	    * both "W" and "Y" bullets are 4 pixels long
@@ -1209,7 +1209,7 @@ void galaxian_state::mshuttle_draw_bullet(bitmap_rgb32 &bitmap, const rectangle 
 }
 
 
-void galaxian_state::scramble_draw_bullet(bitmap_rgb32 &bitmap, const rectangle &cliprect, int offs, int x, int y)
+void galaxian_state::scramble_draw_bullet(bitmap_argb32 &bitmap, const rectangle &cliprect, int offs, int x, int y)
 {
 	/*
 	    Scramble only has "shells", which begin displaying when the counter
@@ -1224,7 +1224,7 @@ void galaxian_state::scramble_draw_bullet(bitmap_rgb32 &bitmap, const rectangle 
 }
 
 
-void galaxian_state::theend_draw_bullet(bitmap_rgb32 &bitmap, const rectangle &cliprect, int offs, int x, int y)
+void galaxian_state::theend_draw_bullet(bitmap_argb32 &bitmap, const rectangle &cliprect, int offs, int x, int y)
 {
 	/* Same as galaxian except blue/green are swapped */
 	x -= 4;

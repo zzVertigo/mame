@@ -44,7 +44,7 @@ private:
 	required_shared_ptr<uint8_t> m_cram;
 	uint8_t m_hbeat;
 	virtual void video_start() override;
-	uint32_t screen_update_royalgum(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_royalgum(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	required_device<cpu_device> m_maincpu;
 	required_device<gfxdecode_device> m_gfxdecode;
 	required_device<palette_device> m_palette;
@@ -56,7 +56,7 @@ void rgum_state::video_start()
 {
 }
 
-uint32_t rgum_state::screen_update_royalgum(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t rgum_state::screen_update_royalgum(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y,count;
 	gfx_element *gfx = m_gfxdecode->gfx(0);

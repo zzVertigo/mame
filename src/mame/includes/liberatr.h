@@ -54,7 +54,7 @@ private:
 	DECLARE_READ8_MEMBER( bitmap_xy_r );
 	DECLARE_WRITE8_MEMBER( bitmap_xy_w );
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	// early raster EAROM interface
 	DECLARE_READ8_MEMBER( earom_r );
@@ -97,8 +97,8 @@ private:
 
 	void init_planet(planet &liberatr_planet, uint8_t *planet_rom);
 	void get_pens(pen_t *pens);
-	void draw_planet(bitmap_rgb32 &bitmap, pen_t *pens);
-	void draw_bitmap(bitmap_rgb32 &bitmap, pen_t *pens);
+	void draw_planet(bitmap_argb32 &bitmap, pen_t *pens);
+	void draw_bitmap(bitmap_argb32 &bitmap, pen_t *pens);
 
 	// vector and early raster EAROM interface
 	required_device<er2055_device> m_earom;

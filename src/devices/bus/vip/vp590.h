@@ -40,7 +40,7 @@ protected:
 	virtual void vip_program_w(offs_t offset, uint8_t data, int cdef, int *minh) override;
 	virtual void vip_io_w(offs_t offset, uint8_t data) override;
 	virtual void vip_dma_w(offs_t offset, uint8_t data) override;
-	virtual uint32_t vip_screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect) override;
+	virtual uint32_t vip_screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect) override;
 	virtual int vip_ef3_r() override;
 	virtual int vip_ef4_r() override;
 

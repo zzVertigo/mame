@@ -48,10 +48,10 @@ public:
 		m_pal_config = true;
 	}
 
-	bitmap_rgb32 &get_bitmap() { return m_bitmap; }
+	bitmap_argb32 &get_bitmap() { return m_bitmap; }
 	void update_mouse_state(int mx_delta, int my_delta, int button_state);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	uint8_t read(offs_t offset);
 	void write(offs_t offset, uint8_t data);
@@ -214,7 +214,7 @@ private:
 	// mouse & lightpen
 	uint8_t m_button_state;
 	// render bitmap
-	bitmap_rgb32 m_bitmap;
+	bitmap_argb32 m_bitmap;
 	// Command unit
 	struct {
 		int SX,SY;

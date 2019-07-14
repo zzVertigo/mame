@@ -114,7 +114,7 @@ private:
 	DECLARE_WRITE8_MEMBER(testb_w);
 	TILE_GET_INFO_MEMBER(get_bg_tile_info);
 	void jokrwild_palette(palette_device &palette) const;
-	uint32_t screen_update_jokrwild(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_jokrwild(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void jokrwild_map(address_map &map);
 };
 
@@ -154,7 +154,7 @@ void jokrwild_state::video_start()
 	m_bg_tilemap = &machine().tilemap().create(*m_gfxdecode, tilemap_get_info_delegate(FUNC(jokrwild_state::get_bg_tile_info),this), TILEMAP_SCAN_ROWS, 8, 8, 24, 26);
 }
 
-uint32_t jokrwild_state::screen_update_jokrwild(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t jokrwild_state::screen_update_jokrwild(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bg_tilemap->draw(screen, bitmap, cliprect, 0, 0);
 	return 0;

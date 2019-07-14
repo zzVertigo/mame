@@ -479,7 +479,7 @@ private:
 	DECLARE_WRITE64_MEMBER(gc_exi_w);
 	virtual void machine_start() override;
 	virtual void video_start() override;
-	uint32_t screen_update_triforce(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_triforce(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	required_device<ppc_device> m_maincpu;
 	void gc_map(address_map &map);
 };
@@ -515,7 +515,7 @@ void triforce_state::video_start()
 {
 }
 
-uint32_t triforce_state::screen_update_triforce(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t triforce_state::screen_update_triforce(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

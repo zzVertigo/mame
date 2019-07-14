@@ -18,14 +18,14 @@
 //**************************************************************************
 
 #define I82730_UPDATE_ROW(name) \
-	   void name(bitmap_rgb32 &bitmap, uint16_t *data, uint8_t lc, uint16_t y, int x_count)
+	   void name(bitmap_argb32 &bitmap, uint16_t *data, uint8_t lc, uint16_t y, int x_count)
 
 // ======================> i82730_device
 
 class i82730_device : public device_t, public device_video_interface
 {
 public:
-	typedef device_delegate<void (bitmap_rgb32 &bitmap, uint16_t *data, uint8_t lc, uint16_t y, int x_count)> update_row_delegate;
+	typedef device_delegate<void (bitmap_argb32 &bitmap, uint16_t *data, uint8_t lc, uint16_t y, int x_count)> update_row_delegate;
 
 	// construction/destruction
 	template <typename T>
@@ -41,13 +41,13 @@ public:
 
 	// inline configuration
 	void set_update_row_callback(update_row_delegate callback) { m_update_row_cb = callback; }
-	template <class FunctionClass> void set_update_row_callback(void (FunctionClass::*callback)(bitmap_rgb32 &, uint16_t *, uint8_t, uint16_t, int)
+	template <class FunctionClass> void set_update_row_callback(void (FunctionClass::*callback)(bitmap_argb32 &, uint16_t *, uint8_t, uint16_t, int)
 		, const char *name)
 	{
 		set_update_row_callback(update_row_delegate(callback, name, nullptr, static_cast<FunctionClass *>(nullptr)));
 	}
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_WRITE_LINE_MEMBER(ca_w);
 	DECLARE_WRITE_LINE_MEMBER(irst_w);
@@ -95,7 +95,7 @@ private:
 
 	emu_timer *m_row_timer;
 
-	bitmap_rgb32 m_bitmap;
+	bitmap_argb32 m_bitmap;
 
 	bool m_initialized;
 	bool m_mode_set;

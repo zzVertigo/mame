@@ -27,7 +27,7 @@ VIDEO_START_MEMBER(x1_state,x1)
 	m_pal_4096 = make_unique_clear<uint8_t[]>(0x1000*3);
 }
 
-void x1_state::x1_draw_pixel(bitmap_rgb32 &bitmap,int y,int x,uint16_t pen,uint8_t width,uint8_t height)
+void x1_state::x1_draw_pixel(bitmap_argb32 &bitmap,int y,int x,uint16_t pen,uint8_t width,uint8_t height)
 {
 	if(!m_screen->visible_area().contains(x, y))
 		return;
@@ -96,7 +96,7 @@ uint8_t x1_state::check_line_valid_height(int y,int x_size,int height)
 	return height;
 }
 
-void x1_state::draw_fgtilemap(bitmap_rgb32 &bitmap,const rectangle &cliprect)
+void x1_state::draw_fgtilemap(bitmap_argb32 &bitmap,const rectangle &cliprect)
 {
 	/*
 	    attribute table:
@@ -284,7 +284,7 @@ int x1_state::priority_mixer_pri(int color)
 	return pri_mask_calc;
 }
 
-void x1_state::draw_gfxbitmap(bitmap_rgb32 &bitmap,const rectangle &cliprect, int plane,int pri)
+void x1_state::draw_gfxbitmap(bitmap_argb32 &bitmap,const rectangle &cliprect, int plane,int pri)
 {
 	int xi,yi,x,y;
 	int pen_r,pen_g,pen_b,color;
@@ -335,7 +335,7 @@ void x1_state::draw_gfxbitmap(bitmap_rgb32 &bitmap,const rectangle &cliprect, in
 	}
 }
 
-uint32_t x1_state::screen_update_x1(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t x1_state::screen_update_x1(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(rgb_t(0xff,0x00,0x00,0x00), cliprect);
 

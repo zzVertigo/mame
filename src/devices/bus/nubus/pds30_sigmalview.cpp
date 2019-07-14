@@ -130,7 +130,7 @@ void nubus_lview_device::device_timer(emu_timer &timer, device_timer_id tid, int
 
 ***************************************************************************/
 
-uint32_t nubus_lview_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t nubus_lview_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t *scanline;
 	int x, y;

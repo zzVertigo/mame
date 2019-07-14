@@ -76,7 +76,7 @@ K051960_CB_MEMBER(mainevt_state::dv_sprite_callback)
 
 /*****************************************************************************/
 
-uint32_t mainevt_state::screen_update_mainevt(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t mainevt_state::screen_update_mainevt(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_k052109->tilemap_update();
 
@@ -90,7 +90,7 @@ uint32_t mainevt_state::screen_update_mainevt(screen_device &screen, bitmap_ind1
 	return 0;
 }
 
-uint32_t mainevt_state::screen_update_dv(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t mainevt_state::screen_update_dv(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_k052109->tilemap_update();
 

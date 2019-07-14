@@ -360,7 +360,6 @@ void zaccaria_state::zaccaria(machine_config &config)
 	screen.set_size(32*8, 32*8);
 	screen.set_visarea(0*8, 32*8-1, 2*8, 30*8-1);
 	screen.set_screen_update(FUNC(zaccaria_state::screen_update));
-	screen.set_palette(m_palette);
 	screen.screen_vblank().set(FUNC(zaccaria_state::vblank_irq));
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_zaccaria);

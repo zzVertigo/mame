@@ -136,7 +136,7 @@ private:
 	DECLARE_WRITE8_MEMBER(counters_w);
 	DECLARE_READ8_MEMBER(test_r);
 	template<uint8_t Reel> TILE_GET_INFO_MEMBER(get_reel_tile_info);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(irq);
 
 	void _7smash_io(address_map &map);
@@ -202,7 +202,7 @@ void luckgrln_state::video_start()
 	save_item(NAME(m_palette_ram));
 }
 
-uint32_t luckgrln_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t luckgrln_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int count = 0;
 	const rectangle &visarea = screen.visible_area();

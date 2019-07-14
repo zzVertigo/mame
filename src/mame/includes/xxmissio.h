@@ -63,8 +63,8 @@ private:
 
 	static rgb_t BBGGRRII(uint32_t raw);
 
-	uint32_t screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	void draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect, gfx_element *gfx);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, gfx_element *gfx);
 
 	void map1(address_map &map);
 	void map2(address_map &map);

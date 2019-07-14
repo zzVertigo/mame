@@ -142,9 +142,9 @@ public:
 	DECLARE_WRITE16_MEMBER( regs_w );
 	TIMER_CALLBACK_MEMBER( perform_scan );
 
-	bitmap_rgb32& get_bitmap() { return m_bitmap; }
+	bitmap_argb32& get_bitmap() { return m_bitmap; }
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	struct channel_t
 	{
@@ -230,7 +230,7 @@ private:
 	uint8_t m_region_flag_0[768];
 	uint8_t m_region_flag_1[768];
 
-	bitmap_rgb32 m_bitmap;
+	bitmap_argb32 m_bitmap;
 
 	static const uint32_t s_4bpp_color[16];
 

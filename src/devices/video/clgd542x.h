@@ -27,7 +27,7 @@ public:
 	virtual READ8_MEMBER(mem_r) override;
 	virtual WRITE8_MEMBER(mem_w) override;
 
-	virtual uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect) override;
+	virtual uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect) override;
 
 protected:
 	cirrus_gd5428_device(const machine_config &mconfig, device_type type, const char *tag, device_t *owner, uint32_t clock);

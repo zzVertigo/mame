@@ -34,7 +34,7 @@ public:
 	void explorapro(machine_config &config);
 	void explorapro_map(address_map &map);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 private:
 	virtual void machine_reset() override;
@@ -73,7 +73,7 @@ void ncd_ppc_state::machine_reset()
 {
 }
 
-uint32_t ncd_ppc_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t ncd_ppc_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

@@ -364,7 +364,7 @@ void twincobr_state::log_vram()
 }
 
 
-u32 twincobr_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 twincobr_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	log_vram();
 

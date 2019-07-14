@@ -260,7 +260,7 @@ void midtunit_video_device::do_dma_debug_inputs()
 		do_debug_blit();
 }
 
-uint32_t midtunit_video_device::debug_screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t midtunit_video_device::debug_screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	do_dma_debug_inputs();
 	const pen_t *pens = m_debug_palette->pens();

@@ -293,15 +293,15 @@ private:
 	devcb_write_line m_vblank_handler;
 
 	void vblank(screen_device &screen, bool vblank_state);
-	uint32_t update_screen(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t update_screen(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 #if defined(PSXGPU_DEBUG_VIEWER) && PSXGPU_DEBUG_VIEWER
 	void DebugMeshInit();
 	void DebugMesh( int n_coordx, int n_coordy );
 	void DebugMeshEnd();
 	void DebugCheckKeys();
-	int DebugMeshDisplay( bitmap_rgb32 &bitmap, const rectangle &cliprect );
-	int DebugTextureDisplay( bitmap_rgb32 &bitmap );
+	int DebugMeshDisplay( bitmap_argb32 &bitmap, const rectangle &cliprect );
+	int DebugTextureDisplay( bitmap_argb32 &bitmap );
 
 	psx_gpu_debug m_debug;
 #endif

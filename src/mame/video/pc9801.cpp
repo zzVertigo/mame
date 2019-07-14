@@ -22,7 +22,7 @@ void pc9801_state::video_start()
 	m_kanji_rom = memregion("kanji")->base();
 }
 
-uint32_t pc9801_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t pc9801_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(m_palette->black_pen(), cliprect);
 

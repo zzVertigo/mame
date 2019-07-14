@@ -81,8 +81,8 @@ public:
 	DECLARE_MACHINE_RESET(abattle);
 	DECLARE_MACHINE_START(spfghmk2);
 	DECLARE_MACHINE_START(tomahawk);
-	uint32_t screen_update_astrof(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_tomahawk(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_astrof(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_tomahawk(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_DEVICE_CALLBACK_MEMBER(irq_callback);
 	rgb_t make_pen( uint8_t data );
 	void astrof_get_pens( pen_t *pens );
@@ -90,7 +90,7 @@ public:
 	void astrof_set_video_control_2( uint8_t data );
 	void spfghmk2_set_video_control_2( uint8_t data );
 	void tomahawk_set_video_control_2( uint8_t data );
-	void video_update_common( bitmap_rgb32 &bitmap, const rectangle &cliprect, pen_t *pens, int num_pens );
+	void video_update_common( bitmap_argb32 &bitmap, const rectangle &cliprect, pen_t *pens, int num_pens );
 	void base(machine_config &config);
 	void astrof(machine_config &config);
 	void abattle(machine_config &config);

@@ -17,7 +17,7 @@ public:
 	template <typename T> void set_screen_tag(T &&tag) { m_screen.set_tag(std::forward<T>(tag)); }
 	void set_fbmem(int fbmem) { m_fbmem = fbmem; }
 	void set_tmumem(int tmumem0, int tmumem1) { m_tmumem0 = tmumem0; m_tmumem1 = tmumem1; }
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ32_MEMBER(vga_r);
 	DECLARE_WRITE32_MEMBER(vga_w);

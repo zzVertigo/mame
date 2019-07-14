@@ -95,7 +95,7 @@ VIDEO_START_MEMBER(playch10_state,playch10_hboard)
 
 ***************************************************************************/
 
-uint32_t playch10_state::screen_update_playch10_single(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t playch10_state::screen_update_playch10_single(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	rectangle top_monitor = screen.visible_area();
 
@@ -121,7 +121,7 @@ uint32_t playch10_state::screen_update_playch10_single(screen_device &screen, bi
 	return 0;
 }
 
-uint32_t playch10_state::screen_update_playch10_top(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t playch10_state::screen_update_playch10_top(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* Single Monitor version */
 	if (m_pc10_bios != 1)
@@ -136,7 +136,7 @@ uint32_t playch10_state::screen_update_playch10_top(screen_device &screen, bitma
 	return 0;
 }
 
-uint32_t playch10_state::screen_update_playch10_bottom(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t playch10_state::screen_update_playch10_bottom(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* Single Monitor version */
 	if (m_pc10_bios != 1)

@@ -323,19 +323,17 @@ ROM 3M,3L color replace table for sprite
 
 ***************************************************************************/
 
-void xevious_state::draw_sprites(bitmap_ind16 &bitmap,const rectangle &cliprect)
+void xevious_state::draw_sprites(bitmap_argb32 &bitmap,const rectangle &cliprect)
 {
 	uint8_t *spriteram = m_xevious_sr3 + 0x780;
 	uint8_t *spriteram_2 = m_xevious_sr1 + 0x780;
 	uint8_t *spriteram_3 = m_xevious_sr2 + 0x780;
-	int offs,sx,sy;
 
-	for (offs = 0;offs < 0x80;offs += 2)
+	for (int offs = 0;offs < 0x80;offs += 2)
 	{
 		if ((spriteram[offs + 1] & 0x40) == 0)  /* I'm not sure about this one */
 		{
-			int bank,code,color,flipx,flipy;
-			uint32_t transmask;
+			int bank,code;
 
 			if (spriteram_3[offs] & 0x80)
 			{
@@ -348,12 +346,12 @@ void xevious_state::draw_sprites(bitmap_ind16 &bitmap,const rectangle &cliprect)
 				code = spriteram[offs];
 			}
 
-			color = spriteram[offs + 1] & 0x7f;
-			flipx = spriteram_3[offs] & 4;
-			flipy = spriteram_3[offs] & 8;
+			int color = spriteram[offs + 1] & 0x7f;
+			int flipx = spriteram_3[offs] & 4;
+			int flipy = spriteram_3[offs] & 8;
 
-			sx = spriteram_2[offs + 1] - 40 + 0x100*(spriteram_3[offs + 1] & 1);
-			sy = 28*8-spriteram_2[offs]-1;
+			int sx = spriteram_2[offs + 1] - 40 + 0x100*(spriteram_3[offs + 1] & 1);
+			int sy = 28*8-spriteram_2[offs]-1;
 
 			if (flip_screen())
 			{
@@ -361,7 +359,7 @@ void xevious_state::draw_sprites(bitmap_ind16 &bitmap,const rectangle &cliprect)
 				flipy = !flipy;
 			}
 
-			transmask = m_palette->transpen_mask(*m_gfxdecode->gfx(bank), color, 0x80);
+			uint32_t transmask = m_palette->transpen_mask(*m_gfxdecode->gfx(bank), color, 0x80);
 
 			if (spriteram_3[offs] & 2)  /* double height (?) */
 			{
@@ -403,7 +401,7 @@ void xevious_state::draw_sprites(bitmap_ind16 &bitmap,const rectangle &cliprect)
 }
 
 
-uint32_t xevious_state::screen_update_xevious(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t xevious_state::screen_update_xevious(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bg_tilemap->draw(screen, bitmap, cliprect, 0,0);
 	draw_sprites(bitmap,cliprect);

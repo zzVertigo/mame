@@ -145,9 +145,9 @@ private:
 
 	DECLARE_MACHINE_RESET(vcombat);
 	DECLARE_MACHINE_RESET(shadfgtr);
-	uint32_t update_screen(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int index);
-	uint32_t screen_update_vcombat_main(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_vcombat_aux(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t update_screen(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int index);
+	uint32_t screen_update_vcombat_main(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_vcombat_aux(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void main_map(address_map &map);
 	void sound_map(address_map &map);
@@ -155,7 +155,7 @@ private:
 	void vid_1_map(address_map &map);
 };
 
-uint32_t vcombat_state::update_screen(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int index)
+uint32_t vcombat_state::update_screen(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int index)
 {
 	int y;
 	const pen_t *const pens = m_tlc34076->pens();
@@ -203,8 +203,8 @@ uint32_t vcombat_state::update_screen(screen_device &screen, bitmap_rgb32 &bitma
 	return 0;
 }
 
-uint32_t vcombat_state::screen_update_vcombat_main(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect){ return update_screen(screen, bitmap, cliprect, 0); }
-uint32_t vcombat_state::screen_update_vcombat_aux(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect){ return update_screen(screen, bitmap, cliprect, 1); }
+uint32_t vcombat_state::screen_update_vcombat_main(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect){ return update_screen(screen, bitmap, cliprect, 0); }
+uint32_t vcombat_state::screen_update_vcombat_aux(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect){ return update_screen(screen, bitmap, cliprect, 1); }
 
 
 WRITE16_MEMBER(vcombat_state::main_video_write)

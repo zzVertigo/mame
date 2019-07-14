@@ -100,7 +100,7 @@ private:
 	DECLARE_READ8_MEMBER(riot_porta_r);
 	DECLARE_WRITE8_MEMBER(riot_porta_w);
 	TILE_GET_INFO_MEMBER(bgtile_get_info);
-	uint32_t screen_update_firefox(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea);
 	TIMER_DEVICE_CALLBACK_MEMBER(video_timer_callback);
 	void set_rgba( int start, int index, unsigned char *palette_ram );
 	void firq_gen(philips_22vp931_device &laserdisc, int state);
@@ -255,9 +255,9 @@ void firefox_state::video_start()
 }
 
 
-uint32_t firefox_state::screen_update_firefox(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void firefox_state::overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea)
 {
-	int gfxtop = screen.visible_area().top();
+	int gfxtop = visarea.top();
 
 	bitmap.fill(m_palette->pen_color(256), cliprect);
 
@@ -282,9 +282,7 @@ uint32_t firefox_state::screen_update_firefox(screen_device &screen, bitmap_rgb3
 		}
 	}
 
-	m_bgtiles->draw(screen, bitmap, cliprect, 0, 0);
-
-	return 0;
+	m_bgtiles->draw(bitmap, cliprect, visarea, 0);
 }
 
 TIMER_DEVICE_CALLBACK_MEMBER(firefox_state::video_timer_callback)
@@ -688,7 +686,7 @@ void firefox_state::firefox(machine_config &config)
 	PALETTE(config, m_palette).set_entries(512);
 
 	PHILIPS_22VP931(config, m_laserdisc, 0);
-	m_laserdisc->set_overlay(64*8, 525, FUNC(firefox_state::screen_update_firefox));
+	m_laserdisc->set_overlay(64*8, 525, FUNC(firefox_state::overlay_update));
 	m_laserdisc->set_overlay_clip(7*8, 53*8-1, 44, 480+44);
 	m_laserdisc->add_route(0, "lspeaker", 0.50);
 	m_laserdisc->add_route(1, "rspeaker", 0.50);

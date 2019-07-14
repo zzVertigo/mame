@@ -14,6 +14,7 @@
 #include "includes/slapstic.h"
 #include "cpu/m6502/m6502.h"
 #include "screen.h"
+#include "emupal.h"
 
 
 /***************************************************************************
@@ -202,6 +203,7 @@ protected:
 
 	optional_device<gfxdecode_device> m_gfxdecode;
 	optional_device<screen_device> m_screen;
+	optional_device<palette_device> m_palette;
 	optional_device<atari_slapstic_device> m_slapstic_device;
 
 private:

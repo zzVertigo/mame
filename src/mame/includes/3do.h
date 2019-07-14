@@ -184,7 +184,7 @@ private:
 	DECLARE_WRITE32_MEMBER(madam_w);
 	DECLARE_READ32_MEMBER(clio_r);
 	DECLARE_WRITE32_MEMBER(clio_w);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	TIMER_DEVICE_CALLBACK_MEMBER( timer_x16_cb );
 

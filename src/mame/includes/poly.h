@@ -115,7 +115,7 @@ private:
 	DECLARE_WRITE8_MEMBER( network_w );
 	DECLARE_WRITE_LINE_MEMBER( network_clk_w );
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void poly_mem(address_map &map);
 

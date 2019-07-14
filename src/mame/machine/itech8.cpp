@@ -537,7 +537,7 @@ VIDEO_START_MEMBER(itech8_state,slikshot)
  *
  *************************************/
 
-uint32_t itech8_state::screen_update_slikshot(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t itech8_state::screen_update_slikshot(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int totaldy, totaldx;
 	int temp, i;

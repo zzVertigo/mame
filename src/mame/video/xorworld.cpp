@@ -94,7 +94,7 @@ void xorworld_state::video_start()
       1  | xxxx---- -------- | sprite color
 */
 
-void xorworld_state::draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect )
+void xorworld_state::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	for (int i = 0; i < 0x40; i += 2)
 	{
@@ -107,7 +107,7 @@ void xorworld_state::draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprec
 	}
 }
 
-uint32_t xorworld_state::screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t xorworld_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bg_tilemap->draw(screen, bitmap, cliprect, 0, 0);
 	draw_sprites(bitmap, cliprect);

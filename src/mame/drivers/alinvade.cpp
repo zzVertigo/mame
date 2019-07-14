@@ -46,7 +46,7 @@ private:
 	DECLARE_WRITE8_MEMBER(sound_w);
 	DECLARE_WRITE8_MEMBER(sounden_w);
 	DECLARE_WRITE_LINE_MEMBER(vblank_irq);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void alinvade_map(address_map &map);
 
@@ -175,7 +175,7 @@ void alinvade_state::machine_reset()
 	m_irqmask = 1;
 }
 
-uint32_t alinvade_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t alinvade_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	offs_t offs;
 

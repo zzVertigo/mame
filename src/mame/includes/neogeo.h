@@ -84,7 +84,7 @@ protected:
 	TIMER_CALLBACK_MEMBER(display_position_vblank_callback);
 	TIMER_CALLBACK_MEMBER(vblank_interrupt_callback);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	virtual DECLARE_WRITE8_MEMBER(io_control_w);
 	DECLARE_WRITE8_MEMBER(audio_command_w);

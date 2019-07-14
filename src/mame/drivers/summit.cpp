@@ -49,7 +49,7 @@ private:
 
 	DECLARE_WRITE8_MEMBER(out_w);
 	void summit_palette(palette_device &palette) const;
-	uint32_t screen_update_summit(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_summit(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void mainmap(address_map &map);
 };
 
@@ -58,7 +58,7 @@ void summit_state::video_start()
 {
 }
 
-uint32_t summit_state::screen_update_summit(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t summit_state::screen_update_summit(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	gfx_element *gfx = m_gfxdecode->gfx(0);
 	int count = 0x0000;

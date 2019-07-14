@@ -73,7 +73,7 @@ void gijoe_state::video_start()
 	save_item(NAME(m_layer_pri));
 }
 
-uint32_t gijoe_state::screen_update_gijoe(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t gijoe_state::screen_update_gijoe(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	static const int K053251_CI[4] = { k053251_device::CI1, k053251_device::CI2, k053251_device::CI3, k053251_device::CI4 };
 	int layer[4];
@@ -155,7 +155,7 @@ uint32_t gijoe_state::screen_update_gijoe(screen_device &screen, bitmap_ind16 &b
 
 	konami_sortlayers4(layer, m_layer_pri);
 
-	bitmap.fill(m_palette->black_pen(), cliprect);
+	bitmap.fill(m_palette->pen_color(m_palette->black_pen()), cliprect);
 	screen.priority().fill(0, cliprect);
 
 	m_k056832->tilemap_draw(screen, bitmap, cliprect, layer[0], 0, 1);

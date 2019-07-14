@@ -345,9 +345,9 @@ private:
 
 	int adc1038_input_callback(int input);
 
-	uint32_t screen_update_gticlub(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_lscreen(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_rscreen(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_gticlub(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_lscreen(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_rscreen(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void gticlub_map(address_map &map);
 	void hangplt_map(address_map &map);
@@ -840,7 +840,7 @@ VIDEO_START_MEMBER(gticlub_state,gticlub)
 	*/
 }
 
-uint32_t gticlub_state::screen_update_gticlub(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t gticlub_state::screen_update_gticlub(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_k001604_1->draw_back_layer(bitmap, cliprect);
 
@@ -906,7 +906,7 @@ uint32_t gticlub_state::screen_update_gticlub(screen_device &screen, bitmap_rgb3
 	return 0;
 }
 
-uint32_t gticlub_state::screen_update_lscreen(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t gticlub_state::screen_update_lscreen(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(m_palette->pen(0), cliprect);
 
@@ -920,7 +920,7 @@ uint32_t gticlub_state::screen_update_lscreen(screen_device &screen, bitmap_rgb3
 	return 0;
 }
 
-uint32_t gticlub_state::screen_update_rscreen(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t gticlub_state::screen_update_rscreen(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(m_palette->pen(0), cliprect);
 

@@ -33,7 +33,7 @@ public:
 
 protected:
 	void palette_init(palette_device &palette);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void mem_map(address_map &map);
 
@@ -58,7 +58,7 @@ void emate_state::palette_init(palette_device &palette)
 	}
 }
 
-uint32_t emate_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t emate_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(0);
 	return 0;

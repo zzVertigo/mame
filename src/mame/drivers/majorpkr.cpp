@@ -507,7 +507,7 @@ private:
 	DECLARE_WRITE8_MEMBER(pulses_w);
 	TILE_GET_INFO_MEMBER(bg_get_tile_info);
 	TILE_GET_INFO_MEMBER(fg_get_tile_info);
-	uint32_t screen_update_majorpkr(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_majorpkr(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void map(address_map &map);
 	void palettebanks(address_map &map);
 	void portmap(address_map &map);
@@ -562,7 +562,7 @@ void majorpkr_state::video_start()
 }
 
 
-uint32_t majorpkr_state::screen_update_majorpkr(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t majorpkr_state::screen_update_majorpkr(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bg_tilemap->draw(screen, bitmap, cliprect, 0);
 	m_fg_tilemap->draw(screen, bitmap, cliprect, 0);

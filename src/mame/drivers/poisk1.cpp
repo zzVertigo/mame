@@ -59,7 +59,7 @@
 #define BG_COLOR(x) (((x)&7) | (((x)&0x10) >> 1))
 
 #define POISK1_UPDATE_ROW(name) \
-	void name(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint8_t *videoram, uint16_t ma, uint8_t ra, uint8_t stride)
+	void name(bitmap_argb32 &bitmap, const rectangle &cliprect, uint8_t *videoram, uint16_t ma, uint8_t ra, uint8_t stride)
 
 
 class p1_state : public driver_device
@@ -119,11 +119,11 @@ private:
 		uint8_t color_select_68;
 		uint8_t palette_lut_2bpp[4];
 		int stride;
-		void *update_row(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint8_t *videoram, uint16_t ma, uint8_t ra, uint8_t stride);
+		void *update_row(bitmap_argb32 &bitmap, const rectangle &cliprect, uint8_t *videoram, uint16_t ma, uint8_t ra, uint8_t stride);
 	} m_video;
 
 	void p1_palette(palette_device &palette) const;
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void set_palette_luts();
 	POISK1_UPDATE_ROW(cga_gfx_2bpp_update_row);
 	POISK1_UPDATE_ROW(cga_gfx_1bpp_update_row);
@@ -426,7 +426,7 @@ void p1_state::video_start()
 	machine().root_device().membank("bank12")->set_base(m_video.videoram + 0x4000);
 }
 
-uint32_t p1_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t p1_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint16_t ra, ma = 0;
 

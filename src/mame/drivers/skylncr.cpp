@@ -198,7 +198,7 @@ private:
 	TILE_GET_INFO_MEMBER(get_reel_2_tile_info);
 	TILE_GET_INFO_MEMBER(get_reel_3_tile_info);
 	TILE_GET_INFO_MEMBER(get_reel_4_tile_info);
-	uint32_t screen_update_skylncr(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_skylncr(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(skylncr_vblank_interrupt);
 	void bdream97_opcode_map(address_map &map);
 	void io_map_mbutrfly(address_map &map);
@@ -314,7 +314,7 @@ void skylncr_state::video_start()
 }
 
 
-uint32_t skylncr_state::screen_update_skylncr(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t skylncr_state::screen_update_skylncr(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i;
 

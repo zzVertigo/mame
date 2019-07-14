@@ -320,18 +320,17 @@ void xmen_state::xmen(machine_config &config)
 	m_screen->set_size(64*8, 32*8);
 	m_screen->set_visarea(13*8, (64-13)*8-1, 2*8, 30*8-1 );   /* correct, same issue of tmnt2 */
 	m_screen->set_screen_update(FUNC(xmen_state::screen_update_xmen));
-	m_screen->set_palette("palette");
 
-	PALETTE(config, "palette").set_format(palette_device::xBGR_555, 2048).enable_shadows();
+	PALETTE(config, m_palette).set_format(palette_device::xBGR_555, 2048).enable_shadows();
 
 	K052109(config, m_k052109, 0);
-	m_k052109->set_palette("palette");
+	m_k052109->set_palette(m_palette);
 	m_k052109->set_tile_callback(FUNC(xmen_state::tile_callback), this);
 
 	K053246(config, m_k053246, 0);
 	m_k053246->set_sprite_callback(FUNC(xmen_state::sprite_callback), this);
 	m_k053246->set_config(NORMAL_PLANE_ORDER, 53, -2);
-	m_k053246->set_palette("palette");
+	m_k053246->set_palette(m_palette);
 
 	K053251(config, m_k053251, 0);
 
@@ -364,7 +363,7 @@ void xmen_state::xmen6p(machine_config &config)
 	WATCHDOG_TIMER(config, "watchdog");
 
 	/* video hardware */
-	PALETTE(config, "palette").set_format(palette_device::xBGR_555, 2048).enable_shadows();
+	PALETTE(config, m_palette).set_format(palette_device::xBGR_555, 2048).enable_shadows();
 	config.set_default_layout(layout_dualhsxs);
 
 	SCREEN(config, m_screen, SCREEN_TYPE_RASTER);
@@ -373,7 +372,6 @@ void xmen_state::xmen6p(machine_config &config)
 	m_screen->set_size(64*8, 32*8);
 	m_screen->set_visarea(12*8, 48*8-1, 2*8, 30*8-1);
 	m_screen->set_screen_update(FUNC(xmen_state::screen_update_xmen6p_left));
-	m_screen->set_palette("palette");
 
 	screen_device &screen2(SCREEN(config, "screen2", SCREEN_TYPE_RASTER));
 	screen2.set_refresh_hz(60);
@@ -382,7 +380,6 @@ void xmen_state::xmen6p(machine_config &config)
 	screen2.set_visarea(16*8, 52*8-1, 2*8, 30*8-1);
 	screen2.set_screen_update(FUNC(xmen_state::screen_update_xmen6p_right));
 	screen2.screen_vblank().set(FUNC(xmen_state::screen_vblank_xmen6p));
-	screen2.set_palette("palette");
 
 	MCFG_VIDEO_START_OVERRIDE(xmen_state,xmen6p)
 

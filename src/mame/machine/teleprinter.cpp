@@ -185,7 +185,7 @@ void teleprinter_device::term_write(uint8_t data)
 /***************************************************************************
     VIDEO HARDWARE
 ***************************************************************************/
-uint32_t teleprinter_device::tp_update(screen_device &device, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t teleprinter_device::tp_update(screen_device &device, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t code;
 	int y, c, x, b;

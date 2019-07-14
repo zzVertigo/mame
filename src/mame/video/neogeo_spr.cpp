@@ -174,7 +174,7 @@ void neosprite_base_device::neogeo_set_fixed_layer_source(uint8_t data)
 }
 
 
-void neosprite_base_device::draw_fixed_layer(bitmap_rgb32 &bitmap, int scanline)
+void neosprite_base_device::draw_fixed_layer(bitmap_argb32 &bitmap, int scanline)
 {
 	assert((m_fixed_layer_source && m_region_fixed != nullptr) || (m_region_fixedbios != nullptr));
 
@@ -279,7 +279,7 @@ inline bool neosprite_base_device::sprite_on_scanline(int scanline, int y, int r
 }
 
 
-void neosprite_base_device::draw_sprites(bitmap_rgb32 &bitmap, int scanline)
+void neosprite_base_device::draw_sprites(bitmap_argb32 &bitmap, int scanline)
 {
 	int max_sprite_index;
 	int y = 0;

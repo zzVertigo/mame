@@ -41,7 +41,7 @@ protected:
 	virtual void video_start() override;
 
 private:
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void tek4107a_io(address_map &map);
 	void tek4107a_mem(address_map &map);
 };
@@ -69,7 +69,7 @@ void tek4107a_state::video_start()
 {
 }
 
-uint32_t tek4107a_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t tek4107a_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

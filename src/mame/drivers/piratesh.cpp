@@ -114,7 +114,7 @@ private:
 	DECLARE_READ16_MEMBER(k053247_martchmp_word_r);
 	DECLARE_WRITE16_MEMBER(k053247_martchmp_word_w);
 
-	uint32_t screen_update_piratesh(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_piratesh(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(k054539_nmi_gen);
 	TIMER_DEVICE_CALLBACK_MEMBER(piratesh_interrupt);
 	K056832_CB_MEMBER(piratesh_tile_callback);
@@ -216,7 +216,7 @@ void piratesh_state::video_start()
 }
 
 
-uint32_t piratesh_state::screen_update_piratesh(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t piratesh_state::screen_update_piratesh(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(0, cliprect);
 #if 1

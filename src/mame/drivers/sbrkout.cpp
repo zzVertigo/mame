@@ -79,7 +79,7 @@ private:
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
 	virtual void video_start() override;
-	uint32_t screen_update_sbrkout(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_sbrkout(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_CALLBACK_MEMBER(scanline_callback);
 	TIMER_CALLBACK_MEMBER(pot_trigger_callback);
 	void update_nmi_state();
@@ -369,7 +369,7 @@ WRITE8_MEMBER(sbrkout_state::sbrkout_videoram_w)
  *
  *************************************/
 
-uint32_t sbrkout_state::screen_update_sbrkout(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t sbrkout_state::screen_update_sbrkout(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t *videoram = m_videoram;
 

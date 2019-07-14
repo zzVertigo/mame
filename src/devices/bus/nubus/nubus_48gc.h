@@ -35,7 +35,7 @@ private:
 	DECLARE_READ32_MEMBER(mac_48gc_r);
 	DECLARE_WRITE32_MEMBER(mac_48gc_w);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	screen_device *m_screen;
 	emu_timer *m_timer;

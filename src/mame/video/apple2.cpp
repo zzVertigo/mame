@@ -1129,7 +1129,7 @@ uint32_t a2_video_device::palette_entries() const
 	return ARRAY_LENGTH(apple2_palette);
 }
 
-uint32_t a2_video_device::screen_update_GS(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t a2_video_device::screen_update_GS(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const uint8_t *vram;
 	uint32_t *scanline;

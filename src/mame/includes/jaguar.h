@@ -168,7 +168,7 @@ private:
 	uint16_t m_gpu_regs[0x100/2];
 	emu_timer *m_object_timer;
 	uint8_t m_cpu_irq_state;
-	bitmap_rgb32 m_screen_bitmap;
+	bitmap_argb32 m_screen_bitmap;
 	uint8_t m_blitter_status;
 	pen_t m_pen_table[65536];
 	uint8_t m_blend_y[65536];
@@ -265,7 +265,7 @@ private:
 	DECLARE_READ16_MEMBER( tom_regs_r );
 	DECLARE_WRITE16_MEMBER( tom_regs_w );
 	DECLARE_READ32_MEMBER( cojag_gun_input_r );
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void jagpal_ycc(palette_device &palette) const;
 
 	DECLARE_WRITE_LINE_MEMBER( gpu_cpu_int );

@@ -39,7 +39,7 @@ protected:
 	DECLARE_READ8_MEMBER(analog_r);
 	DECLARE_WRITE8_MEMBER(input_port_select_w);
 	DECLARE_READ8_MEMBER(input_port_r);
-	uint32_t screen_update_clayshoo(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_clayshoo(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_CALLBACK_MEMBER(reset_analog_bit);
 	uint8_t difficulty_input_port_r(int bit);
 	void create_analog_timers();
@@ -182,7 +182,7 @@ void clayshoo_state::machine_start()
  *
  *************************************/
 
-uint32_t clayshoo_state::screen_update_clayshoo(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t clayshoo_state::screen_update_clayshoo(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	offs_t offs;
 

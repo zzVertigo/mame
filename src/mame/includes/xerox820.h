@@ -86,7 +86,7 @@ public:
 	DECLARE_WRITE_LINE_MEMBER( fdc_drq_w );
 
 protected:
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 
 	TIMER_DEVICE_CALLBACK_MEMBER(ctc_tick);

@@ -176,7 +176,7 @@ void ef9364_device::draw_border(uint16_t line)
 // screen_update: Framebuffer video ouput
 //-------------------------------------------------
 
-uint32_t ef9364_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t ef9364_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y,r;
 	unsigned char c;

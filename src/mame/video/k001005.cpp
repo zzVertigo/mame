@@ -31,8 +31,8 @@ k001005_renderer::k001005_renderer(device_t &parent, screen_device &screen, devi
 	int width = screen.width();
 	int height = screen.height();
 
-	m_fb[0] = std::make_unique<bitmap_rgb32>( width, height);
-	m_fb[1] = std::make_unique<bitmap_rgb32>( width, height);
+	m_fb[0] = std::make_unique<bitmap_argb32>( width, height);
+	m_fb[1] = std::make_unique<bitmap_argb32>( width, height);
 
 	m_zb = std::make_unique<bitmap_ind32>(width, height);
 
@@ -1159,7 +1159,7 @@ void k001005_renderer::draw_scanline_gouraud_blend(int32_t scanline, const exten
 }
 
 
-void k001005_renderer::draw(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void k001005_renderer::draw(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i, j;
 
@@ -1452,7 +1452,7 @@ WRITE32_MEMBER( k001005_device::write )
 
 }
 
-void k001005_device::draw( bitmap_rgb32 &bitmap, const rectangle &cliprect )
+void k001005_device::draw( bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	m_renderer->draw(bitmap, cliprect);
 }

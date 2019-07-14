@@ -151,7 +151,7 @@ private:
 
 	virtual void video_start() override;
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECO16IC_BANK_CB_MEMBER(bank_callback);
 
@@ -185,7 +185,7 @@ private:
 
 	virtual void video_start() override;
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ16_MEMBER(port_b_tattass);
 	DECO16IC_BANK_CB_MEMBER(bank_callback);
@@ -193,7 +193,7 @@ private:
 	void nslasher_map(address_map &map);
 	void tattass_map(address_map &map);
 
-	void mixDualAlphaSprites(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, gfx_element *gfx0, gfx_element *gfx1, int mixAlphaTilemap);
+	void mixDualAlphaSprites(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, gfx_element *gfx0, gfx_element *gfx1, int mixAlphaTilemap);
 
 	std::unique_ptr<bitmap_ind16> m_tilemap_alpha_bitmap;
 
@@ -242,7 +242,7 @@ private:
 	uint32_t m_sprite_ctrl;
 	int m_lightgun_port;
 	int m_oki2_bank; // lockload
-	bitmap_rgb32 m_temp_render_bitmap;
+	bitmap_argb32 m_temp_render_bitmap;
 
 	DECLARE_READ32_MEMBER(lightgun_r);
 	DECLARE_WRITE32_MEMBER(lightgun_w);
@@ -264,7 +264,7 @@ private:
 	virtual void video_start() override;
 	void dragngun_init_common();
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECO16IC_BANK_CB_MEMBER(bank_1_callback);
 	DECO16IC_BANK_CB_MEMBER(bank_2_callback);

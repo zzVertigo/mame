@@ -82,8 +82,8 @@ public:
 	void register_write(u8 data);
 
 	/* update the screen */
-	uint32_t screen_update( screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect );
-	bitmap_rgb32 &get_bitmap() { return m_tmpbmp; }
+	uint32_t screen_update( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect );
+	bitmap_argb32 &get_bitmap() { return m_tmpbmp; }
 
 	/* RESET pin */
 	void reset_line(int state) { if (state==ASSERT_LINE) device_reset(); }
@@ -143,7 +143,7 @@ private:
 	const address_space_config      m_space_config;
 	address_space*                  m_vram_space;
 
-	bitmap_rgb32 m_tmpbmp;
+	bitmap_argb32 m_tmpbmp;
 	emu_timer   *m_line_timer;
 	emu_timer   *m_gromclk_timer;
 	uint8_t       m_mode;

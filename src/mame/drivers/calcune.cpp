@@ -54,7 +54,7 @@ public:
 	DECLARE_READ16_MEMBER(cal_vdp_r);
 	DECLARE_WRITE16_MEMBER(cal_vdp_w);
 
-	uint32_t screen_update_calcune(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_calcune(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void calcune(machine_config &config);
 	void calcune_map(address_map &map);
 private:
@@ -145,7 +145,7 @@ void calcune_state::calcune_map(address_map &map)
 }
 
 
-uint32_t calcune_state::screen_update_calcune(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t calcune_state::screen_update_calcune(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *paldata = m_palette->pens();
 

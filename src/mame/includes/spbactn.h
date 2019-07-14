@@ -81,9 +81,9 @@ private:
 	DECLARE_VIDEO_START(spbactnp);
 
 	//virtual void video_start();
-	uint32_t screen_update_spbactn(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_spbactnp(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	int draw_video(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, bool alt_sprites);
+	uint32_t screen_update_spbactn(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_spbactnp(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	int draw_video(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, bool alt_sprites);
 
 	// temp hack
 	DECLARE_READ16_MEMBER(temp_read_handler_r)

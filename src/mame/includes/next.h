@@ -67,7 +67,7 @@ private:
 	optional_device<n82077aa_device> fdc; // 040 only
 	optional_device<floppy_connector> floppy0; // 040 only
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void setup(uint32_t scr1, int size_x, int size_y, int skip, bool color);
 

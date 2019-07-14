@@ -142,8 +142,8 @@ private:
 	DECLARE_READ32_MEMBER(spi_r);
 	DECLARE_WRITE32_MEMBER(spi_w);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t vp50_screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t vp50_screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void main_map(address_map &map);
 	void vp50_map(address_map &map);
@@ -252,7 +252,7 @@ void vp10x_state::video_start()
 {
 }
 
-uint32_t vp10x_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t vp10x_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (int y = 0; y < 240; y++)
 	{
@@ -270,7 +270,7 @@ uint32_t vp10x_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap,
 }
 
 // TODO: Palette is not at 0, where is it?
-uint32_t vp10x_state::vp50_screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t vp10x_state::vp50_screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const uint16_t *pal_ram = (const uint16_t *) &m_mainram[0];
 

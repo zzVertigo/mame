@@ -116,7 +116,7 @@ void rungun_state::video_start()
 	m_screen->register_screen_bitmap(m_rng_dual_demultiplex_right_temp);
 }
 
-uint32_t rungun_state::screen_update_rng(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t rungun_state::screen_update_rng(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(m_palette->black_pen(), cliprect);
 	screen.priority().fill(0, cliprect);
@@ -141,7 +141,7 @@ uint32_t rungun_state::screen_update_rng(screen_device &screen, bitmap_ind16 &bi
 
 
 // the 60hz signal gets split between 2 screens
-uint32_t rungun_state::screen_update_rng_dual_left(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t rungun_state::screen_update_rng_dual_left(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int m_current_display_bank = m_screen->frame_number() & 1;
 
@@ -155,7 +155,7 @@ uint32_t rungun_state::screen_update_rng_dual_left(screen_device &screen, bitmap
 }
 
 // this depends upon the fisrt screen being updated, and the bitmap being copied to the temp bitmap
-uint32_t rungun_state::screen_update_rng_dual_right(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t rungun_state::screen_update_rng_dual_right(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	copybitmap( bitmap, m_rng_dual_demultiplex_right_temp, 0, 0, 0, 0, cliprect);
 	return 0;

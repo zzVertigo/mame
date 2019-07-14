@@ -126,7 +126,7 @@ private:
 	DECLARE_WRITE32_MEMBER(ad1847_w);
 	DECLARE_READ8_MEMBER(io20_r);
 	DECLARE_WRITE8_MEMBER(io20_w);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_READ32_MEMBER(speedup0_r);
 	DECLARE_READ32_MEMBER(speedup1_r);
 	DECLARE_READ32_MEMBER(speedup2_r);
@@ -140,9 +140,9 @@ private:
 	DECLARE_READ32_MEMBER(speedup10_r);
 	DECLARE_READ32_MEMBER(speedup11_r);
 	TIMER_DEVICE_CALLBACK_MEMBER(sound_timer_callback);
-	void draw_char(bitmap_rgb32 &bitmap, const rectangle &cliprect, gfx_element *gfx, int ch, int att, int x, int y);
-	void draw_framebuffer(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_cga(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void draw_char(bitmap_argb32 &bitmap, const rectangle &cliprect, gfx_element *gfx, int ch, int att, int x, int y);
+	void draw_framebuffer(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_cga(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void ad1847_reg_write(int reg, uint8_t data);
 	inline uint32_t generic_speedup(address_space &space, int idx);
 	void report_speedups();
@@ -273,7 +273,7 @@ void mediagx_state::video_start()
 	}
 }
 
-void mediagx_state::draw_char(bitmap_rgb32 &bitmap, const rectangle &cliprect, gfx_element *gfx, int ch, int att, int x, int y)
+void mediagx_state::draw_char(bitmap_argb32 &bitmap, const rectangle &cliprect, gfx_element *gfx, int ch, int att, int x, int y)
 {
 	int i,j;
 	const uint8_t *dp;
@@ -299,7 +299,7 @@ void mediagx_state::draw_char(bitmap_rgb32 &bitmap, const rectangle &cliprect, g
 	}
 }
 
-void mediagx_state::draw_framebuffer(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void mediagx_state::draw_framebuffer(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i, j;
 	int width, height;
@@ -389,7 +389,7 @@ void mediagx_state::draw_framebuffer(bitmap_rgb32 &bitmap, const rectangle &clip
 	}
 }
 
-void mediagx_state::draw_cga(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void mediagx_state::draw_cga(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	gfx_element *const gfx = m_gfxdecode->gfx(0);
 	uint32_t const *const cga = m_cga_ram;
@@ -411,7 +411,7 @@ void mediagx_state::draw_cga(bitmap_rgb32 &bitmap, const rectangle &cliprect)
 	}
 }
 
-uint32_t mediagx_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mediagx_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(0, cliprect);
 

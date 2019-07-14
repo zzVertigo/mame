@@ -513,7 +513,6 @@ void spy_state::spy(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(13*8, (64-13)*8-1, 2*8, 30*8-1);
 	screen.set_screen_update(FUNC(spy_state::screen_update_spy));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette).set_format(palette_device::xBGR_555, 1024);
 	m_palette->enable_shadows();

@@ -89,7 +89,7 @@ void simpsons_state::simpsons_video_banking( int bank )
 
 ***************************************************************************/
 
-uint32_t simpsons_state::screen_update_simpsons(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t simpsons_state::screen_update_simpsons(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int layer[3], bg_colorbase;
 
@@ -111,7 +111,7 @@ uint32_t simpsons_state::screen_update_simpsons(screen_device &screen, bitmap_in
 	konami_sortlayers3(layer, m_layerpri);
 
 	screen.priority().fill(0, cliprect);
-	bitmap.fill(16 * bg_colorbase, cliprect);
+	bitmap.fill(m_palette->pens()[16 * bg_colorbase], cliprect);
 	m_k052109->tilemap_draw(screen, bitmap, cliprect, layer[0], 0, 1);
 	m_k052109->tilemap_draw(screen, bitmap, cliprect, layer[1], 0, 2);
 	m_k052109->tilemap_draw(screen, bitmap, cliprect, layer[2], 0, 4);

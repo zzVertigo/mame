@@ -570,7 +570,7 @@ void cdp1869_device::sound_stream_update(sound_stream &stream, stream_sample_t *
 //  draw_line - draw character line
 //-------------------------------------------------
 
-void cdp1869_device::draw_line(bitmap_rgb32 &bitmap, const rectangle &rect, int x, int y, uint8_t data, int color)
+void cdp1869_device::draw_line(bitmap_argb32 &bitmap, const rectangle &rect, int x, int y, uint8_t data, int color)
 {
 	int i;
 	pen_t fg = m_palette->pen(color);
@@ -615,7 +615,7 @@ void cdp1869_device::draw_line(bitmap_rgb32 &bitmap, const rectangle &rect, int 
 //  draw_char - draw character
 //-------------------------------------------------
 
-void cdp1869_device::draw_char(bitmap_rgb32 &bitmap, const rectangle &rect, int x, int y, uint16_t pma)
+void cdp1869_device::draw_char(bitmap_argb32 &bitmap, const rectangle &rect, int x, int y, uint16_t pma)
 {
 	uint8_t pmd = read_page_ram_byte(pma);
 
@@ -939,7 +939,7 @@ READ_LINE_MEMBER( cdp1869_device::pal_ntsc_r )
 //  update_screen - update screen
 //-------------------------------------------------
 
-uint32_t cdp1869_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t cdp1869_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	rectangle screen_rect, outer;
 

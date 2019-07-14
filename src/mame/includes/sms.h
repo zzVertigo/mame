@@ -95,7 +95,7 @@ public:
 
 	DECLARE_WRITE_LINE_MEMBER(gg_pause_callback);
 
-	uint32_t screen_update_sms(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_sms(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 protected:
 	template <typename X> static void screen_sms_pal_raw_params(screen_device &screen, X &&pixelclock);
@@ -139,11 +139,11 @@ protected:
 	DECLARE_VIDEO_START(sms1);
 	DECLARE_VIDEO_RESET(sms1);
 
-	uint32_t screen_update_sms1(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_sms1_left(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_sms1_right(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_gamegear(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void screen_gg_sms_mode_scaling(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_sms1(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_sms1_left(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_sms1_right(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_gamegear(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void screen_gg_sms_mode_scaling(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(screen_vblank_sms1);
 
 	void gg_io(address_map &map);
@@ -192,15 +192,15 @@ protected:
 	// for 3D glass binocular hack
 	optional_device<screen_device> m_left_lcd;
 	optional_device<screen_device> m_right_lcd;
-	bitmap_rgb32 m_prevleft_bitmap;
-	bitmap_rgb32 m_prevright_bitmap;
+	bitmap_argb32 m_prevleft_bitmap;
+	bitmap_argb32 m_prevright_bitmap;
 
 	// for gamegear LCD persistence hack
-	bitmap_rgb32 m_prev_bitmap;
+	bitmap_argb32 m_prev_bitmap;
 	bool m_prev_bitmap_copied;
 
 	// for gamegear SMS mode scaling
-	bitmap_rgb32 m_gg_sms_mode_bitmap;
+	bitmap_argb32 m_gg_sms_mode_bitmap;
 	// line_buffer will be used to hold 4 lines of line data as a kind of cache for
 	// vertical scaling in the gamegear sms compatibility mode.
 	std::unique_ptr<int[]> m_line_buffer;

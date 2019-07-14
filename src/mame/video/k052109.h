@@ -52,7 +52,7 @@ public:
 	void tilemap_update();
 	int is_irq_enabled();
 	void tilemap_mark_dirty(int tmap_num);
-	void tilemap_draw(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, int tmap_num, uint32_t flags, uint8_t priority);
+	void tilemap_draw(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int tmap_num, uint32_t flags, uint8_t priority);
 
 	void vblank_callback(screen_device &screen, bool state);
 

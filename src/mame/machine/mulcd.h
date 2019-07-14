@@ -38,7 +38,7 @@ private:
 	u8 m_leds;
 
 	float lightlevel(const u8 *src, const u8 *render);
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 };
 
 DECLARE_DEVICE_TYPE(MULCD, mulcd_device)

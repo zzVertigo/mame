@@ -127,7 +127,7 @@ WRITE8_MEMBER(f1gp2_state::rozbank_w)
 ***************************************************************************/
 
 
-uint32_t f1gp_state::screen_update_f1gp(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t f1gp_state::screen_update_f1gp(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	screen.priority().fill(0, cliprect);
 
@@ -150,10 +150,10 @@ uint32_t f1gp_state::screen_update_f1gp(screen_device &screen, bitmap_ind16 &bit
 }
 
 
-uint32_t f1gp2_state::screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t f1gp2_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (m_gfxctrl & 4)  /* blank screen */
-		bitmap.fill(m_palette->black_pen(), cliprect);
+		bitmap.fill(m_palette->pens()[m_palette->black_pen()], cliprect);
 	else
 	{
 		switch (m_gfxctrl & 3)
@@ -189,7 +189,7 @@ uint32_t f1gp2_state::screen_update(screen_device &screen, bitmap_ind16 &bitmap,
 ***************************************************************************/
 
 // BOOTLEG
-void f1gp_state::f1gpb_draw_sprites( screen_device &screen,bitmap_ind16 &bitmap,const rectangle &cliprect )
+void f1gp_state::f1gpb_draw_sprites( screen_device &screen,bitmap_argb32 &bitmap,const rectangle &cliprect )
 {
 	uint16_t *spriteram = m_spriteram;
 	int attr_start, start_offset = m_spriteram.bytes() / 2 - 4;
@@ -206,16 +206,14 @@ void f1gp_state::f1gpb_draw_sprites( screen_device &screen,bitmap_ind16 &bitmap,
 
 	for (attr_start = start_offset;attr_start >= 4;attr_start -= 4)
 	{
-		int code, gfx;
-		int x, y, flipx, flipy, color, pri;
-
-		x = (spriteram[attr_start + 2] & 0x03ff) - 48;
-		y = (256 - (spriteram[attr_start + 3 - 4] & 0x03ff)) - 15;
-		flipx = spriteram[attr_start + 1] & 0x0800;
-		flipy = spriteram[attr_start + 1] & 0x8000;
-		color = spriteram[attr_start + 1] & 0x000f;
-		code = spriteram[attr_start + 0] & 0x3fff;
-		pri = 0; //?
+		int x = (spriteram[attr_start + 2] & 0x03ff) - 48;
+		int y = (256 - (spriteram[attr_start + 3 - 4] & 0x03ff)) - 15;
+		int flipx = spriteram[attr_start + 1] & 0x0800;
+		int flipy = spriteram[attr_start + 1] & 0x8000;
+		int color = spriteram[attr_start + 1] & 0x000f;
+		int code = spriteram[attr_start + 0] & 0x3fff;
+		int pri = 0; //?
+		int gfx = 0;
 
 		if((spriteram[attr_start + 1] & 0x00f0) && (spriteram[attr_start + 1] & 0x00f0) != 0xc0)
 		{
@@ -231,10 +229,6 @@ void f1gp_state::f1gpb_draw_sprites( screen_device &screen,bitmap_ind16 &bitmap,
 		{
 			gfx = 1;
 			code -= 0x2000;
-		}
-		else
-		{
-			gfx = 0;
 		}
 
 		m_gfxdecode->gfx(1 + gfx)->prio_transpen(bitmap,cliprect,
@@ -257,16 +251,15 @@ void f1gp_state::f1gpb_draw_sprites( screen_device &screen,bitmap_ind16 &bitmap,
 }
 
 // BOOTLEG
-uint32_t f1gp_state::screen_update_f1gpb(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t f1gp_state::screen_update_f1gpb(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
-	uint32_t startx, starty;
-	int incxx, incxy, incyx, incyy;
+	int incxy = (int16_t)m_rozregs[1];
+	int incyx = -incxy;
+	int incxx = (int16_t)m_rozregs[3];
+	int incyy = incxx;
 
-	incxy = (int16_t)m_rozregs[1];
-	incyx = -incxy;
-	incxx = incyy = (int16_t)m_rozregs[3];
-	startx = m_rozregs[0] + 328;
-	starty = m_rozregs[2];
+	uint32_t startx = m_rozregs[0] + 328;
+	uint32_t starty = m_rozregs[2];
 
 	m_fg_tilemap->set_scrolly(0, m_fgregs[0] + 8);
 

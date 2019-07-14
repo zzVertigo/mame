@@ -503,7 +503,7 @@ WRITE32_MEMBER( konppc_device::nwk_voodoo_1_w)
 
 #define LED_ON      0xff00ff00
 
-void draw_7segment_led(bitmap_rgb32 &bitmap, int x, int y, uint8_t value)
+void draw_7segment_led(bitmap_argb32 &bitmap, int x, int y, uint8_t value)
 {
 	if ((value & 0x7f) == 0x7f)
 	{

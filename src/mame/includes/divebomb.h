@@ -66,9 +66,9 @@ private:
 	DECLARE_VIDEO_START(divebomb);
 	void divebomb_palette(palette_device &palette) const;
 
-	void draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect);
+	void draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	static void decode_proms(palette_device &palette, const uint8_t* rgn, int size, int index, bool inv);
-	uint32_t screen_update_divebomb(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_divebomb(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	K051316_CB_MEMBER(zoom_callback_1);
 	K051316_CB_MEMBER(zoom_callback_2);

@@ -101,10 +101,10 @@ private:
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
 	virtual void video_start() override;
-	uint32_t screen_update_mediagx(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_char(bitmap_rgb32 &bitmap, const rectangle &cliprect, gfx_element *gfx, int ch, int att, int x, int y);
-	void draw_framebuffer(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_cga(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_mediagx(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_char(bitmap_argb32 &bitmap, const rectangle &cliprect, gfx_element *gfx, int ch, int att, int x, int y);
+	void draw_framebuffer(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_cga(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void mediagx_io(address_map &map);
 	void mediagx_map(address_map &map);
 	void ramdac_map(address_map &map);
@@ -163,7 +163,7 @@ void pinball2k_state::video_start()
 	}
 }
 
-void pinball2k_state::draw_char(bitmap_rgb32 &bitmap, const rectangle &cliprect, gfx_element *gfx, int ch, int att, int x, int y)
+void pinball2k_state::draw_char(bitmap_argb32 &bitmap, const rectangle &cliprect, gfx_element *gfx, int ch, int att, int x, int y)
 {
 	int i,j;
 	const uint8_t *dp;
@@ -189,7 +189,7 @@ void pinball2k_state::draw_char(bitmap_rgb32 &bitmap, const rectangle &cliprect,
 	}
 }
 
-void pinball2k_state::draw_framebuffer(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void pinball2k_state::draw_framebuffer(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i, j;
 	int width, height;
@@ -279,7 +279,7 @@ void pinball2k_state::draw_framebuffer(bitmap_rgb32 &bitmap, const rectangle &cl
 	}
 }
 
-void pinball2k_state::draw_cga(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void pinball2k_state::draw_cga(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i, j;
 	gfx_element *gfx = m_gfxdecode->gfx(0);
@@ -302,7 +302,7 @@ void pinball2k_state::draw_cga(bitmap_rgb32 &bitmap, const rectangle &cliprect)
 	}
 }
 
-uint32_t pinball2k_state::screen_update_mediagx(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t pinball2k_state::screen_update_mediagx(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(0, cliprect);
 

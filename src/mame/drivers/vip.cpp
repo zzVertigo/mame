@@ -531,7 +531,7 @@ WRITE_LINE_MEMBER(vip_state::vdc_ef1_w)
 	m_vdc_ef1 = state;
 }
 
-uint32_t vip_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t vip_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_vdc->screen_update(screen, bitmap, cliprect);
 

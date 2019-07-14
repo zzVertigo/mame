@@ -188,7 +188,7 @@ void yunsung8_state::video_start()
 
 ***************************************************************************/
 
-uint32_t yunsung8_state::screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t yunsung8_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int layers_ctrl = (~m_layers_ctrl) >> 4;
 

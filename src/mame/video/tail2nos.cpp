@@ -125,7 +125,7 @@ WRITE8_MEMBER(tail2nos_state::tail2nos_gfxbank_w)
 
 ***************************************************************************/
 
-void tail2nos_state::draw_sprites( bitmap_ind16 &bitmap, const rectangle &cliprect )
+void tail2nos_state::draw_sprites( bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	uint16_t *spriteram = m_spriteram;
 	int offs;
@@ -162,7 +162,7 @@ void tail2nos_state::draw_sprites( bitmap_ind16 &bitmap, const rectangle &clipre
 	}
 }
 
-uint32_t tail2nos_state::screen_update_tail2nos(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t tail2nos_state::screen_update_tail2nos(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (m_video_enable)
 	{

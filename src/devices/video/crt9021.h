@@ -35,7 +35,7 @@
 //  INTERFACE CONFIGURATION MACROS
 //**************************************************************************
 
-#define CRT9021_DRAW_CHARACTER_MEMBER(_name) void _name(bitmap_rgb32 &bitmap, int y, int x, uint8_t video, int intout)
+#define CRT9021_DRAW_CHARACTER_MEMBER(_name) void _name(bitmap_argb32 &bitmap, int y, int x, uint8_t video, int intout)
 
 
 //**************************************************************************
@@ -48,7 +48,7 @@
 class crt9021_device : public device_t, public device_video_interface
 {
 public:
-	typedef device_delegate<void (bitmap_rgb32 &bitmap, int y, int x, uint8_t video, int intout)> draw_character_delegate;
+	typedef device_delegate<void (bitmap_argb32 &bitmap, int y, int x, uint8_t video, int intout)> draw_character_delegate;
 
 	// construction/destruction
 	crt9021_device(const machine_config &mconfig, const char *tag, device_t *owner, uint32_t clock);
@@ -77,7 +77,7 @@ public:
 	DECLARE_WRITE_LINE_MEMBER( sl3_w ) { m_sl3 = state; }
 	DECLARE_WRITE_LINE_MEMBER( vsync_w );
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 protected:
 	// device-level overrides
@@ -94,7 +94,7 @@ private:
 
 	draw_character_delegate m_display_cb;
 
-	bitmap_rgb32 m_bitmap;
+	bitmap_argb32 m_bitmap;
 
 	// inputs
 	uint8_t m_data;

@@ -6,9 +6,9 @@
 #pragma once
 
 
-#define SCN2672_DRAW_CHARACTER_MEMBER(_name) void _name(bitmap_rgb32 &bitmap, int x, int y, uint8_t linecount, uint8_t charcode, uint8_t attrcode, uint16_t address, bool cursor, bool dw, bool lg, bool ul, bool blink)
+#define SCN2672_DRAW_CHARACTER_MEMBER(_name) void _name(bitmap_argb32 &bitmap, int x, int y, uint8_t linecount, uint8_t charcode, uint8_t attrcode, uint16_t address, bool cursor, bool dw, bool lg, bool ul, bool blink)
 
-#define SCN2674_DRAW_CHARACTER_MEMBER(_name) void _name(bitmap_rgb32 &bitmap, int x, int y, uint8_t linecount, uint8_t charcode, uint8_t attrcode, uint16_t address, bool cursor, bool dw, bool lg, bool ul, bool blink)
+#define SCN2674_DRAW_CHARACTER_MEMBER(_name) void _name(bitmap_argb32 &bitmap, int x, int y, uint8_t linecount, uint8_t charcode, uint8_t attrcode, uint16_t address, bool cursor, bool dw, bool lg, bool ul, bool blink)
 
 
 class scn2674_device : public device_t,
@@ -18,7 +18,7 @@ class scn2674_device : public device_t,
 public:
 	scn2674_device(const machine_config &mconfig, const char *tag, device_t *owner, uint32_t clock);
 
-	typedef device_delegate<void (bitmap_rgb32 &bitmap, int x, int y, uint8_t linecount, uint8_t charcode, uint8_t attrcode, uint16_t address, bool cursor, bool dw, bool lg, bool ul, bool blink)> draw_character_delegate;
+	typedef device_delegate<void (bitmap_argb32 &bitmap, int x, int y, uint8_t linecount, uint8_t charcode, uint8_t attrcode, uint16_t address, bool cursor, bool dw, bool lg, bool ul, bool blink)> draw_character_delegate;
 
 	// static configuration
 	auto intr_callback() { return m_intr_cb.bind(); }
@@ -29,12 +29,12 @@ public:
 	void set_character_width(int value) { m_hpixels_per_column = value; }
 
 	template <class FunctionClass>
-	void set_display_callback(void (FunctionClass::*callback)(bitmap_rgb32 &, int, int, uint8_t, uint8_t, uint8_t, uint16_t, bool, bool, bool, bool, bool), const char *name)
+	void set_display_callback(void (FunctionClass::*callback)(bitmap_argb32 &, int, int, uint8_t, uint8_t, uint8_t, uint16_t, bool, bool, bool, bool, bool), const char *name)
 	{
 		set_display_callback(draw_character_delegate(callback, name, nullptr, static_cast<FunctionClass *>(nullptr)));
 	}
 	template <class FunctionClass>
-	void set_display_callback(const char *devname, void (FunctionClass::*callback)(bitmap_rgb32 &, int, int, uint8_t, uint8_t, uint8_t, uint16_t, bool, bool, bool, bool, bool), const char *name)
+	void set_display_callback(const char *devname, void (FunctionClass::*callback)(bitmap_argb32 &, int, int, uint8_t, uint8_t, uint8_t, uint16_t, bool, bool, bool, bool, bool), const char *name)
 	{
 		set_display_callback(draw_character_delegate(callback, name, devname, static_cast<FunctionClass *>(nullptr)));
 	}
@@ -50,7 +50,7 @@ public:
 	uint8_t attr_buffer_r() { return m_attr_buffer; }
 	void attr_buffer_w(offs_t offset, uint8_t data) { m_attr_buffer = data; }
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 protected:
 	scn2674_device(const machine_config &mconfig, device_type type, const char *tag, device_t *owner, uint32_t clock, bool extend_addressing);
@@ -65,7 +65,7 @@ protected:
 	TIMER_CALLBACK_MEMBER(vblank_timer);
 
 //protected:
-	bitmap_rgb32 m_bitmap;
+	bitmap_argb32 m_bitmap;
 	devcb_write_line m_intr_cb;
 	devcb_write_line m_breq_cb;
 	devcb_write_line m_mbc_cb;

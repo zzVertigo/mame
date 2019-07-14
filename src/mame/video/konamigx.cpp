@@ -315,7 +315,7 @@ void konamigx_state::konamigx_objdma(void)
 	if (m_gx_objdma && m_gx_spriteram && k053247_ram) memcpy(m_gx_spriteram, k053247_ram, 0x1000);
 }
 
-void konamigx_state::konamigx_mixer(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect,
+void konamigx_state::konamigx_mixer(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect,
 					tilemap_t *sub1, int sub1flags,
 					tilemap_t *sub2, int sub2flags,
 					int mixerflags, bitmap_ind16 *extra_bitmap, int rushingheroes_hack)
@@ -652,7 +652,7 @@ void konamigx_state::konamigx_mixer(screen_device &screen, bitmap_rgb32 &bitmap,
 		);
 }
 
-void konamigx_state::gx_draw_basic_tilemaps(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int mixerflags, int code)
+void konamigx_state::gx_draw_basic_tilemaps(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int mixerflags, int code)
 {
 	int temp1,temp2,temp3,temp4;
 	int i = code<<1;
@@ -691,7 +691,7 @@ void konamigx_state::gx_draw_basic_tilemaps(screen_device &screen, bitmap_rgb32 
 	}
 }
 
-void konamigx_state::gx_draw_basic_extended_tilemaps_1(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int mixerflags, int code, tilemap_t *sub1, int sub1flags, int rushingheroes_hack, int offs)
+void konamigx_state::gx_draw_basic_extended_tilemaps_1(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int mixerflags, int code, tilemap_t *sub1, int sub1flags, int rushingheroes_hack, int offs)
 {
 	int temp1,temp2,temp3,temp4;
 	int i = code<<1;
@@ -740,7 +740,7 @@ void konamigx_state::gx_draw_basic_extended_tilemaps_1(screen_device &screen, bi
 	}
 }
 
-void konamigx_state::gx_draw_basic_extended_tilemaps_2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int mixerflags, int code, tilemap_t *sub2, int sub2flags, bitmap_ind16 *extra_bitmap, int offs)
+void konamigx_state::gx_draw_basic_extended_tilemaps_2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int mixerflags, int code, tilemap_t *sub2, int sub2flags, bitmap_ind16 *extra_bitmap, int offs)
 {
 	int temp1,temp2,temp3,temp4;
 	int i = code<<1;
@@ -808,7 +808,7 @@ void konamigx_state::gx_draw_basic_extended_tilemaps_2(screen_device &screen, bi
 	}
 }
 
-void konamigx_state::konamigx_mixer_draw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect,
+void konamigx_state::konamigx_mixer_draw(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect,
 					tilemap_t *sub1, int sub1flags,
 					tilemap_t *sub2, int sub2flags,
 					int mixerflags, bitmap_ind16 *extra_bitmap, int rushingheroes_hack,
@@ -1173,8 +1173,8 @@ VIDEO_START_MEMBER(konamigx_state, konamigx_type3)
 	int width = m_screen->width();
 	int height = m_screen->height();
 
-	m_dualscreen_left_tempbitmap = std::make_unique<bitmap_rgb32>( width, height);
-	m_dualscreen_right_tempbitmap = std::make_unique<bitmap_rgb32>( width, height);
+	m_dualscreen_left_tempbitmap = std::make_unique<bitmap_argb32>( width, height);
+	m_dualscreen_right_tempbitmap = std::make_unique<bitmap_argb32>( width, height);
 
 	common_init();
 
@@ -1209,8 +1209,8 @@ VIDEO_START_MEMBER(konamigx_state, konamigx_type4)
 	int width = m_screen->width();
 	int height = m_screen->height();
 
-	m_dualscreen_left_tempbitmap = std::make_unique<bitmap_rgb32>( width, height);
-	m_dualscreen_right_tempbitmap = std::make_unique<bitmap_rgb32>( width, height);
+	m_dualscreen_left_tempbitmap = std::make_unique<bitmap_argb32>( width, height);
+	m_dualscreen_right_tempbitmap = std::make_unique<bitmap_argb32>( width, height);
 
 	common_init();
 
@@ -1237,8 +1237,8 @@ VIDEO_START_MEMBER(konamigx_state, konamigx_type4_vsn)
 	int width = m_screen->width();
 	int height = m_screen->height();
 
-	m_dualscreen_left_tempbitmap = std::make_unique<bitmap_rgb32>( width, height);
-	m_dualscreen_right_tempbitmap = std::make_unique<bitmap_rgb32>( width, height);
+	m_dualscreen_left_tempbitmap = std::make_unique<bitmap_argb32>( width, height);
+	m_dualscreen_right_tempbitmap = std::make_unique<bitmap_argb32>( width, height);
 
 	common_init();
 
@@ -1264,8 +1264,8 @@ VIDEO_START_MEMBER(konamigx_state, konamigx_type4_sd2)
 	int width = m_screen->width();
 	int height = m_screen->height();
 
-	m_dualscreen_left_tempbitmap = std::make_unique<bitmap_rgb32>( width, height);
-	m_dualscreen_right_tempbitmap = std::make_unique<bitmap_rgb32>( width, height);
+	m_dualscreen_left_tempbitmap = std::make_unique<bitmap_argb32>( width, height);
+	m_dualscreen_right_tempbitmap = std::make_unique<bitmap_argb32>( width, height);
 
 	common_init();
 
@@ -1360,7 +1360,7 @@ VIDEO_START_MEMBER(konamigx_state, racinfrc)
 
 }
 
-uint32_t konamigx_state::screen_update_konamigx(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t konamigx_state::screen_update_konamigx(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i, newbank, newbase, dirty, unchained;
 
@@ -1484,7 +1484,7 @@ uint32_t konamigx_state::screen_update_konamigx(screen_device &screen, bitmap_rg
 	return 0;
 }
 
-uint32_t konamigx_state::screen_update_konamigx_left(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t konamigx_state::screen_update_konamigx_left(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* the video gets demuxed by a board which plugs into the jamma connector */
 	m_konamigx_current_frame^=1;
@@ -1517,7 +1517,7 @@ uint32_t konamigx_state::screen_update_konamigx_left(screen_device &screen, bitm
 			}
 		}
 
-		screen_update_konamigx( screen, downcast<bitmap_rgb32 &>(*m_dualscreen_left_tempbitmap), cliprect);
+		screen_update_konamigx( screen, downcast<bitmap_argb32 &>(*m_dualscreen_left_tempbitmap), cliprect);
 		copybitmap(bitmap, *m_dualscreen_left_tempbitmap, 0, 0, 0, 0, cliprect);
 	}
 	else
@@ -1528,7 +1528,7 @@ uint32_t konamigx_state::screen_update_konamigx_left(screen_device &screen, bitm
 	return 0;
 }
 
-uint32_t konamigx_state::screen_update_konamigx_right(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t konamigx_state::screen_update_konamigx_right(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (m_konamigx_current_frame==1)
 	{
@@ -1562,7 +1562,7 @@ uint32_t konamigx_state::screen_update_konamigx_right(screen_device &screen, bit
 			}
 		}
 
-		screen_update_konamigx(screen, downcast<bitmap_rgb32 &>(*m_dualscreen_right_tempbitmap), cliprect);
+		screen_update_konamigx(screen, downcast<bitmap_argb32 &>(*m_dualscreen_right_tempbitmap), cliprect);
 		copybitmap(bitmap, *m_dualscreen_right_tempbitmap, 0, 0, 0, 0, cliprect);
 	}
 

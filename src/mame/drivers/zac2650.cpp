@@ -244,7 +244,6 @@ void zac2650_state::tinvader(machine_config &config)
 	m_screen->set_size(30*24, 32*24);
 	m_screen->set_visarea(0, 719, 0, 767);
 	m_screen->set_screen_update(FUNC(zac2650_state::screen_update_tinvader));
-	m_screen->set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_tinvader);
 	PALETTE(config, m_palette, FUNC(zac2650_state::zac2650_palette), 4);

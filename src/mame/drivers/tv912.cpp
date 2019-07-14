@@ -105,7 +105,7 @@ private:
 	DECLARE_READ8_MEMBER(keyboard_r);
 	DECLARE_WRITE8_MEMBER(output_40c);
 
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void bank_map(address_map &map);
 	void io_map(address_map &map);
@@ -264,7 +264,7 @@ void tv912_state::device_timer(emu_timer &timer, device_timer_id id, int param, 
 	}
 }
 
-u32 tv912_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 tv912_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (m_crtc->screen_reset() || m_force_blank)
 	{

@@ -335,7 +335,7 @@ private:
 	std::unique_ptr<uint8_t[]> m_wram;
 	bool m_nmi_enable;
 	uint8_t m_cart_sel;
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ8_MEMBER(ram_wp_r);
 	DECLARE_WRITE8_MEMBER(ram_wp_w);
@@ -363,7 +363,7 @@ private:
 
 
 
-uint32_t nss_state::screen_update( screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect )
+uint32_t nss_state::screen_update( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	m_m50458->screen_update(screen,bitmap,cliprect);
 	return 0;

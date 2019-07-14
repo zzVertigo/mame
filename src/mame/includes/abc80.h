@@ -133,9 +133,9 @@ public:
 	virtual void machine_start() override;
 
 	virtual void video_start() override;
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
-	void draw_scanline(bitmap_rgb32 &bitmap, int y);
+	void draw_scanline(bitmap_argb32 &bitmap, int y);
 
 	DECLARE_READ8_MEMBER( read );
 	DECLARE_WRITE8_MEMBER( write );
@@ -166,7 +166,7 @@ public:
 	int m_pio_astb;
 
 	// video state
-	bitmap_rgb32 m_bitmap;
+	bitmap_argb32 m_bitmap;
 	uint8_t m_latch;
 	int m_blink;
 	int m_c;

@@ -120,7 +120,7 @@ rgb_t jedi_state::jedi_IRGB_3333(u32 raw)
 	return rgb_t(r, g, b);
 }
 
-void jedi_state::do_pen_lookup(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void jedi_state::do_pen_lookup(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (int y = cliprect.top(); y <= cliprect.bottom(); y++)
 		for(int x = cliprect.left(); x <= cliprect.right(); x++)
@@ -153,7 +153,7 @@ void jedi_state::hscroll_w(offs_t offset, u8 data)
  *
  *************************************/
 
-void jedi_state::draw_background_and_text(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void jedi_state::draw_background_and_text(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	u8 background_line_buffer[0x200];  /* RAM chip at 2A */
 
@@ -240,7 +240,7 @@ void jedi_state::draw_background_and_text(bitmap_rgb32 &bitmap, const rectangle 
  *
  *************************************/
 
-void jedi_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void jedi_state::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (offs_t offs = 0x00; offs < 0x30; offs++)
 	{
@@ -326,7 +326,7 @@ void jedi_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect)
  *
  *************************************/
 
-u32 jedi_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 jedi_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* if no video, clear it all to black */
 	if (m_video_off)

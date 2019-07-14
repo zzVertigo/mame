@@ -36,7 +36,7 @@ K056832_CB_MEMBER(moo_state::tile_callback)
 
 VIDEO_START_MEMBER(moo_state,moo)
 {
-	assert(m_screen->format() == BITMAP_FORMAT_RGB32);
+	assert(m_screen->format() == BITMAP_FORMAT_ARGB32);
 
 	m_alpha_enabled = 0;
 	m_zmask = 0xffff;
@@ -50,7 +50,7 @@ VIDEO_START_MEMBER(moo_state,moo)
 
 VIDEO_START_MEMBER(moo_state,bucky)
 {
-	assert(m_screen->format() == BITMAP_FORMAT_RGB32);
+	assert(m_screen->format() == BITMAP_FORMAT_ARGB32);
 
 	m_alpha_enabled = 0;
 	m_zmask = 0x00ff;
@@ -64,7 +64,7 @@ VIDEO_START_MEMBER(moo_state,bucky)
 	m_k056832->set_layer_offs(3,  6, 0);
 }
 
-uint32_t moo_state::screen_update_moo(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t moo_state::screen_update_moo(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	static const int K053251_CI[4] = { k053251_device::CI1, k053251_device::CI2, k053251_device::CI3, k053251_device::CI4 };
 	int layers[3];

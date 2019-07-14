@@ -233,7 +233,7 @@ public:
 	DECLARE_READ_LINE_MEMBER( predisplay_r );
 	DECLARE_READ_LINE_MEMBER( pal_ntsc_r );
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void cdp1869(address_map &map);
 protected:
@@ -262,8 +262,8 @@ protected:
 	inline uint16_t get_pma();
 	inline int get_pen(int ccb0, int ccb1, int pcb);
 
-	void draw_line(bitmap_rgb32 &bitmap, const rectangle &rect, int x, int y, uint8_t data, int color);
-	void draw_char(bitmap_rgb32 &bitmap, const rectangle &rect, int x, int y, uint16_t pma);
+	void draw_line(bitmap_argb32 &bitmap, const rectangle &rect, int x, int y, uint8_t data, int color);
+	void draw_char(bitmap_argb32 &bitmap, const rectangle &rect, int x, int y, uint16_t pma);
 
 private:
 	devcb_read_line        m_read_pal_ntsc;

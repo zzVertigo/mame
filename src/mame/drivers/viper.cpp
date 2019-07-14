@@ -426,7 +426,7 @@ private:
 	DECLARE_WRITE64_MEMBER(unk_serial_w);
 	DECLARE_WRITE_LINE_MEMBER(voodoo_vblank);
 
-	uint32_t screen_update_viper(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_viper(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(viper_vblank);
 	WRITE_LINE_MEMBER(voodoo_pciint);
 
@@ -571,7 +571,7 @@ private:
 	void voodoo3_pci_w(int function, int reg, uint32_t data, uint32_t mem_mask);
 };
 
-uint32_t viper_state::screen_update_viper(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t viper_state::screen_update_viper(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return m_voodoo->voodoo_update(bitmap, cliprect) ? 0 : UPDATE_HAS_NOT_CHANGED;
 }

@@ -40,7 +40,7 @@ private:
 	DECLARE_READ16_MEMBER(ramdac_r);
 	DECLARE_WRITE16_MEMBER(ramdac_w);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	std::unique_ptr<uint8_t[]> m_vram;
 	uint32_t m_vbl_disable;

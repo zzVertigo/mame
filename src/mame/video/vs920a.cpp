@@ -87,7 +87,7 @@ READ16_MEMBER(vs920a_text_tilemap_device::vram_r)
 }
 
 
-void vs920a_text_tilemap_device::draw(screen_device &screen, bitmap_ind16& bitmap, const rectangle &cliprect, int priority)
+void vs920a_text_tilemap_device::draw(screen_device &screen, bitmap_argb32& bitmap, const rectangle &cliprect, int priority)
 {
 	m_tmap->draw(screen, bitmap, cliprect, 0, priority);
 }

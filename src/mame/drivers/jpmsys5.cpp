@@ -148,7 +148,7 @@ WRITE16_MEMBER(jpmsys5v_state::ramdac_w)
 	}
 }
 
-uint32_t jpmsys5v_state::screen_update_jpmsys5v(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t jpmsys5v_state::screen_update_jpmsys5v(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x, y;
 

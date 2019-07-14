@@ -54,7 +54,7 @@ float mulcd_device::lightlevel(const u8 *src, const u8 *render)
 	return 0.95f;
 }
 
-u32 mulcd_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 mulcd_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const u8 *render = m_lcd->render();
 	const u8 *src = mulcd_bkg + 15;

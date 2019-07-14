@@ -74,7 +74,7 @@ private:
 
 	bitmap_ind8                 m_zoom_bitmap;
 	bitmap_ind16                m_z_bitmap;
-	bitmap_rgb32                m_bg_bitmap;
+	bitmap_argb32                m_bg_bitmap;
 	std::unique_ptr<u16[]>      m_bg_zoom;
 	std::unique_ptr<u8[]>       m_alphatable;
 	std::unique_ptr<struct sprite_t []> m_spritelist;
@@ -104,21 +104,21 @@ private:
 	void eeprom_w(u8 data);
 	virtual void machine_start() override;
 	virtual void video_start() override;
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(screen_vblank);
 	INTERRUPT_GEN_MEMBER(interrupt);
-	void draw_scanline32_alpha(bitmap_rgb32 &bitmap, s32 destx, s32 desty, s32 length, const u32 *srcptr, int alpha);
-	void draw_scanline32_argb(bitmap_rgb32 &bitmap, s32 destx, s32 desty, s32 length, const u32 *srcptr);
-	void draw_scanline32_transpen(bitmap_rgb32 &bitmap, s32 destx, s32 desty, s32 length, const u32 *srcptr);
-	void draw_bglayer(u8 const layer, bitmap_rgb32 &bitmap, const rectangle &cliprect, u8 const req_pri);
+	void draw_scanline32_alpha(bitmap_argb32 &bitmap, s32 destx, s32 desty, s32 length, const u32 *srcptr, int alpha);
+	void draw_scanline32_argb(bitmap_argb32 &bitmap, s32 destx, s32 desty, s32 length, const u32 *srcptr);
+	void draw_scanline32_transpen(bitmap_argb32 &bitmap, s32 destx, s32 desty, s32 length, const u32 *srcptr);
+	void draw_bglayer(u8 const layer, bitmap_argb32 &bitmap, const rectangle &cliprect, u8 const req_pri);
 	void cache_bitmap(s16 const scanline, gfx_element *gfx, u8 const size, u8 const tilebank, s16 const alpha, u8 *last_bank);
-	void draw_bglayerscroll(u8 const layer, bitmap_rgb32 &bitmap, const rectangle &cliprect, u8 const req_pri);
-	void draw_background(bitmap_rgb32 &bitmap, const rectangle &cliprect, u8 const req_pri);
-	void draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect, u8 const req_pri);
+	void draw_bglayerscroll(u8 const layer, bitmap_argb32 &bitmap, const rectangle &cliprect, u8 const req_pri);
+	void draw_background(bitmap_argb32 &bitmap, const rectangle &cliprect, u8 const req_pri);
+	void draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, u8 const req_pri);
 	void get_sprites();
-	void prelineblend(bitmap_rgb32 &bitmap, const rectangle &cliprect );
-	void postlineblend(bitmap_rgb32 &bitmap, const rectangle &cliprect, u8 const req_pri);
-	void psikyosh_drawgfxzoom(bitmap_rgb32 &dest_bmp, const rectangle &clip, gfx_element *gfx,
+	void prelineblend(bitmap_argb32 &bitmap, const rectangle &cliprect );
+	void postlineblend(bitmap_argb32 &bitmap, const rectangle &cliprect, u8 const req_pri);
+	void psikyosh_drawgfxzoom(bitmap_argb32 &dest_bmp, const rectangle &clip, gfx_element *gfx,
 	u32 const code, u16 const color, u8 const flipx, u8 const flipy, s32 const offsx, s32 const offsy,
 	s16 const alpha, u32 const zoomx, u32 const zoomy, u8 const wide, u8 const high, u16 const z);
 	void ps3v1_map(address_map &map);

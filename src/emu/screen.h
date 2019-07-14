@@ -90,9 +90,9 @@ private:
 public:
 	// construction/destruction
 	screen_bitmap()
-		: m_format(BITMAP_FORMAT_RGB32)
-		, m_texformat(TEXFORMAT_RGB32)
-		, m_live(&m_rgb32)
+		: m_format(BITMAP_FORMAT_ARGB32)
+		, m_texformat(TEXFORMAT_ARGB32)
+		, m_live(&m_argb32)
 	{ }
 	screen_bitmap(bitmap_ind16 &orig)
 		: m_format(BITMAP_FORMAT_IND16)
@@ -100,11 +100,11 @@ public:
 		, m_live(&m_ind16)
 		, m_ind16(orig, orig.cliprect())
 	{ }
-	screen_bitmap(bitmap_rgb32 &orig)
-		: m_format(BITMAP_FORMAT_RGB32)
-		, m_texformat(TEXFORMAT_RGB32)
-		, m_live(&m_rgb32)
-		, m_rgb32(orig, orig.cliprect())
+	screen_bitmap(bitmap_argb32 &orig)
+		: m_format(BITMAP_FORMAT_ARGB32)
+		, m_texformat(TEXFORMAT_ARGB32)
+		, m_live(&m_argb32)
+		, m_argb32(orig, orig.cliprect())
 	{ }
 
 	// resizing
@@ -113,7 +113,7 @@ public:
 	// conversion
 	operator bitmap_t &() { return live(); }
 	bitmap_ind16 &as_ind16() { assert(m_format == BITMAP_FORMAT_IND16); return m_ind16; }
-	bitmap_rgb32 &as_rgb32() { assert(m_format == BITMAP_FORMAT_RGB32); return m_rgb32; }
+	bitmap_argb32 &as_argb32() { assert(m_format == BITMAP_FORMAT_ARGB32); return m_argb32; }
 
 	// getters
 	s32 width() const { return live().width(); }
@@ -136,11 +136,11 @@ public:
 		switch (format)
 		{
 			case BITMAP_FORMAT_IND16:   m_live = &m_ind16;  break;
-			case BITMAP_FORMAT_RGB32:   m_live = &m_rgb32;  break;
+			case BITMAP_FORMAT_ARGB32:  m_live = &m_argb32;  break;
 			default:                    m_live = nullptr;      break;
 		}
 		m_ind16.reset();
-		m_rgb32.reset();
+		m_argb32.reset();
 	}
 
 private:
@@ -149,7 +149,7 @@ private:
 	texture_format      m_texformat;
 	bitmap_t *          m_live;
 	bitmap_ind16        m_ind16;
-	bitmap_rgb32        m_rgb32;
+	bitmap_argb32       m_argb32;
 };
 
 
@@ -158,7 +158,7 @@ private:
 typedef delegate<void (screen_device &, bool)> vblank_state_delegate;
 
 typedef device_delegate<u32 (screen_device &, bitmap_ind16 &, const rectangle &)> screen_update_ind16_delegate;
-typedef device_delegate<u32 (screen_device &, bitmap_rgb32 &, const rectangle &)> screen_update_rgb32_delegate;
+typedef device_delegate<u32 (screen_device &, bitmap_argb32 &, const rectangle &)> screen_update_argb32_delegate;
 
 
 // ======================> screen_device
@@ -195,12 +195,12 @@ public:
 	bool oldstyle_vblank_supplied() const { return m_oldstyle_vblank_supplied; }
 	attoseconds_t refresh_attoseconds() const { return m_refresh; }
 	attoseconds_t vblank_attoseconds() const { return m_vblank; }
-	bitmap_format format() const { return !m_screen_update_ind16.isnull() ? BITMAP_FORMAT_IND16 : BITMAP_FORMAT_RGB32; }
+	bitmap_format format() const { return !m_screen_update_ind16.isnull() ? BITMAP_FORMAT_IND16 : BITMAP_FORMAT_ARGB32; }
 	float xoffset() const { return m_xoffset; }
 	float yoffset() const { return m_yoffset; }
 	float xscale() const { return m_xscale; }
 	float yscale() const { return m_yscale; }
-	bool has_screen_update() const { return !m_screen_update_ind16.isnull() || !m_screen_update_rgb32.isnull(); }
+	bool has_screen_update() const { return !m_screen_update_ind16.isnull() || !m_screen_update_argb32.isnull(); }
 
 	// inline configuration helpers
 	void set_type(screen_type_enum type) { assert(!configured()); m_type = type; }
@@ -237,9 +237,9 @@ public:
 		set_screen_update(screen_update_ind16_delegate(callback, name, nullptr, static_cast<FunctionClass *>(nullptr)));
 	}
 	template <class FunctionClass>
-	void set_screen_update(u32 (FunctionClass::*callback)(screen_device &, bitmap_rgb32 &, const rectangle &), const char *name)
+	void set_screen_update(u32 (FunctionClass::*callback)(screen_device &, bitmap_argb32 &, const rectangle &), const char *name)
 	{
-		set_screen_update(screen_update_rgb32_delegate(callback, name, nullptr, static_cast<FunctionClass *>(nullptr)));
+		set_screen_update(screen_update_argb32_delegate(callback, name, nullptr, static_cast<FunctionClass *>(nullptr)));
 	}
 	template <class FunctionClass>
 	void set_screen_update(const char *devname, u32 (FunctionClass::*callback)(screen_device &, bitmap_ind16 &, const rectangle &), const char *name)
@@ -247,19 +247,19 @@ public:
 		set_screen_update(screen_update_ind16_delegate(callback, name, devname, static_cast<FunctionClass *>(nullptr)));
 	}
 	template <class FunctionClass>
-	void set_screen_update(const char *devname, u32 (FunctionClass::*callback)(screen_device &, bitmap_rgb32 &, const rectangle &), const char *name)
+	void set_screen_update(const char *devname, u32 (FunctionClass::*callback)(screen_device &, bitmap_argb32 &, const rectangle &), const char *name)
 	{
-		set_screen_update(screen_update_rgb32_delegate(callback, name, devname, static_cast<FunctionClass *>(nullptr)));
+		set_screen_update(screen_update_argb32_delegate(callback, name, devname, static_cast<FunctionClass *>(nullptr)));
 	}
 	void set_screen_update(screen_update_ind16_delegate callback)
 	{
 		m_screen_update_ind16 = callback;
-		m_screen_update_rgb32 = screen_update_rgb32_delegate();
+		m_screen_update_argb32 = screen_update_argb32_delegate();
 	}
-	void set_screen_update(screen_update_rgb32_delegate callback)
+	void set_screen_update(screen_update_argb32_delegate callback)
 	{
 		m_screen_update_ind16 = screen_update_ind16_delegate();
-		m_screen_update_rgb32 = callback;
+		m_screen_update_argb32 = callback;
 	}
 
 	auto screen_vblank() { return m_screen_vblank.bind(); }
@@ -359,7 +359,7 @@ private:
 	float               m_xoffset, m_yoffset;       // default X/Y offsets
 	float               m_xscale, m_yscale;         // default X/Y scale factor
 	screen_update_ind16_delegate m_screen_update_ind16; // screen update callback (16-bit palette)
-	screen_update_rgb32_delegate m_screen_update_rgb32; // screen update callback (32-bit RGB)
+	screen_update_argb32_delegate m_screen_update_argb32; // screen update callback (32-bit ARGB)
 	devcb_write_line    m_screen_vblank;            // screen vblank line callback
 	devcb_write32       m_scanline_cb;              // screen scanline callback
 	optional_device<device_palette_interface> m_palette;      // our palette

@@ -109,8 +109,8 @@ private:
 	DECLARE_WRITE8_MEMBER(protection_data_w);
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
-	uint32_t screen_update_enigma2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_enigma2a(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_enigma2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_enigma2a(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_CALLBACK_MEMBER(interrupt_clear_callback);
 	TIMER_CALLBACK_MEMBER(interrupt_assert_callback);
 	inline uint16_t vpos_to_vysnc_chain_counter( int vpos );
@@ -219,7 +219,7 @@ void enigma2_state::machine_reset()
  *
  *************************************/
 
-uint32_t enigma2_state::screen_update_enigma2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t enigma2_state::screen_update_enigma2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const rectangle &visarea = screen.visible_area();
 
@@ -306,7 +306,7 @@ uint32_t enigma2_state::screen_update_enigma2(screen_device &screen, bitmap_rgb3
 }
 
 
-uint32_t enigma2_state::screen_update_enigma2a(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t enigma2_state::screen_update_enigma2a(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t x = 0;
 	const rectangle &visarea = screen.visible_area();

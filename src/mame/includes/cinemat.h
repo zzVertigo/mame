@@ -80,8 +80,8 @@ public:
 	DECLARE_READ8_MEMBER(joystick_read);
 	DECLARE_INPUT_CHANGED_MEMBER(coin_inserted);
 	void init_speedfrk();
-	uint32_t screen_update_cinemat(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_spacewar(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_cinemat(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_spacewar(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void cinemat_vector_callback(int16_t sx, int16_t sy, int16_t ex, int16_t ey, uint8_t shift);
 	void ripoff(machine_config &config);
 	void wotw(machine_config &config);

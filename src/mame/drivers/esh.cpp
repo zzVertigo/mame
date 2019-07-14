@@ -70,7 +70,7 @@ private:
 	DECLARE_WRITE8_MEMBER(nmi_line_w);
 	bool m_nmi_enable;
 	void esh_palette(palette_device &palette) const;
-	uint32_t screen_update_esh(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea);
 	INTERRUPT_GEN_MEMBER(vblank_callback_esh);
 	DECLARE_WRITE_LINE_MEMBER(ld_command_strobe_cb);
 	required_device<cpu_device> m_maincpu;
@@ -88,7 +88,7 @@ private:
 
 
 /* VIDEO GOODS */
-uint32_t esh_state::screen_update_esh(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void esh_state::overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea)
 {
 	const uint8_t pal_bank = m_ld_video_visible == true ? 0x10 : 0x00;
 	const uint32_t trans_mask = m_ld_video_visible == true ? 0 : -1;
@@ -96,7 +96,6 @@ uint32_t esh_state::screen_update_esh(screen_device &screen, bitmap_rgb32 &bitma
 
 	/* clear */
 	bitmap.fill(0, cliprect);
-
 
 	/* Draw tiles */
 	for (int charx = 0; charx < 32; charx++)
@@ -139,7 +138,6 @@ uint32_t esh_state::screen_update_esh(screen_device &screen, bitmap_rgb32 &bitma
 	}
 
 	/* Draw sprites */
-	return 0;
 }
 
 
@@ -370,7 +368,7 @@ void esh_state::esh(machine_config &config)
 
 	PIONEER_LDV1000(config, m_laserdisc, 0);
 	m_laserdisc->command_strobe_callback().set(FUNC(esh_state::ld_command_strobe_cb));
-	m_laserdisc->set_overlay(256, 256, FUNC(esh_state::screen_update_esh));
+	m_laserdisc->set_overlay(256, 256, FUNC(esh_state::overlay_update));
 	m_laserdisc->add_route(0, "lspeaker", 1.0);
 	m_laserdisc->add_route(1, "rspeaker", 1.0);
 

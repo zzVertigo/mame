@@ -160,7 +160,7 @@ public:
 	optional_ioport m_mousey;
 	optional_ioport m_config;
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	// video
 	DECLARE_READ8_MEMBER( shifter_base_r );
@@ -323,7 +323,7 @@ public:
 	emu_timer *m_glue_timer;
 	emu_timer *m_shifter_timer;
 
-	bitmap_rgb32 m_bitmap;
+	bitmap_argb32 m_bitmap;
 
 	DECLARE_FLOPPY_FORMATS(floppy_formats);
 

@@ -599,7 +599,7 @@ void mc6847_base_device::device_config_complete()
 	}
 
 	if (!screen().has_screen_update())
-		screen().set_screen_update(screen_update_rgb32_delegate(FUNC(mc6847_base_device::screen_update), this));
+		screen().set_screen_update(FUNC(mc6847_base_device::screen_update));
 }
 
 
@@ -841,7 +841,7 @@ inline mc6847_base_device::pixel_t mc6847_base_device::border_value(uint8_t mode
 //  update
 //-------------------------------------------------
 
-uint32_t mc6847_base_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mc6847_base_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int base_x = 32;
 	int base_y = 25;

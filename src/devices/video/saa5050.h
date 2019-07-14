@@ -59,7 +59,7 @@ public:
 	// NOTE: the following are provided for convenience only, SAA5050 is not a display controller
 	// this emulates the common setup where bit 7 of data inverts the display, and the
 	// bottom half of a double height row gets the same character data as the top half
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 protected:
 	saa5050_device(const machine_config &mconfig, device_type type, const char *tag, device_t *owner, uint32_t clock);

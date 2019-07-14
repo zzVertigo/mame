@@ -143,7 +143,7 @@ private:
 	DECLARE_READ8_MEMBER(datacomm_sw_r);
 	DECLARE_WRITE8_MEMBER(kb_led_w);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_DEVICE_CALLBACK_MEMBER(scanline_timer);
 	DECLARE_WRITE8_MEMBER(cx_w);
 	DECLARE_WRITE8_MEMBER(cy_w);
@@ -201,7 +201,7 @@ private:
 	bool m_en_skipeol;  // U211-5
 
 	// Video
-	bitmap_rgb32 m_bitmap;
+	bitmap_argb32 m_bitmap;
 	uint8_t m_cursor_x;
 	uint8_t m_cursor_y;
 	bool m_cursor_blink_inh;
@@ -370,7 +370,7 @@ WRITE8_MEMBER(hp2645_state::kb_led_w)
 	LOG("LED = %02x\n" , data);
 }
 
-uint32_t hp2645_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t hp2645_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	copybitmap(bitmap, m_bitmap, 0, 0, 0, 0, cliprect);
 	return 0;

@@ -189,7 +189,7 @@ void macrossp_state::video_start()
 
 
 
-void macrossp_state::draw_sprites(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect )
+void macrossp_state::draw_sprites(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	gfx_element *gfx = m_gfxdecode->gfx(0);
 	//  uint32_t *source = m_spriteram;
@@ -309,7 +309,7 @@ void macrossp_state::draw_sprites(screen_device &screen, bitmap_rgb32 &bitmap, c
 }
 
 
-void macrossp_state::draw_layer( screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int layer, int line, int pri )
+void macrossp_state::draw_layer( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int layer, int line, int pri )
 {
 	tilemap_t *tm;
 	uint32_t *vr;
@@ -375,7 +375,7 @@ void macrossp_state::draw_layer( screen_device &screen, bitmap_rgb32 &bitmap, co
 	}
 }
 
-uint32_t macrossp_state::screen_update_macrossp(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t macrossp_state::screen_update_macrossp(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int layerpri[3];
 	int sprites = true;

@@ -91,7 +91,7 @@ private:
 	DECLARE_READ8_MEMBER(moonwarp_p1_r);
 	DECLARE_READ8_MEMBER(moonwarp_p2_r);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	TIMER_CALLBACK_MEMBER(irq_callback);
 	TIMER_CALLBACK_MEMBER(nmi_callback);
@@ -485,7 +485,7 @@ void berzerk_state::get_pens(rgb_t *pens)
 }
 
 
-uint32_t berzerk_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t berzerk_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	rgb_t pens[0x10];
 	get_pens(pens);

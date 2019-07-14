@@ -165,7 +165,7 @@ void sbus_cgsix_device::device_reset()
 	memset(&m_fbc, 0, sizeof(m_fbc));
 }
 
-uint32_t sbus_cgsix_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t sbus_cgsix_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *pens = m_ramdac->pens();
 	uint8_t *vram = (uint8_t *)&m_vram[0];

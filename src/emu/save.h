@@ -311,7 +311,7 @@ inline void save_manager::save_item(device_t *device, const char *module, const 
 }
 
 template<>
-inline void save_manager::save_item(device_t *device, const char *module, const char *tag, int index, bitmap_rgb32 &value, const char *name)
+inline void save_manager::save_item(device_t *device, const char *module, const char *tag, int index, bitmap_argb32 &value, const char *name)
 {
 	save_memory(device, module, tag, index, name, &value.pix(0), value.bpp() / 8, value.rowpixels() * value.height());
 }

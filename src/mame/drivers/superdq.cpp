@@ -69,7 +69,7 @@ private:
 	DECLARE_WRITE8_MEMBER(superdq_ld_w);
 	TILE_GET_INFO_MEMBER(get_tile_info);
 	void superdq_palette(palette_device &palette) const;
-	uint32_t screen_update_superdq(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea);
 	INTERRUPT_GEN_MEMBER(superdq_vblank);
 	void superdq_io(address_map &map);
 	void superdq_map(address_map &map);
@@ -87,11 +87,9 @@ void superdq_state::video_start()
 	m_tilemap = &machine().tilemap().create(*m_gfxdecode, tilemap_get_info_delegate(FUNC(superdq_state::get_tile_info),this), TILEMAP_SCAN_ROWS, 8, 8, 32, 32);
 }
 
-uint32_t superdq_state::screen_update_superdq(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void superdq_state::overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea)
 {
-	m_tilemap->draw(screen, bitmap, cliprect, 0, 0);
-
-	return 0;
+	m_tilemap->draw(bitmap, cliprect, visarea, 0);
 }
 
 
@@ -345,7 +343,7 @@ void superdq_state::superdq(machine_config &config)
 	m_maincpu->set_vblank_int("screen", FUNC(superdq_state::superdq_vblank));
 
 	PIONEER_LDV1000(config, m_laserdisc, 0);
-	m_laserdisc->set_overlay(256, 256, FUNC(superdq_state::screen_update_superdq));
+	m_laserdisc->set_overlay(256, 256, FUNC(superdq_state::overlay_update));
 	m_laserdisc->add_route(0, "lspeaker", 1.0);
 	m_laserdisc->add_route(1, "rspeaker", 1.0);
 

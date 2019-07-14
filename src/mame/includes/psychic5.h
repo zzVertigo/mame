@@ -90,12 +90,12 @@ private:
 
 	TIMER_DEVICE_CALLBACK_MEMBER(scanline);
 
-	uint32_t screen_update_psychic5(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_bombsa(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_psychic5(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_bombsa(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void change_palette(int offset, uint8_t* palram, int palbase);
 	void change_bg_palette(int color, int lo_offs, int hi_offs);
 	void set_background_palette_intensity();
-	void draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void bombsa_main_map(address_map &map);
 	void bombsa_sound_map(address_map &map);
 	void bombsa_soundport_map(address_map &map);
@@ -104,5 +104,5 @@ private:
 	void psychic5_sound_map(address_map &map);
 	void psychic5_soundport_map(address_map &map);
 	void psychic5_vrambank_map(address_map &map);
-	void draw_background(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect); //only used by psychic5
+	void draw_background(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect); //only used by psychic5
 };

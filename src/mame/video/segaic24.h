@@ -35,7 +35,7 @@ public:
 	DECLARE_WRITE16_MEMBER(xvout_w);
 
 	void draw(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, int layer, int pri, int flags);
-	void draw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int layer, int pri, int flags);
+	void draw(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int layer, int pri, int flags);
 
 	auto xhout_write_callback() { return m_xhout_write_cb.bind(); }
 	auto xvout_write_callback() { return m_xvout_write_cb.bind(); }
@@ -64,7 +64,7 @@ private:
 
 	void draw_rect(screen_device &screen, bitmap_ind16 &bm, bitmap_ind8 &tm, bitmap_ind16 &dm, const uint16_t *mask,
 					uint16_t tpri, uint8_t lpri, int win, int sx, int sy, int xx1, int yy1, int xx2, int yy2);
-	void draw_rect(screen_device &screen, bitmap_ind16 &bm, bitmap_ind8 &tm, bitmap_rgb32 &dm, const uint16_t *mask,
+	void draw_rect(screen_device &screen, bitmap_ind16 &bm, bitmap_ind8 &tm, bitmap_argb32 &dm, const uint16_t *mask,
 					uint16_t tpri, uint8_t lpri, int win, int sx, int sy, int xx1, int yy1, int xx2, int yy2);
 
 	template<class _BitmapClass>

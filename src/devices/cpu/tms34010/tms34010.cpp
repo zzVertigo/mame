@@ -1088,7 +1088,7 @@ uint32_t tms340x0_device::tms340x0_ind16(screen_device &screen, bitmap_ind16 &bi
 
 }
 
-uint32_t tms340x0_device::tms340x0_rgb32(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t tms340x0_device::tms340x0_rgb32(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	pen_t blackpen = rgb_t::black();
 	display_params params;

@@ -38,7 +38,7 @@ private:
 	int m_dispflag;
 	int m_highcolorflag;
 	int m_flipscreen;
-	bitmap_rgb32 m_tmpbitmap;
+	bitmap_argb32 m_tmpbitmap;
 	emu_timer *m_blitter_timer;
 
 	DECLARE_WRITE8_MEMBER(hyhoo_blitter_w);
@@ -46,7 +46,7 @@ private:
 
 	virtual void video_start() override;
 
-	uint32_t screen_update_hyhoo(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_hyhoo(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void hyhoo_gfxdraw();
 
 	void hyhoo_io_map(address_map &map);

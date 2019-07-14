@@ -277,7 +277,7 @@ const voodoo_device::raster_info voodoo_device::predef_raster_table[] =
  *
  *************************************/
 
-int voodoo_device::voodoo_update(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+int voodoo_device::voodoo_update(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int changed = fbi.video_changed;
 	int drawbuf = fbi.frontbuf;

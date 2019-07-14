@@ -37,7 +37,7 @@ public:
 	uint8_t data_r(offs_t offset);
 	void data_w(offs_t offset, uint8_t data);
 	void update_scanline(uint16_t scanline);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 protected:
 
@@ -111,7 +111,7 @@ private:
 	uint8_t m_latchi;                         //insert attribute latch
 	uint8_t m_latchu;                         //underline attribute latch
 
-	bitmap_rgb32 m_screen_out;
+	bitmap_argb32 m_screen_out;
 
 	// timers
 	emu_timer *m_busy_timer;

@@ -182,7 +182,7 @@ void g332_device::device_reset()
 	m_control_a = 0;
 }
 
-u32 g300_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 g300_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	offs_t address = m_tos;
 
@@ -193,7 +193,7 @@ u32 g300_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, cons
 	return 0;
 }
 
-u32 g332_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 g332_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	offs_t address = m_tos;
 

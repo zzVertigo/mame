@@ -267,7 +267,7 @@ WRITE8_MEMBER(wpc_dot_state::wpc_sound_data_w)
 	m_wpcsnd->data_w(data);
 }
 
-uint32_t wpc_dot_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t wpc_dot_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t x,y,bit;
 	uint32_t offset = (m_wpc->get_visible_page() * 0x200);

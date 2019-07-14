@@ -38,7 +38,7 @@ static GFXDECODE_START( gfx_abc80 )
 GFXDECODE_END
 
 
-void abc80_state::draw_scanline(bitmap_rgb32 &bitmap, int y)
+void abc80_state::draw_scanline(bitmap_argb32 &bitmap, int y)
 {
 	uint8_t vsync_data = m_vsync_prom->base()[y];
 	uint8_t l = m_line_prom->base()[y];
@@ -180,7 +180,7 @@ void abc80_state::video_start()
 //  screen_update -
 //-------------------------------------------------
 
-uint32_t abc80_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t abc80_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	copybitmap(bitmap, m_bitmap, 0, 0, 0, 0, cliprect);
 

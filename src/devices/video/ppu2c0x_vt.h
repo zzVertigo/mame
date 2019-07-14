@@ -48,7 +48,7 @@ public:
 
 	virtual void read_sprite_plane_data(int address) override;
 	virtual void make_sprite_pixel_data(uint8_t &pixel_data, int flipx) override;
-	virtual void draw_sprite_pixel(int sprite_xpos, int color, int pixel, uint8_t pixel_data, bitmap_rgb32 &bitmap) override;
+	virtual void draw_sprite_pixel(int sprite_xpos, int color, int pixel, uint8_t pixel_data, bitmap_argb32 &bitmap) override;
 	virtual void read_extra_sprite_bits(int sprite_index) override;
 
 	virtual void device_start() override;

@@ -275,7 +275,7 @@ private:
 	DECLARE_WRITE_LINE_MEMBER(write_centronics_ack);
 	DECLARE_WRITE_LINE_MEMBER(write_centronics_perror);
 
-	uint32_t screen_update_fm7(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_fm7(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void fm11_mem(address_map &map);
 	void fm11_sub_mem(address_map &map);

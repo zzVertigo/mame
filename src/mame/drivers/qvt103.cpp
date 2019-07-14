@@ -29,7 +29,7 @@ public:
 	void qvt103(machine_config &config);
 
 private:
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void io_map(address_map &map);
 	void mem_map(address_map &map);
@@ -39,7 +39,7 @@ private:
 	required_shared_ptr<u8> m_vram;
 };
 
-u32 qvt103_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 qvt103_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (int col = 0; col < 25; col++)
 	{

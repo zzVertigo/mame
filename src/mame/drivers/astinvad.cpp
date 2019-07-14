@@ -94,9 +94,9 @@ private:
 	DECLARE_MACHINE_START(spaceint);
 	DECLARE_MACHINE_RESET(spaceint);
 	DECLARE_VIDEO_START(spaceint);
-	uint32_t screen_update_astinvad(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_spcking2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_spaceint(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_astinvad(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_spcking2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_spaceint(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_CALLBACK_MEMBER(kamikaze_int_off);
 	TIMER_CALLBACK_MEMBER(kamizake_int_gen);
 
@@ -106,7 +106,7 @@ private:
 	void spaceint_portmap(address_map &map);
 
 	virtual void device_timer(emu_timer &timer, device_timer_id id, int param, void *ptr) override;
-	void plot_byte( bitmap_rgb32 &bitmap, uint8_t y, uint8_t x, uint8_t data, uint8_t color );
+	void plot_byte( bitmap_argb32 &bitmap, uint8_t y, uint8_t x, uint8_t data, uint8_t color );
 
 	std::unique_ptr<uint8_t[]>    m_colorram;
 	emu_timer  *m_int_timer;
@@ -164,7 +164,7 @@ WRITE8_MEMBER(astinvad_state::spaceint_videoram_w)
  *
  *************************************/
 
-void astinvad_state::plot_byte( bitmap_rgb32 &bitmap, uint8_t y, uint8_t x, uint8_t data, uint8_t color )
+void astinvad_state::plot_byte( bitmap_argb32 &bitmap, uint8_t y, uint8_t x, uint8_t data, uint8_t color )
 {
 	uint8_t flip_xor = m_screen_flip & 7;
 
@@ -179,7 +179,7 @@ void astinvad_state::plot_byte( bitmap_rgb32 &bitmap, uint8_t y, uint8_t x, uint
 }
 
 
-uint32_t astinvad_state::screen_update_astinvad(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t astinvad_state::screen_update_astinvad(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t yoffs = m_flip_yoffs & m_screen_flip;
 
@@ -196,7 +196,7 @@ uint32_t astinvad_state::screen_update_astinvad(screen_device &screen, bitmap_rg
 }
 
 
-uint32_t astinvad_state::screen_update_spcking2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t astinvad_state::screen_update_spcking2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t yoffs = m_flip_yoffs & m_screen_flip;
 
@@ -213,7 +213,7 @@ uint32_t astinvad_state::screen_update_spcking2(screen_device &screen, bitmap_rg
 }
 
 
-uint32_t astinvad_state::screen_update_spaceint(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t astinvad_state::screen_update_spaceint(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t x,y;
 

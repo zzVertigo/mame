@@ -381,7 +381,7 @@ void vixen_state::video_start()
 	save_item(NAME(m_vsync));
 }
 
-uint32_t vixen_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t vixen_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *pen = m_palette->pens();
 	uint8_t x, y, chr, gfx, inv, ra;

@@ -35,14 +35,14 @@ public:
 	}
 
 	void draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect, uint16_t* spriteram, int sizewords);
-	void draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint16_t* spriteram, int sizewords);
+	void draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, uint16_t* spriteram, int sizewords);
 	void set_alt_format(bool alt) { m_alt_format = alt; }
 	void set_pix_mix_mask(uint16_t mask) { m_pixmask = mask; }
 	void set_pix_raw_shift(uint16_t shift) { m_raw_shift = shift; }
 	void set_flip_screen(bool flip) { m_flip_screen = flip; }
 
 	void alloc_sprite_bitmap();
-	void inefficient_copy_sprite_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint16_t pri, uint16_t priority_mask, uint16_t colbase, uint16_t palmask, uint8_t alpha = 0xff);
+	void inefficient_copy_sprite_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect, uint16_t pri, uint16_t priority_mask, uint16_t colbase, uint16_t palmask, uint8_t alpha = 0xff);
 	bitmap_ind16& get_sprite_temp_bitmap() { assert(m_sprite_bitmap.valid()); return m_sprite_bitmap; };
 
 	DECOSPR_PRIORITY_CB_MEMBER(default_col_cb);

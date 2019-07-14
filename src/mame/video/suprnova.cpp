@@ -456,7 +456,7 @@ void skns_state::draw_b( bitmap_ind16 &bitmap, bitmap_ind8 &bitmap_flags, const 
 	}
 }
 
-uint32_t skns_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t skns_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	palette_update();
 

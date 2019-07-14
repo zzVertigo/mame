@@ -56,7 +56,7 @@ public:
 	void newbrain_video(machine_config &config);
 
 private:
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ8_MEMBER( mreq_r );
 	DECLARE_WRITE8_MEMBER( mreq_w );
@@ -100,7 +100,7 @@ private:
 	int get_reset_t();
 	int get_pwrup_t();
 
-	void screen_update(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void screen_update(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void tvl(uint8_t data, int a6);
 
 	required_device<z80_device> m_maincpu;

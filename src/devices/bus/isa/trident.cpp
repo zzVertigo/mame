@@ -210,7 +210,7 @@ void trident_vga_device::device_reset()
 	tri.pixel_depth = 0x10;  //disable 8bpp mode by default
 }
 
-uint32_t trident_vga_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t trident_vga_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t cur_mode;
 

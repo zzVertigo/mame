@@ -493,7 +493,7 @@ void upd3301_device::draw_scanline()
 //  update_screen -
 //-------------------------------------------------
 
-uint32_t upd3301_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t upd3301_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (m_status & STATUS_VE)
 	{

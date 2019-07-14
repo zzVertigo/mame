@@ -231,7 +231,7 @@ private:
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
 
-	uint32_t screen_update_leapster(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_leapster(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_DEVICE_IMAGE_LOAD_MEMBER(cart_load);
 
 	DECLARE_READ32_MEMBER(leapster_random_r)
@@ -261,7 +261,7 @@ INPUT_PORTS_END
 
 
 
-uint32_t leapster_state::screen_update_leapster(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t leapster_state::screen_update_leapster(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

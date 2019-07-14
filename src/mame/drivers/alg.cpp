@@ -68,12 +68,15 @@ public:
 	void main_map_r1(address_map &map);
 	void main_map_r2(address_map &map);
 	void overlay_512kb_map(address_map &map);
+
 protected:
 	// amiga_state overrides
 	virtual void potgo_w(uint16_t data) override;
 	int get_lightgun_pos(int player, int *x, int *y);
 
 private:
+	void overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea);
+
 	required_device<sony_ldp1450_device> m_laserdisc;
 	required_ioport m_gun1x;
 	required_ioport m_gun1y;
@@ -129,6 +132,23 @@ VIDEO_START_MEMBER(alg_state,alg)
 }
 
 
+/*************************************
+ *
+ *  Laserdisc overlay update
+ *
+ *************************************/
+
+void alg_state::overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea)
+{
+	// sometimes the core tells us to render a bunch of lines to keep up (resolution change, for example)
+	// this causes trouble for us since it can happen at any time
+	if (cliprect.top() != cliprect.bottom())
+		return;
+
+	// render each scanline in the visible region
+	for (int y = cliprect.top(); y <= cliprect.bottom(); y++)
+		render_scanline(&bitmap.pix32(y), y);
+}
 
 
 /*************************************
@@ -298,7 +318,6 @@ static INPUT_PORTS_START( alg_2p )
 INPUT_PORTS_END
 
 
-
 /*************************************
  *
  *  Machine driver
@@ -320,7 +339,7 @@ void alg_state::alg_r1(machine_config &config)
 
 	SONY_LDP1450(config, m_laserdisc, 9600);
 	m_laserdisc->set_screen("screen");
-	m_laserdisc->set_overlay(512*2, 262, FUNC(amiga_state::screen_update_amiga));
+	m_laserdisc->set_overlay(512*2, 262, FUNC(alg_state::overlay_update));
 	m_laserdisc->set_overlay_clip((129-8)*2, (449+8-1)*2, 44-8, 244+8-1);
 
 	PALETTE(config, m_palette, FUNC(alg_state::amiga_palette), 4097);

@@ -48,7 +48,7 @@ K051316_CB_MEMBER(overdriv_state::zoom_callback_2)
 
 ***************************************************************************/
 
-uint32_t overdriv_state::screen_update_overdriv(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t overdriv_state::screen_update_overdriv(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_sprite_colorbase  = m_k053251->get_palette_index(k053251_device::CI0);
 	m_road_colorbase[1] = m_k053251->get_palette_index(k053251_device::CI1);

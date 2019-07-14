@@ -30,7 +30,7 @@ public:
 	void map_video(address_map &map);
 
 	double hue2rgb(double p, double q, double t);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(vblank);
 
 	DECLARE_WRITE16_MEMBER(spg110_201c_w);

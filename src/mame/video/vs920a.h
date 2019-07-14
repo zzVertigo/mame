@@ -16,7 +16,7 @@ public:
 
 	void set_pal_base(int pal_base) { m_pal_base = pal_base; }
 	void set_transparent_pen(pen_t pen) { m_tmap->set_transparent_pen(pen); }
-	void draw(screen_device &screen, bitmap_ind16& bitmap, const rectangle &cliprect, int priority);
+	void draw(screen_device &screen, bitmap_argb32& bitmap, const rectangle &cliprect, int priority);
 
 	DECLARE_WRITE16_MEMBER(vram_w);
 	DECLARE_READ16_MEMBER(vram_r);

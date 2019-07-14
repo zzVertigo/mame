@@ -127,7 +127,7 @@ public:
 
 	void attache(machine_config &config);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ8_MEMBER(pio_portA_r);
 	DECLARE_READ8_MEMBER(pio_portB_r);
@@ -297,7 +297,7 @@ private:
 // bit 5 = underline
 // bit 6 = superscript
 // bit 7 = subscript (superscript and subscript combined produces strikethrough)
-uint32_t attache_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t attache_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t x,y,vy,start,bit,scan,data;
 	uint8_t dbl_mode = 0;  // detemines which half of character to display when using double size attribute,

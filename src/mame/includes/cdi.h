@@ -91,7 +91,7 @@ public:
 	uint8_t m_timer_set;
 	emu_timer *m_test_timer;
 
-	bitmap_rgb32 m_lcdbitmap;
+	bitmap_argb32 m_lcdbitmap;
 
 	DECLARE_INPUT_CHANGED_MEMBER(mcu_input);
 
@@ -112,7 +112,7 @@ public:
 	DECLARE_READ8_MEMBER(quizard_mcu_p1_r);
 
 	void draw_lcd(int y);
-	uint32_t screen_update_cdimono1_lcd(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_cdimono1_lcd(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void cdimono1(machine_config &config);
 	void cdimono2(machine_config &config);
 	void quizard4(machine_config &config);

@@ -100,6 +100,7 @@ public:
 		, m_philips_code(0)
 		, m_maincpu(*this, "maincpu")
 		, m_discrete(*this, "discrete")
+		, m_vdp(*this, "tms9928a")
 		, m_screen(*this, "screen")
 		, m_led(*this, "led0")
 	{ }
@@ -124,6 +125,8 @@ protected:
 	virtual void machine_reset() override;
 
 private:
+	void overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea);
+
 	required_device<pioneer_pr8210_device> m_laserdisc;
 
 	int m_port_bank;
@@ -133,6 +136,7 @@ private:
 
 	required_device<cpu_device> m_maincpu;
 	required_device<discrete_device> m_discrete;
+	required_device<tms9128_device> m_vdp;
 	required_device<screen_device> m_screen;
 	output_finder<> m_led;
 };
@@ -245,6 +249,17 @@ void cliffhgr_state::machine_reset()
 	m_port_bank = 0;
 	m_philips_code = 0;
 	m_irq_timer->adjust(m_screen->time_until_pos(17), 17);
+}
+
+/*************************************
+ *
+ *  Laserdisc overlay update
+ *
+ *************************************/
+
+void cliffhgr_state::overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea)
+{
+	copybitmap(bitmap, m_vdp->get_bitmap(), 0, 0, 0, 0, cliprect);
 }
 
 /********************************************************/
@@ -698,15 +713,15 @@ void cliffhgr_state::cliffhgr(machine_config &config)
 	NVRAM(config, "nvram", nvram_device::DEFAULT_ALL_0);
 
 	PIONEER_PR8210(config, m_laserdisc, 0);
-	m_laserdisc->set_overlay(tms9928a_device::TOTAL_HORZ, tms9928a_device::TOTAL_VERT_NTSC, "tms9928a", FUNC(tms9928a_device::screen_update));
+	m_laserdisc->set_overlay(tms9928a_device::TOTAL_HORZ, tms9928a_device::TOTAL_VERT_NTSC, FUNC(cliffhgr_state::overlay_update));
 	m_laserdisc->set_overlay_clip(tms9928a_device::HORZ_DISPLAY_START-12, tms9928a_device::HORZ_DISPLAY_START+32*8+12-1, tms9928a_device::VERT_DISPLAY_START_NTSC - 12, tms9928a_device::VERT_DISPLAY_START_NTSC+24*8+12-1);
 	m_laserdisc->add_route(0, "lspeaker", 1.0);
 	m_laserdisc->add_route(1, "rspeaker", 1.0);
 
 	/* start with the TMS9928a video configuration */
-	tms9128_device &vdp(TMS9128(config, "tms9928a", XTAL(10'738'635)));   /* TMS9128NL on the board */
-	vdp.set_vram_size(0x4000);
-	vdp.int_callback().set_inputline(m_maincpu, INPUT_LINE_NMI);
+	TMS9128(config, m_vdp, XTAL(10'738'635));   /* TMS9128NL on the board */
+	m_vdp->set_vram_size(0x4000);
+	m_vdp->int_callback().set_inputline(m_maincpu, INPUT_LINE_NMI);
 
 	/* override video rendering and raw screen info */
 	m_laserdisc->add_ntsc_screen(config, "screen");

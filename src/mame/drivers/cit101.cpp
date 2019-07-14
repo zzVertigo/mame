@@ -83,7 +83,7 @@ protected:
 	virtual void machine_start() override;
 private:
 	void draw_line(uint32_t *pixptr, int minx, int maxx, int line, bool last_line, u16 rowaddr, u16 rowattr, u8 scrattr);
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ8_MEMBER(c000_ram_r);
 	DECLARE_WRITE8_MEMBER(c000_ram_w);
@@ -178,7 +178,7 @@ void cit101_state::draw_line(uint32_t *pixptr, int minx, int maxx, int line, boo
 	}
 }
 
-u32 cit101_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 cit101_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// While screen height is fixed at 240 pixels, the number of character rows and the height of each row are not.
 	// The "Set-Up" screens configure 3 ordinary 10-pixel rows on the top (using two for double-height characters)

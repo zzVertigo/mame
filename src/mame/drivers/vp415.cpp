@@ -460,7 +460,7 @@ void vp415_state::video_start()
 {
 }
 
-uint32_t vp415_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t vp415_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_chargen->update_bitmap(bitmap, cliprect);
 	return 0;

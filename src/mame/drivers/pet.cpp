@@ -264,7 +264,7 @@ public:
 
 	DECLARE_QUICKLOAD_LOAD_MEMBER(quickload_pet);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_MACHINE_START( pet40 );
 	DECLARE_MACHINE_RESET( pet40 );
@@ -1339,7 +1339,7 @@ TIMER_CALLBACK_MEMBER( pet_state::sync_tick )
 //  SCREEN_UPDATE( pet2001 )
 //-------------------------------------------------
 
-uint32_t pet_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t pet_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *pen = m_palette->pens();
 

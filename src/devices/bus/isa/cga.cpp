@@ -396,7 +396,7 @@ void isa8_cga_device::device_reset()
 ***************************************************************************/
 
 
-uint32_t isa8_cga_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t isa8_cga_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_crtc->screen_update( screen, bitmap, cliprect);
 
@@ -1498,7 +1498,7 @@ void isa8_wyse700_device::device_reset()
 	m_bank_base = 0;
 }
 
-uint32_t isa8_wyse700_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t isa8_wyse700_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (m_control & 0x08) {
 		const rgb_t *palette = m_palette->palette()->entry_list_raw();

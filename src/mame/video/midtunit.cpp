@@ -958,7 +958,7 @@ void midtunit_video_device::log_bitmap(int command, int bpp, bool Skip)
 		if (width > m_dma_state.width - m_dma_state.endskip)
 			width = m_dma_state.width - m_dma_state.endskip;
 
-		bitmap_rgb32::pixel_t *d = &m_log_bitmap.pix(y, ix);
+		bitmap_argb32::pixel_t *d = &m_log_bitmap.pix(y, ix);
 
 		/* determine destination pointer */
 

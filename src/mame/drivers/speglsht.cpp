@@ -153,7 +153,7 @@ private:
 	DECLARE_MACHINE_RESET(speglsht);
 	virtual void machine_start() override;
 	DECLARE_VIDEO_START(speglsht);
-	uint32_t screen_update_speglsht(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_speglsht(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_WRITE8_MEMBER(st0016_rom_bank_w);
 	void speglsht_mem(address_map &map);
@@ -377,7 +377,7 @@ VIDEO_START_MEMBER(speglsht_state,speglsht)
 		bitmap.pix32(y, x) = (b) | ((g)<<8) | ((r)<<16); \
 }
 
-uint32_t speglsht_state::screen_update_speglsht(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t speglsht_state::screen_update_speglsht(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y,dy;
 

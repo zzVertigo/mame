@@ -162,7 +162,7 @@ public:
 	DECLARE_WRITE32_MEMBER(bdma_1_w);
 
 	void request_eint(uint32_t number);
-	uint32_t video_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t video_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 protected:
 	// device-level overrides

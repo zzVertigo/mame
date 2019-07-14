@@ -81,7 +81,7 @@ private:
 	virtual void device_timer(emu_timer &timer, device_timer_id id, int param, void *ptr) override;
 	virtual void device_post_load() override;
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ16_MEMBER(tvi1111_r);
 	DECLARE_WRITE16_MEMBER(tvi1111_w);
@@ -192,7 +192,7 @@ WRITE16_MEMBER(tv990_state::tvi1111_w)
 		m_beep->set_state(tvi1111_regs[0x17] & 4 ? ASSERT_LINE : CLEAR_LINE);
 }
 
-uint32_t tv990_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t tv990_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t *scanline;
 	int x, y;

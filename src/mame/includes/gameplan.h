@@ -97,8 +97,8 @@ private:
 	DECLARE_VIDEO_START(leprechn);
 	DECLARE_VIDEO_START(trvquest);
 	DECLARE_VIDEO_START(common);
-	uint32_t screen_update_gameplan(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_leprechn(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_gameplan(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_leprechn(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(trvquest_interrupt);
 	TIMER_CALLBACK_MEMBER(clear_screen_done_callback);
 	TIMER_CALLBACK_MEMBER(via_irq_delayed);

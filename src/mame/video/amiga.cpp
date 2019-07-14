@@ -665,7 +665,7 @@ void amiga_state::update_display_window()
  *
  *************************************/
 
-void amiga_state::render_scanline(bitmap_rgb32 &bitmap, int scanline)
+void amiga_state::render_scanline(uint32_t *dst, int scanline)
 {
 	uint16_t save_color0 = CUSTOM_REG(REG_COLOR00);
 	int ddf_start_pixel = 0, ddf_stop_pixel = 0;
@@ -673,7 +673,6 @@ void amiga_state::render_scanline(bitmap_rgb32 &bitmap, int scanline)
 	int pf1pri = 0, pf2pri = 0;
 	int planes = 0;
 
-	uint32_t *dst = nullptr;
 	int ebitoffs = 0, obitoffs = 0;
 	int ecolmask = 0, ocolmask = 0;
 	int edelay = 0, odelay = 0;
@@ -698,16 +697,11 @@ void amiga_state::render_scanline(bitmap_rgb32 &bitmap, int scanline)
 	}
 
 	// in visible area?
-	if (bitmap.valid())
+	if (dst)
 	{
 		bool lof = CUSTOM_REG(REG_VPOSR) & VPOSR_LOF;
 
-		if ((scanline & 1) ^ lof)
-		{
-			// lof matches? then render this scanline
-			dst = &bitmap.pix32(scanline);
-		}
-		else
+		if ((bool)(scanline & 1) != lof)
 		{
 			// lof doesn't match, we don't render this scanline
 			// if we didn't switch lof we have a full non-interlace screen,
@@ -715,7 +709,7 @@ void amiga_state::render_scanline(bitmap_rgb32 &bitmap, int scanline)
 			// otherwise just render the contents of the previous frame's scanline
 			int shift = (m_previous_lof == lof) ? 1 : 0;
 
-			std::copy_n(&m_flickerfixer.pix32(scanline - shift), amiga_state::SCREEN_WIDTH, &bitmap.pix32(scanline));
+			std::copy_n(&m_flickerfixer.pix32(scanline - shift), amiga_state::SCREEN_WIDTH, dst);
 			return;
 		}
 	}
@@ -1047,7 +1041,7 @@ void amiga_state::render_scanline(bitmap_rgb32 &bitmap, int scanline)
  *
  *************************************/
 
-uint32_t amiga_state::screen_update_amiga(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t amiga_state::screen_update_amiga(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// sometimes the core tells us to render a bunch of lines to keep up (resolution change, for example)
 	// this causes trouble for us since it can happen at any time
@@ -1055,8 +1049,16 @@ uint32_t amiga_state::screen_update_amiga(screen_device &screen, bitmap_rgb32 &b
 		return 0;
 
 	// render each scanline in the visible region
-	for (int y = cliprect.top(); y <= cliprect.bottom(); y++)
-		render_scanline(bitmap, y);
+	if (bitmap.valid())
+	{
+		for (int y = cliprect.top(); y <= cliprect.bottom(); y++)
+			render_scanline(&bitmap.pix32(y), y);
+	}
+	else
+	{
+		for (int y = cliprect.top(); y <= cliprect.bottom(); y++)
+			render_scanline(nullptr, y);
+	}
 
 	return 0;
 }

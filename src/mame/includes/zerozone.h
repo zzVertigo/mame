@@ -51,7 +51,7 @@ private:
 	uint16_t         m_tilebank;
 	tilemap_t     *m_zz_tilemap;
 
-	uint32_t screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void main_map(address_map &map);
 	void sound_map(address_map &map);

@@ -200,7 +200,6 @@ uint32_t jangou_state::screen_update_jangou(screen_device &screen, bitmap_ind16 
 			*dst++ = m_palette->pen((srcpix >> 4) & 0xf);
 		}
 	}
-	//void copybitmap(bitmap_rgb32 &dest, const bitmap_rgb32 &src, int flipx, int flipy, int32_t destx, int32_t desty, const rectangle &cliprect)
 
 	copybitmap(bitmap, *m_tmp_bitmap, flip_screen(), flip_screen(),0,0, cliprect);
 

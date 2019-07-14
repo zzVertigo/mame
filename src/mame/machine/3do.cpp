@@ -1040,7 +1040,7 @@ void _3do_state::video_start()
 }
 
 
-uint32_t _3do_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t _3do_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t *source_p = m_vram + 0x1c0000 / 4;
 

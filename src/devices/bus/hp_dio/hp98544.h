@@ -30,7 +30,7 @@ public:
 	DECLARE_WRITE16_MEMBER(rom_w);
 
 	required_device<topcat_device> m_topcat;
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
  protected:
 	dio16_98544_device(const machine_config &mconfig, device_type type, const char *tag, device_t *owner, uint32_t clock);
 

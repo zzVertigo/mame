@@ -92,7 +92,7 @@ void k053250ps_device::device_reset()
 }
 
 // utility function to render a clipped scanline vertically or horizontally
-inline void k053250ps_device::pdraw_scanline32(bitmap_rgb32 &bitmap, const pen_t *pal_base, uint8_t *source,
+inline void k053250ps_device::pdraw_scanline32(bitmap_argb32 &bitmap, const pen_t *pal_base, uint8_t *source,
 										const rectangle &cliprect, int linepos, int scroll, int zoom,
 										uint32_t clipmask, uint32_t wrapmask, uint32_t orientation, bitmap_ind8 &priority, uint8_t pri)
 {
@@ -253,7 +253,7 @@ inline void k053250ps_device::pdraw_scanline32(bitmap_rgb32 &bitmap, const pen_t
 #undef FIXPOINT_PRECISION_HALF
 }
 
-void k053250ps_device::draw( bitmap_rgb32 &bitmap, const rectangle &cliprect, int colorbase, int flags, bitmap_ind8 &priority_bitmap, int priority )
+void k053250ps_device::draw( bitmap_argb32 &bitmap, const rectangle &cliprect, int colorbase, int flags, bitmap_ind8 &priority_bitmap, int priority )
 {
 	static int16_t scroll_x;
 

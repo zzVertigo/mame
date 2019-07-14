@@ -47,7 +47,7 @@ public:
 protected:
 	void bowltry_map(address_map &map);
 
-	uint32_t screen_update_bowltry(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_bowltry(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	int m_test_x;
 	int m_test_y;
@@ -92,7 +92,7 @@ void bowltry_state::bowltry_map(address_map &map)
 static INPUT_PORTS_START( bowltry )
 INPUT_PORTS_END
 
-uint32_t bowltry_state::screen_update_bowltry(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t bowltry_state::screen_update_bowltry(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

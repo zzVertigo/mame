@@ -92,7 +92,7 @@ private:
 
 	virtual void machine_start() override;
 	virtual void video_start() override;
-	uint32_t screen_update_segag80v(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_segag80v(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	inline bool adjust_xy(int rawx, int rawy, int *outx, int *outy);
 	void sega_generate_vector_list();
 	offs_t decrypt_offset(address_space &space, offs_t offset);

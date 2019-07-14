@@ -72,7 +72,7 @@ WRITE16_MEMBER( galpani2_bg8_regs_1_w ) { galpani2_bg8_regs_w(space, offset, dat
 // it should be noted that in the layer at 0x500000 the upper 8 bits are set too, this could be related
 
 // scrolling is based on sync between sprite and this layer during the 'keyhole viewer' between rounds (use cheats)
-void galpani2_state::copybg8(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int layer)
+void galpani2_state::copybg8(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int layer)
 {
 	int x = + ( *m_bg8_scrollx[layer] + 0x200 - 0x1be );
 	int y = + ( *m_bg8_scrolly[layer] + 0x200 - 0x0f5 );
@@ -94,7 +94,7 @@ void galpani2_state::copybg8(screen_device &screen, bitmap_rgb32 &bitmap, const 
 // startup covering all screen lines - is the hardware mixing bitmaps of different resolutions or is there a
 // line select somewhere?  I should find the gal images and find what resolution they're stored at too.
 // (or is this just wrong format / layout due to protection?)
-void galpani2_state::copybg15(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void galpani2_state::copybg15(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint16_t* ram = m_bg15 + 0x40000/2;
 
@@ -112,7 +112,7 @@ void galpani2_state::copybg15(screen_device &screen, bitmap_rgb32 &bitmap, const
 	}
 }
 
-uint32_t galpani2_state::screen_update_galpani2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t galpani2_state::screen_update_galpani2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int layers_ctrl = -1;
 

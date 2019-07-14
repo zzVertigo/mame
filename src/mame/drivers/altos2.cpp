@@ -47,7 +47,7 @@ private:
 	DECLARE_WRITE8_MEMBER(vpac_w);
 	DECLARE_WRITE8_MEMBER(video_mode_w);
 
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	virtual void machine_reset() override;
 	void io_map(address_map &map);
@@ -97,7 +97,7 @@ WRITE8_MEMBER(altos2_state::video_mode_w)
 	//logerror("Writing %02X to mode register at %s\n", data, machine().describe_context());
 }
 
-u32 altos2_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 altos2_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

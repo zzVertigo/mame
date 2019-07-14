@@ -126,7 +126,7 @@ private:
 	DECLARE_READ8_MEMBER(cmd2_r);
 	DECLARE_READ8_MEMBER(cmd_stat8_r);
 	virtual void machine_start() override;
-	uint32_t screen_update_srmp5(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_srmp5(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_WRITE8_MEMBER(st0016_rom_bank_w);
 	void srmp5_mem(address_map &map);
@@ -135,7 +135,7 @@ private:
 };
 
 
-uint32_t srmp5_state::screen_update_srmp5(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t srmp5_state::screen_update_srmp5(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y,address,xs,xs2,ys,ys2,height,width,xw,yw,xb,yb,sizex,sizey;
 	uint16_t *sprite_list=m_sprram.get();

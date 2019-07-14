@@ -611,7 +611,7 @@ private:
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
 	virtual void video_start() override;
-	uint32_t screen_update_taitotz(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_taitotz(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(taitotz_vbi);
 	DECLARE_READ16_MEMBER(tlcs_ide0_r);
 	DECLARE_READ16_MEMBER(tlcs_ide1_r);
@@ -636,7 +636,7 @@ public:
 		: poly_manager<float, taitotz_polydata, 6, 50000>(state.machine()),
 			m_state(state)
 	{
-		m_fb = std::make_unique<bitmap_rgb32>(width, height);
+		m_fb = std::make_unique<bitmap_argb32>(width, height);
 		m_zbuffer = std::make_unique<bitmap_ind32>(width, height);
 		m_texture = texram;
 		m_screen_ram = scrram;
@@ -664,7 +664,7 @@ public:
 
 	void render_tnl_object(uint32_t address, float scale, uint8_t alpha);
 
-	void draw(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void draw(bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 private:
 	enum
@@ -680,7 +680,7 @@ private:
 	//static const float ZBUFFER_MAX = 10000000000.0f;
 
 	taitotz_state &m_state;
-	std::unique_ptr<bitmap_rgb32> m_fb;
+	std::unique_ptr<bitmap_argb32> m_fb;
 	std::unique_ptr<bitmap_ind32> m_zbuffer;
 	uint32_t *m_texture;
 	uint32_t *m_screen_ram;
@@ -1341,7 +1341,7 @@ void taitotz_renderer::render_tnl_object(uint32_t address, float scale, uint8_t 
 
 
 
-void taitotz_renderer::draw(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void taitotz_renderer::draw(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	wait();
 	copybitmap(bitmap, *m_fb, 0, 0, 0, 0, cliprect);
@@ -1430,7 +1430,7 @@ void taitotz_renderer::push_direct_poly_fifo(uint32_t data)
 	}
 }
 
-uint32_t taitotz_state::screen_update_taitotz(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t taitotz_state::screen_update_taitotz(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_renderer->draw(bitmap, cliprect);
 

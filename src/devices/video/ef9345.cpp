@@ -982,7 +982,7 @@ void ef9345_device::ef9345_exec(uint8_t cmd)
             EF9345 interface
 **************************************************************/
 
-uint32_t ef9345_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t ef9345_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	copybitmap(bitmap, m_screen_out, 0, 0, 0, 0, cliprect);
 	return 0;

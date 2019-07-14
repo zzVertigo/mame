@@ -141,7 +141,7 @@ private:
 	DECLARE_WRITE8_MEMBER(outport_w);
 	void murogem_palette(palette_device &palette) const;
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void murogem_map(address_map &map);
 };
 
@@ -227,7 +227,7 @@ void murogem_state::murogem_palette(palette_device &palette) const
 {
 }
 
-uint32_t murogem_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t murogem_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(0, cliprect);
 

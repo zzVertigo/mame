@@ -35,7 +35,7 @@ public:
 	void hmxpro(machine_config &config);
 	void hmxpro_map(address_map &map);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_WRITE_LINE_MEMBER(duart_irq_handler);
 	INTERRUPT_GEN_MEMBER(vblank);
@@ -89,7 +89,7 @@ INTERRUPT_GEN_MEMBER(ncd_mips_state::vblank)
 }
 
 
-uint32_t ncd_mips_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t ncd_mips_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

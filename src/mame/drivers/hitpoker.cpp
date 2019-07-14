@@ -93,7 +93,7 @@ private:
 	DECLARE_WRITE_LINE_MEMBER(hitpoker_irq);
 	DECLARE_READ8_MEMBER(irq_clear_r);
 	virtual void video_start() override;
-	uint32_t screen_update_hitpoker(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_hitpoker(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	required_device<mc68hc11_cpu_device> m_maincpu;
 	required_device<gfxdecode_device> m_gfxdecode;
 	required_device<palette_device> m_palette;
@@ -111,7 +111,7 @@ void hitpoker_state::video_start()
 	m_colorram = std::make_unique<uint8_t[]>(0x2000);
 }
 
-uint32_t hitpoker_state::screen_update_hitpoker(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t hitpoker_state::screen_update_hitpoker(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int count = 0;
 	int y,x;

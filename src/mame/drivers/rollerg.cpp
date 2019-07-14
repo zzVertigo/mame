@@ -263,17 +263,16 @@ void rollerg_state::rollerg(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(14*8, (64-14)*8-1, 2*8, 30*8-1);
 	screen.set_screen_update(FUNC(rollerg_state::screen_update_rollerg));
-	screen.set_palette("palette");
 
-	PALETTE(config, "palette").set_format(palette_device::xBGR_555, 1024).enable_shadows();
+	PALETTE(config, m_palette).set_format(palette_device::xBGR_555, 1024).enable_shadows();
 
 	K053244(config, m_k053244, 0);
-	m_k053244->set_palette("palette");
+	m_k053244->set_palette(m_palette);
 	m_k053244->set_offsets(-3, -1);
 	m_k053244->set_sprite_callback(FUNC(rollerg_state::sprite_callback), this);
 
 	K051316(config, m_k051316, 0);
-	m_k051316->set_palette("palette");
+	m_k051316->set_palette(m_palette);
 	m_k051316->set_offsets(22, 1);
 	m_k051316->set_zoom_callback(FUNC(rollerg_state::zoom_callback), this);
 

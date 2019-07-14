@@ -161,7 +161,7 @@ uint32_t captaven_state::screen_update(screen_device &screen, bitmap_ind16 &bitm
 	return 0;
 }
 
-uint32_t dragngun_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t dragngun_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	screen.priority().fill(0, cliprect);
 	bitmap.fill(m_palette->pen(0x400), cliprect); // Palette index not confirmed
@@ -193,7 +193,7 @@ uint32_t dragngun_state::screen_update(screen_device &screen, bitmap_rgb32 &bitm
 }
 
 
-uint32_t fghthist_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t fghthist_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	screen.priority().fill(0, cliprect);
 	bitmap.fill(m_palette->pen(0x300), cliprect); // Palette index not confirmed
@@ -235,7 +235,7 @@ uint32_t fghthist_state::screen_update(screen_device &screen, bitmap_rgb32 &bitm
     blending support - it can't be done in-place on the final framebuffer
     without a lot of support bitmaps.
 */
-void nslasher_state::mixDualAlphaSprites(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, gfx_element *gfx0, gfx_element *gfx1, int mixAlphaTilemap)
+void nslasher_state::mixDualAlphaSprites(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, gfx_element *gfx0, gfx_element *gfx1, int mixAlphaTilemap)
 {
 	const pen_t *pens = m_deco_ace->pens();
 	const pen_t *pal0 = &pens[gfx0->colorbase()];
@@ -366,7 +366,7 @@ void nslasher_state::mixDualAlphaSprites(screen_device &screen, bitmap_rgb32 &bi
 	}
 }
 
-uint32_t nslasher_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t nslasher_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int alphaTilemap=0;
 	m_deco_tilegen[0]->pf_update(m_pf_rowscroll[0].get(), m_pf_rowscroll[1].get());

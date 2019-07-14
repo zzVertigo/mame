@@ -34,7 +34,7 @@ private:
 	{
 		TIMER_PAD_FUNC
 	};
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ16_MEMBER( irq_read );
 	DECLARE_WRITE16_MEMBER( irq_write );
@@ -410,7 +410,7 @@ void pcfx_state::machine_reset()
 }
 
 
-uint32_t pcfx_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t pcfx_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_huc6261->video_update( bitmap, cliprect );
 	return 0;

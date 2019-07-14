@@ -199,7 +199,7 @@ WRITE8_MEMBER(hnayayoi_state::hnayayoi_palbank_w)
 }
 
 
-void hnayayoi_state::draw_layer_interleaved(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint16_t row, uint16_t y, uint8_t x_count, int left_pixmap, int right_pixmap, int palbase, bool transp)
+void hnayayoi_state::draw_layer_interleaved(bitmap_argb32 &bitmap, const rectangle &cliprect, uint16_t row, uint16_t y, uint8_t x_count, int left_pixmap, int right_pixmap, int palbase, bool transp)
 {
 	uint8_t *src1 = &m_pixmap[left_pixmap][(row & 255) * 256];
 	uint8_t *src2 = &m_pixmap[right_pixmap][(row & 255) * 256];

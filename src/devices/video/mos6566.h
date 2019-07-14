@@ -210,7 +210,7 @@ public:
 
 	uint8_t bus_r() { return m_last_data; }
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 protected:
 	enum
@@ -288,7 +288,7 @@ protected:
 
 	uint16_t m_chargenaddr, m_videoaddr, m_bitmapaddr;
 
-	bitmap_rgb32 m_bitmap;
+	bitmap_argb32 m_bitmap;
 
 	uint16_t m_colors[4], m_spritemulti[4];
 

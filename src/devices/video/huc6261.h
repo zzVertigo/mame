@@ -30,7 +30,7 @@ public:
 	template <typename T> void set_vdc2_tag(T &&tag) { m_huc6270_b.set_tag(std::forward<T>(tag)); }
 	template <typename T> void set_king_tag(T &&tag) { m_huc6272.set_tag(std::forward<T>(tag)); }
 
-	void video_update(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void video_update(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_READ16_MEMBER( read );
 	DECLARE_WRITE16_MEMBER( write );
 
@@ -62,7 +62,7 @@ private:
 	uint8_t   m_pixel_clock;
 
 	emu_timer   *m_timer;
-	std::unique_ptr<bitmap_rgb32>  m_bmp;
+	std::unique_ptr<bitmap_argb32>  m_bmp;
 	int32_t   m_uv_lookup[65536][3];
 
 	inline uint32_t yuv2rgb(uint32_t yuv);

@@ -96,7 +96,7 @@ protected:
 	u16 lance_r(offs_t offset, u16 mem_mask = 0xffff);
 	void lance_w(offs_t offset, u16 data, u16 mem_mask = 0xffff);
 
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, rectangle const &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, rectangle const &cliprect);
 
 private:
 	enum iop_interface_status_mask : u8
@@ -180,7 +180,7 @@ protected:
 	void rx3230_map(address_map &map);
 	void rs3230_map(address_map &map);
 
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, rectangle const &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, rectangle const &cliprect);
 
 	u16 lance_r(offs_t offset, u16 mem_mask = 0xffff);
 	void lance_w(offs_t offset, u16 data, u16 mem_mask = 0xffff);

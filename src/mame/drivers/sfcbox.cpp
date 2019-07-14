@@ -144,7 +144,7 @@ private:
 	required_device<mb90082_device> m_mb90082;
 	required_device<s3520cf_device> m_s3520cf;
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ8_MEMBER( port_81_r );
 	DECLARE_READ8_MEMBER( port_83_r );
@@ -163,7 +163,7 @@ private:
 	void spc_mem(address_map &map);
 };
 
-uint32_t sfcbox_state::screen_update( screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect )
+uint32_t sfcbox_state::screen_update( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	m_mb90082->screen_update(screen,bitmap,cliprect);
 	return 0;

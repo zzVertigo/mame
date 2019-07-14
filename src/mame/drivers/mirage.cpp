@@ -94,7 +94,7 @@ private:
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
 	virtual void video_start() override;
-	uint32_t screen_update_mirage(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_mirage(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECO16IC_BANK_CB_MEMBER(bank_callback);
 	void mirage_map(address_map &map);
 };
@@ -104,7 +104,7 @@ void miragemj_state::video_start()
 	m_sprgen->alloc_sprite_bitmap();
 }
 
-uint32_t miragemj_state::screen_update_mirage(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t miragemj_state::screen_update_mirage(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint16_t flip = m_deco_tilegen->pf_control_r(0);
 

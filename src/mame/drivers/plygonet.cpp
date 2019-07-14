@@ -580,7 +580,6 @@ void polygonet_state::plygonet(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(64, 64+368-1, 0, 32*8-1);
 	screen.set_screen_update(FUNC(polygonet_state::screen_update_polygonet));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette).set_format(palette_device::xRGB_888, 32768);
 

@@ -54,7 +54,7 @@ protected:
 //  virtual void device_timer(emu_timer &timer, device_timer_id id, int param, void *ptr) override;
 
 private:
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void keyboard_put(u8 data);
 
 	void mem_map(address_map &map);
@@ -101,7 +101,7 @@ INPUT_PORTS_END
 //  VIDEO
 //**************************************************************************
 
-uint32_t olytext_state::screen_update( screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect )
+uint32_t olytext_state::screen_update( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	return 0;
 }

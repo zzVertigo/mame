@@ -75,7 +75,7 @@ public:
 			m_render_bitmap->fill(0);
 	}
 
-	std::unique_ptr<bitmap_rgb32> m_render_bitmap;
+	std::unique_ptr<bitmap_argb32> m_render_bitmap;
 	std::unique_ptr<uint32_t[]> m_render_line;
 	std::unique_ptr<uint16_t[]> m_render_line_raw;
 

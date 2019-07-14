@@ -110,7 +110,7 @@ void avi_write::end_avi_recording()
 	m_frame = 0;
 }
 
-void avi_write::video_frame(bitmap_rgb32& snap)
+void avi_write::video_frame(bitmap_argb32& snap)
 {
 	// get the current time
 	attotime curtime = m_machine.time();

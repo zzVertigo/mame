@@ -39,7 +39,7 @@ public:
 	static constexpr unsigned VERT_DISPLAY_START_NTSC    = 13 + 27;
 
 	// update the screen
-	uint32_t screen_update( screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect );
+	uint32_t screen_update( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect );
 
 	// Video enable
 	DECLARE_WRITE_LINE_MEMBER( videna );
@@ -65,7 +65,7 @@ private:
 	devcb_write_line m_hold_cb;
 	devcb_write_line m_int_cb;
 
-	bitmap_rgb32 m_tmpbmp;
+	bitmap_argb32 m_tmpbmp;
 	emu_timer   *m_free_timer;
 	emu_timer   *m_hold_timer;
 

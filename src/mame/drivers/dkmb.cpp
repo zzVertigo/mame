@@ -52,7 +52,7 @@ private:
 	required_device<cpu_device> m_maincpu;
 	required_shared_ptr<uint64_t> m_framebuffer;
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void main_map(address_map &map);
 };
@@ -62,7 +62,7 @@ void dkmb_state::machine_start()
 {
 }
 
-uint32_t dkmb_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t dkmb_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int count = 0;
 	for (int y = 0; y < 256; y++)

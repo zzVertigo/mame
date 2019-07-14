@@ -76,7 +76,7 @@ private:
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
 	virtual void video_start() override;
-	uint32_t screen_update_giclassic(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_giclassic(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	K056832_CB_MEMBER(tile_callback);
 
 	DECLARE_WRITE16_MEMBER(control_w);
@@ -100,9 +100,9 @@ void giclassic_state::video_start()
 {
 }
 
-uint32_t giclassic_state::screen_update_giclassic(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t giclassic_state::screen_update_giclassic(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
-	bitmap.fill(0, cliprect);
+	bitmap.fill(m_palette->pens()[0], cliprect);
 	screen.priority().fill(0, cliprect);
 
 	m_k056832->tilemap_draw(screen, bitmap, cliprect, 3, 0, 1);
@@ -193,7 +193,7 @@ public:
 
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
-	uint32_t screen_update_giclassicsvr(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_giclassicsvr(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	K056832_CB_MEMBER(tile_callback);
 	K055673_CB_MEMBER(sprite_callback);
 
@@ -253,9 +253,9 @@ K055673_CB_MEMBER(giclassicsvr_state::sprite_callback)
 }
 
 
-uint32_t giclassicsvr_state::screen_update_giclassicsvr(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t giclassicsvr_state::screen_update_giclassicsvr(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
-	bitmap.fill(0, cliprect);
+	bitmap.fill(m_palette->pens()[0], cliprect);
 	screen.priority().fill(0, cliprect);
 
 	m_k056832->tilemap_draw(screen, bitmap, cliprect, 3, 0, 1);
@@ -309,7 +309,6 @@ void giclassic_state::giclassic(machine_config &config)
 	screen.set_size(600, 384);
 	screen.set_visarea_full();
 	screen.set_screen_update(FUNC(giclassic_state::screen_update_giclassic));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette).set_format(palette_device::xBGR_444, 256);
 	m_palette->enable_shadows();
@@ -333,7 +332,6 @@ void giclassicsvr_state::giclassvr(machine_config &config)
 	screen.set_vblank_time(ATTOSECONDS_IN_USEC(0));
 	screen.set_visarea_full();
 	screen.set_screen_update(FUNC(giclassicsvr_state::screen_update_giclassicsvr));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette).set_format(palette_device::xBGR_444, 16384);
 	m_palette->enable_shadows();

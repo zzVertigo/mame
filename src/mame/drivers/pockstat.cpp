@@ -76,7 +76,7 @@ private:
 
 	void mem_map(address_map &map);
 
-	uint32_t screen_update_pockstat(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_pockstat(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void set_interrupt_line(uint32_t line, int state);
 	uint32_t get_interrupt_line(uint32_t line);
@@ -936,7 +936,7 @@ void pockstat_state::machine_reset()
 	m_flash_write_count = 0;
 }
 
-uint32_t pockstat_state::screen_update_pockstat(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t pockstat_state::screen_update_pockstat(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (int y = 0; y < 32; y++)
 	{

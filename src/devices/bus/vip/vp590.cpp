@@ -225,7 +225,7 @@ void vp590_device::vip_dma_w(offs_t offset, uint8_t data)
 //  vip_screen_update - screen update
 //-------------------------------------------------
 
-uint32_t vp590_device::vip_screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t vp590_device::vip_screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_cgc->screen_update(screen, bitmap, cliprect);
 

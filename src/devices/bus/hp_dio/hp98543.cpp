@@ -215,7 +215,7 @@ void dio16_98543_device::update_int()
 	irq7_out(line == 7 && state);
 }
 
-uint32_t dio16_98543_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t dio16_98543_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int startx[TOPCAT_COUNT], starty[TOPCAT_COUNT];
 	int endx[TOPCAT_COUNT], endy[TOPCAT_COUNT];

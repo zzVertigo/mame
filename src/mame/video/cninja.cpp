@@ -258,7 +258,7 @@ VIDEO_START_MEMBER(cninja_state,mutantf)
 	m_sprgen[1]->alloc_sprite_bitmap();
 }
 
-uint32_t cninja_state::screen_update_mutantf(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t cninja_state::screen_update_mutantf(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint16_t flip = m_deco_tilegen[0]->pf_control_r(0);
 	uint16_t priority = m_priority;

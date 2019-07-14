@@ -279,7 +279,7 @@ private:
 
 	required_device<k056832_device> m_k056832;
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 };
 
 class jetwave_state : public zr107_state
@@ -298,13 +298,13 @@ private:
 
 	void main_memmap(address_map &map);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	required_device<k001604_device> m_k001604;
 	required_device<k001006_device> m_k001006_2;
 };
 
-uint32_t jetwave_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t jetwave_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(m_palette->pen(0), cliprect);
 
@@ -347,7 +347,7 @@ void midnrun_state::video_start()
 	m_k056832->set_layer_offs(7, -29, -27);
 }
 
-uint32_t midnrun_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t midnrun_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(m_palette->pen(0), cliprect);
 
@@ -689,7 +689,7 @@ static INPUT_PORTS_START( jetwave )
 
 	PORT_START("ANALOG2")
 	PORT_BIT( 0xff, 0x00, IPT_PEDAL ) PORT_NAME("Accelerator") PORT_MINMAX(0x00,0x90) PORT_SENSITIVITY(25) PORT_KEYDELTA(10)
-	
+
 	PORT_START("ANALOG3") //actually required else MAME will crash if this port is removed.
 	PORT_BIT( 0xff, 0x00, IPT_UNUSED )
 INPUT_PORTS_END

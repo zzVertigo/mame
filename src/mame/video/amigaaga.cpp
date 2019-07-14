@@ -435,7 +435,7 @@ rgb_t amiga_state::aga_update_ham(int newpix)
  *
  *************************************/
 
-void amiga_state::aga_render_scanline(bitmap_rgb32 &bitmap, int scanline)
+void amiga_state::aga_render_scanline(bitmap_argb32 &bitmap, int scanline)
 {
 	uint16_t save_color0 = CUSTOM_REG(REG_COLOR00);
 	int ddf_start_pixel = 0, ddf_stop_pixel = 0;
@@ -850,7 +850,7 @@ void amiga_state::aga_render_scanline(bitmap_rgb32 &bitmap, int scanline)
  *
  *************************************/
 
-uint32_t amiga_state::screen_update_amiga_aga(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t amiga_state::screen_update_amiga_aga(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (cliprect.top() != cliprect.bottom())
 		return 0;

@@ -983,7 +983,7 @@ void ygv608_device::register_state_save()
 }
 
 
-void ygv608_device::draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect)
+void ygv608_device::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 #ifdef _ENABLE_SPRITES
 	const int sprite_limits[4] = { 512-8, 512-16, 512-32, 512-64 };
@@ -997,7 +997,6 @@ void ygv608_device::draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect
 
 	SPRITE_ATTR *sa;
 	int flipx = 0, flipy = 0;
-	int i;
 
 	/* ensure that sprites are enabled */
 	if( (m_dspe == false ) || (m_sprite_disable == true) )
@@ -1006,7 +1005,7 @@ void ygv608_device::draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect
 	/* draw sprites */
 	spriteClip &= cliprect;
 	sa = &m_sprite_attribute_table.s[MAX_SPRITES-1];
-	for( i=0; i<MAX_SPRITES; i++, sa-- )
+	for( int i=0; i<MAX_SPRITES; i++, sa-- )
 	{
 		int code, color, sx, sy, size, attr, g_attr, spf;
 
@@ -1083,18 +1082,17 @@ static const char *const mode[] = {
 static const char *const psize[] = { "8x8", "16x16", "32x32", "64x64" };
 #endif
 
-inline void ygv608_device::draw_layer_roz(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, tilemap_t *source_tilemap)
+inline void ygv608_device::draw_layer_roz(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, tilemap_t *source_tilemap)
 {
 	//int xc, yc;
 	//double r, alpha, sin_theta, cos_theta;
 	//const rectangle &visarea = screen.visible_area();
-	uint32_t sx, sy;
 
 	int ba_select = (source_tilemap == m_tilemap_A) ? 0 : 1;
 
-	sy = (int)m_scroll_data_table[ba_select][0x00] +
+	uint32_t sy = (int)m_scroll_data_table[ba_select][0x00] +
 	   (((int)m_scroll_data_table[ba_select][0x01] & 0x0f ) << 8);
-	sx = (int)m_scroll_data_table[ba_select][0x80] +
+	uint32_t sx = (int)m_scroll_data_table[ba_select][0x80] +
 	   (((int)m_scroll_data_table[ba_select][0x81] & 0x0f ) << 8);
 
 	if( m_zron == true )
@@ -1119,28 +1117,26 @@ inline void ygv608_device::draw_layer_roz(screen_device &screen, bitmap_ind16 &b
 		source_tilemap->draw(screen, bitmap, cliprect, 0, 0 );
 }
 
-void ygv608_device::ygv608_draw_mosaic(bitmap_ind16 &bitmap, const rectangle &cliprect, int n)
+void ygv608_device::ygv608_draw_mosaic(bitmap_argb32 &bitmap, const rectangle &cliprect, int n)
 {
-	int x, y, mask;
-
 	if (n <= 0)
 	{
 		return;
 	}
 
 	// mask to drop the lowest n-bits
-	mask = ~((1 << n) - 1);
+	int mask = ~((1 << n) - 1);
 
-	for (y = cliprect.min_y; y <= cliprect.max_y; y++)
+	for (int y = cliprect.min_y; y <= cliprect.max_y; y++)
 	{
-		for (x = cliprect.min_x; x <= cliprect.max_x; x++)
+		for (int x = cliprect.min_x; x <= cliprect.max_x; x++)
 		{
-			bitmap.pix16(y, x) = bitmap.pix16(y & mask, x & mask);
+			bitmap.pix32(y, x) = bitmap.pix32(y & mask, x & mask);
 		}
 	}
 }
 
-uint32_t ygv608_device::update_screen(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t ygv608_device::update_screen(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 #ifdef _SHOW_VIDEO_DEBUG
 	char buffer[64];

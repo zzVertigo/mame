@@ -60,7 +60,7 @@ private:
 
 	void prot_w(offs_t offset, u16 data, u16 mem_mask = ~0);
 	u16 prot_r();
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECO16IC_BANK_CB_MEMBER(bank_callback);
 	static rgb_t cbuster_XBGR_888(u32 raw);
 	void main_map(address_map &map);

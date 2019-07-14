@@ -58,7 +58,7 @@ private:
 	uint32_t m_nand_stage;
 	uint32_t m_nand_ptr_temp;
 	uint32_t m_timer;
-	uint32_t screen_update_gp2x(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_gp2x(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void gp2x_map(address_map &map);
 };
 
@@ -151,7 +151,7 @@ static const char *const gp2x_regnames[0x200] =
 	"YUV Source region A H",
 };
 #endif
-uint32_t gp2x_state::screen_update_gp2x(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t gp2x_state::screen_update_gp2x(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// display enabled?
 	if (m_vidregs[0] & 1)

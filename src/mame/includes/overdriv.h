@@ -49,7 +49,7 @@ private:
 	DECLARE_WRITE8_MEMBER(objdma_w);
 	TIMER_CALLBACK_MEMBER(objdma_end_cb);
 
-	uint32_t screen_update_overdriv(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_overdriv(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	//INTERRUPT_GEN_MEMBER(cpuB_interrupt);
 	TIMER_DEVICE_CALLBACK_MEMBER(overdriv_cpuA_scanline);
 

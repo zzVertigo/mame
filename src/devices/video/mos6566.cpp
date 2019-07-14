@@ -2433,7 +2433,7 @@ void mos6566_device::draw_sprites()
 //  screen_update -
 //-------------------------------------------------
 
-uint32_t mos6566_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mos6566_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(PALETTE_MOS[0], cliprect);
 

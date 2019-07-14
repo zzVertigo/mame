@@ -54,10 +54,10 @@ private:
 	required_device<generic_slot_device> m_cart;
 	memory_region *m_cart_region;
 
-	uint32_t screen_update_storio(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_storio(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 };
 
-uint32_t vtech_storio_state::screen_update_storio(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t vtech_storio_state::screen_update_storio(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

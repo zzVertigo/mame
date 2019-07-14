@@ -317,7 +317,7 @@ void raiden2_state::video_start()
 	m_foreground_layer = &machine().tilemap().create(*m_gfxdecode, tilemap_get_info_delegate(FUNC(raiden2_state::get_fore_tile_info),this), TILEMAP_SCAN_ROWS, 16,16, 32,32 );
 }
 
-void raiden2_state::blend_layer(bitmap_rgb32 &bitmap, const rectangle &cliprect, bitmap_ind16 &source, int layer)
+void raiden2_state::blend_layer(bitmap_argb32 &bitmap, const rectangle &cliprect, bitmap_ind16 &source, int layer)
 {
 	if (layer == -1)
 		return;
@@ -345,13 +345,13 @@ void raiden2_state::blend_layer(bitmap_rgb32 &bitmap, const rectangle &cliprect,
 	}
 }
 
-void raiden2_state::tilemap_draw_and_blend(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, tilemap_t *tilemap)
+void raiden2_state::tilemap_draw_and_blend(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, tilemap_t *tilemap)
 {
 	tilemap->draw(screen, m_tile_bitmap, cliprect, 0, 0);
 	blend_layer(bitmap, cliprect, m_tile_bitmap, 0);
 }
 
-u32 raiden2_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 raiden2_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(m_palette->black_pen(), cliprect);
 	if (!(m_tilemap_enable & 16))

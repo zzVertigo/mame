@@ -158,7 +158,7 @@ private:
 	DECLARE_WRITE8_MEMBER(sound_int_clear_w);
 	DECLARE_WRITE8_MEMBER(gg_led_ctrl_w);
 	void mazerbla_palette(palette_device &palette);
-	uint32_t screen_update_mazerbla(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_mazerbla(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(screen_vblank);
 	INTERRUPT_GEN_MEMBER(sound_interrupt);
 	TIMER_CALLBACK_MEMBER(deferred_ls670_0_w);
@@ -243,7 +243,7 @@ void mazerbla_state::video_start()
 }
 
 
-uint32_t mazerbla_state::screen_update_mazerbla(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mazerbla_state::screen_update_mazerbla(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_vcu->screen_update(screen,bitmap,cliprect);
 	return 0;

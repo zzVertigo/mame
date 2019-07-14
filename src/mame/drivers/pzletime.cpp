@@ -75,7 +75,7 @@ private:
 	virtual void machine_reset() override;
 	virtual void video_start() override;
 	void pzletime_palette(palette_device &palette) const;
-	uint32_t screen_update_pzletime(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_pzletime(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	required_device<cpu_device> m_maincpu;
 	required_device<okim6295_device> m_oki;
 	required_device<eeprom_serial_93cxx_device> m_eeprom;
@@ -114,7 +114,7 @@ void pzletime_state::video_start()
 	m_txt_tilemap->set_transparent_pen(0);
 }
 
-uint32_t pzletime_state::screen_update_pzletime(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t pzletime_state::screen_update_pzletime(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int count;
 	int y, x;

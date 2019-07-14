@@ -180,7 +180,7 @@ VIDEO_START_MEMBER(gottlieb_state,screwloo)
  *
  *************************************/
 
-void gottlieb_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void gottlieb_state::draw_sprites(bitmap32_t &bitmap, const rectangle &cliprect)
 {
 	rectangle clip = cliprect;
 	int offs;
@@ -215,11 +215,22 @@ void gottlieb_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprec
  *
  *************************************/
 
-uint32_t gottlieb_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t gottlieb_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
+{
+	video_update(bitmap, cliprect, screen.visible_area());
+	return 0;
+}
+
+void gottlieb_state::overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea)
+{
+	video_update(bitmap, cliprect, visarea);
+}
+
+void gottlieb_state::video_update(bitmap32_t &bitmap, const rectangle &cliprect, const rectangle &visarea)
 {
 	/* if the background has lower priority, render it first, else clear the screen */
 	if (!m_background_priority)
-		m_bg_tilemap->draw(screen, bitmap, cliprect, TILEMAP_DRAW_OPAQUE, 0);
+		m_bg_tilemap->draw(bitmap, cliprect, visarea, TILEMAP_DRAW_OPAQUE);
 	else
 		bitmap.fill(m_palette->pen(0), cliprect);
 
@@ -228,7 +239,5 @@ uint32_t gottlieb_state::screen_update(screen_device &screen, bitmap_rgb32 &bitm
 
 	/* if the background has higher priority, render it now */
 	if (m_background_priority)
-		m_bg_tilemap->draw(screen, bitmap, cliprect, 0, 0);
-
-	return 0;
+		m_bg_tilemap->draw(bitmap, cliprect, visarea, 0);
 }

@@ -98,9 +98,9 @@ private:
 
 	virtual void video_start() override;
 
-	uint32_t screen_update_f1gp(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_f1gpb(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	void f1gpb_draw_sprites( screen_device &screen, bitmap_ind16 &bitmap,const rectangle &cliprect );
+	uint32_t screen_update_f1gp(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_f1gpb(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void f1gpb_draw_sprites( screen_device &screen, bitmap_argb32 &bitmap,const rectangle &cliprect );
 	void f1gp_cpu1_map(address_map &map);
 	void f1gpb_cpu1_map(address_map &map);
 	void f1gpb_cpu2_map(address_map &map);
@@ -130,7 +130,7 @@ private:
 	virtual void machine_reset() override;
 	virtual void video_start() override;
 
-	uint32_t screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void f1gp2_cpu1_map(address_map &map);
 };
 

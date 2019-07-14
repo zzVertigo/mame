@@ -456,7 +456,7 @@ public:
 	DECLARE_READ32_MEMBER(geforce_r);
 	DECLARE_WRITE32_MEMBER(geforce_w);
 	DECLARE_WRITE_LINE_MEMBER(vblank_callback);
-	uint32_t screen_update_callback(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_callback(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	bool update_interrupts();
 	void set_irq_callbaclk(std::function<void(int state)> callback) { irq_callback = callback; }
 

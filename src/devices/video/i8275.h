@@ -41,7 +41,7 @@
 //  INTERFACE CONFIGURATION MACROS
 //**************************************************************************
 
-#define I8275_DRAW_CHARACTER_MEMBER(_name) void _name(bitmap_rgb32 &bitmap, int x, int y, uint8_t linecount, uint8_t charcode, uint8_t lineattr, uint8_t lten, uint8_t rvv, uint8_t vsp, uint8_t gpa, uint8_t hlgt)
+#define I8275_DRAW_CHARACTER_MEMBER(_name) void _name(bitmap_argb32 &bitmap, int x, int y, uint8_t linecount, uint8_t charcode, uint8_t lineattr, uint8_t lten, uint8_t rvv, uint8_t vsp, uint8_t gpa, uint8_t hlgt)
 
 
 //**************************************************************************
@@ -55,7 +55,7 @@ class i8275_device :   public device_t,
 						public device_video_interface
 {
 public:
-	typedef device_delegate<void (bitmap_rgb32 &bitmap, int x, int y, uint8_t linecount, uint8_t charcode, uint8_t lineattr, uint8_t lten, uint8_t rvv, uint8_t vsp, uint8_t gpa, uint8_t hlgt)> draw_character_delegate;
+	typedef device_delegate<void (bitmap_argb32 &bitmap, int x, int y, uint8_t linecount, uint8_t charcode, uint8_t lineattr, uint8_t lten, uint8_t rvv, uint8_t vsp, uint8_t gpa, uint8_t hlgt)> draw_character_delegate;
 
 	// construction/destruction
 	i8275_device(const machine_config &mconfig, const char *tag, device_t *owner, uint32_t clock);
@@ -65,13 +65,13 @@ public:
 	template <typename... T> void set_display_callback(T &&... args) { m_display_cb = draw_character_delegate(std::forward<T>(args)...); }
 	void set_display_callback(draw_character_delegate callback) { m_display_cb = callback; }
 	template <class FunctionClass> void set_display_callback(const char *devname,
-		void (FunctionClass::*callback)(bitmap_rgb32 &, int, int, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t),
+		void (FunctionClass::*callback)(bitmap_argb32 &, int, int, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t),
 		const char *name)
 	{
 		set_display_callback(draw_character_delegate(callback, name, devname, static_cast<FunctionClass *>(nullptr)));
 	}
 	template <class FunctionClass> void set_display_callback(
-		void (FunctionClass::*callback)(bitmap_rgb32 &, int, int, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t),
+		void (FunctionClass::*callback)(bitmap_argb32 &, int, int, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t),
 		const char *name)
 	{
 		set_display_callback(draw_character_delegate(callback, name, nullptr, static_cast<FunctionClass *>(nullptr)));
@@ -90,7 +90,7 @@ public:
 
 	DECLARE_WRITE_LINE_MEMBER( lpen_w );
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 protected:
 	i8275_device(const machine_config &mconfig, device_type type, const char *tag, device_t *owner, uint32_t clock);
@@ -189,7 +189,7 @@ protected:
 	int m_hpixels_per_column;
 	bool m_refresh_hack;
 
-	bitmap_rgb32 m_bitmap;
+	bitmap_argb32 m_bitmap;
 
 	uint8_t m_status;
 	uint8_t m_param[REG_DMA + 1];

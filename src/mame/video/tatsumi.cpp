@@ -57,7 +57,7 @@ WRITE16_MEMBER(tatsumi_state::tatsumi_sprite_control_w)
 
 // apply shadowing to underlying layers
 // TODO: it might mix up with the lower palette bank instead (color bank 0x1400?)
-void tatsumi_state::apply_shadow_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &shadow_bitmap, uint8_t xor_output)
+void tatsumi_state::apply_shadow_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &shadow_bitmap, uint8_t xor_output)
 {
 	for(int y=cliprect.min_y;y<cliprect.max_y;y++)
 	{
@@ -289,12 +289,12 @@ inline void tatsumi_state::roundupt_drawgfxzoomrotate( _BitmapClass &dest_bmp, c
 	}
 }
 
-static void mycopyrozbitmap_core(bitmap_ind8 &bitmap,bitmap_rgb32 &srcbitmap,
+static void mycopyrozbitmap_core(bitmap_ind8 &bitmap,bitmap_argb32 &srcbitmap,
 		int dstx,int dsty, int srcwidth, int srcheight,int incxx,int incxy,int incyx,int incyy,
 		const rectangle &clip,int transparent_color)
 { }
 
-static void mycopyrozbitmap_core(bitmap_rgb32 &bitmap,bitmap_rgb32 &srcbitmap,
+static void mycopyrozbitmap_core(bitmap_argb32 &bitmap,bitmap_argb32 &srcbitmap,
 		int dstx,int dsty, int srcwidth, int srcheight,int incxx,int incxy,int incyx,int incyy,
 		const rectangle &clip,int transparent_color)
 {
@@ -597,7 +597,7 @@ WRITE8_MEMBER(apache3_state::apache3_road_x_w)
 	m_apache3_road_x_ram[data] = offset;
 }
 
-void apache3_state::draw_sky(bitmap_rgb32 &bitmap,const rectangle &cliprect, int palette_base, int start_offset)
+void apache3_state::draw_sky(bitmap_argb32 &bitmap,const rectangle &cliprect, int palette_base, int start_offset)
 {
 	// all todo
 	int x,y;
@@ -620,7 +620,7 @@ start_offset-=48;
 }
 
 /* Draw the sky and ground, applying rotation (eventually). Experimental! */
-void apache3_state::draw_ground(bitmap_rgb32 &dst, const rectangle &cliprect)
+void apache3_state::draw_ground(bitmap_argb32 &dst, const rectangle &cliprect)
 {
 	if (0)
 	{
@@ -695,7 +695,7 @@ VIDEO_START_MEMBER(apache3_state,apache3)
 	m_tx_layer->set_transparent_pen(0);
 }
 
-uint32_t apache3_state::screen_update_apache3(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t apache3_state::screen_update_apache3(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	update_cluts(1024, 0, 2048+2048);
 
@@ -767,7 +767,7 @@ VIDEO_START_MEMBER(roundup5_state,roundup5)
 	save_pointer(NAME(m_bg_gfxram), 0x20000);
 }
 
-void roundup5_state::draw_road(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void roundup5_state::draw_road(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 /*
 0xf980 0x0008 0x8c80 0x4a00 - road right to below, width unknown (32 pixels guess)
@@ -986,7 +986,7 @@ offset is from last pixel of first road segment?
 // background layer landscape for Round Up 5
 // two bitmap layers, back layer is 512 x 128, the other one is 512 x 64
 // it's safe to assume that three monitor version will have a different arrangement here ...
-void roundup5_state::draw_landscape(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint8_t type)
+void roundup5_state::draw_landscape(bitmap_argb32 &bitmap, const rectangle &cliprect, uint8_t type)
 {
 	// TODO: guess, assume back layer having less scroll increment than front for parallax scrolling.
 	// also notice that m_vregs[8/2] >> 8 is identical to [0x0c/2], always?
@@ -1023,7 +1023,7 @@ void roundup5_state::draw_landscape(bitmap_rgb32 &bitmap, const rectangle &clipr
 
 }
 
-uint32_t roundup5_state::screen_update_roundup5(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t roundup5_state::screen_update_roundup5(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int tx_start_addr;
 
@@ -1229,7 +1229,7 @@ VIDEO_START_MEMBER(cyclwarr_state,bigfight)
 }
 
 
-void cyclwarr_state::draw_bg(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, tilemap_t *src, const uint16_t* scrollx, const uint16_t* scrolly, const uint16_t layer_page_size, bool is_road, int hi_priority)
+void cyclwarr_state::draw_bg(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, tilemap_t *src, const uint16_t* scrollx, const uint16_t* scrolly, const uint16_t layer_page_size, bool is_road, int hi_priority)
 {
 	rectangle clip;
 	clip.min_x = cliprect.min_x;
@@ -1285,7 +1285,7 @@ void cyclwarr_state::draw_bg(screen_device &screen, bitmap_rgb32 &bitmap, const 
 	}
 }
 
-void cyclwarr_state::draw_bg_layers(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int hi_priority)
+void cyclwarr_state::draw_bg_layers(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int hi_priority)
 {
 	draw_bg(screen, bitmap, cliprect, m_layer[3], &m_cyclwarr_videoram[1][0x000], &m_cyclwarr_videoram[1][0x100], m_layer_page_size[3], false, hi_priority);
 	draw_bg(screen, bitmap, cliprect, m_layer[2], &m_cyclwarr_videoram[1][0x200], &m_cyclwarr_videoram[1][0x300], m_layer_page_size[2],false, hi_priority);
@@ -1293,7 +1293,7 @@ void cyclwarr_state::draw_bg_layers(screen_device &screen, bitmap_rgb32 &bitmap,
 	draw_bg(screen, bitmap, cliprect, m_layer[0], &m_cyclwarr_videoram[0][0x200], &m_cyclwarr_videoram[0][0x300], m_layer_page_size[0], false, hi_priority);
 }
 
-uint32_t cyclwarr_state::screen_update_cyclwarr(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t cyclwarr_state::screen_update_cyclwarr(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bigfight_bank=m_bigfight_a40000[0];
 	if (m_bigfight_bank!=m_bigfight_last_bank)

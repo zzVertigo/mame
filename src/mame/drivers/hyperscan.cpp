@@ -78,18 +78,18 @@ private:
 	virtual void machine_reset() override;
 	virtual void device_timer(emu_timer &timer, device_timer_id id, int param, void *ptr) override;
 
-	uint32_t spg290_screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t spg290_screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_READ32_MEMBER(spg290_regs_r);
 	DECLARE_WRITE32_MEMBER(spg290_regs_w);
 	void spg290_timers_update();
 	DECLARE_WRITE_LINE_MEMBER(spg290_vblank_irq);
 	inline uint32_t spg290_read_mem(uint32_t offset);
 	inline void spg290_write_mem(uint32_t offset, uint32_t data);
-	void spg290_argb1555(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint16_t posy, uint16_t posx, uint16_t argb);
-	void spg290_rgb565(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint16_t posy, uint16_t posx, uint16_t rgb, uint32_t transrgb);
-	void spg290_blit_sprite(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint32_t control, uint32_t attribute, uint32_t *palettes, uint32_t buf_start);
-	void spg290_blit_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint32_t control, uint32_t attribute, int posy, int posx, uint32_t nptr, uint32_t buf_start, uint32_t transrgb);
-	void spg290_blit_character(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint32_t control, uint32_t attribute, int posy, int posx, uint32_t nptr, uint32_t buf_start, uint32_t transrgb);
+	void spg290_argb1555(bitmap_argb32 &bitmap, const rectangle &cliprect, uint16_t posy, uint16_t posx, uint16_t argb);
+	void spg290_rgb565(bitmap_argb32 &bitmap, const rectangle &cliprect, uint16_t posy, uint16_t posx, uint16_t rgb, uint32_t transrgb);
+	void spg290_blit_sprite(bitmap_argb32 &bitmap, const rectangle &cliprect, uint32_t control, uint32_t attribute, uint32_t *palettes, uint32_t buf_start);
+	void spg290_blit_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect, uint32_t control, uint32_t attribute, int posy, int posx, uint32_t nptr, uint32_t buf_start, uint32_t transrgb);
+	void spg290_blit_character(bitmap_argb32 &bitmap, const rectangle &cliprect, uint32_t control, uint32_t attribute, int posy, int posx, uint32_t nptr, uint32_t buf_start, uint32_t transrgb);
 
 	void spg290_mem(address_map &map);
 
@@ -407,7 +407,7 @@ inline void hyperscan_state::spg290_write_mem(uint32_t offset, uint32_t data)
 	return m_maincpu->space(0).write_dword(offset, data);
 }
 
-void hyperscan_state::spg290_argb1555(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint16_t posy, uint16_t posx, uint16_t argb)
+void hyperscan_state::spg290_argb1555(bitmap_argb32 &bitmap, const rectangle &cliprect, uint16_t posy, uint16_t posx, uint16_t argb)
 {
 	if (!(argb & 0x8000) && cliprect.contains(posx, posy))
 	{
@@ -416,7 +416,7 @@ void hyperscan_state::spg290_argb1555(bitmap_rgb32 &bitmap, const rectangle &cli
 	}
 }
 
-void hyperscan_state::spg290_rgb565(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint16_t posy, uint16_t posx, uint16_t rgb, uint32_t transrgb)
+void hyperscan_state::spg290_rgb565(bitmap_argb32 &bitmap, const rectangle &cliprect, uint16_t posy, uint16_t posx, uint16_t rgb, uint32_t transrgb)
 {
 	if ((!(transrgb & 0x10000) || (transrgb & 0xffff) != rgb) && cliprect.contains(posx, posy))
 	{
@@ -425,7 +425,7 @@ void hyperscan_state::spg290_rgb565(bitmap_rgb32 &bitmap, const rectangle &clipr
 	}
 }
 
-void hyperscan_state::spg290_blit_sprite(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint32_t control, uint32_t attribute, uint32_t *palettes, uint32_t buf_start)
+void hyperscan_state::spg290_blit_sprite(bitmap_argb32 &bitmap, const rectangle &cliprect, uint32_t control, uint32_t attribute, uint32_t *palettes, uint32_t buf_start)
 {
 	uint32_t sprite_base = buf_start + ((control & 0xffff) << 8);
 	uint16_t sprite_x    = (control >> 16) & 0x3ff;
@@ -462,7 +462,7 @@ void hyperscan_state::spg290_blit_sprite(bitmap_rgb32 &bitmap, const rectangle &
 		}
 }
 
-void hyperscan_state::spg290_blit_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint32_t control, uint32_t attribute, int posy, int posx, uint32_t nptr, uint32_t buf_start, uint32_t transrgb)
+void hyperscan_state::spg290_blit_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect, uint32_t control, uint32_t attribute, int posy, int posx, uint32_t nptr, uint32_t buf_start, uint32_t transrgb)
 {
 	for (int y=0; y<512; y++)
 	{
@@ -488,13 +488,13 @@ void hyperscan_state::spg290_blit_bitmap(bitmap_rgb32 &bitmap, const rectangle &
 	}
 }
 
-void hyperscan_state::spg290_blit_character(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint32_t control, uint32_t attribute, int posy, int posx, uint32_t nptr, uint32_t buf_start, uint32_t transrgb)
+void hyperscan_state::spg290_blit_character(bitmap_argb32 &bitmap, const rectangle &cliprect, uint32_t control, uint32_t attribute, int posy, int posx, uint32_t nptr, uint32_t buf_start, uint32_t transrgb)
 {
 	// TODO
 }
 
 
-uint32_t hyperscan_state::spg290_screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t hyperscan_state::spg290_screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (m_ppu.control & 0x1000)
 	{

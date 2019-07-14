@@ -119,7 +119,7 @@ public:
 	virtual error read_sound_samples(int channel, std::uint32_t firstsample, std::uint32_t numsamples, std::int16_t *output) = 0;
 
 	virtual error append_video_frame(bitmap_yuy16 &bitmap) = 0;
-	virtual error append_video_frame(bitmap_rgb32 &bitmap) = 0;
+	virtual error append_video_frame(bitmap_argb32 &bitmap) = 0;
 	virtual error append_sound_samples(int channel, std::int16_t const *samples, std::uint32_t numsamples, std::uint32_t sampleskip) = 0;
 
 protected:

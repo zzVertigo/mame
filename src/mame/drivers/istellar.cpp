@@ -55,7 +55,7 @@ private:
 	DECLARE_READ8_MEMBER(z80_2_unknown_read);
 	DECLARE_WRITE8_MEMBER(z80_2_ldp_write);
 	virtual void machine_start() override;
-	uint32_t screen_update_istellar(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea);
 	DECLARE_WRITE_LINE_MEMBER(vblank_irq);
 	required_device<cpu_device> m_maincpu;
 	required_device<cpu_device> m_subcpu;
@@ -75,7 +75,7 @@ private:
 
 
 /* VIDEO GOODS */
-uint32_t istellar_state::screen_update_istellar(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void istellar_state::overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea)
 {
 	/* clear */
 	bitmap.fill(0, cliprect);
@@ -93,8 +93,6 @@ uint32_t istellar_state::screen_update_istellar(screen_device &screen, bitmap_rg
 	}
 
 	/* Draw sprites */
-
-	return 0;
 }
 
 
@@ -294,7 +292,7 @@ void istellar_state::istellar(machine_config &config)
 	latch2.set_separate_acknowledge(true);
 
 	PIONEER_LDV1000(config, m_laserdisc, 0);
-	m_laserdisc->set_overlay(256, 256, FUNC(istellar_state::screen_update_istellar));
+	m_laserdisc->set_overlay(256, 256, FUNC(istellar_state::overlay_update));
 	m_laserdisc->add_route(0, "lspeaker", 1.0);
 	m_laserdisc->add_route(1, "rspeaker", 1.0);
 

@@ -312,7 +312,7 @@ VIDEO_START_MEMBER( mbee_state, premium )
 	m_is_premium = 1;
 }
 
-uint32_t mbee_state::screen_update_mbee(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mbee_state::screen_update_mbee(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_framecnt++;
 	m_crtc->screen_update(screen, bitmap, cliprect);

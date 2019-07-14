@@ -56,7 +56,7 @@ public:
 	IRQ_CALLBACK_MEMBER(spi_irq_callback);
 	INTERRUPT_GEN_MEMBER(spi_interrupt);
 
-	u32 screen_update_sys386f(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update_sys386f(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 protected:
 	required_device<cpu_device> m_maincpu;
@@ -143,9 +143,9 @@ protected:
 	DECLARE_WRITE_LINE_MEMBER(ymf_irqhandler);
 
 	void set_layer_offsets();
-	void drawgfx_blend(bitmap_rgb32 &bitmap, const rectangle &cliprect, gfx_element *gfx, u32 code, u32 color, bool flipx, bool flipy, int sx, int sy, bitmap_ind8 &primap, u8 primask);
-	void draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &primap, int priority);
-	void combine_tilemap(bitmap_rgb32 &bitmap, const rectangle &cliprect, tilemap_t *tile, int sx, int sy, int opaque, s16 *rowscroll);
+	void drawgfx_blend(bitmap_argb32 &bitmap, const rectangle &cliprect, gfx_element *gfx, u32 code, u32 color, bool flipx, bool flipy, int sx, int sy, bitmap_ind8 &primap, u8 primask);
+	void draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &primap, int priority);
+	void combine_tilemap(bitmap_argb32 &bitmap, const rectangle &cliprect, tilemap_t *tile, int sx, int sy, int opaque, s16 *rowscroll);
 
 	virtual void machine_start() override;
 	virtual void video_start() override;
@@ -157,7 +157,7 @@ protected:
 	TILE_GET_INFO_MEMBER(get_back_tile_info);
 	TILE_GET_INFO_MEMBER(get_midl_tile_info);
 	TILE_GET_INFO_MEMBER(get_fore_tile_info);
-	u32 screen_update_spi(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update_spi(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void register_video_state();
 	void init_spi_common();

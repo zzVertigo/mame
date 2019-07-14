@@ -31,7 +31,7 @@ WRITE16_MEMBER(tecmosys_state::tilemap_paletteram16_xGGGGGRRRRRBBBBB_word_w)
 	set_color_555(offset+0x4000, 5, 10, 0, m_tilemap_paletteram16[offset]);
 }
 
-void tecmosys_state::render_sprites_to_bitmap(bitmap_rgb32 &bitmap, uint16_t extrax, uint16_t extray )
+void tecmosys_state::render_sprites_to_bitmap(bitmap_argb32 &bitmap, uint16_t extrax, uint16_t extray )
 {
 	int i;
 
@@ -139,7 +139,7 @@ void tecmosys_state::tilemap_copy_to_compose(uint16_t pri, const rectangle &clip
 }
 
 
-void tecmosys_state::do_final_mix(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void tecmosys_state::do_final_mix(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	pen_t const *const paldata = m_palette->pens();
 
@@ -227,7 +227,7 @@ void tecmosys_state::do_final_mix(bitmap_rgb32 &bitmap, const rectangle &cliprec
 }
 
 
-uint32_t tecmosys_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t tecmosys_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(0, cliprect);
 

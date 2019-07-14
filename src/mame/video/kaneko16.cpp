@@ -172,7 +172,7 @@ void kaneko16_berlwall_state::bg15_bright_w(u8 data)
 }
 
 
-void kaneko16_berlwall_state::render_15bpp_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void kaneko16_berlwall_state::render_15bpp_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (!m_bg15_bitmap[0].valid())
 		return;
@@ -220,7 +220,7 @@ void kaneko16_berlwall_state::render_15bpp_bitmap(bitmap_rgb32 &bitmap, const re
 	}
 }
 
-u32 kaneko16_berlwall_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 kaneko16_berlwall_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// berlwall uses a 15bpp bitmap as a bg, not a solid fill
 	render_15bpp_bitmap(bitmap,cliprect);

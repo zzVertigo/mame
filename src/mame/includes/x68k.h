@@ -255,7 +255,7 @@ protected:
 	TILE_GET_INFO_MEMBER(get_bg0_tile_16);
 	TILE_GET_INFO_MEMBER(get_bg1_tile_16);
 	virtual void video_start() override;
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_CALLBACK_MEMBER(led_callback);
 	TIMER_CALLBACK_MEMBER(scc_ack);
 	TIMER_CALLBACK_MEMBER(md_6button_port1_timeout);
@@ -329,10 +329,10 @@ protected:
 	void x68k_map(address_map &map);
 	void cpu_space_map(address_map &map);
 
-	inline void plot_pixel(bitmap_rgb32 &bitmap, int x, int y, uint32_t color);
-	void draw_text(bitmap_rgb32 &bitmap, int xscr, int yscr, rectangle rect);
+	inline void plot_pixel(bitmap_argb32 &bitmap, int x, int y, uint32_t color);
+	void draw_text(bitmap_argb32 &bitmap, int xscr, int yscr, rectangle rect);
 	bool draw_gfx_scanline(bitmap_ind16 &bitmap, rectangle cliprect, uint8_t priority);
-	void draw_gfx(bitmap_rgb32 &bitmap,rectangle cliprect);
+	void draw_gfx(bitmap_argb32 &bitmap,rectangle cliprect);
 	void draw_sprites(bitmap_ind16 &bitmap, int priority, rectangle cliprect);
 
 public:

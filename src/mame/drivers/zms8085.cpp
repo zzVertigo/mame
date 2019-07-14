@@ -38,7 +38,7 @@ public:
 	void zephyr(machine_config &config);
 
 private:
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	u8 special_r();
 	u8 uart_status_r();
@@ -64,7 +64,7 @@ private:
 };
 
 
-u32 zms8085_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 zms8085_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	u8 cursor_y = m_mainram[0x000];
 	u8 cursor_x = m_mainram[0x001];

@@ -113,7 +113,7 @@ private:
 	u32 m_ss_bank_base;
 	u32 m_screenwidth;
 	std::unique_ptr<u32[]> m_mame_colours;
-	bitmap_rgb32 m_renderbuffer_bitmap;
+	bitmap_argb32 m_renderbuffer_bitmap;
 	rectangle m_renderbuffer_clip;
 	u8* m_user4;
 	u32 m_key1;
@@ -164,8 +164,8 @@ private:
 	DECLARE_READ16_MEMBER(colourram_r);
 	DECLARE_WRITE16_MEMBER(colourram_w);
 	SH2_DMA_KLUDGE_CB(dma_callback);
-	void draw_fg_layer(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void draw_fg_layer(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(vbl_interrupt);
 	INTERRUPT_GEN_MEMBER(other_interrupt);
 	u16 rotate_left(u16 value, int n);
@@ -174,7 +174,7 @@ private:
 	void decrypt_bios();
 	void init_crypt(u32 key1, u32 key2, int altEncryption);
 	void set_mame_colours(int colournum, u16 data, u32 fadeval);
-	void draw_tilemapsprite_line(int tmnum, int drawline, bitmap_rgb32 &bitmap, const rectangle &cliprect );
+	void draw_tilemapsprite_line(int tmnum, int drawline, bitmap_argb32 &bitmap, const rectangle &cliprect );
 	u32 flashmain_r(int which, u32 offset, u32 mem_mask);
 	void flashmain_w(int which, u32 offset, u32 data, u32 mem_mask);
 	u32 process_byte( u8 real_byte, u32 destination, int max_length );
@@ -182,7 +182,7 @@ private:
 	u32 ProcessByte8(u8 b,u32 dst_offset);
 	void do_alt_char_dma( u32 src, u32 real_dest, u32 real_length );
 	void process_character_dma(u32 address);
-	inline void cps3_drawgfxzoom(bitmap_rgb32 &dest_bmp, const rectangle &clip, gfx_element *gfx,
+	inline void cps3_drawgfxzoom(bitmap_argb32 &dest_bmp, const rectangle &clip, gfx_element *gfx,
 		u32 code, u32 color, int flipx, int flipy, int sx, int sy,
 		int transparency, int transparent_color,
 		int scalex, int scaley);

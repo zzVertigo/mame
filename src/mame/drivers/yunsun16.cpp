@@ -611,7 +611,6 @@ void magicbub_state::magicbub(machine_config &config)
 	SCREEN(config, m_screen, SCREEN_TYPE_RASTER);
 	m_screen->set_raw(XTAL(16'000'000)/2, 512, 0x20, 0x180-0x20, 260, 0, 0xe0); /* TODO: completely inaccurate */
 	m_screen->set_screen_update(FUNC(magicbub_state::screen_update));
-	m_screen->set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_yunsun16);
 	PALETTE(config, m_palette).set_format(palette_device::xRGB_555, 8192);
@@ -648,7 +647,6 @@ void shocking_state::shocking(machine_config &config)
 	SCREEN(config, m_screen, SCREEN_TYPE_RASTER);
 	m_screen->set_raw(XTAL(16'000'000)/2, 512, 0, 0x180-4, 260, 0, 0xe0); /* TODO: completely inaccurate */
 	m_screen->set_screen_update(FUNC(shocking_state::screen_update));
-	m_screen->set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_yunsun16);
 	PALETTE(config, m_palette).set_format(palette_device::xRGB_555, 8192);

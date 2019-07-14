@@ -217,7 +217,7 @@ public:
 	DECLARE_WRITE8_MEMBER(serial_rtc_eeprom_w);
 	DECLARE_READ64_MEMBER(flash_port_e_r);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	virtual void machine_reset() override;
 
@@ -247,7 +247,7 @@ public:
 
 /**************************************************************************/
 
-uint32_t cv1k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t cv1k_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_blitter->set_delay_scale(m_blitrate->read());
 

@@ -1188,7 +1188,7 @@ TIMER_CALLBACK_MEMBER(scn2674_device::vblank_timer)
 	}
 }
 
-uint32_t scn2674_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t scn2674_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	copybitmap(bitmap, m_bitmap, 0, 0, 0, 0, cliprect);
 

@@ -81,7 +81,7 @@ VIDEO_START_MEMBER(rohga_state,wizdfire)
 
 // reference : https://www.youtube.com/watch?v=FfxDihoQtT4
 // not amazingly efficient, called multiple times to pull a layer out of the sprite bitmaps, but keeps correct sprite<->sprite priorities
-void rohga_state::mixwizdfirelayer(bitmap_rgb32 &bitmap, const rectangle &cliprect, u16 pri, u16 primask)
+void rohga_state::mixwizdfirelayer(bitmap_argb32 &bitmap, const rectangle &cliprect, u16 pri, u16 primask)
 {
 	const pen_t *paldata = m_palette->pens();
 	bitmap_ind16* sprite_bitmap = &m_sprgen[1]->get_sprite_temp_bitmap();
@@ -118,7 +118,7 @@ void rohga_state::mixwizdfirelayer(bitmap_rgb32 &bitmap, const rectangle &clipre
 	}
 }
 
-u32 rohga_state::screen_update_wizdfire(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 rohga_state::screen_update_wizdfire(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const u16 flip = m_deco_tilegen[0]->pf_control_r(0);
 	const u16 priority = m_decocomn->priority_r();
@@ -157,7 +157,7 @@ u32 rohga_state::screen_update_wizdfire(screen_device &screen, bitmap_rgb32 &bit
 	return 0;
 }
 
-void rohga_state::mixnitroballlayer(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void rohga_state::mixnitroballlayer(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *paldata = &m_palette->pen(0);
 	const u16 priority = m_decocomn->priority_r();
@@ -312,7 +312,7 @@ void rohga_state::mixnitroballlayer(screen_device &screen, bitmap_rgb32 &bitmap,
 	}
 }
 
-u32 rohga_state::screen_update_nitrobal(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 rohga_state::screen_update_nitrobal(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const u16 flip = m_deco_tilegen[0]->pf_control_r(0);
 	const u16 priority = m_decocomn->priority_r();

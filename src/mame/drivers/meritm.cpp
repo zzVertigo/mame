@@ -262,7 +262,7 @@ private:
 	DECLARE_MACHINE_START(crt250_crt252_crt258);
 	DECLARE_MACHINE_START(crt260);
 	DECLARE_MACHINE_START(common);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_DEVICE_CALLBACK_MEMBER(vblank_start_tick);
 	TIMER_DEVICE_CALLBACK_MEMBER(vblank_end_tick);
 	void crt250_switch_banks(  );
@@ -344,7 +344,7 @@ void meritm_state::video_start()
 	save_item(NAME(m_interrupt_vdp1_state));
 }
 
-uint32_t meritm_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t meritm_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if(machine().input().code_pressed_once(KEYCODE_Q))
 	{

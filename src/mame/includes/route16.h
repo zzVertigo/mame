@@ -51,8 +51,8 @@ private:
 	DECLARE_MACHINE_START(speakres);
 	DECLARE_MACHINE_START(jongpute);
 
-	uint32_t screen_update_route16(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_jongpute(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_route16(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_jongpute(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void cpu1_io_map(address_map &map);
 	void route16_cpu1_map(address_map &map);

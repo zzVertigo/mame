@@ -113,7 +113,7 @@ TILE_GET_INFO_MEMBER(spbactn_state::get_extra_tile_info)
 
 
 
-int spbactn_state::draw_video(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, bool alt_sprites)
+int spbactn_state::draw_video(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, bool alt_sprites)
 {
 	m_tile_bitmap_bg.fill(0, cliprect);
 	m_tile_bitmap_fg.fill(0, cliprect);
@@ -129,12 +129,12 @@ int spbactn_state::draw_video(screen_device &screen, bitmap_rgb32 &bitmap, const
 	return 0;
 }
 
-uint32_t spbactn_state::screen_update_spbactn(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t spbactn_state::screen_update_spbactn(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return draw_video(screen,bitmap,cliprect,false);
 }
 
-uint32_t spbactn_state::screen_update_spbactnp(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t spbactn_state::screen_update_spbactnp(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// hack to make the extra cpu do something..
 	m_extraram2[0x104] = machine().rand();

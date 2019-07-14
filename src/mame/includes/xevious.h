@@ -46,8 +46,8 @@ protected:
 	DECLARE_VIDEO_START(xevious);
 	void xevious_palette(palette_device &palette) const;
 	DECLARE_MACHINE_RESET(xevios);
-	uint32_t screen_update_xevious(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	void draw_sprites(bitmap_ind16 &bitmap,const rectangle &cliprect);
+	uint32_t screen_update_xevious(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_sprites(bitmap_argb32 &bitmap,const rectangle &cliprect);
 	DECLARE_WRITE8_MEMBER( xevious_fg_videoram_w );
 	DECLARE_WRITE8_MEMBER( xevious_fg_colorram_w );
 	DECLARE_WRITE8_MEMBER( xevious_bg_videoram_w );

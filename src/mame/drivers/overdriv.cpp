@@ -346,7 +346,6 @@ void overdriv_state::overdriv(machine_config &config)
 	screen_device &screen(SCREEN(config, "screen", SCREEN_TYPE_RASTER));
 	screen.set_raw(XTAL(24'000'000)/4,384,0,305,264,0,224);
 	screen.set_screen_update(FUNC(overdriv_state::screen_update_overdriv));
-	screen.set_palette("palette");
 
 	PALETTE(config, "palette").set_format(palette_device::xBGR_555, 2048).enable_shadows();
 

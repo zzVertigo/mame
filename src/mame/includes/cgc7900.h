@@ -82,7 +82,7 @@ public:
 	virtual void machine_reset() override;
 
 	void cgc7900_palette(palette_device &palette) const;
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ16_MEMBER( keyboard_r );
 	DECLARE_WRITE16_MEMBER( keyboard_w );
@@ -100,8 +100,8 @@ public:
 	template <unsigned N> DECLARE_WRITE_LINE_MEMBER(irq) { irq_encoder(N, state); }
 
 	void update_clut();
-	void draw_bitmap(screen_device *screen, bitmap_rgb32 &bitmap);
-	void draw_overlay(screen_device *screen, bitmap_rgb32 &bitmap);
+	void draw_bitmap(screen_device *screen, bitmap_argb32 &bitmap);
+	void draw_overlay(screen_device *screen, bitmap_argb32 &bitmap);
 
 	/* interrupt state */
 	uint16_t m_int_mask, m_int_active;

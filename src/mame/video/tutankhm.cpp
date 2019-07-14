@@ -39,7 +39,7 @@ WRITE_LINE_MEMBER(tutankhm_state::flip_screen_y_w)
  *
  *************************************/
 
-uint32_t tutankhm_state::screen_update_tutankhm_bootleg(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t tutankhm_state::screen_update_tutankhm_bootleg(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(rgb_t::black(), cliprect);
 
@@ -92,7 +92,7 @@ uint32_t tutankhm_state::screen_update_tutankhm_bootleg(screen_device &screen, b
 	return 0;
 }
 
-uint32_t tutankhm_state::screen_update_tutankhm_scramble(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t tutankhm_state::screen_update_tutankhm_scramble(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	scramble_draw_background(bitmap, cliprect);
 
@@ -122,7 +122,7 @@ uint32_t tutankhm_state::screen_update_tutankhm_scramble(screen_device &screen, 
 	return 0;
 }
 
-uint32_t tutankhm_state::screen_update_tutankhm(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t tutankhm_state::screen_update_tutankhm(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	u8 mode = m_stars_config.read_safe(m_star_mode);
 	if (mode != m_star_mode)
@@ -343,7 +343,7 @@ TIMER_DEVICE_CALLBACK_MEMBER(tutankhm_state::scramble_stars_blink_timer)
 	m_stars_blink_state++;
 }
 
-void tutankhm_state::stars_draw_row(bitmap_rgb32 &bitmap, int maxx, int y, uint32_t star_offs)
+void tutankhm_state::stars_draw_row(bitmap_argb32 &bitmap, int maxx, int y, uint32_t star_offs)
 {
 	uint8_t flipxor = (m_flipscreen_x ? 0xC0 : 0x00);
 
@@ -406,7 +406,7 @@ void tutankhm_state::stars_draw_row(bitmap_rgb32 &bitmap, int maxx, int y, uint3
 	}
 }
 
-void tutankhm_state::scramble_draw_stars(bitmap_rgb32 &bitmap, const rectangle &cliprect, int maxx)
+void tutankhm_state::scramble_draw_stars(bitmap_argb32 &bitmap, const rectangle &cliprect, int maxx)
 {
 	/* update the star origin to the current frame */
 	//stars_update_origin();
@@ -423,7 +423,7 @@ void tutankhm_state::scramble_draw_stars(bitmap_rgb32 &bitmap, const rectangle &
 }
 
 
-void tutankhm_state::scramble_draw_background(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void tutankhm_state::scramble_draw_background(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* blue background - 390 ohm resistor */
 	bitmap.fill(rgb_t::black(), cliprect);

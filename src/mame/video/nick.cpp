@@ -219,7 +219,7 @@ device_memory_interface::space_config_vector nick_device::memory_space_config() 
 //  update_screen - update screen
 //-------------------------------------------------
 
-uint32_t nick_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t nick_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	copybitmap(bitmap, m_bitmap, 0, 0, 0, 0, cliprect);
 

@@ -115,8 +115,8 @@ private:
 	required_device<screen_device> m_screen;
 	required_device<generic_latch_8_device> m_soundlatch;
 	required_shared_ptr<uint8_t> m_colorram;
-	bitmap_rgb32 m_bitmap_fg;
-	bitmap_rgb32 m_bitmap_bg;
+	bitmap_argb32 m_bitmap_fg;
+	bitmap_argb32 m_bitmap_bg;
 
 	uint16_t m_tempbuf[8];
 
@@ -135,7 +135,7 @@ private:
 	virtual void machine_start() override;
 	virtual void video_start() override;
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void plot_pixel_rgb(int x, int y, uint32_t r, uint32_t g, uint32_t b);
 	void plot_pixel_pal(int x, int y, int addr);
 	void blit_gfx();
@@ -427,7 +427,7 @@ void sliver_state::postload()
 	render_jpeg();
 }
 
-uint32_t sliver_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t sliver_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	copybitmap      (bitmap, m_bitmap_bg, 0, 0, 0, 0, cliprect);
 	copybitmap_trans(bitmap, m_bitmap_fg, 0, 0, 0, 0, cliprect, 0);

@@ -342,7 +342,6 @@ void dbz_state::dbz(machine_config &config)
 	screen.set_size(64*8, 40*8);
 	screen.set_visarea(0, 48*8-1, 0, 32*8-1);
 	screen.set_screen_update(FUNC(dbz_state::screen_update_dbz));
-	screen.set_palette("palette");
 
 	GFXDECODE(config, m_gfxdecode, "palette", gfx_dbz);
 

@@ -80,7 +80,7 @@ private:
 	IRQ_CALLBACK_MEMBER(vixen_int_ack);
 	DECLARE_READ8_MEMBER(opram_r);
 	DECLARE_READ8_MEMBER(oprom_r);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void bios_mem(address_map &map);
 	void vixen_io(address_map &map);

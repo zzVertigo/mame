@@ -37,7 +37,7 @@ public:
 	DECLARE_INPUT_CHANGED_MEMBER(nmi_reset);
 
 private:
-	uint32_t screen_update_x1pce(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_x1pce(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void pce_io(address_map &map);
 	void pce_mem(address_map &map);
 	void x1_io(address_map &map);
@@ -50,7 +50,7 @@ private:
 #define MCU_CLOCK  6_MHz_XTAL
 #define PCE_MAIN_CLOCK      VDP_CLOCK / 2
 
-uint32_t x1twin_state::screen_update_x1pce(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t x1twin_state::screen_update_x1pce(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

@@ -14,6 +14,7 @@
 #include "video/konami_helper.h"
 #include "machine/k054321.h"
 #include "screen.h"
+#include "emupal.h"
 
 class xmen_state : public driver_device
 {
@@ -31,6 +32,7 @@ public:
 		m_k053246(*this, "k053246"),
 		m_k053251(*this, "k053251"),
 		m_screen(*this, "screen"),
+		m_palette(*this, "palette"),
 		m_k054321(*this, "k054321"),
 		m_z80bank(*this, "z80bank")
 	{ }
@@ -47,8 +49,8 @@ private:
 	int        m_layerpri[3];
 
 	/* for xmen6p */
-	std::unique_ptr<bitmap_ind16> m_screen_right;
-	std::unique_ptr<bitmap_ind16> m_screen_left;
+	std::unique_ptr<bitmap_argb32> m_screen_right;
+	std::unique_ptr<bitmap_argb32> m_screen_left;
 	optional_shared_ptr<uint16_t> m_xmen6p_spriteramleft;
 	optional_shared_ptr<uint16_t> m_xmen6p_spriteramright;
 	optional_shared_ptr<uint16_t> m_xmen6p_tilemapleft;
@@ -66,6 +68,7 @@ private:
 	required_device<k053247_device> m_k053246;
 	required_device<k053251_device> m_k053251;
 	required_device<screen_device> m_screen;
+	required_device<palette_device> m_palette;
 	required_device<k054321_device> m_k054321;
 
 	required_memory_bank m_z80bank;
@@ -76,9 +79,9 @@ private:
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
 	DECLARE_VIDEO_START(xmen6p);
-	uint32_t screen_update_xmen(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_xmen6p_left(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_xmen6p_right(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_xmen(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_xmen6p_left(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_xmen6p_right(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(screen_vblank_xmen6p);
 	TIMER_DEVICE_CALLBACK_MEMBER(xmen_scanline);
 	K052109_CB_MEMBER(tile_callback);

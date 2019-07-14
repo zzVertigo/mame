@@ -77,7 +77,7 @@ public:
 	TIMER_DEVICE_CALLBACK_MEMBER(williams_va11_callback);
 	TIMER_DEVICE_CALLBACK_MEMBER(williams_count240_callback);
 
-	uint32_t screen_update_williams(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_williams(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_VIDEO_START(williams);
 	void williams_palette(palette_device &palette) const;
 
@@ -206,7 +206,7 @@ private:
 
 	DECLARE_MACHINE_START(blaster);
 	DECLARE_VIDEO_START(blaster);
-	uint32_t screen_update_blaster(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_blaster(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	inline void update_blaster_banking();
 
@@ -262,7 +262,7 @@ protected:
 	DECLARE_MACHINE_START(williams2);
 	DECLARE_MACHINE_RESET(williams2);
 	DECLARE_VIDEO_START(williams2);
-	uint32_t screen_update_williams2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_williams2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void williams2_bank8000_map(address_map &map);
 	void williams2_common_map(address_map &map);

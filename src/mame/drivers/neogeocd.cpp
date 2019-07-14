@@ -117,7 +117,7 @@ public:
 
 	bool prohibit_cdc_irq; // hack?
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void init_neocdz();
 	void init_neocdzj();
@@ -1024,7 +1024,7 @@ void ngcd_state::irq_update(uint8_t byteValue)
 }
 
 
-uint32_t ngcd_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t ngcd_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// fill with background color first
 	bitmap.fill(*m_bg_pen, cliprect);

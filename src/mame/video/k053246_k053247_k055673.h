@@ -77,7 +77,7 @@ public:
 	void k055673_reg_word_w(offs_t offset, u16 data, u16 mem_mask = ~0); // "OBJSET2" registers
 
 	void k053247_sprites_draw(bitmap_ind16 &bitmap,const rectangle &cliprect);
-	void k053247_sprites_draw(bitmap_rgb32 &bitmap,const rectangle &cliprect);
+	void k053247_sprites_draw(bitmap_argb32 &bitmap,const rectangle &cliprect);
 	u16 k053247_read_register(offs_t offset);
 	void k053247_set_z_rejection(int zcode); // common to k053246/7
 	void k053247_get_ram(u16 **ram);
@@ -109,7 +109,7 @@ public:
 
 	/* alt implementation - to be collapsed */
 	void zdrawgfxzoom32GP(
-		bitmap_rgb32 &bitmap, const rectangle &cliprect,
+		bitmap_argb32 &bitmap, const rectangle &cliprect,
 		u32 code, u32 color, int flipx, int flipy, int sx, int sy,
 		int scalex, int scaley, int alpha, int drawmode, int zcode, int pri, u8* gx_objzbuf, u8* gx_shdzbuf);
 

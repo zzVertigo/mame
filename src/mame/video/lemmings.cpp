@@ -113,7 +113,7 @@ WRITE16_MEMBER(lemmings_state::lemmings_vram_w)
 }
 
 
-void lemmings_state::lemmings_copy_bitmap(bitmap_rgb32& bitmap, int* xscroll, int* yscroll, const rectangle& cliprect)
+void lemmings_state::lemmings_copy_bitmap(bitmap_argb32& bitmap, int* xscroll, int* yscroll, const rectangle& cliprect)
 {
 	int y,x;
 	const pen_t *paldata = m_palette->pens();
@@ -132,7 +132,7 @@ void lemmings_state::lemmings_copy_bitmap(bitmap_rgb32& bitmap, int* xscroll, in
 	}
 }
 
-uint32_t lemmings_state::screen_update_lemmings(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t lemmings_state::screen_update_lemmings(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x1 = -m_control_data[0];
 	int x0 = -m_control_data[2];

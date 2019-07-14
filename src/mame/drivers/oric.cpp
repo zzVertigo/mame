@@ -88,7 +88,7 @@ public:
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
 	virtual void video_start() override;
-	uint32_t screen_update_oric(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_oric(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(vblank_w);
 
 	void oric(machine_config &config, bool add_ext = true);
@@ -220,7 +220,7 @@ void telestrat_state::telestrat_mem(address_map &map)
 	map(0xc000, 0xffff).bankr("bank_c000_r").bankw("bank_c000_w");
 }
 
-uint32_t oric_state::screen_update_oric(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t oric_state::screen_update_oric(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bool blink_state = m_blink_counter & 0x20;
 	m_blink_counter = (m_blink_counter + 1) & 0x3f;

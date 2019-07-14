@@ -49,8 +49,8 @@ public:
 	void koropens(machine_config &config);
 
 private:
-	uint32_t screen_update_konmedal68k(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	void fill_backcolor(bitmap_ind16 &bitmap, const rectangle &cliprect, int pen_idx, int mode);
+	uint32_t screen_update_konmedal68k(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void fill_backcolor(bitmap_argb32 &bitmap, const rectangle &cliprect, int pen_idx, int mode);
 
 
 	K056832_CB_MEMBER(tile_callback);
@@ -139,15 +139,17 @@ K056832_CB_MEMBER(konmedal68k_state::tile_callback)
 }
 
 // modified from version in mame/video/k054338.cpp
-void konmedal68k_state::fill_backcolor(bitmap_ind16 &bitmap, const rectangle &cliprect, int pen_idx, int mode)
+void konmedal68k_state::fill_backcolor(bitmap_argb32 &bitmap, const rectangle &cliprect, int pen_idx, int mode)
 {
+	const pen_t *pen = m_palette->pens();
+
 	if ((mode & 0x02) == 0) // solid fill
 	{
-		bitmap.fill(pen_idx, cliprect);
+		bitmap.fill(pen[pen_idx], cliprect);
 	}
 	else
 	{
-		uint16_t *dst_ptr = &bitmap.pix16(cliprect.min_y);
+		uint32_t *dst_ptr = &bitmap.pix32(cliprect.min_y);
 		int dst_pitch = bitmap.rowpixels();
 
 		if ((mode & 0x01) == 0) // vertical gradient fill
@@ -157,7 +159,7 @@ void konmedal68k_state::fill_backcolor(bitmap_ind16 &bitmap, const rectangle &cl
 			{
 				for(int x = cliprect.min_x; x <= cliprect.max_x; x++)
 				{
-					dst_ptr[x] = pen_idx;
+					dst_ptr[x] = pen[pen_idx];
 				}
 
 				pen_idx++;
@@ -172,7 +174,7 @@ void konmedal68k_state::fill_backcolor(bitmap_ind16 &bitmap, const rectangle &cl
 			{
 				for(int x = cliprect.min_x; x <= cliprect.max_x; x++)
 				{
-					dst_ptr[x] = pen_idx;
+					dst_ptr[x] = pen[pen_idx];
 				}
 				dst_ptr += dst_pitch;
 			}
@@ -180,7 +182,7 @@ void konmedal68k_state::fill_backcolor(bitmap_ind16 &bitmap, const rectangle &cl
 	}
 }
 
-uint32_t konmedal68k_state::screen_update_konmedal68k(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t konmedal68k_state::screen_update_konmedal68k(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	static const int order[4] = { 0, 1, 3, 2 };
 	int enables = m_k055555->K055555_read_register(K55_INPUT_ENABLES);
@@ -340,7 +342,6 @@ void konmedal68k_state::kzaurus(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(40, 400-1, 16, 240-1);
 	screen.set_screen_update(FUNC(konmedal68k_state::screen_update_konmedal68k));
-	screen.set_palette("palette");
 
 	PALETTE(config, "palette").set_format(palette_device::xBGR_888, 8192).enable_shadows();
 

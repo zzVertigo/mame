@@ -100,7 +100,7 @@ private:
 
 	void disk_select_w(u8 data);
 
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_DEVICE_CALLBACK_MEMBER(kbd_scan);
 
 	DECLARE_WRITE_LINE_MEMBER(crtc_lrc_w);
@@ -606,7 +606,7 @@ void sbrain_state::machine_reset()
 	// PPI resets to input mode, which causes PPIC-3 to be pulled up to +5V, resetting disk CPU
 }
 
-u32 sbrain_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 sbrain_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// PPIC-3 blanks entire display
 	if (BIT(m_portc, 3))

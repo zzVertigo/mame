@@ -67,6 +67,8 @@ enum laserdisc_field_code
 //  TYPE DEFINITIONS
 //**************************************************************************
 
+typedef device_delegate<void (bitmap_argb32 &, const rectangle &, const rectangle &)> laserdisc_overlay_update_delegate;
+
 // ======================> laserdisc_overlay_config
 
 // overlay configuration
@@ -114,10 +116,10 @@ public:
 	void overlay_enable(bool enable) { m_overenable = enable; }
 
 	// video update callback
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	// configuration
-	bool overlay_configured() const { return (m_overwidth > 0 && m_overheight > 0 && (!m_overupdate_rgb32.isnull())); }
+	bool overlay_configured() const { return (m_overwidth > 0 && m_overheight > 0 && (!m_overupdate.isnull())); }
 	void get_overlay_config(laserdisc_overlay_config &config) { config = static_cast<laserdisc_overlay_config &>(*this); }
 	void set_overlay_config(const laserdisc_overlay_config &config) { static_cast<laserdisc_overlay_config &>(*this) = config; }
 
@@ -126,21 +128,21 @@ public:
 	template <typename... T> void set_audio(T &&... args) { m_audio_callback = audio_delegate(std::forward<T>(args)...); }
 	// FIXME: these should be aware of current device for resolving the tag
 	template <class FunctionClass>
-	void set_overlay(uint32_t width, uint32_t height, u32 (FunctionClass::*callback)(screen_device &, bitmap_rgb32 &, const rectangle &), const char *name)
+	void set_overlay(uint32_t width, uint32_t height, void (FunctionClass::*callback)(bitmap_argb32 &, const rectangle &, const rectangle &), const char *name)
 	{
-		set_overlay(width, height, screen_update_rgb32_delegate(callback, name, nullptr, static_cast<FunctionClass *>(nullptr)));
+		set_overlay(width, height, laserdisc_overlay_update_delegate(callback, name, nullptr, static_cast<FunctionClass *>(nullptr)));
 	}
 	template <class FunctionClass>
-	void set_overlay(uint32_t width, uint32_t height, const char *devname, u32 (FunctionClass::*callback)(screen_device &, bitmap_rgb32 &, const rectangle &), const char *name)
+	void set_overlay(uint32_t width, uint32_t height, const char *devname, void (FunctionClass::*callback)(bitmap_argb32 &, const rectangle &, const rectangle &), const char *name)
 	{
-		set_overlay(width, height, screen_update_rgb32_delegate(callback, name, devname, static_cast<FunctionClass *>(nullptr)));
+		set_overlay(width, height, laserdisc_overlay_update_delegate(callback, name, devname, static_cast<FunctionClass *>(nullptr)));
 	}
-	void set_overlay(uint32_t width, uint32_t height, screen_update_rgb32_delegate &&update)
+	void set_overlay(uint32_t width, uint32_t height, laserdisc_overlay_update_delegate &&update)
 	{
 		m_overwidth = width;
 		m_overheight = height;
 		m_overclip.set(0, width - 1, 0, height - 1);
-		m_overupdate_rgb32 = std::move(update);
+		m_overupdate = std::move(update);
 	}
 	void set_overlay_clip(int32_t minx, int32_t maxx, int32_t miny, int32_t maxy) { m_overclip.set(minx, maxx, miny, maxy); }
 	void set_overlay_position(float posx, float posy)
@@ -251,8 +253,8 @@ private:
 	{
 		bitmap_yuy16        m_bitmap;               // cached bitmap
 		bitmap_yuy16        m_visbitmap;            // wrapper around bitmap with only visible lines
-		uint8_t               m_numfields;            // number of fields in this frame
-		int32_t               m_lastfield;            // last absolute field number
+		uint8_t             m_numfields;            // number of fields in this frame
+		int32_t             m_lastfield;            // last absolute field number
 	};
 
 	// internal helpers
@@ -271,51 +273,51 @@ private:
 	void config_save(config_type cfg_type, util::xml::data_node *parentnode);
 
 	// configuration
-	get_disc_delegate m_getdisc_callback;
-	audio_delegate m_audio_callback;  // audio streaming callback
-	laserdisc_overlay_config m_orig_config;     // original overlay configuration
-	uint32_t              m_overwidth;            // overlay screen width
-	uint32_t              m_overheight;           // overlay screen height
-	rectangle           m_overclip;             // overlay visarea
-	screen_update_rgb32_delegate m_overupdate_rgb32; // overlay update delegate
+	get_disc_delegate     m_getdisc_callback;
+	audio_delegate        m_audio_callback;  		// audio streaming callback
+	laserdisc_overlay_config m_orig_config;     	// original overlay configuration
+	uint32_t              m_overwidth;            	// overlay screen width
+	uint32_t              m_overheight;           	// overlay screen height
+	rectangle             m_overclip;            	// overlay visarea
+	laserdisc_overlay_update_delegate m_overupdate;	// overlay update delegate
 
 	// disc parameters
-	chd_file *          m_disc;                 // handle to the disc itself
-	std::vector<uint8_t>      m_vbidata;              // pointer to precomputed VBI data
-	int                 m_width;                // width of video
-	int                 m_height;               // height of video
-	uint32_t              m_fps_times_1million;   // frame rate of video
-	int                 m_samplerate;           // audio samplerate
-	int                 m_readresult;           // result of the most recent read
-	uint32_t              m_chdtracks;            // number of tracks in the CHD
+	chd_file *            m_disc;				// handle to the disc itself
+	std::vector<uint8_t>  m_vbidata;			// pointer to precomputed VBI data
+	int                   m_width;				// width of video
+	int                   m_height;				// height of video
+	uint32_t              m_fps_times_1million;	// frame rate of video
+	int                   m_samplerate;         // audio samplerate
+	int                   m_readresult;         // result of the most recent read
+	uint32_t              m_chdtracks;          // number of tracks in the CHD
 	avhuff_decompress_config m_avhuff_config;   // decompression configuration
 
 	// async operations
-	osd_work_queue *    m_work_queue;           // work queue
-	uint32_t              m_queued_hunknum;       // queued hunk
+	osd_work_queue *      m_work_queue;         // work queue
+	uint32_t              m_queued_hunknum;		// queued hunk
 
 	// core states
-	uint8_t               m_audiosquelch;         // audio squelch state: bit 0 = audio 1, bit 1 = audio 2
-	uint8_t               m_videosquelch;         // video squelch state: bit 0 = on/off
-	uint8_t               m_fieldnum;             // field number (0 or 1)
-	int32_t               m_curtrack;             // current track at this end of this vsync
-	uint32_t              m_maxtrack;             // maximum track number
-	attoseconds_t       m_attospertrack;        // attoseconds per track, or 0 if not moving
-	attotime            m_sliderupdate;         // time of last slider update
+	uint8_t               m_audiosquelch;		// audio squelch state: bit 0 = audio 1, bit 1 = audio 2
+	uint8_t               m_videosquelch;		// video squelch state: bit 0 = on/off
+	uint8_t               m_fieldnum;			// field number (0 or 1)
+	int32_t               m_curtrack;			// current track at this end of this vsync
+	uint32_t              m_maxtrack;			// maximum track number
+	attoseconds_t         m_attospertrack;		// attoseconds per track, or 0 if not moving
+	attotime              m_sliderupdate;		// time of last slider update
 
 	// video data
-	frame_data          m_frame[3];             // circular list of frames
-	uint8_t               m_videoindex;           // index of the current video buffer
-	bitmap_yuy16        m_emptyframe;           // blank frame
+	frame_data			m_frame[3];				// circular list of frames
+	uint8_t             m_videoindex;			// index of the current video buffer
+	bitmap_yuy16        m_emptyframe;			// blank frame
 
 	// audio data
 	sound_stream *      m_stream;
-	std::vector<int16_t>       m_audiobuffer[2];       // buffer for audio samples
-	uint32_t              m_audiobufsize;         // size of buffer
-	uint32_t              m_audiobufin;           // input index
-	uint32_t              m_audiobufout;          // output index
-	uint32_t              m_audiocursamples;      // current samples this track
-	uint32_t              m_audiomaxsamples;      // maximum samples per track
+	std::vector<int16_t> m_audiobuffer[2];      // buffer for audio samples
+	uint32_t            m_audiobufsize;         // size of buffer
+	uint32_t            m_audiobufin;           // input index
+	uint32_t            m_audiobufout;          // output index
+	uint32_t            m_audiocursamples;      // current samples this track
+	uint32_t            m_audiomaxsamples;      // maximum samples per track
 
 	// metadata
 	vbi_metadata        m_metadata[2];          // metadata parsed from the stream, for each field

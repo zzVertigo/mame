@@ -44,7 +44,8 @@ public:
 		m_io_row6(*this, "ROW6"),
 		m_io_row7(*this, "ROW7"),
 		m_io_config(*this, "CONFIG"),
-		m_screen(*this, "screen")
+		m_screen(*this, "screen"),
+		m_palette(*this, "palette")
 	{ }
 
 	void zx81(machine_config &config);
@@ -58,7 +59,7 @@ public:
 	void init_zx();
 
 private:
-	uint32_t screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ8_MEMBER(ula_high_r);
 	DECLARE_READ8_MEMBER(ula_low_r);
@@ -106,6 +107,7 @@ private:
 	required_ioport m_io_row7;
 	optional_ioport m_io_config;
 	required_device<screen_device> m_screen;
+	required_device<palette_device> m_palette;
 
 	address_space *m_program;
 	emu_timer *m_tape_input, *m_ula_hsync;
@@ -117,8 +119,8 @@ private:
 	uint8_t m_prev_refresh;
 	uint8_t m_speaker_state;
 
-	std::unique_ptr<bitmap_ind16> m_bitmap_render;
-	std::unique_ptr<bitmap_ind16> m_bitmap_buffer;
+	std::unique_ptr<bitmap_argb32> m_bitmap_render;
+	std::unique_ptr<bitmap_argb32> m_bitmap_buffer;
 
 	uint16_t m_ula_char_buffer;
 	double m_cassette_cur_level;

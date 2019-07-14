@@ -109,7 +109,7 @@ private:
 	void lx810l_mem(address_map &map);
 
 	/* Video hardware (simulates paper) */
-	uint32_t screen_update_lx810l(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_lx810l(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 #define uabs(x) ((x) > 0 ? (x) : -(x))
 	unsigned int bitmap_line(int i) { return ((uabs(m_pf_pos_abs) / 6) + i) % m_bitmap.height(); }
@@ -130,7 +130,7 @@ private:
 	int m_real_cr_steps;
 	int m_real_cr_dir; /* 1 is going right, -1 is going left */
 	uint8_t m_fakemem;
-	bitmap_rgb32 m_bitmap;
+	bitmap_argb32 m_bitmap;
 
 	enum {
 		TIMER_CR

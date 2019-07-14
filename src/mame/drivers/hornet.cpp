@@ -147,7 +147,7 @@ f
     ----------------------------------------------------------------------------------------------------
     Gradius 4    837C01  -       -       837A09  837A10  -       778A12  837A04  837A05  -    -   837A08
     NBA P/Play   778A01  -       -       778A09  778A10  778A11  778A12  778A04  778A05  -    -   778A08
-    Teraburst    -       715l02  715l03  715A09  715A10  -       778A12  715A04  715A05  -    -   715A08 
+    Teraburst    -       715l02  715l03  715A09  715A10  -       778A12  715A04  715A05  -    -   715A08
 	S/Scope      830B01  -       -       830A09  830A10  -       -       -       -       -    -   830A08
     S/Scope 2    931D01  -       -       931A09  931A10  931A11  -       931A04  -       -    -   931A08
 
@@ -221,7 +221,7 @@ f
     Gradius 4    837A13  837A15  837A14  837A16
     NBA P/Play   778A13  778A15  778A14  778A16
     Teraburst    715A13  715A15  778A14  715A16
-    S/Scope      830A13  -       830A14  -          
+    S/Scope      830A13  -       830A14  -
     S/Scope 2    -       -       -       -          (no ROMs, not used)
 
 
@@ -271,7 +271,7 @@ f
     12B  CY7C199   Cypress 32kx8 SRAM
     8B   AT93C46   Atmel 1K serial EEPROM, 8 pin SOP
     16G  DS2401    Dallas Silicon Serial Number IC, 6 pin SOP
-	
+
     Note: This PCB does more than just networking. The serial eeprom is used as a means to prevent region change.
     The timekeeper region has to match the serial eeprom. The two mask roms serve as GFX roms as the game "downloads"
 	the data from those two roms.
@@ -477,8 +477,8 @@ private:
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
 	DECLARE_MACHINE_RESET(hornet_2board);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_rscreen(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_rscreen(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_CALLBACK_MEMBER(sound_irq);
 	int jvs_encode_data(uint8_t *in, int length);
 	int jvs_decode_data(uint8_t *in, uint8_t *out, int length);
@@ -543,7 +543,7 @@ WRITE_LINE_MEMBER(hornet_state::voodoo_vblank_1)
 	m_maincpu->set_input_line(INPUT_LINE_IRQ1, state);
 }
 
-uint32_t hornet_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t hornet_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_voodoo[0]->voodoo_update(bitmap, cliprect);
 
@@ -554,7 +554,7 @@ uint32_t hornet_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap
 	return 0;
 }
 
-uint32_t hornet_state::screen_update_rscreen(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t hornet_state::screen_update_rscreen(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_voodoo[1]->voodoo_update(bitmap, cliprect);
 
@@ -1009,7 +1009,7 @@ static INPUT_PORTS_START(nbapbp) //Need to add inputs for player 3 and 4.
 	PORT_DIPNAME(0x02, 0x02, "Cabinet Type") PORT_DIPLOCATION("SW:7")
 	PORT_DIPSETTING(0x02, "2 Player")
 	PORT_DIPSETTING(0x00, "4 Player")
-	
+
 /*	PORT_START("IN3")
 	PORT_BIT( 0x80, IP_ACTIVE_LOW, IPT_START3 )
 	PORT_BIT( 0x40, IP_ACTIVE_LOW, IPT_JOYSTICK_UP ) PORT_PLAYER(3)
@@ -1019,7 +1019,7 @@ static INPUT_PORTS_START(nbapbp) //Need to add inputs for player 3 and 4.
 	PORT_BIT( 0x04, IP_ACTIVE_LOW, IPT_BUTTON1 ) PORT_PLAYER(3)
 	PORT_BIT( 0x02, IP_ACTIVE_LOW, IPT_BUTTON2 ) PORT_PLAYER(3)
 	PORT_BIT( 0x01, IP_ACTIVE_LOW, IPT_BUTTON3 ) PORT_PLAYER(3)
-	
+
 	PORT_START("IN4")
 	PORT_BIT( 0x80, IP_ACTIVE_LOW, IPT_START4 )
 	PORT_BIT( 0x40, IP_ACTIVE_LOW, IPT_JOYSTICK_UP ) PORT_PLAYER(4)
@@ -1748,4 +1748,4 @@ GAMEL( 1999, sscopea,   sscope,   sscope,  sscope,    hornet_state, init_sscope,
 GAMEL( 2000, sscope2,   0,        sscope2, sscope2,   hornet_state, init_sscope2, ROT0, "Konami", "Silent Scope 2 : Dark Silhouette (ver UAD)", MACHINE_IMPERFECT_SOUND | MACHINE_NOT_WORKING | MACHINE_SUPPORTS_SAVE | MACHINE_NODEVICE_LAN , layout_dualhsxs )
 //GAMEL( 2000, sscope2e, sscope2, sscope2, sscope2,   hornet_state, init_sscope2, ROT0, "Konami", "Silent Scope 2 : Fatal Judgement (ver EAD)", MACHINE_IMPERFECT_SOUND | MACHINE_NOT_WORKING | MACHINE_SUPPORTS_SAVE | MACHINE_NODEVICE_LAN , layout_dualhsxs )
 //GAMEL( 2000, sscope2j, sscope2  sscope2, sscope2,   hornet_state, init_sscope2, ROT0, "Konami", "Silent Scope 2 : Innocent Sweeper (ver JAD)", MACHINE_IMPERFECT_SOUND | MACHINE_NOT_WORKING | MACHINE_SUPPORTS_SAVE | MACHINE_NODEVICE_LAN , layout_dualhsxs )
-	
+

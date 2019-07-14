@@ -74,7 +74,7 @@ private:
 	virtual void machine_reset() override;
 	virtual void machine_start() override;
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_CALLBACK_MEMBER(IOMD_timer0_callback);
 	TIMER_CALLBACK_MEMBER(IOMD_timer1_callback);
 	TIMER_CALLBACK_MEMBER(flyback_timer_callback);
@@ -288,7 +288,7 @@ WRITE32_MEMBER( riscpc_state::a7000_vidc20_w )
 	}
 }
 
-uint32_t riscpc_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t riscpc_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x_size,y_size,x_start,y_start;
 	int x,y,xi;

@@ -155,11 +155,11 @@ private:
 	void pwrinst2_palette(palette_device &palette);
 	void sailormn_palette(palette_device &palette);
 	void ppsatan_palette(palette_device &palette);
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	u32 screen_update_ppsatan_core (screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int chip);
-	u32 screen_update_ppsatan_top  (screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	u32 screen_update_ppsatan_left (screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	u32 screen_update_ppsatan_right(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update_ppsatan_core (screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int chip);
+	u32 screen_update_ppsatan_top  (screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update_ppsatan_left (screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update_ppsatan_right(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(interrupt);
 	INTERRUPT_GEN_MEMBER(interrupt_ppsatan);
 	TIMER_CALLBACK_MEMBER(vblank_end);
@@ -301,7 +301,7 @@ private:
 	int m_rasflag;
 	int m_old_rasflag;
 
-	inline void tilemap_draw(int chip, screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, u32 flags, u32 priority, u32 priority2, int GFX);
+	inline void tilemap_draw(int chip, screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, u32 flags, u32 priority, u32 priority2, int GFX);
 	void set_pens(int chip);
 	void vh_start(int num, u16 sprcol_base, u16 sprcol_granularity);
 	void get_sprite_info_cave(int chip);

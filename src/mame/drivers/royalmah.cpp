@@ -251,7 +251,7 @@ private:
 	void royalmah_palette(palette_device &palette) const;
 	void mjderngr_palette(palette_device &palette) const;
 
-	uint32_t screen_update_royalmah(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_royalmah(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	INTERRUPT_GEN_MEMBER(suzume_irq);
 
@@ -419,7 +419,7 @@ WRITE8_MEMBER(royalmah_state::mjderngr_palbank_w)
 }
 
 
-uint32_t royalmah_state::screen_update_royalmah(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t royalmah_state::screen_update_royalmah(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (offs_t offs = 0; offs < 0x4000; offs++)
 	{

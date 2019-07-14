@@ -63,7 +63,7 @@ protected:
 	DECLARE_WRITE8_MEMBER(palette_data_w);
 	DECLARE_WRITE_LINE_MEMBER(vblank);
 	void render_display_list(offs_t offset);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	required_region_ptr<uint8_t> m_srcbitmap;
 	required_shared_ptr<uint32_t> m_rambase;

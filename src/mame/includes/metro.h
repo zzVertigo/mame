@@ -19,20 +19,18 @@
 #include "machine/gen_latch.h"
 #include "machine/timer.h"
 #include "screen.h"
+#include "emupal.h"
 
-class metro_state : public driver_device
+class metro_base_state : public driver_device
 {
 public:
-	metro_state(const machine_config &mconfig, device_type type, const char *tag)
+	metro_base_state(const machine_config &mconfig, device_type type, const char *tag)
 		: driver_device(mconfig, type, tag)
 		, m_maincpu(*this, "maincpu")
 		, m_audiocpu(*this, "audiocpu")
 		, m_oki(*this, "oki")
 		, m_ymsnd(*this, "ymsnd")
 		, m_essnd(*this, "essnd")
-		, m_vdp(*this, "vdp")
-		, m_vdp2(*this, "vdp2")
-		, m_vdp3(*this, "vdp3")
 		, m_k053936(*this, "k053936")
 		, m_eeprom(*this, "eeprom")
 		, m_gfxdecode(*this, "gfxdecode")
@@ -47,42 +45,9 @@ public:
 		, m_okibank(*this, "okibank")
 	{ }
 
-	void i4100_config(machine_config &config);
-	void i4100_config_360x224(machine_config &config);
-	void i4220_config(machine_config &config);
-	void i4220_config_320x240(machine_config &config);
-	void i4220_config_304x224(machine_config &config);
-	void i4300_config(machine_config &config);
-	void i4300_config_384x224(machine_config &config);
-	void i4300_config_320x240(machine_config &config);
+	void base_config(machine_config &config);
+
 	void metro_upd7810_sound(machine_config &config);
-	void daitorid_upd7810_sound(machine_config &config);
-	void poitto(machine_config &config);
-	void blzntrnd(machine_config &config);
-	void sankokushi(machine_config &config);
-	void mouja(machine_config &config);
-	void toride2g(machine_config &config);
-	void karatour(machine_config &config);
-	void skyalert(machine_config &config);
-	void gakusai(machine_config &config);
-	void batlbubl(machine_config &config);
-	void pururun(machine_config &config);
-	void vmetal(machine_config &config);
-	void daitorid(machine_config &config);
-	void puzzli(machine_config &config);
-	void pangpoms(machine_config &config);
-	void dokyusp(machine_config &config);
-	void dokyusei(machine_config &config);
-	void daitoa(machine_config &config);
-	void lastfort(machine_config &config);
-	void puzzlet(machine_config &config);
-	void gakusai2(machine_config &config);
-	void balcube(machine_config &config);
-	void msgogo(machine_config &config);
-	void gstrik2(machine_config &config);
-	void lastforg(machine_config &config);
-	void bangball(machine_config &config);
-	void dharma(machine_config &config);
 
 	void init_karatour();
 	void init_blzntrnd();
@@ -97,7 +62,11 @@ public:
 
 	DECLARE_CUSTOM_INPUT_MEMBER(custom_soundstatus_r);
 
-private:
+	DECLARE_WRITE16_MEMBER(coin_lockout_4words_w);
+
+protected:
+	virtual void trigger_eof(int state) = 0;
+
 	enum
 	{
 		TIMER_KARATOUR_IRQ,
@@ -117,8 +86,6 @@ private:
 	DECLARE_WRITE8_MEMBER(upd7810_portb_w);
 	DECLARE_WRITE8_MEMBER(daitorid_portb_w);
 	DECLARE_WRITE8_MEMBER(coin_lockout_1word_w);
-	DECLARE_WRITE16_MEMBER(coin_lockout_4words_w);
-	DECLARE_READ16_MEMBER(balcube_dsw_r);
 	DECLARE_READ16_MEMBER(gakusai_input_r);
 	DECLARE_WRITE8_MEMBER(blzntrnd_sh_bankswitch_w);
 	DECLARE_WRITE16_MEMBER(puzzlet_irq_enable_w);
@@ -144,44 +111,14 @@ private:
 	TILEMAP_MAPPER_MEMBER(tilemap_scan_gstrik2);
 	DECLARE_VIDEO_START(blzntrnd);
 	DECLARE_VIDEO_START(gstrik2);
-	uint32_t screen_update_psac_vdp2_mix(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(vblank_irq);
 	INTERRUPT_GEN_MEMBER(periodic_interrupt);
-	TIMER_DEVICE_CALLBACK_MEMBER(bangball_scanline);
 	DECLARE_WRITE_LINE_MEMBER(karatour_vblank_irq);
 	DECLARE_WRITE_LINE_MEMBER(puzzlet_vblank_irq);
 	DECLARE_READ_LINE_MEMBER(rxd_r);
 
-	void balcube_map(address_map &map);
-	void bangball_map(address_map &map);
-	void batlbubl_map(address_map &map);
-	void blzntrnd_map(address_map &map);
-	void blzntrnd_sound_io_map(address_map &map);
-	void blzntrnd_sound_map(address_map &map);
 	void cpu_space_map(address_map &map);
-	void daitoa_map(address_map &map);
-	void daitorid_map(address_map &map);
-	void dharma_map(address_map &map);
-	void dokyusei_map(address_map &map);
-	void dokyusp_map(address_map &map);
-	void gakusai2_map(address_map &map);
-	void gakusai_map(address_map &map);
-	void karatour_map(address_map &map);
-	void kokushi_map(address_map &map);
-	void lastforg_map(address_map &map);
-	void lastfort_map(address_map &map);
 	void upd7810_map(address_map &map);
-	void mouja_map(address_map &map);
-	void mouja_okimap(address_map &map);
-	void msgogo_map(address_map &map);
-	void pangpoms_map(address_map &map);
-	void poitto_map(address_map &map);
-	void pururun_map(address_map &map);
-	void puzzlet_io_map(address_map &map);
-	void puzzlet_map(address_map &map);
-	void skyalert_map(address_map &map);
-	void toride2g_map(address_map &map);
-	void vmetal_map(address_map &map);
 	void ymf278_map(address_map &map);
 
 	virtual void machine_start() override;
@@ -193,9 +130,6 @@ private:
 	optional_device<okim6295_device> m_oki;
 	optional_device<device_t> m_ymsnd; // TODO set correct type
 	optional_device<es8712_device> m_essnd;
-	optional_device<imagetek_i4100_device> m_vdp;
-	optional_device<imagetek_i4220_device> m_vdp2;
-	optional_device<imagetek_i4300_device> m_vdp3;
 
 	optional_device<k053936_device> m_k053936;
 	optional_device<eeprom_serial_93cxx_device> m_eeprom;
@@ -241,7 +175,131 @@ private:
 	void gakusai_oki_bank_set();
 
 	// blazing tornado
-	bitmap_ind16 m_vdp_bitmap;
+	bitmap_argb32 m_vdp_bitmap;
+};
+
+class metro_vdp1_state : public metro_base_state
+{
+public:
+	metro_vdp1_state(const machine_config &mconfig, device_type type, const char *tag)
+		: metro_base_state(mconfig, type, tag)
+		, m_vdp(*this, "vdp")
+	{
+	}
+
+	void i4100_config(machine_config &config);
+	void i4100_config_360x224(machine_config &config);
+
+	void karatour(machine_config &config);
+	void lastfort(machine_config &config);
+	void lastforg(machine_config &config);
+	void pangpoms(machine_config &config);
+	void poitto(machine_config &config);
+	void skyalert(machine_config &config);
+
+private:
+	void trigger_eof(int state) override;
+
+	void karatour_map(address_map &map);
+	void lastfort_map(address_map &map);
+	void lastforg_map(address_map &map);
+	void pangpoms_map(address_map &map);
+	void poitto_map(address_map &map);
+	void skyalert_map(address_map &map);
+
+	required_device<imagetek_i4100_device> m_vdp;
+};
+
+class metro_vdp2_state : public metro_base_state
+{
+public:
+	metro_vdp2_state(const machine_config &mconfig, device_type type, const char *tag)
+		: metro_base_state(mconfig, type, tag)
+		, m_vdp(*this, "vdp")
+	{
+	}
+
+	void i4220_config(machine_config &config);
+	void i4220_config_320x240(machine_config &config);
+	void i4220_config_304x224(machine_config &config);
+
+	void daitorid_upd7810_sound(machine_config &config);
+
+	void balcube(machine_config &config);
+	void bangball(machine_config &config);
+	void batlbubl(machine_config &config);
+	void blzntrnd(machine_config &config);
+	void daitoa(machine_config &config);
+	void daitorid(machine_config &config);
+	void dharma(machine_config &config);
+	void gstrik2(machine_config &config);
+	void msgogo(machine_config &config);
+	void pururun(machine_config &config);
+	void puzzlet(machine_config &config);
+	void puzzli(machine_config &config);
+	void sankokushi(machine_config &config);
+	void toride2g(machine_config &config);
+	void vmetal(machine_config &config);
+
+private:
+	void trigger_eof(int state) override;
+
+	void balcube_map(address_map &map);
+	void bangball_map(address_map &map);
+	void batlbubl_map(address_map &map);
+	void blzntrnd_map(address_map &map);
+	void blzntrnd_sound_io_map(address_map &map);
+	void blzntrnd_sound_map(address_map &map);
+	void daitoa_map(address_map &map);
+	void daitorid_map(address_map &map);
+	void dharma_map(address_map &map);
+	void msgogo_map(address_map &map);
+	void pururun_map(address_map &map);
+	void puzzlet_io_map(address_map &map);
+	void puzzlet_map(address_map &map);
+	void kokushi_map(address_map &map);
+	void toride2g_map(address_map &map);
+	void vmetal_map(address_map &map);
+
+	DECLARE_READ16_MEMBER(balcube_dsw_r);
+
+	TIMER_DEVICE_CALLBACK_MEMBER(bangball_scanline);
+
+	uint32_t screen_update_psac_vdp2_mix(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+
+	required_device<imagetek_i4220_device> m_vdp;
+};
+
+class metro_vdp3_state : public metro_base_state
+{
+public:
+	metro_vdp3_state(const machine_config &mconfig, device_type type, const char *tag)
+		: metro_base_state(mconfig, type, tag)
+		, m_vdp(*this, "vdp")
+	{
+	}
+
+	void i4300_config(machine_config &config);
+	void i4300_config_384x224(machine_config &config);
+	void i4300_config_320x240(machine_config &config);
+
+	void dokyusei(machine_config &config);
+	void dokyusp(machine_config &config);
+	void gakusai(machine_config &config);
+	void gakusai2(machine_config &config);
+	void mouja(machine_config &config);
+
+private:
+	void trigger_eof(int state) override;
+
+	void dokyusei_map(address_map &map);
+	void dokyusp_map(address_map &map);
+	void gakusai_map(address_map &map);
+	void gakusai2_map(address_map &map);
+	void mouja_map(address_map &map);
+	void mouja_okimap(address_map &map);
+
+	required_device<imagetek_i4300_device> m_vdp;
 };
 
 #endif // MAME_INCLUDES_METRO_H

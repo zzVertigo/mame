@@ -49,7 +49,7 @@ public:
 	void update_scanline(uint16_t scanline);
 	void set_color_entry( int index, uint8_t r, uint8_t g, uint8_t b );
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void char_latch_w(uint8_t data);
 	void command_w(uint8_t cmd);
 
@@ -92,7 +92,7 @@ private:
 	int   cursor_state;
 
 	uint32_t clock_freq;
-	bitmap_rgb32 m_screen_out;
+	bitmap_argb32 m_screen_out;
 
 	required_device<palette_device> m_palette;
 };

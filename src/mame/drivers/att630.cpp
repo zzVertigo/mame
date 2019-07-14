@@ -27,7 +27,7 @@ protected:
 	virtual void machine_start() override;
 
 private:
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	u8 bram_r(offs_t offset);
 	void bram_w(offs_t offset, u8 data);
@@ -48,7 +48,7 @@ void att630_state::machine_start()
 	save_pointer(NAME(m_bram_data), 0x2000);
 }
 
-u32 att630_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 att630_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (int y = 0; y < 1024; y++)
 		for (int x = 0; x < 1024; x++)

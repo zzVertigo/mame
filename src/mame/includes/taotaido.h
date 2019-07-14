@@ -68,7 +68,7 @@ private:
 	TILE_GET_INFO_MEMBER(bg_tile_info);
 	TILEMAP_MAPPER_MEMBER(tilemap_scan_rows);
 
-	uint32_t screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(screen_vblank);
 	uint32_t tile_callback( uint32_t code );
 	void main_map(address_map &map);

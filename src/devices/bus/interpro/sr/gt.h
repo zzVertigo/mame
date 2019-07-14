@@ -160,7 +160,7 @@ protected:
 	u32 mram_r(const offs_t offset) const;
 	void mram_w(const offs_t offset, const u32 data, const u32 mem_mask) const;
 
-	template <int N> u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+	template <int N> u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 	{
 		m_ramdac[N]->screen_update(screen, bitmap, cliprect, m_double_buffered && (m_control & (N == 0 ? GFX_SCREEN0_DISP_BUF1 : GFX_SCREEN1_DISP_BUF1)) ?
 			m_vram[N]->pointer() + (m_vram[N]->size() >> 1) :

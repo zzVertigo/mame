@@ -153,7 +153,7 @@ private:
 	avi_write *m_avi_writer;
 	bgfx_target *m_avi_target;
 	bgfx::TextureHandle m_avi_texture;
-	bitmap_rgb32 m_avi_bitmap;
+	bitmap_argb32 m_avi_bitmap;
 	uint8_t *m_avi_data;
 
 	static const uint16_t CACHE_SIZE;

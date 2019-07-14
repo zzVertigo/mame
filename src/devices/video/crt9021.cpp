@@ -178,7 +178,7 @@ WRITE_LINE_MEMBER( crt9021_device::vsync_w )
 //  screen_update - update screen
 //-------------------------------------------------
 
-uint32_t crt9021_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t crt9021_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bitmap.fill(rgb_t::black(), cliprect);
 

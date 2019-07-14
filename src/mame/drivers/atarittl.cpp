@@ -164,7 +164,7 @@ public:
 	NETDEV_LOGIC_CALLBACK_MEMBER(probe_bit6_cb);
 	NETDEV_LOGIC_CALLBACK_MEMBER(probe_clock_cb);
 
-	uint32_t screen_update_stuntcyc(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_stuntcyc(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void stuntcyc(machine_config &config);
 protected:
@@ -307,7 +307,7 @@ NETDEV_LOGIC_CALLBACK_MEMBER(stuntcyc_state::probe_clock_cb)
 	m_last_fraction = pixel_fraction;
 }
 
-uint32_t stuntcyc_state::screen_update_stuntcyc(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t stuntcyc_state::screen_update_stuntcyc(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_last_hpos = 0;
 	m_last_vpos = 0;

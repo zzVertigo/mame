@@ -202,7 +202,7 @@ void dpb7000_combiner_card_device::fsck_tick()
 	m_screen->update_now();
 }
 
-uint32_t dpb7000_combiner_card_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t dpb7000_combiner_card_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (int y = cliprect.min_y; y <= cliprect.max_y; y++)
 	{

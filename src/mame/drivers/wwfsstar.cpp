@@ -428,7 +428,6 @@ void wwfsstar_state::wwfsstar(machine_config &config)
 	SCREEN(config, m_screen, SCREEN_TYPE_RASTER);
 	m_screen->set_raw(PIXEL_CLOCK, 320, 0, 256, 272, 8, 248);   /* HTOTAL and VTOTAL are guessed */
 	m_screen->set_screen_update(FUNC(wwfsstar_state::screen_update));
-	m_screen->set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_wwfsstar);
 	PALETTE(config, m_palette).set_format(palette_device::xBGR_444, 384);

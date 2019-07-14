@@ -81,15 +81,15 @@ protected:
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
 	virtual void video_start() override;
-	uint32_t screen_update_20pacgal(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_20pacgal(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(vblank_irq);
 	void starpal_init(palette_device &palette) const;
 	void get_pens();
-	void do_pen_lookup(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_chars(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_stars(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_sprite(bitmap_rgb32 &bitmap, const rectangle &cliprect, int y, int x,
+	void do_pen_lookup(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_chars(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_stars(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_sprite(bitmap_argb32 &bitmap, const rectangle &cliprect, int y, int x,
 						uint8_t code, uint8_t color, int flip_y, int flip_x);
 	void common_save_state();
 

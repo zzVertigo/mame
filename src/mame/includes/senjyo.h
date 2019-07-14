@@ -118,10 +118,10 @@ private:
 	TILE_GET_INFO_MEMBER(get_bg2_tile_info);
 	TILE_GET_INFO_MEMBER(get_bg3_tile_info);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_bgbitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_radar(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect,int priority);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_bgbitmap(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_radar(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect,int priority);
 
 	void decrypted_opcodes_map(address_map &map);
 	void senjyo_map(address_map &map);

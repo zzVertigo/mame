@@ -81,7 +81,7 @@ private:
 	void machine_start() override;
 	void device_timer(emu_timer &timer, device_timer_id id, int param, void *ptr) override;
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_WRITE8_MEMBER(sel34_w);
 	DECLARE_READ8_MEMBER(sel37_r);

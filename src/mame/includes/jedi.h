@@ -81,12 +81,12 @@ private:
 	void speech_reset_w(u8 data);
 	DECLARE_WRITE_LINE_MEMBER(foreground_bank_w);
 	DECLARE_WRITE_LINE_MEMBER(video_off_w);
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_CALLBACK_MEMBER(generate_interrupt);
 	static rgb_t jedi_IRGB_3333(u32 raw);
-	void do_pen_lookup(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_background_and_text(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void do_pen_lookup(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_background_and_text(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void jedi_audio(machine_config &config);
 	void jedi_video(machine_config &config);
 	void audio_map(address_map &map);

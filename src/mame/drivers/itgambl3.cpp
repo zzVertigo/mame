@@ -73,7 +73,7 @@ private:
 	required_device<palette_device> m_palette;
 
 	void itgambl3_palette(palette_device &palette) const;
-	uint32_t screen_update_itgambl3(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_itgambl3(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void itgambl3_map(address_map &map);
 };
 
@@ -90,7 +90,7 @@ void itgambl3_state::video_start()
 }
 
 /* (dirty) debug code for looking 8bpps blitter-based gfxs */
-uint32_t itgambl3_state::screen_update_itgambl3(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t itgambl3_state::screen_update_itgambl3(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y,count;
 	const uint8_t *blit_ram = memregion("gfx1")->base();

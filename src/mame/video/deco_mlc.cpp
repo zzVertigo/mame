@@ -23,7 +23,7 @@ void deco_mlc_state::video_start()
 	m_colour_mask=max_color - 1;
 	m_shadow_mask=max_color << 1;
 
-//  temp_bitmap = std::make_unique<bitmap_rgb32>(512, 512 );
+//  temp_bitmap = std::make_unique<bitmap_argb32>(512, 512 );
 	m_buffered_spriteram = std::make_unique<uint16_t[]>(0x3000/4);
 	m_spriteram_spare = std::make_unique<uint16_t[]>(0x3000/4);
 	m_spriteram = std::make_unique<uint16_t[]>(0x3000/4);
@@ -538,7 +538,7 @@ WRITE_LINE_MEMBER(deco_mlc_state::screen_vblank_mlc)
 	}
 }
 
-uint32_t deco_mlc_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t deco_mlc_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 //  temp_bitmap->fill(0, cliprect);
 	bitmap.fill(m_palette->pen(0), cliprect); /* Pen 0 fill colour confirmed from Skull Fang level 2 */

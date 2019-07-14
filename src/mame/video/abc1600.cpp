@@ -1247,7 +1247,7 @@ void abc1600_mover_device::mover()
 	m_amm = 0;
 }
 
-uint32_t abc1600_mover_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t abc1600_mover_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (m_endisp)
 	{

@@ -1545,7 +1545,7 @@ WRITE16_MEMBER( apollo_graphics_15i::apollo_cgm_w )
  VIDEO HARDWARE
  ***************************************************************************/
 
-uint32_t apollo_graphics_15i::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t apollo_graphics_15i::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int has_changed = 0;
 
@@ -1560,7 +1560,7 @@ uint32_t apollo_graphics_15i::screen_update(screen_device &screen, bitmap_rgb32 
 	return has_changed ? 0 : UPDATE_HAS_NOT_CHANGED;
 }
 
-void apollo_graphics_15i::screen_update1(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void apollo_graphics_15i::screen_update1(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint16_t *source_ptr = m_image_memory.get();
 	int x, y;

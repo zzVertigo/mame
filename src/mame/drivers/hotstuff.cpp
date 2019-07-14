@@ -24,7 +24,7 @@ public:
 private:
 	required_shared_ptr<uint16_t> m_bitmapram;
 	virtual void video_start() override;
-	uint32_t screen_update_hotstuff(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_hotstuff(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	required_device<cpu_device> m_maincpu;
 	required_device<mc146818_device> m_rtc;
 	void hotstuff_map(address_map &map);
@@ -37,7 +37,7 @@ void hotstuff_state::video_start()
 
 /* the first 0x20 bytes in every 0x200 (each line) of video ram are the colour data, providing a palette of 16 RGB444 colours for that line */
 
-uint32_t hotstuff_state::screen_update_hotstuff(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t hotstuff_state::screen_update_hotstuff(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int count, y,yyy,x,xxx;
 	uint16_t row_palette_data[0x10];

@@ -110,7 +110,7 @@ private:
 	virtual void video_start() override;
 	void progolf_palette(palette_device &palette) const;
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void main_cpu(address_map &map);
 	void sound_cpu(address_map &map);
 };
@@ -136,7 +136,7 @@ void progolf_state::video_start()
 }
 
 
-uint32_t progolf_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t progolf_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int count,color,x,y,xi,yi;
 

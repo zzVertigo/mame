@@ -79,7 +79,7 @@ private:
 	DECLARE_WRITE8_MEMBER(memory_write_byte);
 	DECLARE_WRITE8_MEMBER(dark_1_clr);
 	DECLARE_WRITE8_MEMBER(dark_2_clr);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void fastinvaders_map(address_map &map);
 	void fastinvaders_io_base(address_map &map);
@@ -220,7 +220,7 @@ void fastinvaders_state::video_start()
 {
 }
 
-uint32_t fastinvaders_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t fastinvaders_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	gfx_element *gfx = m_gfxdecode->gfx(0);
 

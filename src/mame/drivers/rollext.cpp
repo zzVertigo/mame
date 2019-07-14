@@ -88,7 +88,7 @@ public:
 	rollext_renderer(screen_device &screen)
 		: poly_manager<float, rollext_polydata, 4, 10000>(screen)
 	{
-		m_fb = std::make_unique<bitmap_rgb32>(1024, 1024);
+		m_fb = std::make_unique<bitmap_argb32>(1024, 1024);
 	}
 
 	void render_texture_scan(int32_t scanline, const extent_t &extent, const rollext_polydata &extradata, int threadid);
@@ -98,9 +98,9 @@ public:
 	void process_display_list(uint32_t* dispram);
 
 	void clear_fb();
-	void display(bitmap_rgb32 *bitmap, const rectangle &cliprect);
+	void display(bitmap_argb32 *bitmap, const rectangle &cliprect);
 private:
-	std::unique_ptr<bitmap_rgb32> m_fb;
+	std::unique_ptr<bitmap_argb32> m_fb;
 
 	uint8_t *m_texture_ram;
 	uint16_t *m_palette_ram;
@@ -267,7 +267,7 @@ void rollext_renderer::clear_fb()
 
 }
 
-void rollext_renderer::display(bitmap_rgb32 *bitmap, const rectangle &cliprect)
+void rollext_renderer::display(bitmap_argb32 *bitmap, const rectangle &cliprect)
 {
 	copybitmap_trans(*bitmap, *m_fb, 0, 0, 0, 0, cliprect, 0);
 }
@@ -314,7 +314,7 @@ private:
 	virtual void machine_reset() override;
 	virtual void video_start() override;
 	void preprocess_texture_data();
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void memmap(address_map &map);
 };
 
@@ -349,7 +349,7 @@ void rollext_state::video_start()
 	m_renderer->set_palette_ram((uint16_t*)&m_palette_ram[0]);
 }
 
-uint32_t rollext_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t rollext_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 #if 0
 	uint16_t *pal = (uint16_t*)&m_palette_ram[0];

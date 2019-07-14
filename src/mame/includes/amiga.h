@@ -418,8 +418,8 @@ public:
 	DECLARE_VIDEO_START( amiga_aga );
 	void amiga_palette(palette_device &palette) const;
 
-	uint32_t screen_update_amiga(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_amiga_aga(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_amiga(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_amiga_aga(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void update_screenmode();
 
 	TIMER_CALLBACK_MEMBER( scanline_callback );
@@ -616,6 +616,8 @@ private:
 	// video helpers
 protected:
 	void set_genlock_color(uint16_t color);
+	void render_scanline(uint32_t *dst, int scanline);
+
 private:
 	void copper_setpc(uint32_t pc);
 	int copper_execute_next(int xpos);
@@ -630,12 +632,11 @@ private:
 	void fetch_bitplane_data(int plane);
 	int update_ham(int newpix);
 	void update_display_window();
-	void render_scanline(bitmap_rgb32 &bitmap, int scanline);
 
 	// AGA video helpers
 	void aga_palette_write(int color_reg, uint16_t data);
 	void aga_fetch_sprite_data(int scanline, int sprite);
-	void aga_render_scanline(bitmap_rgb32 &bitmap, int scanline);
+	void aga_render_scanline(bitmap_argb32 &bitmap, int scanline);
 	void aga_update_sprite_dma(int scanline);
 	int aga_get_sprite_pixel(int x);
 	uint8_t aga_assemble_odd_bitplanes(int planes, int obitoffs);
@@ -699,7 +700,7 @@ private:
 	bool m_diwhigh_valid;
 
 	bool m_previous_lof;
-	bitmap_rgb32 m_flickerfixer;
+	bitmap_argb32 m_flickerfixer;
 
 	uint16_t m_rx_shift;
 	uint16_t m_tx_shift;

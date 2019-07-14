@@ -163,7 +163,7 @@ WRITE_LINE_MEMBER(dio16_98544_device::int_w)
 
 }
 
-uint32_t dio16_98544_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t dio16_98544_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int startx, starty, endx, endy;
 

@@ -492,7 +492,7 @@ enum
 	CPS3_TRANSPARENCY_PEN_INDEX_BLEND
 };
 
-inline void cps3_state::cps3_drawgfxzoom(bitmap_rgb32 &dest_bmp,const rectangle &clip,gfx_element *gfx,
+inline void cps3_state::cps3_drawgfxzoom(bitmap_argb32 &dest_bmp,const rectangle &clip,gfx_element *gfx,
 		u32 code,u32 color,int flipx,int flipy,int sx,int sy,
 		int transparency,int transparent_color,
 		int scalex, int scaley)
@@ -907,7 +907,7 @@ void cps3_state::video_start()
 
 // the 0x400 bit in the tilemap regs is "draw it upside-down"  (bios tilemap during flashing, otherwise capcom logo is flipped)
 
-void cps3_state::draw_tilemapsprite_line(int tmnum, int drawline, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void cps3_state::draw_tilemapsprite_line(int tmnum, int drawline, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	u32* tmapregs[4] = { m_tilemap20_regs_base, m_tilemap30_regs_base, m_tilemap40_regs_base, m_tilemap50_regs_base };
 	if (tmnum > 3)
@@ -973,7 +973,7 @@ void cps3_state::draw_tilemapsprite_line(int tmnum, int drawline, bitmap_rgb32 &
 }
 
 // fg layer (TODO: this could be handled with an actual tilemap)
-void cps3_state::draw_fg_layer(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void cps3_state::draw_fg_layer(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// bank select? (sfiii2 intro) (could also be a scroll bit if the tilemap is just double height)
 	int bank = 0x800;
@@ -1007,7 +1007,7 @@ void cps3_state::draw_fg_layer(screen_device &screen, bitmap_rgb32 &bitmap, cons
 	}
 }
 
-u32 cps3_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 cps3_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	attoseconds_t period = screen.frame_period().attoseconds();
 	rectangle visarea = screen.visible_area();

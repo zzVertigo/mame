@@ -34,7 +34,7 @@ public:
 	required_device_array<topcat_device, TOPCAT_COUNT> m_topcat;
 	required_device<nereid_device> m_nereid;
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 protected:
 	dio16_98543_device(const machine_config &mconfig, device_type type, const char *tag, device_t *owner, uint32_t clock);
 

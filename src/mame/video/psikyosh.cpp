@@ -105,7 +105,7 @@ while (0)
     draw_scanline32_alpha - take an RGB-encoded u32
     scanline and alpha-blend it into the destination bitmap
 -------------------------------------------------*/
-void psikyosh_state::draw_scanline32_alpha(bitmap_rgb32 &bitmap, s32 destx, s32 desty, s32 length, const u32 *srcptr, int alpha)
+void psikyosh_state::draw_scanline32_alpha(bitmap_argb32 &bitmap, s32 destx, s32 desty, s32 length, const u32 *srcptr, int alpha)
 {
 	DECLARE_NO_PRIORITY;
 	u32 transpen = BG_TRANSPEN;
@@ -117,7 +117,7 @@ void psikyosh_state::draw_scanline32_alpha(bitmap_rgb32 &bitmap, s32 destx, s32 
     draw_scanline32_argb - take an ARGB-encoded u32
     scanline and alpha-blend it into the destination bitmap
 -------------------------------------------------*/
-void psikyosh_state::draw_scanline32_argb(bitmap_rgb32 &bitmap, s32 destx, s32 desty, s32 length, const u32 *srcptr)
+void psikyosh_state::draw_scanline32_argb(bitmap_argb32 &bitmap, s32 destx, s32 desty, s32 length, const u32 *srcptr)
 {
 	DECLARE_NO_PRIORITY;
 	u32 transpen = BG_TRANSPEN;
@@ -129,7 +129,7 @@ void psikyosh_state::draw_scanline32_argb(bitmap_rgb32 &bitmap, s32 destx, s32 d
     draw_scanline32_tranpens - take an RGB-encoded u32
     scanline and copy it into the destination bitmap, testing for the special ARGB transpen
 -------------------------------------------------*/
-void psikyosh_state::draw_scanline32_transpen(bitmap_rgb32 &bitmap, s32 destx, s32 desty, s32 length, const u32 *srcptr)
+void psikyosh_state::draw_scanline32_transpen(bitmap_argb32 &bitmap, s32 destx, s32 desty, s32 length, const u32 *srcptr)
 {
 	DECLARE_NO_PRIORITY;
 	u32 transpen = BG_TRANSPEN;
@@ -143,7 +143,7 @@ void psikyosh_state::draw_scanline32_transpen(bitmap_rgb32 &bitmap, s32 destx, s
 
 /* 'Normal' layers, no line/columnscroll. No per-line effects.
 Zooming isn't supported just because it's not used and it would be slow */
-void psikyosh_state::draw_bglayer(u8 const layer, bitmap_rgb32 &bitmap, const rectangle &cliprect, u8 const req_pri)
+void psikyosh_state::draw_bglayer(u8 const layer, bitmap_argb32 &bitmap, const rectangle &cliprect, u8 const req_pri)
 {
 	assert(!BG_LINE(layer));
 
@@ -235,7 +235,7 @@ void psikyosh_state::cache_bitmap(s16 const scanline, gfx_element *gfx, u8 const
 Bitmap is first rendered to an ARGB image, taking into account the per-pen alpha (if used).
 From there we extract data as we compose the image, one scanline at a time, blending the ARGB pixels
 into the RGB32 bitmap (with either the alpha information from the ARGB, or per-line alpha */
-void psikyosh_state::draw_bglayerscroll(u8 const layer, bitmap_rgb32 &bitmap, const rectangle &cliprect, u8 const req_pri)
+void psikyosh_state::draw_bglayerscroll(u8 const layer, bitmap_argb32 &bitmap, const rectangle &cliprect, u8 const req_pri)
 {
 	assert(BG_LINE(layer));
 
@@ -328,7 +328,7 @@ void psikyosh_state::draw_bglayerscroll(u8 const layer, bitmap_rgb32 &bitmap, co
 }
 
 /* 3 BG layers, with priority */
-void psikyosh_state::draw_background(bitmap_rgb32 &bitmap, const rectangle &cliprect, u8 const req_pri)
+void psikyosh_state::draw_background(bitmap_argb32 &bitmap, const rectangle &cliprect, u8 const req_pri)
 {
 	int i;
 
@@ -371,7 +371,7 @@ void psikyosh_state::draw_background(bitmap_rgb32 &bitmap, const rectangle &clip
 /* sx and sy is top-left of entire sprite regardless of flip */
 /* Note that Level 5-4 of sbomberb boss is perfect! (Alpha blended zoomed) as well as S1945II logo */
 /* pixel is only plotted if z is >= priority_buffer[y][x] */
-void psikyosh_state::psikyosh_drawgfxzoom(bitmap_rgb32 &dest_bmp, const rectangle &clip, gfx_element *gfx,
+void psikyosh_state::psikyosh_drawgfxzoom(bitmap_argb32 &dest_bmp, const rectangle &clip, gfx_element *gfx,
 		u32 const code, u16 const color, u8 const flipx, u8 const flipy, s32 const offsx, s32 const offsy,
 		s16 const alpha, u32 const zoomx, u32 const zoomy, u8 const wide, u8 const high, u16 const z)
 {
@@ -959,7 +959,7 @@ void psikyosh_state::get_sprites()
 	m_sprite_end = sprite_ptr;
 }
 
-void psikyosh_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect, u8 const req_pri)
+void psikyosh_state::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, u8 const req_pri)
 {
 	const input_code spr_keys[8] = {KEYCODE_Y, KEYCODE_U, KEYCODE_I, KEYCODE_O};
 	bool spr_debug = false;
@@ -1018,7 +1018,7 @@ void psikyosh_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprec
 	}
 }
 
-void psikyosh_state::prelineblend(bitmap_rgb32 &bitmap, const rectangle &cliprect )
+void psikyosh_state::prelineblend(bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	/* There are 224 values for pre-lineblending. Using one for every row currently */
 	/* I suspect that it should be blended against black by the amount specified as
@@ -1042,7 +1042,7 @@ void psikyosh_state::prelineblend(bitmap_rgb32 &bitmap, const rectangle &cliprec
 }
 
 
-void psikyosh_state::postlineblend(bitmap_rgb32 &bitmap, const rectangle &cliprect, u8 const req_pri)
+void psikyosh_state::postlineblend(bitmap_argb32 &bitmap, const rectangle &cliprect, u8 const req_pri)
 {
 	/* There are 224 values for post-lineblending. Using one for every row currently */
 	u8 const bank  = (m_vidregs[7] & 0xff000000) >> 24; /* bank is always 8 (i.e. 0x4000) except for daraku/soldivid */
@@ -1112,7 +1112,7 @@ void psikyosh_state::video_start()
 }
 
 
-u32 psikyosh_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)/* Note the z-buffer on each sprite to get correct priority */
+u32 psikyosh_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)/* Note the z-buffer on each sprite to get correct priority */
 {
 	int i;
 

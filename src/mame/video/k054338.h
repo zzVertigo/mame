@@ -42,8 +42,8 @@ public:
 
 	u16 register_r(offs_t offset);
 	void update_all_shadows(int rushingheroes_hack, palette_device &palette);          // called at the beginning of SCREEN_UPDATE()
-	void fill_solid_bg(bitmap_rgb32 &bitmap, const rectangle &cliprect);             // solid backcolor fill
-	void fill_backcolor(bitmap_rgb32 &bitmap, const rectangle &cliprect, const pen_t *pal_ptr, int mode);  // solid or gradient fill using k055555
+	void fill_solid_bg(bitmap_argb32 &bitmap, const rectangle &cliprect);             // solid backcolor fill
+	void fill_backcolor(bitmap_argb32 &bitmap, const rectangle &cliprect, const pen_t *pal_ptr, int mode);  // solid or gradient fill using k055555
 	int  set_alpha_level(int pblend);                         // blend style 0-2
 	void invert_alpha(int invert);                                // 0=0x00(invis)-0x1f(solid), 1=0x1f(invis)-0x00(solod)
 	void export_config(int **shdRGB);

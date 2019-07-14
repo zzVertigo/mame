@@ -283,9 +283,9 @@ private:
 	DECLARE_READ8_MEMBER( rtc7170_r );
 	DECLARE_WRITE8_MEMBER( rtc7170_w );
 
-	uint32_t bw2_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t bw2_16x11_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t bw2_350_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t bw2_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t bw2_16x11_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t bw2_350_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	TIMER_DEVICE_CALLBACK_MEMBER(sun3_timer);
 
@@ -898,7 +898,7 @@ TIMER_DEVICE_CALLBACK_MEMBER(sun3_state::sun3_timer)
 	}
 }
 
-uint32_t sun3_state::bw2_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t sun3_state::bw2_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t *scanline;
 	int x, y;
@@ -926,7 +926,7 @@ uint32_t sun3_state::bw2_update(screen_device &screen, bitmap_rgb32 &bitmap, con
 	return 0;
 }
 
-uint32_t sun3_state::bw2_16x11_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t sun3_state::bw2_16x11_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t *scanline;
 	int x, y;
@@ -954,7 +954,7 @@ uint32_t sun3_state::bw2_16x11_update(screen_device &screen, bitmap_rgb32 &bitma
 	return 0;
 }
 
-uint32_t sun3_state::bw2_350_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t sun3_state::bw2_350_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t *scanline;
 	int x, y;

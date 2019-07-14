@@ -372,7 +372,7 @@ void k051960_device::k051937_w(offs_t offset, u8 data)
  * Note that Aliens also uses the shadow bit to select the second sprite bank.
  */
 
-void k051960_device::k051960_sprites_draw( bitmap_ind16 &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap, int min_priority, int max_priority )
+void k051960_device::k051960_sprites_draw( bitmap_argb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap, int min_priority, int max_priority )
 {
 #define NUM_SPRITES 128
 	int offs, pri_code;

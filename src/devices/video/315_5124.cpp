@@ -1867,7 +1867,7 @@ void sega315_5377_device::cram_write(u8 data)
 }
 
 
-u32 sega315_5124_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 sega315_5124_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	copybitmap(bitmap, m_tmpbitmap, 0, 0, 0, 0, cliprect);
 	return 0;

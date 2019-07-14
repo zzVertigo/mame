@@ -421,7 +421,6 @@ void crshrace_state::crshrace(machine_config &config)
 	screen.set_screen_update(FUNC(crshrace_state::screen_update_crshrace));
 	screen.screen_vblank().set(m_spriteram, FUNC(buffered_spriteram16_device::vblank_copy_rising));
 	screen.screen_vblank().append(m_spriteram2, FUNC(buffered_spriteram16_device::vblank_copy_rising));
-	screen.set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_crshrace);
 	PALETTE(config, m_palette).set_format(palette_device::xGBR_555, 2048);

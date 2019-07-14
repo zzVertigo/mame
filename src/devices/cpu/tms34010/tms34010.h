@@ -104,7 +104,7 @@ enum
 
 
 #define TMS340X0_SCANLINE_IND16_CB_MEMBER(_name) void _name(screen_device &screen, bitmap_ind16 &bitmap, int scanline, const tms340x0_device::display_params *params)
-#define TMS340X0_SCANLINE_RGB32_CB_MEMBER(_name) void _name(screen_device &screen, bitmap_rgb32 &bitmap, int scanline, const tms340x0_device::display_params *params)
+#define TMS340X0_SCANLINE_RGB32_CB_MEMBER(_name) void _name(screen_device &screen, bitmap_argb32 &bitmap, int scanline, const tms340x0_device::display_params *params)
 #define TMS340X0_TO_SHIFTREG_CB_MEMBER(_name) void _name(address_space &space, offs_t address, uint16_t *shiftreg)
 #define TMS340X0_FROM_SHIFTREG_CB_MEMBER(_name) void _name(address_space &space, offs_t address, uint16_t *shiftreg)
 
@@ -125,7 +125,7 @@ public:
 	};
 
 	typedef device_delegate<void (screen_device &screen, bitmap_ind16 &bitmap, int scanline, const display_params *params)> scanline_ind16_cb_delegate;
-	typedef device_delegate<void (screen_device &screen, bitmap_rgb32 &bitmap, int scanline, const display_params *params)> scanline_rgb32_cb_delegate;
+	typedef device_delegate<void (screen_device &screen, bitmap_argb32 &bitmap, int scanline, const display_params *params)> scanline_rgb32_cb_delegate;
 	typedef device_delegate<void (address_space &space, offs_t address, uint16_t *shiftreg)> shiftreg_in_cb_delegate;
 	typedef device_delegate<void (address_space &space, offs_t address, uint16_t *shiftreg)> shiftreg_out_cb_delegate;
 
@@ -157,13 +157,13 @@ public:
 
 	// Setters for rgb32 scanline callback
 	template <class FunctionClass>
-	void set_scanline_rgb32_callback(void (FunctionClass::*callback)(screen_device &, bitmap_rgb32 &, int, const display_params *),
+	void set_scanline_rgb32_callback(void (FunctionClass::*callback)(screen_device &, bitmap_argb32 &, int, const display_params *),
 		const char *name)
 	{
 		set_scanline_rgb32_callback(scanline_rgb32_cb_delegate(callback, name, nullptr, static_cast<FunctionClass *>(nullptr)));
 	}
 	template <class FunctionClass>
-	void set_scanline_rgb32_callback(const char *devname, void (FunctionClass::*callback)(screen_device &, bitmap_rgb32 &, int, const display_params *),
+	void set_scanline_rgb32_callback(const char *devname, void (FunctionClass::*callback)(screen_device &, bitmap_argb32 &, int, const display_params *),
 		const char *name)
 	{
 		set_scanline_rgb32_callback(scanline_rgb32_cb_delegate(callback, name, devname, static_cast<FunctionClass *>(nullptr)));
@@ -208,7 +208,7 @@ public:
 	void get_display_params(display_params *params);
 
 	uint32_t tms340x0_ind16(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	uint32_t tms340x0_rgb32(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t tms340x0_rgb32(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	virtual void io_register_w(offs_t offset, u16 data, u16 mem_mask = ~u16(0)) = 0;
 	virtual u16 io_register_r(offs_t offset) = 0;

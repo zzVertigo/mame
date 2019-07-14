@@ -62,7 +62,7 @@ private:
 	DECLARE_WRITE_LINE_MEMBER(halt_changed);
 
 	// screen updates
-	uint32_t lcd_update(screen_device& screen, bitmap_rgb32& bitmap, const rectangle& cliprect);
+	uint32_t lcd_update(screen_device& screen, bitmap_argb32& bitmap, const rectangle& cliprect);
 	SED1520_UPDATE_CB(screen_update);
 
 	void mmonty_mem(address_map &map);
@@ -231,7 +231,7 @@ WRITE_LINE_MEMBER( monty_state::key_pressed )
 }
 
 
-uint32_t monty_state::lcd_update(screen_device& screen, bitmap_rgb32& bitmap, const rectangle& cliprect)
+uint32_t monty_state::lcd_update(screen_device& screen, bitmap_argb32& bitmap, const rectangle& cliprect)
 {
 	if (!m_dirty)
 		return 1;

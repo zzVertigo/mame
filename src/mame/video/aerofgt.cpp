@@ -243,7 +243,7 @@ WRITE8_MEMBER(aerofgt_state::turbofrc_flip_screen_w)
 ***************************************************************************/
 
 
-uint32_t aerofgt_state::screen_update_pspikes(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t aerofgt_state::screen_update_pspikes(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i, scrolly;
 
@@ -262,7 +262,7 @@ uint32_t aerofgt_state::screen_update_pspikes(screen_device &screen, bitmap_ind1
 }
 
 
-uint32_t aerofgt_state::screen_update_karatblz(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t aerofgt_state::screen_update_karatblz(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_tilemap[0]->set_scrollx(0, m_scrollx[0] - 8);
 	m_tilemap[0]->set_scrolly(0, m_scrolly[0]);
@@ -283,7 +283,7 @@ uint32_t aerofgt_state::screen_update_karatblz(screen_device &screen, bitmap_ind
 	return 0;
 }
 
-uint32_t aerofgt_state::screen_update_spinlbrk(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t aerofgt_state::screen_update_spinlbrk(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i, scrolly;
 
@@ -309,7 +309,7 @@ uint32_t aerofgt_state::screen_update_spinlbrk(screen_device &screen, bitmap_ind
 	return 0;
 }
 
-uint32_t aerofgt_state::screen_update_turbofrc(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t aerofgt_state::screen_update_turbofrc(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i, scrolly;
 
@@ -336,7 +336,7 @@ uint32_t aerofgt_state::screen_update_turbofrc(screen_device &screen, bitmap_ind
 	return 0;
 }
 
-uint32_t aerofgt_state::screen_update_aerofgt(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t aerofgt_state::screen_update_aerofgt(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_tilemap[0]->set_scrollx(0, m_rasterram[0x0000] - 18);
 	m_tilemap[0]->set_scrolly(0, m_scrolly[0]);
@@ -401,7 +401,7 @@ WRITE16_MEMBER(aerofgt_state::wbbc97_bitmap_enable_w)
 }
 
 // BOOTLEG
-void aerofgt_state::aerfboo2_draw_sprites( screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, int chip, int chip_disabled_pri )
+void aerofgt_state::aerfboo2_draw_sprites( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int chip, int chip_disabled_pri )
 {
 	int attr_start, base, first;
 
@@ -483,7 +483,7 @@ void aerofgt_state::aerfboo2_draw_sprites( screen_device &screen, bitmap_ind16 &
 }
 
 // BOOTLEG
-void aerofgt_state::pspikesb_draw_sprites( screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect )
+void aerofgt_state::pspikesb_draw_sprites( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	int i;
 
@@ -518,7 +518,7 @@ void aerofgt_state::pspikesb_draw_sprites( screen_device &screen, bitmap_ind16 &
 }
 
 // BOOTLEG
-void aerofgt_state::spikes91_draw_sprites( screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect )
+void aerofgt_state::spikes91_draw_sprites( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	int i;
 	m_spritepalettebank = 1;
@@ -556,7 +556,7 @@ void aerofgt_state::spikes91_draw_sprites( screen_device &screen, bitmap_ind16 &
 }
 
 // BOOTLEG
-void aerofgt_state::aerfboot_draw_sprites( screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect )
+void aerofgt_state::aerfboot_draw_sprites( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	int attr_start, last;
 
@@ -638,7 +638,7 @@ void aerofgt_state::aerfboot_draw_sprites( screen_device &screen, bitmap_ind16 &
 }
 
 // BOOTLEG
-void aerofgt_state::wbbc97_draw_bitmap( bitmap_rgb32 &bitmap )
+void aerofgt_state::wbbc97_draw_bitmap( bitmap_argb32 &bitmap )
 {
 	int x, y, count;
 
@@ -658,7 +658,7 @@ void aerofgt_state::wbbc97_draw_bitmap( bitmap_rgb32 &bitmap )
 }
 
 // BOOTLEG
-uint32_t aerofgt_state::screen_update_pspikesb(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t aerofgt_state::screen_update_pspikesb(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i, scrolly;
 
@@ -674,7 +674,7 @@ uint32_t aerofgt_state::screen_update_pspikesb(screen_device &screen, bitmap_ind
 }
 
 // BOOTLEG
-uint32_t aerofgt_state::screen_update_spikes91(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t aerofgt_state::screen_update_spikes91(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i, scrolly;
 	int y, x;
@@ -715,7 +715,7 @@ uint32_t aerofgt_state::screen_update_spikes91(screen_device &screen, bitmap_ind
 }
 
 // BOOTLEG
-uint32_t aerofgt_state::screen_update_aerfboot(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t aerofgt_state::screen_update_aerfboot(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i, scrolly;
 
@@ -738,7 +738,7 @@ uint32_t aerofgt_state::screen_update_aerfboot(screen_device &screen, bitmap_ind
 }
 
 // BOOTLEG
-uint32_t aerofgt_state::screen_update_aerfboo2(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t aerofgt_state::screen_update_aerfboo2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i, scrolly;
 
@@ -765,7 +765,7 @@ uint32_t aerofgt_state::screen_update_aerfboo2(screen_device &screen, bitmap_ind
 }
 
 // BOOTLEG (still uses original sprite type)
-uint32_t aerofgt_state::screen_update_wbbc97(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t aerofgt_state::screen_update_wbbc97(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i, scrolly;
 

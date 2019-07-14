@@ -357,7 +357,7 @@ VIDEO_START_MEMBER(mac_state,macv8)
 	m_rbv_type = RBV_TYPE_V8;
 }
 
-uint32_t mac_state::screen_update_macrbv(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mac_state::screen_update_macrbv(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t *scanline;
 	int x, y, hres, vres;
@@ -473,7 +473,7 @@ uint32_t mac_state::screen_update_macrbv(screen_device &screen, bitmap_rgb32 &bi
 	return 0;
 }
 
-uint32_t mac_state::screen_update_macrbvvram(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mac_state::screen_update_macrbvvram(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t *scanline;
 	int x, y, hres, vres;
@@ -586,7 +586,7 @@ uint32_t mac_state::screen_update_macrbvvram(screen_device &screen, bitmap_rgb32
 	return 0;
 }
 
-uint32_t mac_state::screen_update_macv8(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mac_state::screen_update_macv8(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t *scanline;
 	int x, y, hres, vres;
@@ -700,7 +700,7 @@ uint32_t mac_state::screen_update_macv8(screen_device &screen, bitmap_rgb32 &bit
 	return 0;
 }
 
-uint32_t mac_state::screen_update_macsonora(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mac_state::screen_update_macsonora(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t *scanline;
 	int x, y, hres, vres, stride;
@@ -1045,7 +1045,7 @@ WRITE32_MEMBER(mac_state::dafb_dac_w)
 	}
 }
 
-uint32_t mac_state::screen_update_macdafb(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mac_state::screen_update_macdafb(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t *scanline;
 	int x, y;
@@ -1158,7 +1158,7 @@ uint32_t mac_state::screen_update_macdafb(screen_device &screen, bitmap_rgb32 &b
 	return 0;
 }
 
-uint32_t mac_state::screen_update_macpbwd(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)/* Color PowerBooks using an off-the-shelf WD video chipset */
+uint32_t mac_state::screen_update_macpbwd(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)/* Color PowerBooks using an off-the-shelf WD video chipset */
 {
 	uint32_t *scanline;
 	int x, y;

@@ -176,7 +176,7 @@ WRITE32_MEMBER(hng64_state::hng64_videoram_w)
 /* internal set of transparency states for rendering */
 
 
-static void hng64_configure_blit_parameters(blit_parameters *blit, tilemap_t *tmap, bitmap_rgb32 &dest, const rectangle &cliprect, uint32_t flags, uint8_t priority, uint8_t priority_mask, hng64trans_t drawformat)
+static void hng64_configure_blit_parameters(blit_parameters *blit, tilemap_t *tmap, bitmap_argb32 &dest, const rectangle &cliprect, uint32_t flags, uint8_t priority, uint8_t priority_mask, hng64trans_t drawformat)
 {
 	/* start with nothing */
 	memset(blit, 0, sizeof(*blit));
@@ -242,7 +242,7 @@ void hng64_state::hng64_tilemap_draw_roz_core(screen_device &screen, tilemap_t *
 {
 	const pen_t *clut = &m_palette->pen(blit->tilemap_priority_code >> 16);
 	bitmap_ind8 &priority_bitmap = screen.priority();
-	bitmap_rgb32 &destbitmap = *blit->bitmap;
+	bitmap_argb32 &destbitmap = *blit->bitmap;
 	bitmap_ind16 &srcbitmap = tmap->pixmap();
 	bitmap_ind8 &flagsmap = tmap->flagsmap();
 	const int xmask = srcbitmap.width()-1;
@@ -414,7 +414,7 @@ void hng64_state::hng64_tilemap_draw_roz_core(screen_device &screen, tilemap_t *
 
 
 
-void hng64_state::hng64_tilemap_draw_roz_primask(screen_device &screen, bitmap_rgb32 &dest, const rectangle &cliprect, tilemap_t *tmap,
+void hng64_state::hng64_tilemap_draw_roz_primask(screen_device &screen, bitmap_argb32 &dest, const rectangle &cliprect, tilemap_t *tmap,
 		uint32_t startx, uint32_t starty, int incxx, int incxy, int incyx, int incyy,
 		int wraparound, uint32_t flags, uint8_t priority, uint8_t priority_mask, hng64trans_t drawformat)
 {
@@ -441,7 +441,7 @@ g_profiler.stop();
 }
 
 
-inline void hng64_state::hng64_tilemap_draw_roz(screen_device &screen, bitmap_rgb32 &dest, const rectangle &cliprect, tilemap_t *tmap,
+inline void hng64_state::hng64_tilemap_draw_roz(screen_device &screen, bitmap_argb32 &dest, const rectangle &cliprect, tilemap_t *tmap,
 		uint32_t startx, uint32_t starty, int incxx, int incxy, int incyx, int incyy,
 		int wraparound, uint32_t flags, uint8_t priority, hng64trans_t drawformat)
 {
@@ -504,7 +504,7 @@ inline void hng64_state::hng64_tilemap_draw_roz(screen_device &screen, bitmap_rg
  */
 
 
-void hng64_state::hng64_drawtilemap(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int tm)
+void hng64_state::hng64_drawtilemap(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int tm)
 {
 	// Useful bits from the global tilemap flags
 	const uint32_t& global_tileregs = m_videoregs[0x00];
@@ -899,7 +899,7 @@ void hng64_state::hng64_drawtilemap(screen_device &screen, bitmap_rgb32 &bitmap,
 }
 
 
-uint32_t hng64_state::screen_update_hng64(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t hng64_state::screen_update_hng64(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 #if 0
 	// press in sams64_2 attract mode for a nice debug screen from the game
@@ -1171,7 +1171,7 @@ READ32_MEMBER(hng64_state::tcram_r)
 }
 
 // Very much a work in progress - no hard testing has been done
-void hng64_state::transition_control( bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void hng64_state::transition_control( bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i, j;
 

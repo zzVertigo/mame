@@ -149,7 +149,7 @@ void esripsys_state::video_start()
 	save_item(NAME(m_12sel));
 }
 
-uint32_t esripsys_state::screen_update_esripsys(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t esripsys_state::screen_update_esripsys(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	struct line_buffer_t *line_buffer = m_line_buffer;
 	int x, y;

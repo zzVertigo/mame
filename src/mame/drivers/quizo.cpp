@@ -62,7 +62,7 @@ private:
 
 	void quizo_palette(palette_device &palette) const;
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void memmap(address_map &map);
 	void portmap(address_map &map);
@@ -94,7 +94,7 @@ void quizo_state::quizo_palette(palette_device &palette) const
 	}
 }
 
-uint32_t quizo_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t quizo_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (int y = 0; y < 200; y++)
 	{

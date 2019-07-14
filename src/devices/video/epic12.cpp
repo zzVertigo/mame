@@ -45,7 +45,7 @@ void epic12_device::device_start()
 	m_port_r_cb.resolve_safe(0);
 
 	m_gfx_size = 0x2000 * 0x1000;
-	m_bitmaps = std::make_unique<bitmap_rgb32>(0x2000, 0x1000);
+	m_bitmaps = std::make_unique<bitmap_argb32>(0x2000, 0x1000);
 	m_clip = m_bitmaps->cliprect();
 	m_clip.set(0, 0x2000 - 1, 0, 0x1000 - 1);
 
@@ -762,7 +762,7 @@ void epic12_device::gfx_exec_w_unsafe(offs_t offset, u32 data, u32 mem_mask)
 }
 
 
-void epic12_device::draw_screen(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void epic12_device::draw_screen(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (!m_is_unsafe)
 	{

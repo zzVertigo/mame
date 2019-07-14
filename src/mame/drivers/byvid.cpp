@@ -105,7 +105,7 @@ public:
 	TIMER_DEVICE_CALLBACK_MEMBER(u10_timer);
 	TIMER_DEVICE_CALLBACK_MEMBER(u11_timer);
 	DECLARE_WRITE8_MEMBER(granny_crtc_w);
-	uint32_t screen_update_granny(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_granny(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void babypac(machine_config &config);
 	void granny(machine_config &config);
 	void granny_map(address_map &map);
@@ -727,7 +727,7 @@ void by133_state::machine_reset()
 	m_beep->set_state(0);
 }
 
-uint32_t by133_state::screen_update_granny(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t by133_state::screen_update_granny(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	//bitmap.fill(0xff000000, cliprect);
 	copybitmap(bitmap, m_crtc->get_bitmap(), 0, 0, 0, 0, cliprect);

@@ -247,7 +247,7 @@ private:
 	DECLARE_WRITE8_MEMBER(mpu12wbk_colorram_w);
 	TILE_GET_INFO_MEMBER(get_bg_tile_info);
 	void mpu12wbk_palette(palette_device &palette) const;
-	uint32_t screen_update_mpu12wbk(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_mpu12wbk(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void mpu12wbk_map(address_map &map);
 };
 
@@ -293,7 +293,7 @@ void mpu12wbk_state::video_start()
 }
 
 
-uint32_t mpu12wbk_state::screen_update_mpu12wbk(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mpu12wbk_state::screen_update_mpu12wbk(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bg_tilemap->draw(screen, bitmap, cliprect, 0, 0);
 	return 0;

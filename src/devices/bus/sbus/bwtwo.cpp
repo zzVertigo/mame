@@ -70,7 +70,7 @@ void sbus_bwtwo_device::install_device()
 	m_sbus->install_device(m_base, m_base + 0x1ffffff, *this, &sbus_bwtwo_device::mem_map);
 }
 
-uint32_t sbus_bwtwo_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t sbus_bwtwo_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t *line = &m_vram[0];
 

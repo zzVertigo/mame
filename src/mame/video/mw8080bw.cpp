@@ -11,7 +11,7 @@
 #include "includes/mw8080bw.h"
 
 
-uint32_t mw8080bw_state::screen_update_mw8080bw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mw8080bw_state::screen_update_mw8080bw(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t x = 0;
 	uint8_t y = MW8080BW_VCOUNTER_START_NO_VBLANK;
@@ -95,7 +95,7 @@ uint32_t mw8080bw_state::screen_update_mw8080bw(screen_device &screen, bitmap_rg
 #define SPCENCTR_BRIGHTNESS_DECAY                10
 
 
-uint32_t mw8080bw_state::screen_update_spcenctr(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mw8080bw_state::screen_update_spcenctr(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t line_buf[256]; /* 256x1 bit RAM */
 
@@ -254,7 +254,7 @@ uint32_t mw8080bw_state::screen_update_spcenctr(screen_device &screen, bitmap_rg
 #define PHANTOM2_RGB32_CLOUD_PEN          rgb_t(0xc0, 0xc0, 0xc0)
 
 
-uint32_t mw8080bw_state::screen_update_phantom2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mw8080bw_state::screen_update_phantom2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t x = 0;
 	uint8_t y = MW8080BW_VCOUNTER_START_NO_VBLANK;
@@ -367,7 +367,7 @@ WRITE_LINE_MEMBER(mw8080bw_state::screen_vblank_phantom2)
 
 /* the flip screen circuit is just a couple of relays on the monitor PCB */
 
-uint32_t mw8080bw_state::screen_update_invaders(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mw8080bw_state::screen_update_invaders(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t x = 0;
 	uint8_t y = MW8080BW_VCOUNTER_START_NO_VBLANK;

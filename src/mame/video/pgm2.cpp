@@ -266,7 +266,7 @@ void pgm2_state::draw_sprites(const rectangle &cliprect)
 	}
 }
 
-void pgm2_state::copy_sprites_from_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect, u16 pri)
+void pgm2_state::copy_sprites_from_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect, u16 pri)
 {
 	pri <<= 12;
 
@@ -293,7 +293,7 @@ void pgm2_state::copy_sprites_from_bitmap(bitmap_rgb32 &bitmap, const rectangle 
 	}
 }
 
-u32 pgm2_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 pgm2_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	u32 const mode = m_vidmode[0] & 0x00030000; // other bits not used?
 

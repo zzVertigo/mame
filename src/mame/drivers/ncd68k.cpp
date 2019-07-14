@@ -144,7 +144,7 @@ public:
 private:
 	void map(address_map &map);
 
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, rectangle const &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, rectangle const &cliprect);
 
 	DECLARE_READ16_MEMBER(lance_dma_r);
 	DECLARE_WRITE16_MEMBER(lance_dma_w);
@@ -167,7 +167,7 @@ public:
 private:
 	void map(address_map &map);
 
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, rectangle const &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, rectangle const &cliprect);
 
 	u8 mcu_status_r();
 	void irq_w(u8 data);
@@ -192,7 +192,7 @@ public:
 private:
 	void map(address_map &map);
 
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, rectangle const &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, rectangle const &cliprect);
 
 	DECLARE_READ16_MEMBER(lance_dma_r);
 	DECLARE_WRITE16_MEMBER(lance_dma_w);
@@ -206,7 +206,7 @@ void ncd68k_state::machine_reset()
 	m_porta_in |= 0x20;
 }
 
-u32 ncd16_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, rectangle const &cliprect)
+u32 ncd16_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, rectangle const &cliprect)
 {
 	for (unsigned y = 0; y < 1024; y++)
 	{
@@ -223,7 +223,7 @@ u32 ncd16_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, rect
 	return 0;
 }
 
-u32 ncd17c_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, rectangle const &cliprect)
+u32 ncd17c_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, rectangle const &cliprect)
 {
 	for (unsigned y = 0; y < 768; y++)
 	{
@@ -238,7 +238,7 @@ u32 ncd17c_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, rec
 	return 0;
 }
 
-u32 ncd19_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, rectangle const &cliprect)
+u32 ncd19_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, rectangle const &cliprect)
 {
 	for (unsigned y = 0; y < 1024; y++)
 	{

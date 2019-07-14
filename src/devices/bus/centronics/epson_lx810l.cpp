@@ -525,7 +525,7 @@ WRITE_LINE_MEMBER( epson_lx810l_device::e05a30_ready )
     Video hardware (simulates paper)
 ***************************************************************************/
 
-uint32_t epson_lx810l_device::screen_update_lx810l(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t epson_lx810l_device::screen_update_lx810l(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int scrolly = -bitmap_line(9);
 	copyscrollbitmap(bitmap, m_bitmap, 0, nullptr, 1, &scrolly, cliprect);

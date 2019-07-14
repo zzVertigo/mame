@@ -1248,7 +1248,7 @@ void m2_vdu_device::draw_scanline_double(uint32_t *dst, uint32_t srclower, uint3
 //  screen_update -
 //-------------------------------------------------
 
-uint32_t m2_vdu_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t m2_vdu_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m2_bda_device *m_bda = (m2_bda_device*)owner(); // TEMP
 

@@ -108,7 +108,7 @@ void taotaido_state::video_start()
 }
 
 
-uint32_t taotaido_state::screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t taotaido_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 //  m_bg_tilemap->set_scrollx(0,(m_scrollram[0x380/2]>>4)); // the values put here end up being wrong every other frame
 //  m_bg_tilemap->set_scrolly(0,(m_scrollram[0x382/2]>>4)); // the values put here end up being wrong every other frame

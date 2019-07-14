@@ -446,7 +446,7 @@ uint32_t vga_device::start_addr()
 		return vga.crtc.start_addr << 1;
 }
 
-void vga_device::vga_vh_text(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void vga_device::vga_vh_text(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t ch, attr;
 	uint8_t bits;
@@ -522,7 +522,7 @@ void vga_device::vga_vh_text(bitmap_rgb32 &bitmap, const rectangle &cliprect)
 	}
 }
 
-void vga_device::vga_vh_ega(bitmap_rgb32 &bitmap,  const rectangle &cliprect)
+void vga_device::vga_vh_ega(bitmap_argb32 &bitmap,  const rectangle &cliprect)
 {
 	int pos, line, column, c, addr, i, yi;
 	int height = vga.crtc.maximum_scan_line * (vga.crtc.scan_doubling + 1);
@@ -568,7 +568,7 @@ void vga_device::vga_vh_ega(bitmap_rgb32 &bitmap,  const rectangle &cliprect)
 }
 
 /* TODO: I'm guessing that in 256 colors mode every pixel actually outputs two pixels. Is it right? */
-void vga_device::vga_vh_vga(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void vga_device::vga_vh_vga(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int pos, line, column, c, addr, curr_addr;
 	uint32_t *bitmapline;
@@ -643,7 +643,7 @@ void vga_device::vga_vh_vga(bitmap_rgb32 &bitmap, const rectangle &cliprect)
 	}
 }
 
-void vga_device::vga_vh_cga(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void vga_device::vga_vh_cga(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t *bitmapline;
 	int height = (vga.crtc.scan_doubling + 1);
@@ -678,7 +678,7 @@ void vga_device::vga_vh_cga(bitmap_rgb32 &bitmap, const rectangle &cliprect)
 	}
 }
 
-void vga_device::vga_vh_mono(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void vga_device::vga_vh_mono(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t *bitmapline;
 	int height = (vga.crtc.scan_doubling + 1);
@@ -713,7 +713,7 @@ void vga_device::vga_vh_mono(bitmap_rgb32 &bitmap, const rectangle &cliprect)
 	}
 }
 
-void svga_device::svga_vh_rgb8(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void svga_device::svga_vh_rgb8(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int pos, line, column, c, addr, curr_addr;
 	uint32_t *bitmapline;
@@ -763,7 +763,7 @@ void svga_device::svga_vh_rgb8(bitmap_rgb32 &bitmap, const rectangle &cliprect)
 	}
 }
 
-void svga_device::svga_vh_rgb15(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void svga_device::svga_vh_rgb15(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	#define MV(x) (vga.memory[x]+(vga.memory[x+1]<<8))
 	#define IV 0xff000000
@@ -807,7 +807,7 @@ void svga_device::svga_vh_rgb15(bitmap_rgb32 &bitmap, const rectangle &cliprect)
 	}
 }
 
-void svga_device::svga_vh_rgb16(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void svga_device::svga_vh_rgb16(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	#define MV(x) (vga.memory[x]+(vga.memory[x+1]<<8))
 	#define IV 0xff000000
@@ -851,7 +851,7 @@ void svga_device::svga_vh_rgb16(bitmap_rgb32 &bitmap, const rectangle &cliprect)
 	}
 }
 
-void svga_device::svga_vh_rgb24(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void svga_device::svga_vh_rgb24(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	#define MD(x) (vga.memory[x]+(vga.memory[x+1]<<8)+(vga.memory[x+2]<<16))
 	#define ID 0xff000000
@@ -892,7 +892,7 @@ void svga_device::svga_vh_rgb24(bitmap_rgb32 &bitmap, const rectangle &cliprect)
 	}
 }
 
-void svga_device::svga_vh_rgb32(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void svga_device::svga_vh_rgb32(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	#define MD(x) (vga.memory[x]+(vga.memory[x+1]<<8)+(vga.memory[x+2]<<16))
 	#define ID 0xff000000
@@ -1091,7 +1091,7 @@ uint8_t svga_device::get_video_depth()
 	return 0;
 }
 
-uint32_t vga_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t vga_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t cur_mode = pc_vga_choosevideomode();
 	switch(cur_mode)
@@ -1107,7 +1107,7 @@ uint32_t vga_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 	return 0;
 }
 
-uint32_t svga_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t svga_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t cur_mode = pc_vga_choosevideomode();
 
@@ -1129,7 +1129,7 @@ uint32_t svga_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap,
 	return 0;
 }
 
-uint32_t s3_vga_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t s3_vga_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t cur_mode;
 

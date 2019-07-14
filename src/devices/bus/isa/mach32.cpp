@@ -171,7 +171,7 @@ uint16_t mach32_device::offset()
 	return ati_vga_device::offset();
 }
 
-uint32_t mach32_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mach32_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	ati_vga_device::screen_update(screen,bitmap,cliprect);
 	uint8_t depth = get_video_depth();

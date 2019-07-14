@@ -152,11 +152,11 @@ uint32_t laserdisc_device::get_field_code(laserdisc_field_code code, bool zero_i
 //  screen_update - handle updating the screen
 //-------------------------------------------------
 
-uint32_t laserdisc_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t laserdisc_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// handle the overlay if present
 	screen_bitmap &overbitmap = m_overbitmap[m_overindex];
-	if (overbitmap.valid() && !m_overupdate_rgb32.isnull())
+	if (overbitmap.valid() && !m_overupdate.isnull())
 	{
 		// scale the cliprect to the overlay size
 		rectangle clip(m_overclip);
@@ -166,7 +166,7 @@ uint32_t laserdisc_device::screen_update(screen_device &screen, bitmap_rgb32 &bi
 		clip.max_y = (cliprect.max_y + 1) * overbitmap.height() / bitmap.height() - 1;
 
 		// call the update callback
-		m_overupdate_rgb32(screen, overbitmap.as_rgb32(), clip);
+		m_overupdate(overbitmap.as_argb32(), clip, screen.visible_area());
 	}
 
 	// if this is the last update, do the rendering
@@ -174,7 +174,7 @@ uint32_t laserdisc_device::screen_update(screen_device &screen, bitmap_rgb32 &bi
 	{
 		// update the texture with the overlay contents
 		if (overbitmap.valid())
-			m_overtex->set_bitmap(overbitmap, m_overclip, overbitmap.texformat());
+			m_overtex->set_bitmap(overbitmap, m_overclip, TEXFORMAT_ARGB32);
 
 		// get the laserdisc video
 		bitmap_yuy16 &vidbitmap = get_video();
@@ -185,7 +185,7 @@ uint32_t laserdisc_device::screen_update(screen_device &screen, bitmap_rgb32 &bi
 
 		// add the video texture
 		if (m_videoenable)
-			screen.container().add_quad(0.0f, 0.0f, 1.0f, 1.0f, rgb_t(0xff,0xff,0xff,0xff), m_videotex, PRIMFLAG_BLENDMODE(BLENDMODE_NONE) | PRIMFLAG_SCREENTEX(1));
+			screen.container().add_quad(0.0f, 0.0f, 1.0f, 1.0f, rgb_t(0xff,0xff,0xff,0xff), m_videotex, PRIMFLAG_BLENDMODE(BLENDMODE_ALPHA) | PRIMFLAG_SCREENTEX(1));
 
 		// add the overlay
 		if (m_overenable && overbitmap.valid())
@@ -730,12 +730,12 @@ void laserdisc_device::init_video()
 	if (m_overenable)
 	{
 		// bind our handlers
-		m_overupdate_rgb32.bind_relative_to(*owner());
+		m_overupdate.bind_relative_to(*owner());
 
 		// allocate overlay bitmaps
 		for (auto & elem : m_overbitmap)
 		{
-			elem.set_format(BITMAP_FORMAT_RGB32, TEXFORMAT_ARGB32);
+			elem.set_format(BITMAP_FORMAT_ARGB32, TEXFORMAT_ARGB32);
 			elem.resize(m_overwidth, m_overheight);
 		}
 

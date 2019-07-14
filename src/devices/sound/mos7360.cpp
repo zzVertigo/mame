@@ -1141,7 +1141,7 @@ void mos7360_device::write(address_space &space, offs_t offset, uint8_t data, in
 //  update_screen - update screen
 //-------------------------------------------------
 
-uint32_t mos7360_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mos7360_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	copybitmap(bitmap, m_bitmap, 0, 0, 0, 0, cliprect);
 

@@ -236,7 +236,7 @@ void ppu2c0x_device::device_start()
 	m_nmi_timer->adjust(attotime::never);
 
 	/* allocate a screen bitmap, videomem and spriteram, a dirtychar array and the monochromatic colortable */
-	m_bitmap = std::make_unique<bitmap_rgb32>(VISIBLE_SCREEN_WIDTH, VISIBLE_SCREEN_HEIGHT);
+	m_bitmap = std::make_unique<bitmap_argb32>(VISIBLE_SCREEN_WIDTH, VISIBLE_SCREEN_HEIGHT);
 	m_spriteram = make_unique_clear<uint8_t[]>(SPRITERAM_SIZE);
 	m_colortable = std::make_unique<pen_t[]>(ARRAY_LENGTH(default_colortable));
 	m_colortable_mono = std::make_unique<pen_t[]>(ARRAY_LENGTH(default_colortable_mono));
@@ -626,7 +626,7 @@ void ppu2c0x_device::draw_tile(uint8_t *line_priority, int color_byte, int color
 
 void ppu2c0x_device::draw_background(uint8_t *line_priority)
 {
-	bitmap_rgb32 &bitmap = *m_bitmap;
+	bitmap_argb32 &bitmap = *m_bitmap;
 	int start_x = (m_x_fine ^ 0x07) - 7;
 
 	uint8_t scroll_x_coarse, scroll_y_coarse, scroll_y_fine, color_mask;
@@ -749,7 +749,7 @@ void ppu2c0x_device::make_sprite_pixel_data(uint8_t &pixel_data, int flipx)
 	}
 }
 
-void ppu2c0x_device::draw_sprite_pixel(int sprite_xpos, int color, int pixel, uint8_t pixel_data, bitmap_rgb32 &bitmap)
+void ppu2c0x_device::draw_sprite_pixel(int sprite_xpos, int color, int pixel, uint8_t pixel_data, bitmap_argb32 &bitmap)
 {
 	const pen_t *paldata = &m_colortable[4 * color];
 	bitmap.pix32(m_scanline, sprite_xpos + pixel) = pen(paldata[pixel_data]);
@@ -762,7 +762,7 @@ void ppu2c0x_device::read_extra_sprite_bits(int sprite_index)
 
 void ppu2c0x_device::draw_sprites(uint8_t *line_priority)
 {
-	bitmap_rgb32 &bitmap = *m_bitmap;
+	bitmap_argb32 &bitmap = *m_bitmap;
 
 	int sprite_xpos, sprite_ypos, sprite_index;
 	int tile, index1;
@@ -948,7 +948,7 @@ void ppu2c0x_device::render_scanline()
 		draw_background(line_priority);
 	else
 	{
-		bitmap_rgb32 &bitmap = *m_bitmap;
+		bitmap_argb32 &bitmap = *m_bitmap;
 
 		/* setup the color mask and colortable to use */
 		uint8_t color_mask = (m_regs[PPU_CONTROL1] & PPU_CONTROL1_DISPLAY_MONO) ? 0xf0 : 0xff;
@@ -992,7 +992,7 @@ void ppu2c0x_device::update_scanline()
 		}
 		else
 		{
-			bitmap_rgb32 &bitmap = *m_bitmap;
+			bitmap_argb32 &bitmap = *m_bitmap;
 			pen_t back_pen;
 
 			/* setup the color mask and colortable to use */
@@ -1337,7 +1337,7 @@ void ppu2c0x_device::spriteram_dma( address_space &space, const uint8_t page )
  *
  *************************************/
 
-void ppu2c0x_device::render(bitmap_rgb32 &bitmap, int flipx, int flipy, int sx, int sy, const rectangle &cliprect)
+void ppu2c0x_device::render(bitmap_argb32 &bitmap, int flipx, int flipy, int sx, int sy, const rectangle &cliprect)
 {
 	if (m_scanline_timer->remaining() != attotime::zero)
 	{
@@ -1347,7 +1347,7 @@ void ppu2c0x_device::render(bitmap_rgb32 &bitmap, int flipx, int flipy, int sx, 
 	copybitmap(bitmap, *m_bitmap, flipx, flipy, sx, sy, cliprect);
 }
 
-uint32_t ppu2c0x_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t ppu2c0x_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	render(bitmap, 0, 0, 0, 0, cliprect);
 	return 0;

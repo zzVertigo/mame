@@ -104,13 +104,13 @@ private:
 
 	template<int Layer> TILE_GET_INFO_MEMBER(get_tile_info);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void prot_init(int which);
 	void prot_reset();
 	inline void set_color_555(pen_t color, int rshift, int gshift, int bshift, uint16_t data);
-	void render_sprites_to_bitmap(bitmap_rgb32 &bitmap, uint16_t extrax, uint16_t extray);
+	void render_sprites_to_bitmap(bitmap_argb32 &bitmap, uint16_t extrax, uint16_t extray);
 	void tilemap_copy_to_compose(uint16_t pri, const rectangle &cliprect);
-	void do_final_mix(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void do_final_mix(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void descramble();
 
 	void io_map(address_map &map);

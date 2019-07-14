@@ -703,7 +703,7 @@ WRITE_LINE_MEMBER( i8275_device::lpen_w )
 //  screen_update -
 //-------------------------------------------------
 
-uint32_t i8275_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t i8275_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (!(m_status & ST_VE))
 	{

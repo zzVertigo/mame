@@ -89,7 +89,7 @@ void model1_state::view_t::project_point_direct(point_t *p) const
 	p->s.y = yc - p->yy;
 }
 
-void model1_state::draw_hline(bitmap_rgb32 &bitmap, int x1, int x2, int y, int color)
+void model1_state::draw_hline(bitmap_argb32 &bitmap, int x1, int x2, int y, int color)
 {
 	uint32_t *base = &bitmap.pix32(y);
 	while(x1 <= x2)
@@ -99,7 +99,7 @@ void model1_state::draw_hline(bitmap_rgb32 &bitmap, int x1, int x2, int y, int c
 	}
 }
 
-void model1_state::draw_hline_moired(bitmap_rgb32 &bitmap, int x1, int x2, int y, int color)
+void model1_state::draw_hline_moired(bitmap_argb32 &bitmap, int x1, int x2, int y, int color)
 {
 	uint32_t *base = &bitmap.pix32(y);
 	while(x1 <= x2)
@@ -112,7 +112,7 @@ void model1_state::draw_hline_moired(bitmap_rgb32 &bitmap, int x1, int x2, int y
 	}
 }
 
-void model1_state::fill_slope(bitmap_rgb32 &bitmap, view_t *view, int color, int32_t x1, int32_t x2, int32_t sl1, int32_t sl2, int32_t y1, int32_t y2, int32_t *nx1, int32_t *nx2)
+void model1_state::fill_slope(bitmap_argb32 &bitmap, view_t *view, int color, int32_t x1, int32_t x2, int32_t sl1, int32_t sl2, int32_t y1, int32_t y2, int32_t *nx1, int32_t *nx2)
 {
 	if(y1 > view->y2)
 	{
@@ -191,7 +191,7 @@ void model1_state::fill_slope(bitmap_rgb32 &bitmap, view_t *view, int color, int
 	*nx2 = x2;
 }
 
-void model1_state::fill_line(bitmap_rgb32 &bitmap, view_t *view, int color, int32_t y, int32_t x1, int32_t x2)
+void model1_state::fill_line(bitmap_argb32 &bitmap, view_t *view, int color, int32_t y, int32_t x1, int32_t x2)
 {
 	int xx1 = x1>>FRAC_SHIFT;
 	int xx2 = x2>>FRAC_SHIFT;
@@ -212,7 +212,7 @@ void model1_state::fill_line(bitmap_rgb32 &bitmap, view_t *view, int color, int3
 	}
 }
 
-void model1_state::fill_quad(bitmap_rgb32 &bitmap, view_t *view, const quad_t& q) const
+void model1_state::fill_quad(bitmap_argb32 &bitmap, view_t *view, const quad_t& q) const
 {
 	spoint_t p[8];
 	int color = q.col;
@@ -357,7 +357,7 @@ void model1_state::fill_quad(bitmap_rgb32 &bitmap, view_t *view, const quad_t& q
 }
 
 #if 0
-void model1_state::draw_line(bitmap_rgb32 &bitmap, model1_state::view_t *view, int color, int x1, int y1, int x2, int y2) const
+void model1_state::draw_line(bitmap_argb32 &bitmap, model1_state::view_t *view, int color, int x1, int y1, int x2, int y2) const
 {
 	if ((x1 < view->x1 && x2 < view->x1) ||
 		(x1 > view->x2 && x2 > view->x2) ||
@@ -469,7 +469,7 @@ void model1_state::unsort_quads() const
 }
 
 
-void model1_state::draw_quads(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void model1_state::draw_quads(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	view_t *view = m_view.get();
 	int count = m_quadpt - m_quaddb;
@@ -1174,7 +1174,7 @@ int model1_state::skip_direct(int list_offset) const
 	return list_offset;
 }
 
-void model1_state::draw_objects(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void model1_state::draw_objects(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (m_quadpt != m_quaddb)
 	{
@@ -1188,7 +1188,7 @@ void model1_state::draw_objects(bitmap_rgb32 &bitmap, const rectangle &cliprect)
 }
 
 
-int model1_state::draw_direct(bitmap_rgb32 &bitmap, const rectangle &cliprect, int list_offset)
+int model1_state::draw_direct(bitmap_argb32 &bitmap, const rectangle &cliprect, int list_offset)
 {
 	LOG_TGP(("VIDEO:   draw direct %x\n", readi(list_offset + 2)));
 
@@ -1299,7 +1299,7 @@ void model1_state::view_t::set_view_translation(float x, float y)
 
 
 
-void model1_state::tgp_render(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void model1_state::tgp_render(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_render_done = 1;
 	if ((m_listctl[1] & 0x1f) == 0x1f)
@@ -1590,7 +1590,7 @@ void model1_state::video_start()
 	save_item(NAME(m_listctl));
 }
 
-uint32_t model1_state::screen_update_model1(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t model1_state::screen_update_model1(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	model1_state::view_t *view = m_view.get();
 #if 0

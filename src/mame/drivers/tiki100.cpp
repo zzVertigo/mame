@@ -453,7 +453,7 @@ INPUT_PORTS_END
 
 /* Video */
 
-uint32_t tiki100_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t tiki100_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const rgb_t *palette = m_palette->palette()->entry_list_raw();
 	uint16_t addr = (m_scroll << 7);

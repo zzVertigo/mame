@@ -710,12 +710,12 @@ void edge2plus_framebuffer_device_base::device_start()
 	processor->m_dsp1->set_addrmap(0, address_map_constructor(&edge2plus_framebuffer_device_base::map_dynamic, processor->m_dsp1->tag(), this));
 }
 
-u32 mpcb849_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 mpcb849_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }
 
-u32 mpcba63_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 mpcba63_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }
@@ -732,7 +732,7 @@ WRITE_LINE_MEMBER(edge1_device_base::vblank)
 		; // TODO: clear vblank status
 }
 
-u32 edge1_device_base::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 edge1_device_base::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	u8 *pixel_data = m_vram->pointer();
 
@@ -744,7 +744,7 @@ u32 edge1_device_base::screen_update(screen_device &screen, bitmap_rgb32 &bitmap
 	return 0;
 }
 
-u32 edge2plus_framebuffer_device_base::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 edge2plus_framebuffer_device_base::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	u8 *pixel_data = m_vram->pointer();
 

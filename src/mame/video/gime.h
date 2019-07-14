@@ -48,8 +48,8 @@ public:
 	/* updates the screen -- this will call begin_update(),
 	   followed by update_row() repeatedly and after all row
 	   updating is complete, end_update() */
-	bool update_composite(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	bool update_rgb(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	bool update_composite(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	bool update_rgb(bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	// interrupt outputs
 	bool firq_r() const { return m_firq != 0x00; }
@@ -230,7 +230,7 @@ protected:
 	void timer_elapsed(void);
 
 	// video
-	bool update_screen(bitmap_rgb32 &bitmap, const rectangle &cliprect, const pixel_t *palette);
+	bool update_screen(bitmap_argb32 &bitmap, const rectangle &cliprect, const pixel_t *palette);
 	void update_geometry(void);
 	void update_rgb_palette(void);
 	void update_composite_palette(void);

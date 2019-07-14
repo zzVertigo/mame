@@ -36,7 +36,7 @@ private:
 	DECLARE_WRITE8_MEMBER(input_select_w);
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
-	uint32_t screen_update_embargo(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_embargo(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	required_device<cpu_device> m_maincpu;
 	void main_data_map(address_map &map);
 	void main_io_map(address_map &map);
@@ -50,7 +50,7 @@ private:
  *
  *************************************/
 
-uint32_t embargo_state::screen_update_embargo(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t embargo_state::screen_update_embargo(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	offs_t offs;
 

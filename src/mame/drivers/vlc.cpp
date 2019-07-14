@@ -196,7 +196,7 @@ private:
 	uint16_t  m_datA40000;
 
 	void nvram_init(nvram_device &nvram, void *data, size_t size);
-	uint32_t screen_update_nevada(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_nevada(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void nevada_palette(palette_device &palette) const;
 
 	template<int N> uint8_t duart_r(offs_t offset);
@@ -303,7 +303,7 @@ void nevada_state::video_start()
 }
 
 /***************************************************************************/
-uint32_t nevada_state::screen_update_nevada(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t nevada_state::screen_update_nevada(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_tilemap->draw(screen, bitmap, cliprect, 0, 0);
 

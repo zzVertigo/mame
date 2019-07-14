@@ -55,7 +55,7 @@ private:
 	DECLARE_READ8_MEMBER(test_r);
 	DECLARE_WRITE64_MEMBER(eeprom_w);
 	DECLARE_READ64_MEMBER(hwver_r);
-	uint32_t screen_update_aristmk6(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_aristmk6(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	virtual void video_start() override;
 	virtual void machine_reset() override;
@@ -90,7 +90,7 @@ void aristmk6_state::machine_reset()
 	irl0pend = irl0en = irl1pend = irl1en = irl2pend = irl2en = irl3pend0 = irl3en0 = irl3pend1 = irl3en1 = 0;
 }
 
-uint32_t aristmk6_state::screen_update_aristmk6(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t aristmk6_state::screen_update_aristmk6(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 #if 0
 	int x,y,count;

@@ -117,21 +117,20 @@ WRITE8_MEMBER(xain_state::flipscreen_w)
 
 ***************************************************************************/
 
-void xain_state::draw_sprites(bitmap_ind16 &bitmap,const rectangle &cliprect)
+void xain_state::draw_sprites(bitmap_argb32 &bitmap,const rectangle &cliprect)
 {
 	for (int offs = 0; offs < m_spriteram.bytes();offs += 4)
 	{
-		int sx,sy,flipx,flipy;
 		int attr = m_spriteram[offs+1];
 		int numtile = m_spriteram[offs+2] | ((attr & 7) << 8);
 		int color = (attr & 0x38) >> 3;
 
-		sx = 238 - m_spriteram[offs+3];
+		int sx = 238 - m_spriteram[offs+3];
 		if (sx <= -7) sx += 256;
-		sy = 240 - m_spriteram[offs];
+		int sy = 240 - m_spriteram[offs];
 		if (sy <= -7) sy += 256;
-		flipx = attr & 0x40;
-		flipy = 0;
+		int flipx = attr & 0x40;
+		int flipy = 0;
 		if (flip_screen())
 		{
 			sx = 238 - sx;
@@ -164,7 +163,7 @@ void xain_state::draw_sprites(bitmap_ind16 &bitmap,const rectangle &cliprect)
 	}
 }
 
-uint32_t xain_state::screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t xain_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	switch (m_pri&0x7)
 	{

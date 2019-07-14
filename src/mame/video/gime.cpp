@@ -1778,7 +1778,7 @@ inline void gime_device::render_scanline(const scanline_record *scanline, pixel_
 //  update_screen
 //-------------------------------------------------
 
-bool gime_device::update_screen(bitmap_rgb32 &bitmap, const rectangle &cliprect, const pixel_t *RESTRICT palette)
+bool gime_device::update_screen(bitmap_argb32 &bitmap, const rectangle &cliprect, const pixel_t *RESTRICT palette)
 {
 	int base_x = 64;
 	int min_x = USE_HORIZONTAL_CLIP ? cliprect.min_x : 0;
@@ -1879,7 +1879,7 @@ bool gime_device::update_screen(bitmap_rgb32 &bitmap, const rectangle &cliprect,
 //  update_composite
 //-------------------------------------------------
 
-bool gime_device::update_composite(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+bool gime_device::update_composite(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	update_value(&m_displayed_rgb, false);
 	const pixel_t *palette = (m_gime_registers[0x08] & 0x10)
@@ -1894,7 +1894,7 @@ bool gime_device::update_composite(bitmap_rgb32 &bitmap, const rectangle &clipre
 //  update_rgb
 //-------------------------------------------------
 
-bool gime_device::update_rgb(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+bool gime_device::update_rgb(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	update_value(&m_displayed_rgb, true);
 	return update_screen(bitmap, cliprect, m_rgb_palette);

@@ -284,7 +284,6 @@ void xxmissio_state::xxmissio(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(0*8, 64*8-1, 4*8, 28*8-1);
 	screen.set_screen_update(FUNC(xxmissio_state::screen_update));
-	screen.set_palette(m_palette);
 	screen.screen_vblank().set(FUNC(xxmissio_state::interrupt_m));
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_xxmissio);

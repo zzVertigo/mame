@@ -24,7 +24,7 @@ public:
 	vga_device(const machine_config &mconfig, const char *tag, device_t *owner, uint32_t clock);
 
 	virtual void zero();
-	virtual uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	virtual uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	virtual READ8_MEMBER(port_03b0_r);
 	virtual WRITE8_MEMBER(port_03b0_w);
@@ -65,11 +65,11 @@ protected:
 	// device_palette_interface overrides
 	virtual uint32_t palette_entries() const override { return 0x100; }
 
-	void vga_vh_text(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void vga_vh_ega(bitmap_rgb32 &bitmap,  const rectangle &cliprect);
-	void vga_vh_vga(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void vga_vh_cga(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void vga_vh_mono(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void vga_vh_text(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void vga_vh_ega(bitmap_argb32 &bitmap,  const rectangle &cliprect);
+	void vga_vh_vga(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void vga_vh_cga(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void vga_vh_mono(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	virtual uint8_t pc_vga_choosevideomode();
 	void recompute_params_clock(int divisor, int xtal);
 	uint8_t crtc_reg_read(uint8_t index);
@@ -246,18 +246,18 @@ class svga_device :  public vga_device
 {
 public:
 	virtual void zero() override;
-	virtual uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect) override;
+	virtual uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect) override;
 	uint8_t get_video_depth();
 
 protected:
 	// construction/destruction
 	svga_device(const machine_config &mconfig, device_type type, const char *tag, device_t *owner, uint32_t clock);
 
-	void svga_vh_rgb8(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void svga_vh_rgb15(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void svga_vh_rgb16(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void svga_vh_rgb24(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void svga_vh_rgb32(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void svga_vh_rgb8(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void svga_vh_rgb15(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void svga_vh_rgb16(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void svga_vh_rgb24(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void svga_vh_rgb32(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	virtual uint8_t pc_vga_choosevideomode() override;
 	virtual void device_start() override;
 	struct
@@ -594,7 +594,7 @@ public:
 	virtual READ8_MEMBER(mem_r) override;
 	virtual WRITE8_MEMBER(mem_w) override;
 
-	virtual uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect) override;
+	virtual uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect) override;
 
 	virtual TIMER_CALLBACK_MEMBER(vblank_timer_cb) override;
 

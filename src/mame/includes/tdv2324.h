@@ -73,7 +73,7 @@ private:
 	required_device<tms9927_device> m_tms;
 
 	virtual void video_start() override;
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ8_MEMBER( tdv2324_main_io_30 );
 	DECLARE_READ8_MEMBER( tdv2324_main_io_e6 );

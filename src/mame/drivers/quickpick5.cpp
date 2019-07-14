@@ -52,7 +52,7 @@ public:
 	void quickpick5(machine_config &config);
 
 private:
-	uint32_t screen_update_quickpick5(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_quickpick5(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	K05324X_CB_MEMBER(sprite_callback);
 	TILE_GET_INFO_MEMBER(ttl_get_tile_info);
@@ -219,9 +219,9 @@ TILE_GET_INFO_MEMBER(quickpick5_state::ttl_get_tile_info)
 	SET_TILE_INFO_MEMBER(m_ttl_gfx_index, code, attr, 0);
 }
 
-uint32_t quickpick5_state::screen_update_quickpick5(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t quickpick5_state::screen_update_quickpick5(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
-	bitmap.fill(0, cliprect);
+	bitmap.fill(m_palette->pens()[0], cliprect);
 	screen.priority().fill(0, cliprect);
 	m_title_hack = false;
 	m_k053245->sprites_draw(bitmap, cliprect, screen.priority());
@@ -419,7 +419,6 @@ void quickpick5_state::quickpick5(machine_config &config)
 	screen.set_size(64*8, 33*8);
 	screen.set_visarea(88, 456-1, 28, 256-1);
 	screen.set_screen_update(FUNC(quickpick5_state::screen_update_quickpick5));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette).set_format(palette_device::xBGR_555, 1024);
 	m_palette->enable_shadows();

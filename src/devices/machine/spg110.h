@@ -37,7 +37,7 @@ public:
 
 	auto chip_select() { return m_chip_sel.bind(); }
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect) { return m_spg_video->screen_update(screen,bitmap,cliprect); }
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect) { return m_spg_video->screen_update(screen,bitmap,cliprect); }
 	DECLARE_WRITE_LINE_MEMBER(vblank) { m_spg_video->vblank(state); }
 
 protected:

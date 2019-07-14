@@ -46,7 +46,7 @@
  *
  *************************************/
 
-uint32_t avalnche_state::screen_update_avalnche(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t avalnche_state::screen_update_avalnche(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	offs_t offs;
 

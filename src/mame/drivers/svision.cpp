@@ -385,7 +385,7 @@ uint32_t svision_state::screen_update_svision(screen_device &screen, bitmap_ind1
 	return 0;
 }
 
-uint32_t svision_state::screen_update_tvlink(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t svision_state::screen_update_tvlink(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (BIT(m_reg[BANK], 3))
 	{

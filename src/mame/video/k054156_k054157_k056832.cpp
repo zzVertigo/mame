@@ -1542,11 +1542,11 @@ printf("\nend\n");
 void k056832_device::tilemap_draw( screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, int layer, uint32_t flags, uint32_t priority )
 { tilemap_draw_common(screen, bitmap, cliprect, layer, flags, priority); }
 
-void k056832_device::tilemap_draw( screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int layer, uint32_t flags, uint32_t priority )
+void k056832_device::tilemap_draw( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int layer, uint32_t flags, uint32_t priority )
 { tilemap_draw_common(screen, bitmap, cliprect, layer, flags, priority); }
 
 
-void k056832_device::tilemap_draw_dj( screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int layer, uint32_t flags, uint32_t priority )
+void k056832_device::tilemap_draw_dj( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int layer, uint32_t flags, uint32_t priority )
 {
 	uint32_t last_dx, last_visible, new_colorbase, last_active;
 	int sx, sy, ay, tx, ty, width, height;
@@ -2031,7 +2031,7 @@ void k056832_device::create_gfx()
 }
 
 
-int k056832_device::altK056832_update_linemap(screen_device &screen, bitmap_rgb32 &bitmap, int page, int flags)
+int k056832_device::altK056832_update_linemap(screen_device &screen, bitmap_argb32 &bitmap, int page, int flags)
 {
 	if (m_page_tile_mode[page]) return(0);
 	if (!m_linemap_enabled) return(1);
@@ -2148,7 +2148,7 @@ int k056832_device::altK056832_update_linemap(screen_device &screen, bitmap_rgb3
 	return(0);
 }
 
-void k056832_device::m_tilemap_draw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int layer, uint32_t flags, uint32_t priority)
+void k056832_device::m_tilemap_draw(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int layer, uint32_t flags, uint32_t priority)
 {
 	uint32_t last_dx, last_visible, new_colorbase, last_active;
 	int sx, sy, ay, tx, ty, width, height;

@@ -96,7 +96,7 @@ protected:
 private:
 	DECLARE_READ8_MEMBER(ldp_read);
 	DECLARE_WRITE8_MEMBER(ldp_write);
-	uint32_t screen_update_lgp(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea);
 	INTERRUPT_GEN_MEMBER(vblank_callback_lgp);
 	DECLARE_WRITE_LINE_MEMBER(ld_command_strobe_cb);
 	void lgp_palette(palette_device &palette) const;
@@ -122,7 +122,7 @@ private:
 
 
 /* VIDEO GOODS */
-uint32_t lgp_state::screen_update_lgp(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void lgp_state::overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea)
 {
 	/* make color 0 transparent */
 	m_palette->set_pen_color(0, rgb_t(0,0,0,0));
@@ -145,8 +145,6 @@ uint32_t lgp_state::screen_update_lgp(screen_device &screen, bitmap_rgb32 &bitma
 					0, 0, charx * 8, chary * 8, 0);
 		}
 	}
-
-	return 0;
 }
 
 
@@ -423,7 +421,7 @@ void lgp_state::lgp(machine_config &config)
 
 	PIONEER_LDV1000(config, m_laserdisc, 0);
 	m_laserdisc->command_strobe_callback().set(FUNC(lgp_state::ld_command_strobe_cb));
-	m_laserdisc->set_overlay(256, 256, FUNC(lgp_state::screen_update_lgp));
+	m_laserdisc->set_overlay(256, 256, FUNC(lgp_state::overlay_update));
 	m_laserdisc->add_route(0, "lspeaker", 1.0);
 	m_laserdisc->add_route(1, "rspeaker", 1.0);
 

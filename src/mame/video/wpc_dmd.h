@@ -42,7 +42,7 @@ protected:
 
 private:
 	TIMER_DEVICE_CALLBACK_MEMBER(scanline_timer);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 };
 
 DECLARE_DEVICE_TYPE(WPC_DMD, wpc_dmd_device)

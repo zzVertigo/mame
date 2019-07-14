@@ -24,7 +24,7 @@ public:
 
 	void d461(machine_config &config);
 private:
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ8_MEMBER(novram_recall_r);
 	DECLARE_READ8_MEMBER(novram_store_r);
@@ -34,7 +34,7 @@ private:
 	required_device<x2210_device> m_novram;
 };
 
-u32 d400_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 d400_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

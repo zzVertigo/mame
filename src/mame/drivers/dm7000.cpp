@@ -269,7 +269,7 @@ void dm7000_state::video_start()
 {
 }
 
-uint32_t dm7000_state::screen_update_dm7000(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t dm7000_state::screen_update_dm7000(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

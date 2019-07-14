@@ -60,7 +60,7 @@ public:
 	DECLARE_INPUT_CHANGED_MEMBER(beeper_w);
 
 private:
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void update_interrupts();
 

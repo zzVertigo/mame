@@ -320,7 +320,6 @@ void crimfght_state::crimfght(machine_config &config)
 //  6MHz dotclock is more realistic, however needs drawing updates. replace when ready
 //  screen.set_raw(XTAL(24'000'000)/4, 396, hbend, hbstart, 256, 16, 240);
 	screen.set_screen_update(FUNC(crimfght_state::screen_update_crimfght));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette).set_format(palette_device::xBGR_555, 512);
 	m_palette->enable_shadows();

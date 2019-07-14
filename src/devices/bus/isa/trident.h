@@ -34,7 +34,7 @@ public:
 	DECLARE_READ8_MEMBER(accel_r);
 	DECLARE_WRITE8_MEMBER(accel_w);
 
-	virtual uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect) override;
+	virtual uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect) override;
 
 protected:
 	// construction/destruction

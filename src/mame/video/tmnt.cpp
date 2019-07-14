@@ -517,7 +517,7 @@ WRITE16_MEMBER(tmnt_state::tmnt_priority_w)
 
 ***************************************************************************/
 
-uint32_t tmnt_state::screen_update_mia(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t tmnt_state::screen_update_mia(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_k052109->tilemap_update();
 
@@ -530,7 +530,7 @@ uint32_t tmnt_state::screen_update_mia(screen_device &screen, bitmap_ind16 &bitm
 	return 0;
 }
 
-uint32_t tmnt_state::screen_update_tmnt(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t tmnt_state::screen_update_tmnt(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_k052109->tilemap_update();
 
@@ -544,7 +544,7 @@ uint32_t tmnt_state::screen_update_tmnt(screen_device &screen, bitmap_ind16 &bit
 }
 
 
-uint32_t tmnt_state::screen_update_punkshot(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t tmnt_state::screen_update_punkshot(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_sprite_colorbase = m_k053251->get_palette_index(k053251_device::CI1);
 	m_layer_colorbase[0] = m_k053251->get_palette_index(k053251_device::CI2);
@@ -572,7 +572,7 @@ uint32_t tmnt_state::screen_update_punkshot(screen_device &screen, bitmap_ind16 
 }
 
 
-uint32_t tmnt_state::screen_update_lgtnfght(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t tmnt_state::screen_update_lgtnfght(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int bg_colorbase;
 
@@ -616,7 +616,7 @@ popmessage("%04x", m_glfgreat_pixel);
 		return m_glfgreat_pixel & 0xff;
 }
 
-uint32_t tmnt_state::screen_update_glfgreat(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t tmnt_state::screen_update_glfgreat(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int bg_colorbase;
 
@@ -646,7 +646,7 @@ uint32_t tmnt_state::screen_update_glfgreat(screen_device &screen, bitmap_ind16 
 	if (m_layerpri[0] >= 0x30 && m_layerpri[1] < 0x30)
 	{
 		m_k053936->zoom_draw(screen, bitmap, cliprect, m_roz_tilemap, 0, 1, 1);
-		m_glfgreat_pixel = bitmap.pix16(0x80, 0x105);
+		m_glfgreat_pixel = bitmap.pix32(0x80, 0x105);
 	}
 
 	m_k052109->tilemap_draw(screen, bitmap, cliprect, m_sorted_layer[1], 0, 2);
@@ -654,7 +654,7 @@ uint32_t tmnt_state::screen_update_glfgreat(screen_device &screen, bitmap_ind16 
 	if (m_layerpri[1] >= 0x30 && m_layerpri[2] < 0x30)
 	{
 		m_k053936->zoom_draw(screen, bitmap, cliprect, m_roz_tilemap, 0, 1, 1);
-		m_glfgreat_pixel = bitmap.pix16(0x80, 0x105);
+		m_glfgreat_pixel = bitmap.pix32(0x80, 0x105);
 	}
 
 	m_k052109->tilemap_draw(screen, bitmap, cliprect, m_sorted_layer[2], 0, 4);
@@ -662,14 +662,14 @@ uint32_t tmnt_state::screen_update_glfgreat(screen_device &screen, bitmap_ind16 
 	if (m_layerpri[2] >= 0x30)
 	{
 		m_k053936->zoom_draw(screen, bitmap, cliprect, m_roz_tilemap, 0, 1, 1);
-		m_glfgreat_pixel = bitmap.pix16(0x80, 0x105);
+		m_glfgreat_pixel = bitmap.pix32(0x80, 0x105);
 	}
 
 	m_k053245->sprites_draw(bitmap, cliprect, screen.priority());
 	return 0;
 }
 
-uint32_t tmnt_state::screen_update_tmnt2(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t tmnt_state::screen_update_tmnt2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	double brt;
 	int i, newdim, newen, cb, ce;
@@ -721,7 +721,7 @@ uint32_t tmnt_state::screen_update_tmnt2(screen_device &screen, bitmap_ind16 &bi
 }
 
 
-uint32_t tmnt_state::screen_update_thndrx2(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t tmnt_state::screen_update_thndrx2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int bg_colorbase;
 

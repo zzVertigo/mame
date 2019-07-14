@@ -171,10 +171,10 @@ private:
 	virtual void machine_reset() override;
 	virtual void video_start() override;
 	void jollyjgr_palette(palette_device &palette) const;
-	uint32_t screen_update_jollyjgr(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_fspider(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_jollyjgr(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_fspider(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(vblank_irq);
-	void draw_bitmap( bitmap_rgb32 &bitmap );
+	void draw_bitmap( bitmap_argb32 &bitmap );
 	required_device<cpu_device> m_maincpu;
 	required_device<gfxdecode_device> m_gfxdecode;
 	required_device<palette_device> m_palette;
@@ -496,7 +496,7 @@ void jollyjgr_state::video_start()
 	m_bg_tilemap->set_scroll_cols(32);
 }
 
-void jollyjgr_state::draw_bitmap(bitmap_rgb32 &bitmap)
+void jollyjgr_state::draw_bitmap(bitmap_argb32 &bitmap)
 {
 	int count = 0;
 	for (int y = 0; y < 256; y++)
@@ -528,7 +528,7 @@ void jollyjgr_state::draw_bitmap(bitmap_rgb32 &bitmap)
 	}
 }
 
-uint32_t jollyjgr_state::screen_update_jollyjgr(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t jollyjgr_state::screen_update_jollyjgr(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(m_bm_palette->pen_color(0), cliprect);
 
@@ -579,7 +579,7 @@ uint32_t jollyjgr_state::screen_update_jollyjgr(screen_device &screen, bitmap_rg
 	return 0;
 }
 
-uint32_t jollyjgr_state::screen_update_fspider(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t jollyjgr_state::screen_update_fspider(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// Draw bg and sprites
 	screen_update_jollyjgr(screen, bitmap, cliprect);

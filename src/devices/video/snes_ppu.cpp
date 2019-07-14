@@ -1816,7 +1816,7 @@ inline void snes_ppu_device::draw_blend( uint16_t offset, uint16_t *colour, uint
  * the optimized averaging algorithm.
  *********************************************/
 
-void snes_ppu_device::refresh_scanline( bitmap_rgb32 &bitmap, uint16_t curline )
+void snes_ppu_device::refresh_scanline( bitmap_argb32 &bitmap, uint16_t curline )
 {
 	uint16_t ii;
 	int x;

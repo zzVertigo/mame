@@ -40,7 +40,7 @@ public:
 	void ampex(machine_config &config);
 
 private:
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_WRITE8_MEMBER(write_54xx);
 	DECLARE_READ8_MEMBER(read_5840);
@@ -76,7 +76,7 @@ private:
 	required_region_ptr<u8> m_p_chargen;
 };
 
-u32 ampex_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 ampex_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

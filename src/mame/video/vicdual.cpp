@@ -30,7 +30,7 @@ WRITE8_MEMBER(vicdual_state::palette_bank_w)
 }
 
 
-uint32_t vicdual_state::screen_update_bw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t vicdual_state::screen_update_bw(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t x = 0;
 	uint8_t y = cliprect.min_y;
@@ -80,7 +80,7 @@ uint32_t vicdual_state::screen_update_bw(screen_device &screen, bitmap_rgb32 &bi
 }
 
 
-uint32_t vicdual_state::screen_update_color(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t vicdual_state::screen_update_color(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t *color_prom = (uint8_t *)m_proms->base();
 	uint8_t x = 0;
@@ -141,7 +141,7 @@ uint32_t vicdual_state::screen_update_color(screen_device &screen, bitmap_rgb32 
 }
 
 
-uint32_t vicdual_state::screen_update_bw_or_color(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t vicdual_state::screen_update_bw_or_color(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (is_cabinet_color())
 		screen_update_color(screen, bitmap, cliprect);

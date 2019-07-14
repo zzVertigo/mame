@@ -165,8 +165,8 @@ protected:
 	std::unique_ptr<uint8_t[]> m_scattered_colorram;
 	std::unique_ptr<uint8_t[]> m_scattered_colorram2;
 
-	uint32_t screen_update_invaders(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_mw8080bw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_invaders(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_mw8080bw(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 private:
 	/* misc game specific */
@@ -230,8 +230,8 @@ private:
 	DECLARE_MACHINE_START(phantom2);
 	DECLARE_MACHINE_START(invaders);
 	DECLARE_SOUND_START(samples);
-	uint32_t screen_update_spcenctr(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_phantom2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_spcenctr(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_phantom2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(screen_vblank_phantom2);
 	TIMER_CALLBACK_MEMBER(maze_tone_timing_timer_callback);
 	TIMER_CALLBACK_MEMBER(interrupt_trigger);

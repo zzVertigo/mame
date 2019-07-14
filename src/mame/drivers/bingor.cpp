@@ -543,7 +543,7 @@ private:
 	optional_device<cpu_device> m_slavecpu;
 	required_device<palette_device> m_palette;
 
-	uint32_t screen_update_bingor(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_bingor(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_WRITE16_MEMBER(vip2000_outputs_w);
 
@@ -562,7 +562,7 @@ void bingor_state::video_start()
 	m_palette->basemem().set(&m_blit_ram[0x300/2], 0x10 * sizeof(uint16_t), 16, ENDIANNESS_LITTLE, 2);
 }
 
-uint32_t bingor_state::screen_update_bingor(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t bingor_state::screen_update_bingor(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y,count;
 

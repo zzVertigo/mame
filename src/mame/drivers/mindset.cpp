@@ -96,7 +96,7 @@ protected:
 
 	u16 keyscan();
 
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
@@ -301,7 +301,7 @@ void mindset_state::dispreg_w(u16 data)
 			if(pixels_per_byte_order == 2) stepy = 40;
 			if(pixels_per_byte_order == 1) stepy = 80;
 			if(pixels_per_byte_order == 0) stepy = 160;
-			
+
 			m_intaddr = inty * stepy + (intx >> (pixels_per_byte_order - large_pixels + 2));
 		}
 
@@ -334,7 +334,7 @@ void mindset_state::dispreg_w(u16 data)
 	}
 }
 
-u32 mindset_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 mindset_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// Temporary gross hack
 	if(cliprect.max_y != 399)

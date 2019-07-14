@@ -524,7 +524,7 @@ WRITE8_MEMBER( mb_vcu_device::vbank_clear_w )
 //  update_screen -
 //-------------------------------------------------
 
-uint32_t mb_vcu_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mb_vcu_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y;
 	uint8_t dot;

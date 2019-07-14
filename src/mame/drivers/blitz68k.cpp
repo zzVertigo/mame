@@ -182,8 +182,8 @@ private:
 	DECLARE_WRITE_LINE_MEMBER(crtc_vsync_irq5);
 	DECLARE_VIDEO_START(blitz68k);
 	DECLARE_VIDEO_START(blitz68k_addr_factor1);
-	uint32_t screen_update_blitz68k(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_blitz68k_noblit(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_blitz68k(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_blitz68k_noblit(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_DEVICE_CALLBACK_MEMBER(steaser_mcu_sim);
 	MC6845_ON_UPDATE_ADDR_CHANGED(crtc_addr);
 	void bankrob_map(address_map &map);
@@ -249,7 +249,7 @@ VIDEO_START_MEMBER(blitz68k_state,blitz68k_addr_factor1)
 	blit.addr_factor = 1;
 }
 
-uint32_t blitz68k_state::screen_update_blitz68k(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t blitz68k_state::screen_update_blitz68k(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y;
 
@@ -269,7 +269,7 @@ uint32_t blitz68k_state::screen_update_blitz68k(screen_device &screen, bitmap_rg
 // Blitter-less board (SPI-68K)
 
 
-uint32_t blitz68k_state::screen_update_blitz68k_noblit(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t blitz68k_state::screen_update_blitz68k_noblit(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y;
 

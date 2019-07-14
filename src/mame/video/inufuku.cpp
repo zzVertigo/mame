@@ -134,17 +134,15 @@ void inufuku_state::video_start()
 
 ******************************************************************************/
 
-uint32_t inufuku_state::screen_update_inufuku(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t inufuku_state::screen_update_inufuku(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
-	int i;
-
-	bitmap.fill(m_palette->black_pen(), cliprect);
+	bitmap.fill(m_palette->pens()[m_palette->black_pen()], cliprect);
 	screen.priority().fill(0);
 
 	if (m_bg_raster)
 	{
 		m_bg_tilemap->set_scroll_rows(512);
-		for (i = 0; i < 256; i++)
+		for (int i = 0; i < 256; i++)
 			m_bg_tilemap->set_scrollx((m_bg_scrolly + i) & 0x1ff, m_bg_scrollx+m_bg_rasterram[i]);
 	}
 	else

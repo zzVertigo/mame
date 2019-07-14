@@ -346,18 +346,17 @@ void simpsons_state::simpsons(machine_config &config)
 //  screen.set_raw(XTAL(24'000'000)/4, 396, hbend, hbstart, 256, 16, 240);
 	screen.set_video_attributes(VIDEO_UPDATE_AFTER_VBLANK);
 	screen.set_screen_update(FUNC(simpsons_state::screen_update_simpsons));
-	screen.set_palette("palette");
 
-	PALETTE(config, "palette").set_format(palette_device::xBGR_555, 2048).enable_shadows().enable_hilights();
+	PALETTE(config, m_palette).set_format(palette_device::xBGR_555, 2048).enable_shadows().enable_hilights();
 
 	K052109(config, m_k052109, 0);
-	m_k052109->set_palette("palette");
+	m_k052109->set_palette(m_palette);
 	m_k052109->set_tile_callback(FUNC(simpsons_state::tile_callback), this);
 
 	K053246(config, m_k053246, 0);
 	m_k053246->set_sprite_callback(FUNC(simpsons_state::sprite_callback), this);
 	m_k053246->set_config(NORMAL_PLANE_ORDER, 53, 23);
-	m_k053246->set_palette("palette");
+	m_k053246->set_palette(m_palette);
 
 	K053251(config, m_k053251, 0);
 

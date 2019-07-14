@@ -95,7 +95,7 @@ void cdp1864_device::device_config_complete()
 		screen().set_raw(clock(), SCREEN_WIDTH, HBLANK_END, HBLANK_START, TOTAL_SCANLINES, SCANLINE_VBLANK_END, SCANLINE_VBLANK_START);
 
 	if (!screen().has_screen_update())
-		screen().set_screen_update(screen_update_rgb32_delegate(FUNC(cdp1864_device::screen_update), this));
+		screen().set_screen_update(FUNC(cdp1864_device::screen_update));
 }
 
 
@@ -423,7 +423,7 @@ WRITE_LINE_MEMBER( cdp1864_device::evs_w )
 //  update_screen -
 //-------------------------------------------------
 
-uint32_t cdp1864_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t cdp1864_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (m_disp)
 	{

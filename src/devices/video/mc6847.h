@@ -88,7 +88,7 @@ protected:
 	// pixel definitions
 	typedef uint32_t pixel_t;
 
-	pixel_t *bitmap_addr(bitmap_rgb32 &bitmap, int y, int x)
+	pixel_t *bitmap_addr(bitmap_argb32 &bitmap, int y, int x)
 	{
 		return &bitmap.pix32(y, x);
 	}
@@ -185,7 +185,7 @@ protected:
 
 		// artifacting application
 		template<int xscale>
-		void process_artifacts_pal(bitmap_rgb32 &bitmap, int y, int base_x, int base_y, uint8_t mode, const pixel_t *palette)
+		void process_artifacts_pal(bitmap_argb32 &bitmap, int y, int base_x, int base_y, uint8_t mode, const pixel_t *palette)
 		{
 			if( !m_artifacting || !m_palartifacting )
 				return;
@@ -530,7 +530,7 @@ public:
 	/* updates the screen -- this will call begin_update(),
 	   followed by update_row() repeatedly and after all row
 	   updating is complete, end_update() */
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	// mode changing operations
 	DECLARE_WRITE_LINE_MEMBER( ag_w )       { change_mode(MODE_AG, state); }

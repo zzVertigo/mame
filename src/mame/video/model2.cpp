@@ -955,7 +955,7 @@ void model2_state::model2_3d_frame_start( void )
 	raster->max_z = 0;
 }
 
-void model2_state::model2_3d_frame_end( bitmap_rgb32 &bitmap, const rectangle &cliprect )
+void model2_state::model2_3d_frame_end( bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	raster_state *raster = m_raster;
 	int32_t z;
@@ -993,7 +993,7 @@ void model2_state::model2_3d_frame_end( bitmap_rgb32 &bitmap, const rectangle &c
 
 // direct framebuffer drawing (enabled with render test mode, Last Bronx title screen)
 // pretty sure test mode cuts off DSP framebuffer drawing/clear, according to the manual description too
-void model2_state::draw_framebuffer( bitmap_rgb32 &bitmap, const rectangle &cliprect )
+void model2_state::draw_framebuffer( bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	uint16_t *fbvram = &(m_screen->frame_number() & 1 ? m_fbvramB[0] : m_fbvramA[0]);
 	// TODO: halved crtc values?
@@ -2648,7 +2648,7 @@ void model2_state::video_start()
 	save_pointer(NAME(m_gamma_table), 256);
 }
 
-uint32_t model2_state::screen_update_model2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t model2_state::screen_update_model2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	//logerror("--- frame ---\n");
 	bitmap.fill(m_palette->pen(0), cliprect);

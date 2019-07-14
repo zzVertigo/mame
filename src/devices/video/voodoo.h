@@ -1468,7 +1468,7 @@ public:
 
 	void voodoo_postload();
 
-	int voodoo_update(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	int voodoo_update(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	int voodoo_get_type();
 	int voodoo_is_stalled();
 	void voodoo_set_init_enable(uint32_t newval);

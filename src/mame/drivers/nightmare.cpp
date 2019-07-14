@@ -247,7 +247,7 @@ protected:
 	void nightmare_io_map(address_map &map);
 	void nightmare_sound_map(address_map &map);
 	void nightmare_sound_io_map(address_map &map);
-	uint32_t screen_update_nightmare(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_nightmare(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	virtual void device_timer(emu_timer &timer, device_timer_id id, int param, void *ptr) override;
 	virtual void machine_start() override;
@@ -364,7 +364,7 @@ void nightmare_state::nightmare_sound_io_map(address_map &map)
 
 }
 
-uint32_t nightmare_state::screen_update_nightmare(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t nightmare_state::screen_update_nightmare(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// combine two buffers (additive?)
 	for (int y = cliprect.top(); y <= cliprect.bottom(); y++)

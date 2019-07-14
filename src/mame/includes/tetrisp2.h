@@ -98,8 +98,8 @@ protected:
 	DECLARE_VIDEO_START(rocknms);
 	uint32_t screen_update_tetrisp2(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
 	uint32_t screen_update_rockntread(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_rocknms_left(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_rocknms_right(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_rocknms_left(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_rocknms_right(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_CALLBACK_MEMBER(rockn_timer_level4_callback);
 	TIMER_CALLBACK_MEMBER(rockn_timer_sub_level4_callback);
 	TIMER_CALLBACK_MEMBER(rockn_timer_level1_callback);
@@ -210,8 +210,8 @@ private:
 	DECLARE_WRITE16_MEMBER( stepstag_palette_mid_w );
 	DECLARE_WRITE16_MEMBER( stepstag_palette_right_w );
 
-	uint32_t screen_update_stepstag_left(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_stepstag_mid(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_stepstag_left(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_stepstag_mid(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	uint32_t screen_update_stepstag_right(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
 	uint32_t screen_update_stepstag_main(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
 //  inline int mypal(int x);

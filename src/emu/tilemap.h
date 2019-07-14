@@ -486,10 +486,12 @@ public:
 
 	// drawing
 	void draw(screen_device &screen, bitmap_ind16 &dest, const rectangle &cliprect, u32 flags, u8 priority = 0, u8 priority_mask = 0xff);
-	void draw(screen_device &screen, bitmap_rgb32 &dest, const rectangle &cliprect, u32 flags, u8 priority = 0, u8 priority_mask = 0xff);
+	void draw(screen_device &screen, bitmap32_t &dest, const rectangle &cliprect, u32 flags, u8 priority = 0, u8 priority_mask = 0xff);
+	void draw(bitmap32_t &dest, const rectangle &cliprect, const rectangle &visarea, u32 flags, bitmap_ind8 *prio_bitmap = nullptr, u8 priority = 0, u8 priority_mask = 0xff);
 	void draw_roz(screen_device &screen, bitmap_ind16 &dest, const rectangle &cliprect, u32 startx, u32 starty, int incxx, int incxy, int incyx, int incyy, bool wraparound, u32 flags, u8 priority = 0, u8 priority_mask = 0xff);
-	void draw_roz(screen_device &screen, bitmap_rgb32 &dest, const rectangle &cliprect, u32 startx, u32 starty, int incxx, int incxy, int incyx, int incyy, bool wraparound, u32 flags, u8 priority = 0, u8 priority_mask = 0xff);
-	void draw_debug(screen_device &screen, bitmap_rgb32 &dest, u32 scrollx, u32 scrolly, u32 flags = TILEMAP_DRAW_ALL_CATEGORIES);
+	void draw_roz(screen_device &screen, bitmap32_t &dest, const rectangle &cliprect, u32 startx, u32 starty, int incxx, int incxy, int incyx, int incyy, bool wraparound, u32 flags, u8 priority = 0, u8 priority_mask = 0xff);
+	void draw_roz(bitmap32_t &dest, const rectangle &cliprect, const rectangle &visarea, u32 startx, u32 starty, int incxx, int incxy, int incyx, int incyy, bool wraparound, u32 flags, bitmap_ind8 *prio_bitmap = nullptr, u8 priority = 0, u8 priority_mask = 0xff);
+	void draw_debug(bitmap32_t &dest, u32 scrollx, u32 scrolly, u32 flags = TILEMAP_DRAW_ALL_CATEGORIES);
 
 	// mappers
 	// scan in row-major order with optional flipping
@@ -550,11 +552,11 @@ private:
 	void tile_update(logical_index logindex, u32 col, u32 row);
 	u8 tile_draw(const u8 *pendata, u32 x0, u32 y0, u32 palette_base, u8 category, u8 group, u8 flags, u8 pen_mask);
 	u8 tile_apply_bitmask(const u8 *maskdata, u32 x0, u32 y0, u8 category, u8 flags);
-	void configure_blit_parameters(blit_parameters &blit, bitmap_ind8 &priority_bitmap, const rectangle &cliprect, u32 flags, u8 priority, u8 priority_mask);
-	template<class _BitmapClass> void draw_common(screen_device &screen, _BitmapClass &dest, const rectangle &cliprect, u32 flags, u8 priority, u8 priority_mask);
-	template<class _BitmapClass> void draw_roz_common(screen_device &screen, _BitmapClass &dest, const rectangle &cliprect, u32 startx, u32 starty, int incxx, int incxy, int incyx, int incyy, bool wraparound, u32 flags, u8 priority, u8 priority_mask);
-	template<class _BitmapClass> void draw_instance(screen_device &screen, _BitmapClass &dest, const blit_parameters &blit, int xpos, int ypos);
-	template<class _BitmapClass> void draw_roz_core(screen_device &screen, _BitmapClass &destbitmap, const blit_parameters &blit, u32 startx, u32 starty, int incxx, int incxy, int incyx, int incyy, bool wraparound);
+	void configure_blit_parameters(blit_parameters &blit, const rectangle &cliprect, u32 flags, bitmap_ind8 *priority_bitmap, u8 priority, u8 priority_mask);
+	template<class _BitmapClass> void draw_common(_BitmapClass &dest, const rectangle &cliprect, const rectangle &visarea, u32 flags, bitmap_ind8 *prio_bitmap, u8 priority, u8 priority_mask);
+	template<class _BitmapClass> void draw_roz_common(_BitmapClass &dest, const rectangle &cliprect, const rectangle &visarea, u32 startx, u32 starty, int incxx, int incxy, int incyx, int incyy, bool wraparound, u32 flags, bitmap_ind8 *prio_bitmap, u8 priority, u8 priority_mask);
+	template<class _BitmapClass> void draw_instance(_BitmapClass &dest, const blit_parameters &blit, int xpos, int ypos);
+	template<class _BitmapClass> void draw_roz_core(_BitmapClass &destbitmap, const blit_parameters &blit, u32 startx, u32 starty, int incxx, int incxy, int incyx, int incyy, bool wraparound);
 
 	// managers and devices
 	tilemap_manager *           m_manager;              // reference to the owning manager

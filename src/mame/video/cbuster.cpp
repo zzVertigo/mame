@@ -46,7 +46,7 @@ rgb_t cbuster_state::cbuster_XBGR_888(u32 raw)
 	return rgb_t(r, g, b);
 }
 
-u32 cbuster_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 cbuster_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const u16 flip = m_deco_tilegen[0]->pf_control_r(0);
 

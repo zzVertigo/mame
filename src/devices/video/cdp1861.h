@@ -72,9 +72,9 @@ public:
 	DECLARE_WRITE_LINE_MEMBER( disp_on_w );
 	DECLARE_WRITE_LINE_MEMBER( disp_off_w );
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
-	bitmap_rgb32 m_bitmap;
+	bitmap_argb32 m_bitmap;
 
 protected:
 	// device-level overrides

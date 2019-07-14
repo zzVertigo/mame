@@ -95,7 +95,7 @@ void wpc_dmd_device::device_reset()
 	cur_scanline = 0;
 }
 
-uint32_t wpc_dmd_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t wpc_dmd_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const uint8_t *src = &screen_buffer[0];
 	for(int y=0; y<32; y++) {

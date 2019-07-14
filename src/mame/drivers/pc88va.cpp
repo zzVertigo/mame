@@ -37,7 +37,7 @@ void pc88va_state::video_start()
 	m_gfxdecode->gfx(3)->set_source(m_kanjiram);
 }
 
-void pc88va_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void pc88va_state::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint16_t *tvram = m_tvram;
 	int offs,i;
@@ -146,7 +146,7 @@ uint32_t pc88va_state::calc_kanji_rom_addr(uint8_t jis1,uint8_t jis2,int x,int y
 	return 0;
 }
 
-void pc88va_state::draw_text(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void pc88va_state::draw_text(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint16_t *tvram = m_tvram;
 	// TODO: PCG select won't work with this arrangement
@@ -328,7 +328,7 @@ void pc88va_state::draw_text(bitmap_rgb32 &bitmap, const rectangle &cliprect)
 	}
 }
 
-uint32_t pc88va_state::screen_update_pc88va(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t pc88va_state::screen_update_pc88va(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t pri,cur_pri_lv;
 	uint32_t screen_pri;

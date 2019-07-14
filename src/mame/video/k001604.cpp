@@ -185,7 +185,7 @@ TILE_GET_INFO_MEMBER(k001604_device::tile_info_layer_roz)
 }
 
 
-void k001604_device::draw_back_layer( bitmap_rgb32 &bitmap, const rectangle &cliprect )
+void k001604_device::draw_back_layer( bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	bitmap.fill(0, cliprect);
 
@@ -272,7 +272,7 @@ void k001604_device::draw_back_layer( bitmap_rgb32 &bitmap, const rectangle &cli
 	}
 }
 
-void k001604_device::draw_front_layer( screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect )
+void k001604_device::draw_front_layer( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	int32_t x = (int16_t)((m_reg[0x00] >> 16) & 0xffff);
 	int32_t y = (int16_t)((m_reg[0x00] >> 0) & 0xffff);

@@ -76,13 +76,13 @@ public:
 	template<class _BitmapClass>
 	void tilemap_2_draw_common(screen_device &screen, _BitmapClass &bitmap, const rectangle &cliprect, int flags, u8 priority, u8 pmask = 0xff);
 	void tilemap_1_draw(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, int flags, u8 priority, u8 pmask = 0xff);
-	void tilemap_1_draw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int flags, u8 priority, u8 pmask = 0xff);
+	void tilemap_1_draw(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int flags, u8 priority, u8 pmask = 0xff);
 	void tilemap_2_draw(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, int flags, u8 priority, u8 pmask = 0xff);
-	void tilemap_2_draw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int flags, u8 priority, u8 pmask = 0xff);
+	void tilemap_2_draw(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int flags, u8 priority, u8 pmask = 0xff);
 
 	/* used by boogwing, nitrobal */
 	void tilemap_12_combine_draw(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, int flags, u8 priority, int is_tattoo = false, u8 pmask = 0xff);
-	void tilemap_12_combine_draw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int flags, u8 priority, int is_tattoo = false, u8 pmask = 0xff);
+	void tilemap_12_combine_draw(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int flags, u8 priority, int is_tattoo = false, u8 pmask = 0xff);
 
 	/* used by robocop2 */
 	void set_tilemap_colour_mask(int tmap, int mask);

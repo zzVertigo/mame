@@ -561,7 +561,7 @@ void kaneko16_sprite_device::copybitmap(bitmap_ind16 &bitmap, const rectangle &c
 	copybitmap_trans(bitmap,m_sprites_bitmap,0,0,0,0,cliprect,0);
 }
 
-void kaneko16_sprite_device::copybitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void kaneko16_sprite_device::copybitmap(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *pal = gfx(0)->palette().pens();
 
@@ -580,7 +580,7 @@ void kaneko16_sprite_device::copybitmap(bitmap_rgb32 &bitmap, const rectangle &c
 
 
 void kaneko16_sprite_device::render_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap, u16* spriteram16, int spriteram16_bytes) { render_sprites_common(bitmap, cliprect, priority_bitmap, spriteram16, spriteram16_bytes); }
-void kaneko16_sprite_device::render_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap, u16* spriteram16, int spriteram16_bytes) { render_sprites_common(bitmap, cliprect, priority_bitmap, spriteram16, spriteram16_bytes); }
+void kaneko16_sprite_device::render_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap, u16* spriteram16, int spriteram16_bytes) { render_sprites_common(bitmap, cliprect, priority_bitmap, spriteram16, spriteram16_bytes); }
 
 template<class _BitmapClass>
 void kaneko16_sprite_device::render_sprites_common(_BitmapClass &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap, u16* spriteram16, int spriteram16_bytes)

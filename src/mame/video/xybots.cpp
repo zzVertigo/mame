@@ -87,8 +87,10 @@ const atari_motion_objects_config xybots_state::s_mob_config =
  *
  *************************************/
 
-uint32_t xybots_state::screen_update_xybots(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t xybots_state::screen_update_xybots(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
+	const pen_t *pen = m_palette->pens();
+
 	// start drawing
 	m_mob->draw_async(cliprect);
 
@@ -101,7 +103,7 @@ uint32_t xybots_state::screen_update_xybots(screen_device &screen, bitmap_ind16 
 		for (int y = rect->top(); y <= rect->bottom(); y++)
 		{
 			uint16_t *mo = &mobitmap.pix16(y);
-			uint16_t *pf = &bitmap.pix16(y);
+			uint32_t *pf = &bitmap.pix32(y);
 			for (int x = rect->left(); x <= rect->right(); x++)
 				if (mo[x] != 0xffff)
 				{
@@ -130,15 +132,15 @@ uint32_t xybots_state::screen_update_xybots(screen_device &screen, bitmap_ind16 
 							/* this first case doesn't make sense from the schematics, but it has */
 							/* the correct effect */
 							if (mo[x] & 0x80)
-								pf[x] = (mo[x] ^ 0x2f0) & atari_motion_objects_device::DATA_MASK;
+								pf[x] = pen[(mo[x] ^ 0x2f0) & atari_motion_objects_device::DATA_MASK];
 							else
-								pf[x] = mo[x] & atari_motion_objects_device::DATA_MASK;
+								pf[x] = pen[mo[x] & atari_motion_objects_device::DATA_MASK];
 						}
 					}
 					else
 					{
 						if (mopriority < pfcolor)
-							pf[x] = mo[x] & atari_motion_objects_device::DATA_MASK;
+							pf[x] = pen[mo[x] & atari_motion_objects_device::DATA_MASK];
 					}
 				}
 		}

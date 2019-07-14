@@ -132,7 +132,7 @@ protected:
 	virtual void video_start() override;
 	virtual void video_reset() override;
 
-	uint32_t screen_update_atarisy4(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_atarisy4(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	INTERRUPT_GEN_MEMBER(vblank_int);
 
@@ -229,7 +229,7 @@ void atarisy4_state::video_reset()
 	m_gpu.vblank_wait = 0;
 }
 
-uint32_t atarisy4_state::screen_update_atarisy4(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t atarisy4_state::screen_update_atarisy4(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int y;
 	uint32_t offset = 0;

@@ -337,7 +337,6 @@ void chqflag_state::chqflag(machine_config &config)
 //  6MHz dotclock is more realistic, however needs drawing updates. replace when ready
 //  screen.set_raw(XTAL(24'000'000)/4, 396, hbend, hbstart, 256, 16, 240);
 	screen.set_screen_update(FUNC(chqflag_state::screen_update_chqflag));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette).set_format(palette_device::xBGR_555, 1024);
 	m_palette->enable_shadows();

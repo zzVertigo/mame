@@ -173,9 +173,9 @@ protected:
 
 	virtual void machine_start() override;
 
-	uint32_t screen_update_bw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_bw_or_color(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_color(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_bw(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_bw_or_color(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_color(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	int get_vcounter();
 	int is_cabinet_color();
 	virtual pen_t choose_pen(uint8_t x, uint8_t y, pen_t back_pen);

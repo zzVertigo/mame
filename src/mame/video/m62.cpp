@@ -279,7 +279,7 @@ WRITE8_MEMBER(m62_state::m62_textram_w)
 }
 
 
-void m62_state::draw_sprites( bitmap_rgb32 &bitmap, const rectangle &cliprect, int colormask, int prioritymask, int priority )
+void m62_state::draw_sprites( bitmap_argb32 &bitmap, const rectangle &cliprect, int colormask, int prioritymask, int priority )
 {
 	int offs;
 
@@ -393,7 +393,7 @@ VIDEO_START_MEMBER(m62_state,kungfum)
 	m62_start(tilemap_get_info_delegate(FUNC(m62_state::get_kungfum_bg_tile_info),this), 32, 0, 8, 8, 64, 32);
 }
 
-uint32_t m62_state::screen_update_kungfum(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t m62_state::screen_update_kungfum(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i;
 	for (i = 0; i < 6; i++)
@@ -437,7 +437,7 @@ void m62_state::video_start()
 	m_bg_tilemap->set_transmask(1, 0x0001, 0xfffe); /* split type 1 has pen 0 transparent in front half */
 }
 
-uint32_t m62_state::screen_update_ldrun(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t m62_state::screen_update_ldrun(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bg_tilemap->set_scrollx(0, m_m62_background_hscroll);
 	m_bg_tilemap->set_scrolly(0, m_m62_background_vscroll);
@@ -481,7 +481,7 @@ WRITE8_MEMBER(m62_state::ldrun3_topbottom_mask_w)
 	m_ldrun3_topbottom_mask = data & 1;
 }
 
-uint32_t m62_state::screen_update_ldrun3(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t m62_state::screen_update_ldrun3(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	screen_update_ldrun(screen, bitmap, cliprect);
 
@@ -538,7 +538,7 @@ VIDEO_START_MEMBER(m62_state,battroad)
 	m_bg_tilemap->set_transmask(1, 0x0001, 0xfffe); /* split type 1 has pen 0 transparent in front half */
 }
 
-uint32_t m62_state::screen_update_battroad(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t m62_state::screen_update_battroad(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bg_tilemap->set_scrollx(0, m_m62_background_hscroll);
 	m_bg_tilemap->set_scrolly(0, m_m62_background_vscroll);
@@ -571,7 +571,7 @@ VIDEO_START_MEMBER(m62_state,ldrun4)
 	m62_start(tilemap_get_info_delegate(FUNC(m62_state::get_ldrun4_bg_tile_info),this), 1, 0, 8, 8, 64, 32);
 }
 
-uint32_t m62_state::screen_update_ldrun4(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t m62_state::screen_update_ldrun4(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bg_tilemap->set_scrollx(0, m_m62_background_hscroll - 2);
 
@@ -611,7 +611,7 @@ VIDEO_START_MEMBER(m62_state,lotlot)
 	m62_textlayer(tilemap_get_info_delegate(FUNC(m62_state::get_lotlot_fg_tile_info),this), 1, 1, 12, 10, 32, 64);
 }
 
-uint32_t m62_state::screen_update_lotlot(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t m62_state::screen_update_lotlot(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bg_tilemap->set_scrollx(0, m_m62_background_hscroll - 64);
 	m_bg_tilemap->set_scrolly(0, m_m62_background_vscroll + 32);
@@ -675,7 +675,7 @@ VIDEO_START_MEMBER(m62_state,kidniki)
 	m62_textlayer(tilemap_get_info_delegate(FUNC(m62_state::get_kidniki_fg_tile_info),this), 1, 1, 12, 8, 32, 64);
 }
 
-uint32_t m62_state::screen_update_kidniki(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t m62_state::screen_update_kidniki(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bg_tilemap->set_scrollx(0, m_m62_background_hscroll);
 	m_fg_tilemap->set_scrollx(0, -64);
@@ -725,7 +725,7 @@ VIDEO_START_MEMBER(m62_state,spelunkr)
 	m62_textlayer(tilemap_get_info_delegate(FUNC(m62_state::get_spelunkr_fg_tile_info),this), 1, 1, 12, 8, 32, 32);
 }
 
-uint32_t m62_state::screen_update_spelunkr(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t m62_state::screen_update_spelunkr(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bg_tilemap->set_scrollx(0, m_m62_background_hscroll);
 	m_bg_tilemap->set_scrolly(0, m_m62_background_vscroll + 128);
@@ -767,7 +767,7 @@ VIDEO_START_MEMBER(m62_state,spelunk2)
 	m62_textlayer(tilemap_get_info_delegate(FUNC(m62_state::get_spelunkr_fg_tile_info),this), 1, 1, 12, 8, 32, 32);
 }
 
-uint32_t m62_state::screen_update_spelunk2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t m62_state::screen_update_spelunk2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bg_tilemap->set_scrollx(0, m_m62_background_hscroll - 1);
 	m_bg_tilemap->set_scrolly(0, m_m62_background_vscroll + 128);
@@ -812,7 +812,7 @@ VIDEO_START_MEMBER(m62_state,youjyudn)
 	m_bg_tilemap->set_transmask(1, 0x0001, 0xfffe); /* split type 1 has pen 0 transparent in front half */
 }
 
-uint32_t m62_state::screen_update_youjyudn(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t m62_state::screen_update_youjyudn(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bg_tilemap->set_scrollx(0, m_m62_background_hscroll);
 	m_fg_tilemap->set_scrollx(0, -64);
@@ -853,7 +853,7 @@ VIDEO_START_MEMBER(m62_state,horizon)
 	m_bg_tilemap->set_transmask(1, 0x0001, 0xfffe); /* split type 1 has pen 0 transparent in front half */
 }
 
-uint32_t m62_state::screen_update_horizon(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t m62_state::screen_update_horizon(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i;
 	for (i = 0; i < 32; i++)

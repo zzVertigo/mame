@@ -436,7 +436,7 @@ private:
 	DECLARE_WRITE16_MEMBER(philips_66470_w);
 	virtual void machine_reset() override;
 	virtual void video_start() override;
-	uint32_t screen_update_magicard(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_magicard(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(magicard_irq);
 	required_device<cpu_device> m_maincpu;
 	required_device<screen_device> m_screen;
@@ -638,7 +638,7 @@ void magicard_state::video_start()
 {
 }
 
-uint32_t magicard_state::screen_update_magicard(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t magicard_state::screen_update_magicard(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x, y;
 	uint32_t count;

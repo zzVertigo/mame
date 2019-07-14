@@ -1418,7 +1418,7 @@ void fm7_state::video_start()
 	m_video.vsync_flag = 0;
 }
 
-uint32_t fm7_state::screen_update_fm7(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t fm7_state::screen_update_fm7(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t code_r = 0,code_g = 0,code_b = 0;
 	uint8_t code_r2 = 0,code_g2 = 0,code_b2 = 0;

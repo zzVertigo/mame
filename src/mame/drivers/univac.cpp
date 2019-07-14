@@ -181,7 +181,7 @@ private:
 	DECLARE_WRITE_LINE_MEMBER(loopback_rxcb_w);
 	DECLARE_WRITE_LINE_MEMBER(porte6_w);
 
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void io_map(address_map &map);
 	void mem_map(address_map &map);
@@ -483,7 +483,7 @@ void univac_state::machine_start()
 	save_item(NAME(m_sio_wrdyb));
 }
 
-uint32_t univac_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t univac_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (!m_display_enable)
 	{

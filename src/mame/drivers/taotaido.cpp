@@ -383,7 +383,6 @@ void taotaido_state::taotaido(machine_config &config)
 	screen.set_visarea(0*8, 40*8-1, 0*8, 28*8-1);
 	screen.set_screen_update(FUNC(taotaido_state::screen_update));
 	screen.screen_vblank().set(FUNC(taotaido_state::screen_vblank));
-	screen.set_palette("palette");
 
 	PALETTE(config, "palette").set_format(palette_device::xRGB_555, 0x800);
 

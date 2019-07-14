@@ -40,8 +40,8 @@
 //  INTERFACE CONFIGURATION MACROS
 //**************************************************************************
 
-#define UPD7220_DISPLAY_PIXELS_MEMBER(_name) void _name(bitmap_rgb32 &bitmap, int y, int x, uint32_t address)
-#define UPD7220_DRAW_TEXT_LINE_MEMBER(_name) void _name(bitmap_rgb32 &bitmap, uint32_t addr, int y, int wd, int pitch, int lr, int cursor_on, int cursor_addr)
+#define UPD7220_DISPLAY_PIXELS_MEMBER(_name) void _name(bitmap_argb32 &bitmap, int y, int x, uint32_t address)
+#define UPD7220_DRAW_TEXT_LINE_MEMBER(_name) void _name(bitmap_argb32 &bitmap, uint32_t addr, int y, int wd, int pitch, int lr, int cursor_on, int cursor_addr)
 
 
 //**************************************************************************
@@ -56,50 +56,50 @@ class upd7220_device :  public device_t,
 						public device_video_interface
 {
 public:
-	typedef device_delegate<void (bitmap_rgb32 &bitmap, int y, int x, uint32_t address)> display_pixels_delegate;
-	typedef device_delegate<void (bitmap_rgb32 &bitmap, uint32_t addr, int y, int wd, int pitch, int lr, int cursor_on, int cursor_addr)> draw_text_delegate;
+	typedef device_delegate<void (bitmap_argb32 &bitmap, int y, int x, uint32_t address)> display_pixels_delegate;
+	typedef device_delegate<void (bitmap_argb32 &bitmap, uint32_t addr, int y, int wd, int pitch, int lr, int cursor_on, int cursor_addr)> draw_text_delegate;
 
 	// construction/destruction
 	upd7220_device(const machine_config &mconfig, const char *tag, device_t *owner, uint32_t clock);
 
 	// FIXME: these should be aware of current device for resolving the tag
 	template <class FunctionClass>
-	void set_display_pixels(void (FunctionClass::*init)(bitmap_rgb32 &, int, int, uint32_t), const char *name)
+	void set_display_pixels(void (FunctionClass::*init)(bitmap_argb32 &, int, int, uint32_t), const char *name)
 	{
 		m_display_cb = display_pixels_delegate(init, name, nullptr, static_cast<FunctionClass *>(nullptr));
 	}
 	template <class FunctionClass>
-	void set_display_pixels(void (FunctionClass::*init)(bitmap_rgb32 &, int, int, uint32_t) const, const char *name)
+	void set_display_pixels(void (FunctionClass::*init)(bitmap_argb32 &, int, int, uint32_t) const, const char *name)
 	{
 		m_display_cb = display_pixels_delegate(init, name, nullptr, static_cast<FunctionClass *>(nullptr));
 	}
 	template <class FunctionClass>
-	void set_display_pixels(const char *devname, void (FunctionClass::*init)(bitmap_rgb32 &, int, int, uint32_t), const char *name)
+	void set_display_pixels(const char *devname, void (FunctionClass::*init)(bitmap_argb32 &, int, int, uint32_t), const char *name)
 	{
 		m_display_cb = display_pixels_delegate(init, name, devname, static_cast<FunctionClass *>(nullptr));
 	}
 	template <class FunctionClass>
-	void set_display_pixels(const char *devname, void (FunctionClass::*init)(bitmap_rgb32 &, int, int, uint32_t) const, const char *name)
+	void set_display_pixels(const char *devname, void (FunctionClass::*init)(bitmap_argb32 &, int, int, uint32_t) const, const char *name)
 	{
 		m_display_cb = display_pixels_delegate(init, name, devname, static_cast<FunctionClass *>(nullptr));
 	}
 	template <class FunctionClass>
-	void set_draw_text(void (FunctionClass::*init)(bitmap_rgb32 &, uint32_t, int, int, int, int, int, int), const char *name)
+	void set_draw_text(void (FunctionClass::*init)(bitmap_argb32 &, uint32_t, int, int, int, int, int, int), const char *name)
 	{
 		m_draw_text_cb = draw_text_delegate(init, name, nullptr, static_cast<FunctionClass *>(nullptr));
 	}
 	template <class FunctionClass>
-	void set_draw_text(void (FunctionClass::*init)(bitmap_rgb32 &, uint32_t, int, int, int, int, int, int) const, const char *name)
+	void set_draw_text(void (FunctionClass::*init)(bitmap_argb32 &, uint32_t, int, int, int, int, int, int) const, const char *name)
 	{
 		m_draw_text_cb = draw_text_delegate(init, name, nullptr, static_cast<FunctionClass *>(nullptr));
 	}
 	template <class FunctionClass>
-	void set_draw_text(const char *devname, void (FunctionClass::*init)(bitmap_rgb32 &, uint32_t, int, int, int, int, int, int), const char *name)
+	void set_draw_text(const char *devname, void (FunctionClass::*init)(bitmap_argb32 &, uint32_t, int, int, int, int, int, int), const char *name)
 	{
 		m_draw_text_cb = draw_text_delegate(init, name, devname, static_cast<FunctionClass *>(nullptr));
 	}
 	template <class FunctionClass>
-	void set_draw_text(const char *devname, void (FunctionClass::*init)(bitmap_rgb32 &, uint32_t, int, int, int, int, int, int) const, const char *name)
+	void set_draw_text(const char *devname, void (FunctionClass::*init)(bitmap_argb32 &, uint32_t, int, int, int, int, int, int) const, const char *name)
 	{
 		m_draw_text_cb = draw_text_delegate(init, name, devname, static_cast<FunctionClass *>(nullptr));
 	}
@@ -118,7 +118,7 @@ public:
 	DECLARE_WRITE_LINE_MEMBER( ext_sync_w );
 	DECLARE_WRITE_LINE_MEMBER( lpen_w );
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 protected:
 	// device-level overrides
@@ -164,9 +164,9 @@ private:
 	int translate_command(uint8_t data);
 	void process_fifo();
 	void continue_command();
-	void update_text(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_graphics_line(bitmap_rgb32 &bitmap, uint32_t addr, int y, int wd, int pitch);
-	void update_graphics(bitmap_rgb32 &bitmap, const rectangle &cliprect, int force_bitmap);
+	void update_text(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_graphics_line(bitmap_argb32 &bitmap, uint32_t addr, int y, int wd, int pitch);
+	void update_graphics(bitmap_argb32 &bitmap, const rectangle &cliprect, int force_bitmap);
 
 	void upd7220_vram(address_map &map);
 

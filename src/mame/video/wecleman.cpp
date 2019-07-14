@@ -152,9 +152,8 @@ void wecleman_state::sortsprite(int *idx_array, int *key_array, int size)
 	}
 }
 
-// draws a 8bpp palette sprites on a 16bpp direct RGB target (sub-par implementation)
-template<class _BitmapClass>
-void wecleman_state::do_blit_zoom32(_BitmapClass &bitmap, const rectangle &cliprect, const sprite_t &sprite)
+// draws a 8bpp palette sprites on a direct RGB target (sub-par implementation)
+void wecleman_state::do_blit_zoom32(bitmap_argb32 &bitmap, const rectangle &cliprect, const sprite_t &sprite)
 {
 #define PRECISION_X 20
 #define PRECISION_Y 20
@@ -241,71 +240,33 @@ void wecleman_state::do_blit_zoom32(_BitmapClass &bitmap, const rectangle &clipr
 	{
 		uint8_t *row_base = sprite.pen_data + (src_f0y>>PRECISION_Y) * sprite.line_offset;
 		src_fpx = src_f0x;
-		typename _BitmapClass::pixel_t *dst_ptr = &bitmap.pix(sy);
+		uint32_t *dst_ptr = &bitmap.pix(sy);
 
-		if (bitmap.format() == BITMAP_FORMAT_RGB32) // Wec Le Mans
+		if (!sprite.shadow_mode)
 		{
-			if (!sprite.shadow_mode)
+			for (sx = x1; sx != x2; sx += dx)
 			{
-				for (sx = x1; sx != x2; sx += dx)
-				{
-					int pix = row_base[src_fpx >> PRECISION_X];
-					if (pix & 0x80) break;
-					if (pix)
-						dst_ptr[sx] = pal_base[pix];
-					src_fpx += src_fdx;
-				}
-			}
-			else
-			{
-				for (sx = x1; sx != x2; sx += dx)
-				{
-					int pix = row_base[src_fpx >> PRECISION_X];
-					if (pix & 0x80) break;
-					if (pix)
-					{
-						if (pix != 0xa)
-							dst_ptr[sx] = pal_base[pix];
-						else
-							dst_ptr[sx] = (dst_ptr[sx] >> 1) & rgb_t(0x7f,0x7f,0x7f);
-					}
-					src_fpx += src_fdx;
-				}
+				int pix = row_base[src_fpx >> PRECISION_X];
+				if (pix & 0x80) break;
+				if (pix)
+					dst_ptr[sx] = pal_base[pix];
+				src_fpx += src_fdx;
 			}
 		}
-		else    // Hot Chase
+		else
 		{
-			pen_t base = sprite.pal_base;
-
-			if (!sprite.shadow_mode)
+			for (sx = x1; sx != x2; sx += dx)
 			{
-				for (sx = x1; sx != x2; sx += dx)
+				int pix = row_base[src_fpx >> PRECISION_X];
+				if (pix & 0x80) break;
+				if (pix)
 				{
-					int pix = row_base[src_fpx >> PRECISION_X];
-					if (pix & 0x80) break;
-					if (pix)
-						dst_ptr[sx] = base + pix;
-					src_fpx += src_fdx;
+					if (pix != 0xa)
+						dst_ptr[sx] = pal_base[pix];
+					else
+						dst_ptr[sx] = (dst_ptr[sx] >> 1) & rgb_t(0x7f,0x7f,0x7f);
 				}
-			}
-			else
-			{
-				for (sx = x1; sx != x2; sx += dx)
-				{
-					int pix = row_base[src_fpx >> PRECISION_X];
-					if (pix & 0x80) break;
-					if (pix)
-					{
-						if (pix != 0xa)
-							dst_ptr[sx] = base + pix;
-						else
-						{
-							if (dst_ptr[sx] != m_black_pen)
-								dst_ptr[sx] |= 0x800;
-						}
-					}
-					src_fpx += src_fdx;
-				}
+				src_fpx += src_fdx;
 			}
 		}
 
@@ -313,8 +274,7 @@ void wecleman_state::do_blit_zoom32(_BitmapClass &bitmap, const rectangle &clipr
 	}
 }
 
-template<class _BitmapClass>
-void wecleman_state::sprite_draw(_BitmapClass &bitmap, const rectangle &cliprect)
+void wecleman_state::sprite_draw(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i;
 
@@ -517,7 +477,7 @@ WRITE16_MEMBER(wecleman_state::wecleman_pageram_w)
 
 ------------------------------------------------------------------------*/
 
-void wecleman_state::wecleman_draw_road(bitmap_rgb32 &bitmap, const rectangle &cliprect, int priority)
+void wecleman_state::wecleman_draw_road(bitmap_argb32 &bitmap, const rectangle &cliprect, int priority)
 {
 // must be powers of 2
 #define XSIZE 512
@@ -634,7 +594,7 @@ void wecleman_state::wecleman_draw_road(bitmap_rgb32 &bitmap, const rectangle &c
 ------------------------------------------------------------------------*/
 
 // blends two 8x8x16bpp direct RGB tilemaps
-void wecleman_state::draw_cloud(bitmap_rgb32 &bitmap,
+void wecleman_state::draw_cloud(bitmap_argb32 &bitmap,
 					gfx_element *gfx,
 					uint16_t *tm_base,
 					int x0, int y0,             // target coordinate
@@ -768,7 +728,7 @@ void wecleman_state::draw_cloud(bitmap_rgb32 &bitmap,
 
 ------------------------------------------------------------------------*/
 
-void wecleman_state::hotchase_draw_road(bitmap_ind16 &bitmap, const rectangle &cliprect)
+void wecleman_state::hotchase_draw_road(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 /* Referred to what's in the ROMs */
 #define XSIZE 512
@@ -876,7 +836,7 @@ VIDEO_START_MEMBER(wecleman_state,wecleman)
 	uint8_t *buffer;
 	int i, j;
 
-	assert(m_screen->format() == BITMAP_FORMAT_RGB32);
+	assert(m_screen->format() == BITMAP_FORMAT_ARGB32);
 	buffer = auto_alloc_array(machine(), uint8_t, 0x12c00);   // working buffer for sprite operations
 
 	m_gameid = WECLEMAN_ID;
@@ -995,7 +955,7 @@ VIDEO_START_MEMBER(wecleman_state,hotchase)
                             Video Updates
 ***************************************************************************/
 
-uint32_t wecleman_state::screen_update_wecleman(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t wecleman_state::screen_update_wecleman(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *mrct = m_palette->pens();
 
@@ -1083,7 +1043,7 @@ uint32_t wecleman_state::screen_update_wecleman(screen_device &screen, bitmap_rg
                                 Hot Chase
 ***************************************************************************/
 
-uint32_t wecleman_state::screen_update_hotchase(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t wecleman_state::screen_update_hotchase(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bool video_on = (m_irqctrl & 0x40) ? true : false;
 
@@ -1091,7 +1051,7 @@ uint32_t wecleman_state::screen_update_hotchase(screen_device &screen, bitmap_in
 
 	get_sprite_info();
 
-	bitmap.fill(m_black_pen, cliprect);
+	bitmap.fill(m_palette->pen_color(m_black_pen), cliprect);
 
 	if (video_on)
 	{

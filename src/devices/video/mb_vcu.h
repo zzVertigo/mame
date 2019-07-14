@@ -38,7 +38,7 @@ public:
 	DECLARE_WRITE8_MEMBER( vbank_w );
 	DECLARE_WRITE8_MEMBER( vbank_clear_w );
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void screen_eof(void);
 
 protected:

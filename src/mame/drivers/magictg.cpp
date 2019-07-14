@@ -251,7 +251,7 @@ protected:
 	uint32_t zr36120_pci_r(int function, int reg, uint32_t mem_mask);
 	void zr36120_pci_w(int function, int reg, uint32_t data, uint32_t mem_mask);
 public:
-	uint32_t screen_update_magictg(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_magictg(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 };
 
 
@@ -296,7 +296,7 @@ void magictg_state::video_start()
 {
 }
 
-uint32_t magictg_state::screen_update_magictg(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t magictg_state::screen_update_magictg(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return m_voodoo[0]->voodoo_update(bitmap, cliprect) ? 0 : UPDATE_HAS_NOT_CHANGED;
 }

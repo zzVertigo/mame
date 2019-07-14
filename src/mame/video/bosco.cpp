@@ -175,13 +175,12 @@ WRITE8_MEMBER( bosco_state::bosco_starclr_w )
 
 ***************************************************************************/
 
-void bosco_state::draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect, int flip)
+void bosco_state::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, int flip)
 {
 	uint8_t *spriteram = m_spriteram;
 	uint8_t *spriteram_2 = m_spriteram2;
-	int offs;
 
-	for (offs = 0;offs < m_spriteram_size;offs += 2)
+	for (int offs = 0;offs < m_spriteram_size;offs += 2)
 	{
 		int sx = spriteram[offs + 1] - 1;
 		int sy = 240 - spriteram_2[offs];
@@ -201,11 +200,9 @@ void bosco_state::draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect, 
 }
 
 
-void bosco_state::draw_bullets(bitmap_ind16 &bitmap, const rectangle &cliprect, int flip)
+void bosco_state::draw_bullets(bitmap_argb32 &bitmap, const rectangle &cliprect, int flip)
 {
-	int offs;
-
-	for (offs = 4; offs < 0x10;offs++)
+	for (int offs = 4; offs < 0x10;offs++)
 	{
 		int x = m_bosco_radarx[offs] + ((~m_bosco_radarattr[offs] & 0x01) << 8) - 2;
 		int y = 251 - m_bosco_radary[offs];
@@ -225,18 +222,17 @@ void bosco_state::draw_bullets(bitmap_ind16 &bitmap, const rectangle &cliprect, 
 }
 
 
-void bosco_state::draw_stars(bitmap_ind16 &bitmap, const rectangle &cliprect, int flip)
+void bosco_state::draw_stars(bitmap_argb32 &bitmap, const rectangle &cliprect, int flip)
 {
 	if (1)
 	{
-		int star_cntr;
-		int set_a, set_b;
+		const pen_t *pen = m_palette->pens();
 
 		/* two sets of stars controlled by these bits */
-		set_a = m_videolatch->q4_r();
-		set_b = m_videolatch->q5_r() | 2;
+		int set_a = m_videolatch->q4_r();
+		int set_b = m_videolatch->q5_r() | 2;
 
-		for (star_cntr = 0;star_cntr < MAX_STARS;star_cntr++)
+		for (int star_cntr = 0;star_cntr < MAX_STARS;star_cntr++)
 		{
 			int x,y;
 
@@ -251,7 +247,7 @@ void bosco_state::draw_stars(bitmap_ind16 &bitmap, const rectangle &cliprect, in
 					if (flip) x += 64;
 
 					if (cliprect.contains(x, y))
-						bitmap.pix16(y, x) = STARS_COLOR_BASE + s_star_seed_tab[star_cntr].col;
+						bitmap.pix32(y, x) = pen[STARS_COLOR_BASE + s_star_seed_tab[star_cntr].col];
 				}
 			}
 		}
@@ -259,7 +255,7 @@ void bosco_state::draw_stars(bitmap_ind16 &bitmap, const rectangle &cliprect, in
 }
 
 
-uint32_t bosco_state::screen_update_bosco(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t bosco_state::screen_update_bosco(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* the radar tilemap is just 8x32. We rely on the tilemap code to repeat it across
 	   the screen, and clip it to only the position where it is supposed to be shown */
@@ -277,7 +273,7 @@ uint32_t bosco_state::screen_update_bosco(screen_device &screen, bitmap_ind16 &b
 		fg_clip.min_x = 28*8;
 	}
 
-	bitmap.fill(m_palette->black_pen(), cliprect);
+	bitmap.fill(m_palette->pen_color(m_palette->black_pen()), cliprect);
 	draw_stars(bitmap,cliprect,flip);
 
 	m_bg_tilemap->draw(screen, bitmap, bg_clip, 0,0);

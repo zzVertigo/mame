@@ -118,7 +118,7 @@ private:
 
 	virtual void video_start() override;
 
-	uint32_t screen_update_galpani3(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_galpani3(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_DEVICE_CALLBACK_MEMBER(galpani3_vblank);
 	void galpani3_map(address_map &map);
 };
@@ -188,7 +188,7 @@ void galpani3_state::video_start()
 			dst[drawx] = alpha_blend_r32(dst[drawx], pal, alpha);                                 \
 	}
 
-uint32_t galpani3_state::screen_update_galpani3(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t galpani3_state::screen_update_galpani3(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *paldata = m_palette->pens();
 

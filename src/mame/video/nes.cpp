@@ -28,7 +28,7 @@ void nes_state::video_start()
 
 ***************************************************************************/
 
-uint32_t nes_state::screen_update_nes(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t nes_state::screen_update_nes(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// render the ppu
 	m_ppu->render(bitmap, 0, 0, 0, 0, cliprect);

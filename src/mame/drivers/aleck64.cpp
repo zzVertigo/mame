@@ -204,7 +204,7 @@ private:
 	DECLARE_READ16_MEMBER(e90_prot_r);
 	DECLARE_WRITE16_MEMBER(e90_prot_w);
 
-	uint32_t screen_update_e90(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_e90(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void e90_map(address_map &map);
 	void n64_map(address_map &map);
@@ -1066,7 +1066,7 @@ void aleck64_state::aleck64(machine_config &config)
 	N64PERIPH(config, m_rcp_periphs, 0);
 }
 
-uint32_t aleck64_state::screen_update_e90(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t aleck64_state::screen_update_e90(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(0, cliprect);
 	screen_update_n64(screen,bitmap,cliprect);

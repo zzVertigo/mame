@@ -245,9 +245,9 @@ protected:
 	virtual void device_add_mconfig(machine_config &config) override;
 	virtual void recompute_params() override;
 private:
-	void vga_vh_yuv8(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void vga_vh_yuv8(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	rgb_t yuv_to_rgb(int y, int u, int v) const;
-	virtual uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect) override;
+	virtual uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect) override;
 
 	int m_extcnt;
 	uint8_t m_extreg;
@@ -312,7 +312,7 @@ rgb_t vis_vga_device::yuv_to_rgb(int y, int u, int v) const
 	return rgb_t(rgb_t::clamp(r), rgb_t::clamp(g), rgb_t::clamp(b));
 }
 
-void vis_vga_device::vga_vh_yuv8(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void vis_vga_device::vga_vh_yuv8(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const uint32_t IV = 0xff000000;
 	int height = vga.crtc.maximum_scan_line * (vga.crtc.scan_doubling + 1);
@@ -405,7 +405,7 @@ void vis_vga_device::device_reset()
 	m_8bit_640 = 0;
 }
 
-uint32_t vis_vga_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t vis_vga_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if(!BIT(m_extreg, 7))
 		return svga_device::screen_update(screen, bitmap, cliprect);

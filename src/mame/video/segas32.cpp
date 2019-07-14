@@ -1729,7 +1729,7 @@ inline uint16_t *segas32_state::get_layer_scanline(int layer, int scanline)
 	return &m_layer_data[layer].bitmap->pix16(scanline);
 }
 
-void segas32_state::mix_all_layers(int which, int xoffs, bitmap_rgb32 &bitmap, const rectangle &cliprect, uint8_t enablemask)
+void segas32_state::mix_all_layers(int which, int xoffs, bitmap_argb32 &bitmap, const rectangle &cliprect, uint8_t enablemask)
 {
 	int blendenable = m_mixer_control[which][0x4e/2] & 0x0800;
 	int blendfactor = (m_mixer_control[which][0x4e/2] >> 8) & 7;
@@ -2140,7 +2140,7 @@ void segas32_state::print_mixer_data(int which)
 	}
 }
 
-uint32_t segas32_state::screen_update_system32(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t segas32_state::screen_update_system32(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t enablemask;
 
@@ -2318,7 +2318,7 @@ for (showclip = 0; showclip < 4; showclip++)
 }
 
 
-uint32_t segas32_state::multi32_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int index)
+uint32_t segas32_state::multi32_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int index)
 {
 	uint8_t enablemask;
 
@@ -2379,8 +2379,8 @@ if (PRINTF_MIXER_DATA)
 	return 0;
 }
 
-uint32_t segas32_state::screen_update_multi32_left(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect){ return multi32_update(screen, bitmap, cliprect, 0); }
-uint32_t segas32_state::screen_update_multi32_right(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect){ return multi32_update(screen, bitmap, cliprect, 1); }
+uint32_t segas32_state::screen_update_multi32_left(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect){ return multi32_update(screen, bitmap, cliprect, 0); }
+uint32_t segas32_state::screen_update_multi32_right(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect){ return multi32_update(screen, bitmap, cliprect, 1); }
 
 /*
 

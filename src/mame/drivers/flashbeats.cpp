@@ -48,7 +48,7 @@ public:
 	void main_scsp_map(address_map &map);
 	void scsp_mem(address_map &map);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 private:
 	virtual void machine_reset() override;
@@ -96,7 +96,7 @@ void flashbeats_state::machine_reset()
 	m_scspcpu->set_input_line(INPUT_LINE_RESET, CLEAR_LINE);
 }
 
-uint32_t flashbeats_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t flashbeats_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

@@ -255,7 +255,7 @@ TILE_GET_INFO_MEMBER(k051316_device::get_tile_info)
 }
 
 
-void k051316_device::zoom_draw( screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, int flags, uint32_t priority )
+void k051316_device::zoom_draw( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int flags, uint32_t priority )
 {
 	uint32_t startx, starty;
 	int incxx, incxy, incyx, incyy;

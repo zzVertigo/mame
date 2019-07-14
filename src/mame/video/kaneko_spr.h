@@ -47,7 +47,7 @@ public:
 	virtual int get_sprite_type(void) =0;
 
 	void render_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap, u16* spriteram16, int spriteram16_bytes);
-	void render_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap, u16* spriteram16, int spriteram16_bytes);
+	void render_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap, u16* spriteram16, int spriteram16_bytes);
 
 
 	template<class _BitmapClass>
@@ -111,7 +111,7 @@ private:
 	int parse_sprite_type012(int i, struct tempsprite_t *s, u16* spriteram16, int spriteram16_bytes);
 
 	void copybitmap(bitmap_ind16 &bitmap, const rectangle &cliprect);
-	void copybitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void copybitmap(bitmap_argb32 &bitmap, const rectangle &cliprect);
 };
 
 //extern const device_type KANEKO16_SPRITE;

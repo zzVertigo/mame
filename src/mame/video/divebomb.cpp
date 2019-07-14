@@ -146,7 +146,7 @@ VIDEO_START_MEMBER(divebomb_state,divebomb)
  *
  *************************************/
 
-void divebomb_state::draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect)
+void divebomb_state::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const uint8_t *spriteram = m_spriteram;
 
@@ -167,9 +167,9 @@ void divebomb_state::draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprec
 }
 
 
-uint32_t divebomb_state::screen_update_divebomb(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t divebomb_state::screen_update_divebomb(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
-	bitmap.fill(m_palette->black_pen(), cliprect);
+	bitmap.fill(m_palette->pens()[m_palette->black_pen()], cliprect);
 
 	for (int chip = 1; chip >= 0; chip--)
 	{

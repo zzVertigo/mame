@@ -103,7 +103,7 @@ private:
 	void drive1_led_cb(floppy_image_device *floppy, int state);
 
 	MC6845_UPDATE_ROW(crtc_update_row);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_WRITE8_MEMBER(pio_porta_w);
 	DECLARE_WRITE_LINE_MEMBER(keyboard_rx_w);
@@ -289,7 +289,7 @@ WRITE8_MEMBER( kdt6_state::video_data_dec_w )
 	m_vram[m_video_address--] = ((m_status1 & 0x0c) << 6) | data;
 }
 
-uint32_t kdt6_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t kdt6_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_crtc->screen_update(screen, bitmap, cliprect);
 	return 0;

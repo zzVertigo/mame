@@ -261,7 +261,6 @@ void xyonix_state::xyonix(machine_config &config)
 	screen.set_size(80*4, 32*8);
 	screen.set_visarea(0, 80*4-1, 0, 28*8-1);
 	screen.set_screen_update(FUNC(xyonix_state::screen_update));
-	screen.set_palette("palette");
 	screen.screen_vblank().set(FUNC(xyonix_state::nmiclk_w));
 
 	GFXDECODE(config, m_gfxdecode, "palette", gfx_xyonix);

@@ -491,7 +491,7 @@ private:
 	void magicfly_palette(palette_device &palette) const;
 	void bchance_palette(palette_device &palette) const;
 	DECLARE_VIDEO_START(7mezzo);
-	uint32_t screen_update_magicfly(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_magicfly(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void magicfly_map(address_map &map);
 };
 
@@ -576,7 +576,7 @@ VIDEO_START_MEMBER(magicfly_state, 7mezzo)
 }
 
 
-uint32_t magicfly_state::screen_update_magicfly(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t magicfly_state::screen_update_magicfly(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bg_tilemap->draw(screen, bitmap, cliprect, 0, 0);
 	return 0;

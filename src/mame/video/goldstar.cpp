@@ -153,7 +153,7 @@ WRITE8_MEMBER(goldstar_state::goldstar_fa00_w)
 
 
 
-uint32_t goldstar_state::screen_update_goldstar(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t goldstar_state::screen_update_goldstar(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(rgb_t::black(), cliprect);
 
@@ -198,7 +198,7 @@ uint32_t goldstar_state::screen_update_goldstar(screen_device &screen, bitmap_rg
 }
 
 
-uint32_t goldstar_state::screen_update_cmast91(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t goldstar_state::screen_update_cmast91(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(rgb_t::black(), cliprect);
 
@@ -295,7 +295,7 @@ WRITE8_MEMBER(cmaster_state::background_col_w)
 }
 
 
-uint32_t cmaster_state::screen_update_amcoe1a(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t cmaster_state::screen_update_amcoe1a(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(rgb_t::black(), cliprect);
 
@@ -376,7 +376,7 @@ VIDEO_START_MEMBER(wingco_state, magical)
 }
 
 
-uint32_t wingco_state::screen_update_bingowng(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t wingco_state::screen_update_bingowng(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(rgb_t::black(), cliprect);
 
@@ -414,7 +414,7 @@ uint32_t wingco_state::screen_update_bingowng(screen_device &screen, bitmap_rgb3
 	return 0;
 }
 
-uint32_t wingco_state::screen_update_magical(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t wingco_state::screen_update_magical(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(rgb_t::black(), cliprect);
 
@@ -466,7 +466,7 @@ uint32_t wingco_state::screen_update_magical(screen_device &screen, bitmap_rgb32
 }
 
 
-uint32_t wingco_state::screen_update_mbstar(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t wingco_state::screen_update_mbstar(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(rgb_t::black(), cliprect);
 
@@ -616,7 +616,7 @@ VIDEO_START_MEMBER(sanghopm_state, sangho)
 }
 
 
-uint32_t sanghopm_state::screen_update_sangho(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t sanghopm_state::screen_update_sangho(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(rgb_t::black(), cliprect);
 
@@ -724,7 +724,7 @@ VIDEO_START_MEMBER(unkch_state, unkch)
 	m_cm_enable_reg = 0x0b;
 }
 
-uint32_t unkch_state::screen_update_unkch(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t unkch_state::screen_update_unkch(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(rgb_t::black(), cliprect);
 

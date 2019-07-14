@@ -411,7 +411,6 @@ void rungun_state::rng(machine_config &config)
 	m_screen->set_size(64*8, 32*8);
 	m_screen->set_visarea(88, 88+416-1, 24, 24+224-1);
 	m_screen->set_screen_update(FUNC(rungun_state::screen_update_rng));
-	m_screen->set_palette(m_palette);
 	m_screen->set_video_attributes(VIDEO_ALWAYS_UPDATE);
 
 	PALETTE(config, m_palette).set_format(palette_device::xBGR_555, 1024);
@@ -471,7 +470,6 @@ void rungun_state::rng_dual(machine_config &config)
 	demultiplex2.set_size(64*8, 32*8);
 	demultiplex2.set_visarea(88, 88+416-1, 24, 24+224-1);
 	demultiplex2.set_screen_update(FUNC(rungun_state::screen_update_rng_dual_right));
-	demultiplex2.set_palette(m_palette2);
 
 	m_k053252->set_slave_screen("demultiplex2");
 }

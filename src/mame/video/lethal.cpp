@@ -96,9 +96,9 @@ WRITE8_MEMBER(lethal_state::lethalen_palette_control)
 	}
 }
 
-uint32_t lethal_state::screen_update_lethalen(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t lethal_state::screen_update_lethalen(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
-	bitmap.fill(m_back_colorbase, cliprect);
+	bitmap.fill(m_palette->pens()[m_back_colorbase], cliprect);
 	screen.priority().fill(0, cliprect);
 
 	m_k056832->tilemap_draw(screen, bitmap, cliprect, 3, K056832_DRAW_FLAG_MIRROR, 1);

@@ -90,7 +90,7 @@ private:
 
 	DECLARE_VIDEO_START(megplay);
 	DECLARE_MACHINE_RESET(megaplay);
-	uint32_t screen_update_megplay(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_megplay(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void megaplay_bios_io_map(address_map &map);
 	void megaplay_bios_map(address_map &map);
@@ -623,7 +623,7 @@ void mplay_state::megaplay_bios_io_map(address_map &map)
 }
 
 
-uint32_t mplay_state::screen_update_megplay(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mplay_state::screen_update_megplay(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	//printf("megplay vu\n");
 	screen_update_megadriv(screen, bitmap, cliprect);

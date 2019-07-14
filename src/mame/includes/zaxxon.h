@@ -113,10 +113,10 @@ private:
 	void zaxxon_palette(palette_device &palette);
 	DECLARE_VIDEO_START(razmataz);
 	DECLARE_VIDEO_START(congo);
-	uint32_t screen_update_zaxxon(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_futspy(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_razmataz(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_congo(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_zaxxon(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_futspy(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_razmataz(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_congo(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(vblank_int);
 	DECLARE_WRITE8_MEMBER(zaxxon_sound_a_w);
 	DECLARE_WRITE8_MEMBER(zaxxon_sound_b_w);
@@ -124,10 +124,10 @@ private:
 	DECLARE_WRITE8_MEMBER(congo_sound_b_w);
 	DECLARE_WRITE8_MEMBER(congo_sound_c_w);
 	void video_start_common(tilemap_get_info_delegate fg_tile_info);
-	void draw_background(bitmap_ind16 &bitmap, const rectangle &cliprect, int skew);
+	void draw_background(bitmap_argb32 &bitmap, const rectangle &cliprect, int skew);
 	inline int find_minimum_y(uint8_t value, int flip);
 	inline int find_minimum_x(uint8_t value, int flip);
-	void draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect, uint16_t flipxmask, uint16_t flipymask);
+	void draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, uint16_t flipxmask, uint16_t flipymask);
 
 	void congo_map(address_map &map);
 	void congo_sound_map(address_map &map);

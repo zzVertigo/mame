@@ -964,7 +964,7 @@ void mc6845_device::update_cursor_state()
 }
 
 
-uint8_t mc6845_device::draw_scanline(int y, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint8_t mc6845_device::draw_scanline(int y, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* compute the current raster line */
 	uint8_t ra = y % (m_max_ras_addr + (MODE_INTERLACE_AND_VIDEO ? m_interlace_adjust : m_noninterlace_adjust));
@@ -1006,7 +1006,7 @@ uint8_t mc6845_device::draw_scanline(int y, bitmap_rgb32 &bitmap, const rectangl
 }
 
 
-uint32_t mc6845_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mc6845_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	assert(bitmap.valid());
 
@@ -1541,7 +1541,7 @@ void mos8563_device::update_cursor_state()
 }
 
 
-uint8_t mos8563_device::draw_scanline(int y, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint8_t mos8563_device::draw_scanline(int y, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t ra = mc6845_device::draw_scanline(y, bitmap, cliprect);
 

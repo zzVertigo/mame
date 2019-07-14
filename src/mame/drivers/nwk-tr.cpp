@@ -362,8 +362,8 @@ private:
 	TIMER_CALLBACK_MEMBER(sound_irq);
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
-	uint32_t screen_update_lscreen(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_rscreen(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_lscreen(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_rscreen(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void lanc2_init();
 
@@ -392,7 +392,7 @@ WRITE_LINE_MEMBER(nwktr_state::voodoo_vblank_1)
 }
 
 
-uint32_t nwktr_state::screen_update_lscreen(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t nwktr_state::screen_update_lscreen(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(m_palette->pen(0), cliprect);
 
@@ -408,7 +408,7 @@ uint32_t nwktr_state::screen_update_lscreen(screen_device &screen, bitmap_rgb32 
 	return 0;
 }
 
-uint32_t nwktr_state::screen_update_rscreen(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t nwktr_state::screen_update_rscreen(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap.fill(m_palette->pen(0), cliprect);
 

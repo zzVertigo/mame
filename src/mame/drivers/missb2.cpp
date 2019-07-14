@@ -50,7 +50,7 @@ private:
 	DECLARE_WRITE8_MEMBER(missb2_oki_w);
 	DECLARE_READ8_MEMBER(missb2_oki_r);
 	DECLARE_WRITE_LINE_MEMBER(irqhandler);
-	uint32_t screen_update_missb2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_missb2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void maincpu_map(address_map &map);
 	void sound_map(address_map &map);
@@ -66,7 +66,7 @@ private:
 
 /* Video Hardware */
 
-uint32_t missb2_state::screen_update_missb2(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t missb2_state::screen_update_missb2(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int offs;
 	int sx, sy, xc, yc;

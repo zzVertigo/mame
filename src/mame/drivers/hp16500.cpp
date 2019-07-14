@@ -73,8 +73,8 @@ public:
 
 private:
 	virtual void video_start() override;
-	uint32_t screen_update_hp16500(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_hp16500a(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_hp16500(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_hp16500a(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	required_device<cpu_device> m_maincpu;
 	optional_device<hp_hil_mlc_device> m_mlc;
@@ -301,7 +301,7 @@ void hp16500_state::hp16500a_map(address_map &map)
 	map(0x980000, 0xa7ffff).ram();
 }
 
-uint32_t hp16500_state::screen_update_hp16500a(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t hp16500_state::screen_update_hp16500a(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }
@@ -395,7 +395,7 @@ WRITE32_MEMBER(hp16500_state::palette_w)
 
 // 4 bpp
 // addr = ((Y * 0xfc0) + 0x360) + (X * 4)
-uint32_t hp16500_state::screen_update_hp16500(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t hp16500_state::screen_update_hp16500(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int pos = 0;
 	for (int y = 0; y < 384; y++)

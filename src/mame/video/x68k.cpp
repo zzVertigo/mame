@@ -49,12 +49,12 @@ rgb_t x68k_state::GGGGGRRRRRBBBBBI(uint32_t raw)
 	return rgb_t(r, g, b);
 }
 
-inline void x68k_state::plot_pixel(bitmap_rgb32 &bitmap, int x, int y, uint32_t color)
+inline void x68k_state::plot_pixel(bitmap_argb32 &bitmap, int x, int y, uint32_t color)
 {
 	bitmap.pix32(y, x) = (uint16_t)color;
 }
 /*
-bitmap_rgb32* ::x68k_get_gfx_page(int pri,int type)
+bitmap_argb32* ::x68k_get_gfx_page(int pri,int type)
 {
     if(type == GFX16)
     {
@@ -113,33 +113,33 @@ WRITE16_MEMBER(x68k_state::gvram_write)
 	COMBINE_DATA(&m_gvram[offset]);
 }
 
-WRITE16_MEMBER(x68k_state::spritereg_w )
+WRITE16_MEMBER(x68k_state::spritereg_w)
 {
 	COMBINE_DATA(&m_spritereg[offset]);
-	switch(offset)
+	switch (offset)
 	{
 	case 0x400:
-		m_bg0_8->set_scrollx(0,(data - m_crtc->hbegin() - m_video.bg_hshift) & 0x3ff);
-		m_bg0_16->set_scrollx(0,(data - m_crtc->hbegin() - m_video.bg_hshift) & 0x3ff);
+		m_bg0_8->set_scrollx(0, (data - m_crtc->hbegin() - m_video.bg_hshift) & 0x3ff);
+		m_bg0_16->set_scrollx(0, (data - m_crtc->hbegin() - m_video.bg_hshift) & 0x3ff);
 		break;
 	case 0x401:
-		m_bg0_8->set_scrolly(0,(data - m_crtc->vbegin()) & 0x3ff);
-		m_bg0_16->set_scrolly(0,(data - m_crtc->vbegin()) & 0x3ff);
+		m_bg0_8->set_scrolly(0, (data - m_crtc->vbegin()) & 0x3ff);
+		m_bg0_16->set_scrolly(0, (data - m_crtc->vbegin()) & 0x3ff);
 		break;
 	case 0x402:
-		m_bg1_8->set_scrollx(0,(data - m_crtc->hbegin() - m_video.bg_hshift) & 0x3ff);
-		m_bg1_16->set_scrollx(0,(data - m_crtc->hbegin() - m_video.bg_hshift) & 0x3ff);
+		m_bg1_8->set_scrollx(0, (data - m_crtc->hbegin() - m_video.bg_hshift) & 0x3ff);
+		m_bg1_16->set_scrollx(0, (data - m_crtc->hbegin() - m_video.bg_hshift) & 0x3ff);
 		break;
 	case 0x403:
-		m_bg1_8->set_scrolly(0,(data - m_crtc->vbegin()) & 0x3ff);
-		m_bg1_16->set_scrolly(0,(data - m_crtc->vbegin()) & 0x3ff);
+		m_bg1_8->set_scrolly(0, (data - m_crtc->vbegin()) & 0x3ff);
+		m_bg1_16->set_scrolly(0, (data - m_crtc->vbegin()) & 0x3ff);
 		break;
 	case 0x406:  // BG H-DISP (normally equals CRTC reg 2 value + 4)
-		if(data != 0x00ff)
+		if (data != 0x00ff)
 		{
 			m_video.bg_visible_width = m_crtc->hend() - ((data & 0x003f) - 4) * 8;
 			m_video.bg_hshift = ((data - 4) * 8) - (m_crtc->hbegin() - 1);
-			if(m_video.bg_hshift > 0)
+			if (m_video.bg_hshift > 0)
 				m_video.bg_hshift = 0;
 		}
 		break;
@@ -148,9 +148,9 @@ WRITE16_MEMBER(x68k_state::spritereg_w )
 		break;
 	case 0x408:  // BG H/V-Res
 		m_video.bg_hvres = data & 0x1f;
-		if(data != 0xff)
+		if (data != 0xff)
 		{  // Handle when the PCG is using 256 and the CRTC is using 512
-			if((m_video.bg_hvres & 0x0c) == 0x00 && m_crtc->vfactor() == 1)
+			if ((m_video.bg_hvres & 0x0c) == 0x00 && m_crtc->vfactor() == 1)
 				m_video.bg_double = 2;
 			else
 				m_video.bg_double = 1;
@@ -161,67 +161,62 @@ WRITE16_MEMBER(x68k_state::spritereg_w )
 	}
 }
 
-READ16_MEMBER(x68k_state::spritereg_r )
+READ16_MEMBER(x68k_state::spritereg_r)
 {
 	if(offset >= 0x400 && offset < 0x404)
 		return m_spritereg[offset] & 0x3ff;
 	return m_spritereg[offset];
 }
 
-WRITE16_MEMBER(x68k_state::spriteram_w )
+WRITE16_MEMBER(x68k_state::spriteram_w)
 {
-	COMBINE_DATA(m_spriteram+offset);
+	COMBINE_DATA(m_spriteram + offset);
 	m_video.tile8_dirty[offset / 16] = 1;
 	m_video.tile16_dirty[offset / 64] = 1;
-	if(offset < 0x2000)
+	if (offset < 0x2000)
 	{
 		m_bg1_8->mark_all_dirty();
 		m_bg1_16->mark_all_dirty();
 		m_bg0_8->mark_all_dirty();
 		m_bg0_16->mark_all_dirty();
 	}
-	if(offset >= 0x2000 && offset < 0x3000)
+	if (offset >= 0x2000 && offset < 0x3000)
 	{
 		m_bg1_8->mark_tile_dirty(offset & 0x0fff);
 		m_bg1_16->mark_tile_dirty(offset & 0x0fff);
 	}
-	if(offset >= 0x3000)
+	if (offset >= 0x3000)
 	{
 		m_bg0_8->mark_tile_dirty(offset & 0x0fff);
 		m_bg0_16->mark_tile_dirty(offset & 0x0fff);
 	}
 }
 
-READ16_MEMBER(x68k_state::spriteram_r )
+READ16_MEMBER(x68k_state::spriteram_r)
 {
 	return m_spriteram[offset];
 }
 
-void x68k_state::draw_text(bitmap_rgb32 &bitmap, int xscr, int yscr, rectangle rect)
+void x68k_state::draw_text(bitmap_argb32 &bitmap, int xscr, int yscr, rectangle rect)
 {
-	unsigned int line,pixel; // location on screen
-	uint32_t loc;  // location in TVRAM
-	uint32_t colour;
-	int bit;
-
-	for(line=rect.min_y;line<=rect.max_y;line++)  // per scanline
+	for (int line = rect.min_y; line <= rect.max_y; line++)  // per scanline
 	{
 		// adjust for scroll registers
-		loc = (((line - m_crtc->vbegin()) + yscr) & 0x3ff) * 64;
+		uint32_t loc = (((line - m_crtc->vbegin()) + yscr) & 0x3ff) * 64; // location in TVRAM
 		loc += (xscr / 16) & 0x7f;
 		loc &= 0xffff;
-		bit = 15 - (xscr & 0x0f);
-		for(pixel=rect.min_x;pixel<=rect.max_x;pixel++)  // per pixel
+		int bit = 15 - (xscr & 0x0f);
+		for (int pixel = rect.min_x; pixel <= rect.max_x; pixel++)  // per pixel
 		{
-			colour = (((m_tvram[loc] >> bit) & 0x01) ? 1 : 0)
-				+ (((m_tvram[loc+0x10000] >> bit) & 0x01) ? 2 : 0)
-				+ (((m_tvram[loc+0x20000] >> bit) & 0x01) ? 4 : 0)
-				+ (((m_tvram[loc+0x30000] >> bit) & 0x01) ? 8 : 0);
+			uint32_t colour = (((m_tvram[loc] >> bit) & 0x01) ? 1 : 0)
+							+ (((m_tvram[loc+0x10000] >> bit) & 0x01) ? 2 : 0)
+							+ (((m_tvram[loc+0x20000] >> bit) & 0x01) ? 4 : 0)
+							+ (((m_tvram[loc+0x30000] >> bit) & 0x01) ? 8 : 0);
 			// Colour 0 is displayable if the text layer is at the priority level 2
-			if((m_pcgpalette->pen(colour) & 0xffffff) || ((m_video.reg[1] & 0x0c00) == 0x0800))
+			if ((m_pcgpalette->pen(colour) & 0xffffff) || ((m_video.reg[1] & 0x0c00) == 0x0800))
 				bitmap.pix32(line, pixel) = m_pcgpalette->pen(colour);
 			bit--;
-			if(bit < 0)
+			if (bit < 0)
 			{
 				bit = 15;
 				loc++;
@@ -231,33 +226,26 @@ void x68k_state::draw_text(bitmap_rgb32 &bitmap, int xscr, int yscr, rectangle r
 	}
 }
 
-bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, uint8_t priority)
+bool x68k_state::draw_gfx_scanline(bitmap_ind16 &bitmap, rectangle cliprect, uint8_t priority)
 {
-	int pixel;
-	int page;
-	uint32_t loc;  // location in GVRAM
-	uint32_t lineoffset;
-	uint16_t xscr,yscr;
-	uint16_t colour = 0;
-	int shift;
-	int scanline;
-	bool blend, ret = false;
+	bool ret = false;
 	uint16_t *pal = (uint16_t *)m_gfxpalette->basemem().base();
 
-	for(scanline=cliprect.min_y;scanline<=cliprect.max_y;scanline++)  // per scanline
+	for (int scanline = cliprect.min_y; scanline <= cliprect.max_y; scanline++)  // per scanline
 	{
-		if(m_crtc->is_1024x1024())  // 1024x1024 "real" screen size - use 1024x1024 16-colour gfx layer
+		if (m_crtc->is_1024x1024())  // 1024x1024 "real" screen size - use 1024x1024 16-colour gfx layer
 		{
 			// adjust for scroll registers
-			if(m_video.reg[2] & 0x0010 && priority == m_video.gfxlayer_pri[0])
+			if (m_video.reg[2] & 0x0010 && priority == m_video.gfxlayer_pri[0])
 			{
-				xscr = (m_crtc->xscr_gfx(0) & 0x3ff);
-				yscr = (m_crtc->yscr_gfx(0) & 0x3ff);
-				lineoffset = (((scanline - m_crtc->vbegin()) + yscr) & 0x3ff) * 1024;
-				loc = xscr & 0x3ff;
-				for(pixel=m_crtc->hbegin();pixel<=m_crtc->hend();pixel++)
+				uint16_t xscr = (m_crtc->xscr_gfx(0) & 0x3ff);
+				uint16_t yscr = (m_crtc->yscr_gfx(0) & 0x3ff);
+				uint32_t lineoffset = (((scanline - m_crtc->vbegin()) + yscr) & 0x3ff) * 1024;
+				uint32_t loc = xscr & 0x3ff; // location in GVRAM
+				uint16_t colour = 0;
+				for (int pixel = m_crtc->hbegin(); pixel <= m_crtc->hend(); pixel++)
 				{
-					switch(lineoffset & 0xc0000)
+					switch (lineoffset & 0xc0000)
 					{
 					case 0x00000:
 						colour = m_gvram[lineoffset + (loc & 0x3ff)] & 0x000f;
@@ -288,38 +276,40 @@ bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, ui
 		{
 			if(m_video.reg[2] & (1 << priority))
 			{
-				page = m_video.gfxlayer_pri[priority];
+				int page = m_video.gfxlayer_pri[priority];
 				// adjust for scroll registers
 				switch(m_video.reg[0] & 0x03)
 				{
 				case 0x00: // 16 colours
-					xscr = m_crtc->xscr_gfx(page) & 0x1ff;
-					yscr = m_crtc->yscr_gfx(page) & 0x1ff;
-					lineoffset = (((scanline - m_crtc->vbegin()) + yscr) & 0x1ff) * 512;
-					loc = xscr & 0x1ff;
-					shift = 4;
-					if((m_video.reg[2] & 0x1a00) == 0x1a00)
+				{
+					uint16_t xscr = m_crtc->xscr_gfx(page) & 0x1ff;
+					uint16_t yscr = m_crtc->yscr_gfx(page) & 0x1ff;
+					uint32_t lineoffset = (((scanline - m_crtc->vbegin()) + yscr) & 0x1ff) * 512;
+					uint32_t loc = xscr & 0x1ff;
+					int shift = 4;
+					if ((m_video.reg[2] & 0x1a00) == 0x1a00)
 						ret = true;
-					for(pixel=m_crtc->hbegin();pixel<=m_crtc->hend();pixel++)
+
+					for (int pixel = m_crtc->hbegin(); pixel <= m_crtc->hend(); pixel++)
 					{
-						colour = ((m_gvram[lineoffset + loc] >> page*shift) & 0x000f);
-						if(ret && (colour & 1))
+						uint16_t colour = ((m_gvram[lineoffset + loc] >> page*shift) & 0x000f);
+						bool blend = false;
+						if (ret && (colour & 1))
 						{
 							blend = true;
 							colour &= 0xfe;
 						}
-						else
-							blend = false;
-						if(colour || (priority == 3))
+
+						if (colour || (priority == 3))
 						{
-							if(ret)
+							if (ret)
 							{
-								if(blend && bitmap.pix16(scanline, pixel))
+								if (blend && bitmap.pix16(scanline, pixel))
 									bitmap.pix16(scanline, pixel) = ((bitmap.pix16(scanline, pixel) >> 1) & 0x7bde) + ((pal[colour] >> 1) & 0x7bde) + 1;
 								else
 									bitmap.pix16(scanline, pixel) = (pal[colour] & 0xfffe) + blend;
 							}
-							else if(((m_video.reg[2] & 0x1800) == 0x1000) && (colour & 1))
+							else if (((m_video.reg[2] & 0x1800) == 0x1000) && (colour & 1))
 								m_special.pix16(scanline, pixel) = colour;
 							else
 								bitmap.pix16(scanline, pixel) = colour;
@@ -328,36 +318,37 @@ bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, ui
 						loc &= 0x1ff;
 					}
 					break;
+				}
 				case 0x01: // 256 colours
-					if(page == 0 || page == 2)
+					if (page == 0 || page == 2)
 					{
-						xscr = m_crtc->xscr_gfx(page) & 0x1ff;
-						yscr = m_crtc->yscr_gfx(page) & 0x1ff;
-						lineoffset = (((scanline - m_crtc->vbegin()) + yscr) & 0x1ff) * 512;
-						loc = xscr & 0x1ff;
-						shift = 4;
-						if((m_video.reg[2] & 0x1a00) == 0x1a00)
+						uint16_t xscr = m_crtc->xscr_gfx(page) & 0x1ff;
+						uint16_t yscr = m_crtc->yscr_gfx(page) & 0x1ff;
+						uint32_t lineoffset = (((scanline - m_crtc->vbegin()) + yscr) & 0x1ff) * 512;
+						uint32_t loc = xscr & 0x1ff;
+						int shift = 4;
+						if ((m_video.reg[2] & 0x1a00) == 0x1a00)
 							ret = true;
-						for(pixel=m_crtc->hbegin();pixel<=m_crtc->hend();pixel++)
+						for (int pixel = m_crtc->hbegin(); pixel <= m_crtc->hend(); pixel++)
 						{
-							colour = ((m_gvram[lineoffset + loc] >> page*shift) & 0x00ff);
-							if(ret && (colour & 1))
+							uint16_t colour = ((m_gvram[lineoffset + loc] >> page * shift) & 0x00ff);
+							bool blend = false;
+							if (ret && (colour & 1))
 							{
 								blend = true;
 								colour &= 0xfe;
 							}
-							else
-								blend = false;
-							if(colour || (priority == 3))
+
+							if (colour || (priority == 3))
 							{
-								if(ret)
+								if (ret)
 								{
-									if(blend && bitmap.pix16(scanline, pixel))
+									if (blend && bitmap.pix16(scanline, pixel))
 										bitmap.pix16(scanline, pixel) = ((bitmap.pix16(scanline, pixel) >> 1) & 0x7bde) + ((pal[colour] >> 1) & 0x7bde) + 1;
 									else
 										bitmap.pix16(scanline, pixel) = (pal[colour] & 0xfffe) + blend;
 								}
-								else if(((m_video.reg[2] & 0x1800) == 0x1000) && (colour & 1))
+								else if (((m_video.reg[2] & 0x1800) == 0x1000) && (colour & 1))
 									m_special.pix16(scanline, pixel) = colour;
 								else
 									bitmap.pix16(scanline, pixel) = colour;
@@ -368,19 +359,21 @@ bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, ui
 					}
 					break;
 				case 0x03: // 65536 colours
-					xscr = m_crtc->xscr_gfx(0) & 0x1ff;
-					yscr = m_crtc->yscr_gfx(0) & 0x1ff;
-					lineoffset = (((scanline - m_crtc->vbegin()) + yscr) & 0x1ff) * 512;
-					loc = xscr & 0x1ff;
-					for(pixel=m_crtc->hbegin();pixel<=m_crtc->hend();pixel++)
+				{
+					uint16_t xscr = m_crtc->xscr_gfx(0) & 0x1ff;
+					uint16_t yscr = m_crtc->yscr_gfx(0) & 0x1ff;
+					uint32_t lineoffset = (((scanline - m_crtc->vbegin()) + yscr) & 0x1ff) * 512;
+					uint32_t loc = xscr & 0x1ff;
+					for (int pixel = m_crtc->hbegin(); pixel <= m_crtc->hend(); pixel++)
 					{
-						colour = m_gvram[lineoffset + loc];
-						if(colour || (priority == 3))
+						uint16_t colour = m_gvram[lineoffset + loc];
+						if (colour || (priority == 3))
 							bitmap.pix16(scanline, pixel) = colour;
 						loc++;
 						loc &= 0x1ff;
 					}
 					break;
+				}
 				}
 			}
 		}
@@ -388,48 +381,45 @@ bool x68k_state::draw_gfx_scanline( bitmap_ind16 &bitmap, rectangle cliprect, ui
 	return ret;
 }
 
-void x68k_state::draw_gfx(bitmap_rgb32 &bitmap,rectangle cliprect)
+void x68k_state::draw_gfx(bitmap_argb32 &bitmap,rectangle cliprect)
 {
-	int priority, scanline, pixel;
-	bool gfxblend=false;
 	//rectangle rect;
 	//int xscr,yscr;
 	//int gpage;
 
-	if(m_crtc->gfx_layer_buffer())  // if graphic layers are set to buffer, then they aren't visible
+	if (m_crtc->gfx_layer_buffer())  // if graphic layers are set to buffer, then they aren't visible
 		return;
 
 	m_gfxbitmap.fill(0, cliprect);
-	if((m_video.reg[2] & 0x1800) == 0x1000)
+	if ((m_video.reg[2] & 0x1800) == 0x1000)
 		m_special.fill(0, cliprect);
 
-	for(priority=3;priority>=0;priority--)
+	bool gfxblend = false;
+	for (int priority = 3; priority >= 0; priority--)
 	{
 		gfxblend = draw_gfx_scanline(m_gfxbitmap,cliprect,priority);
 	}
 
-	for(scanline=cliprect.min_y;scanline<=cliprect.max_y;scanline++)
+	for (int scanline = cliprect.min_y; scanline <= cliprect.max_y; scanline++)
 	{
-		uint16_t colour;
-		bool blend = false;
-		for(pixel=m_crtc->hbegin();pixel<=m_crtc->hend();pixel++)
+		for (int pixel = m_crtc->hbegin(); pixel <= m_crtc->hend(); pixel++)
 		{
-			if((m_video.reg[0] & 0x03) == 3)
+			if ((m_video.reg[0] & 0x03) == 3)
 			{
-				colour = m_gfxbitmap.pix16(scanline, pixel);
-				if(colour || (m_video.gfx_pri == 2))
+				uint16_t colour = m_gfxbitmap.pix16(scanline, pixel);
+				if (colour || (m_video.gfx_pri == 2))
 					bitmap.pix32(scanline, pixel) = GGGGGRRRRRBBBBBI(colour);
 			}
-			else if(gfxblend)
+			else if (gfxblend)
 			{
-				colour = m_gfxbitmap.pix16(scanline, pixel);
-				if(((m_video.reg[2] & 0x1900) == 0x1900) && (m_video.gfx_pri != 2) && (colour & 1))
+				uint16_t colour = m_gfxbitmap.pix16(scanline, pixel);
+				bool blend = false;
+				if (((m_video.reg[2] & 0x1900) == 0x1900) && (m_video.gfx_pri != 2) && (colour & 1))
 					blend = true;
-				else
-					blend = false;
-				if(colour || (m_video.gfx_pri == 2))
+
+				if (colour || (m_video.gfx_pri == 2))
 				{
-					if(blend)
+					if (blend)
 						bitmap.pix32(scanline, pixel) = ((bitmap.pix32(scanline, pixel) >> 1) & 0xff7f7f7f) + ((pal555(colour, 6, 11, 1) >> 1) & 0x7f7f7f);
 					else
 						bitmap.pix32(scanline, pixel) = pal555(colour, 6, 11, 1);
@@ -437,17 +427,17 @@ void x68k_state::draw_gfx(bitmap_rgb32 &bitmap,rectangle cliprect)
 			}
 			else
 			{
-				colour = m_gfxbitmap.pix16(scanline, pixel) & 0xff;
-				if(((m_video.reg[2] & 0x1900) == 0x1900) && (m_video.gfx_pri != 2) && (colour & 1))
+				uint16_t colour = m_gfxbitmap.pix16(scanline, pixel) & 0xff;
+				bool blend = false;
+				if (((m_video.reg[2] & 0x1900) == 0x1900) && (m_video.gfx_pri != 2) && (colour & 1))
 				{
 					blend = true;
 					colour &= 0xfe;
 				}
-				else
-					blend = false;
-				if((colour && (m_gfxpalette->pen(colour) & 0xffffff)) || (m_video.gfx_pri == 2))
+
+				if ((colour && (m_gfxpalette->pen(colour) & 0xffffff)) || (m_video.gfx_pri == 2))
 				{
-					if(blend)
+					if (blend)
 						bitmap.pix32(scanline, pixel) = ((bitmap.pix32(scanline, pixel) >> 1) & 0xff7f7f7f) + ((m_gfxpalette->pen(colour) >> 1) & 0x7f7f7f);
 					else
 						bitmap.pix32(scanline, pixel) = m_gfxpalette->pen(colour);
@@ -489,17 +479,15 @@ void x68k_state::draw_sprites(bitmap_ind16 &bitmap, int priority, rectangle clip
 	              b3-2,  V-Res
 	              b1-0,  H-Res (0 = 8x8 tilemaps, 1 = 16x16 tilemaps, 2 or 3 = unknown)
 	*/
-	int ptr,pri;
 
-	for(ptr=508;ptr>=0;ptr-=4)  // stepping through sprites
+	for (int ptr = 508; ptr >= 0; ptr -= 4)  // stepping through sprites
 	{
-		pri = m_spritereg[ptr+3] & 0x03;
+		int pri = m_spritereg[ptr+3] & 0x03;
 #ifdef MAME_DEBUG
-		if(!(machine().input().code_pressed(KEYCODE_I)))
+		if (!(machine().input().code_pressed(KEYCODE_I)))
 #endif
-		if(pri == priority)
+		if (pri == priority)
 		{  // if at the right priority level, draw the sprite
-			rectangle rect;
 			int code = m_spritereg[ptr+2] & 0x00ff;
 			int colour = (m_spritereg[ptr+2] & 0x0f00) >> 8;
 			int xflip = m_spritereg[ptr+2] & 0x4000;
@@ -507,15 +495,17 @@ void x68k_state::draw_sprites(bitmap_ind16 &bitmap, int priority, rectangle clip
 			int sx = (m_spritereg[ptr+0] & 0x3ff) - 16;
 			int sy = (m_spritereg[ptr+1] & 0x3ff) - 16;
 
-			rect.min_x=m_crtc->hshift();
-			rect.min_y=m_crtc->vshift();
-			rect.max_x=rect.min_x + m_crtc->visible_width()-1;
-			rect.max_y=rect.min_y + m_crtc->visible_height()-1;
+			rectangle rect;
+			rect.min_x = m_crtc->hshift();
+			rect.min_y = m_crtc->vshift();
+			rect.max_x = rect.min_x + m_crtc->visible_width() - 1;
+			rect.max_y = rect.min_y + m_crtc->visible_height() - 1;
 
 			sx += m_video.bg_hshift;
 			sx += m_sprite_shift;
 
-			m_gfxdecode->gfx(1)->zoom_transpen(bitmap,cliprect,code,colour,xflip,yflip,m_crtc->hbegin()+sx,m_crtc->vbegin()+(sy*m_video.bg_double),0x10000,0x10000*m_video.bg_double,0x00);
+			m_gfxdecode->gfx(1)->zoom_transpen(bitmap, cliprect, code, colour, xflip, yflip,
+				m_crtc->hbegin() + sx, m_crtc->vbegin() + (sy * m_video.bg_double), 0x10000, 0x10000 * m_video.bg_double, 0x00);
 		}
 	}
 }
@@ -545,40 +535,43 @@ static const gfx_layout x68k_pcg_16 =
 
 TILE_GET_INFO_MEMBER(x68k_state::get_bg0_tile)
 {
-	int code = m_spriteram[0x3000+tile_index] & 0x00ff;
-	int colour = (m_spriteram[0x3000+tile_index] & 0x0f00) >> 8;
-	int flags = (m_spriteram[0x3000+tile_index] & 0xc000) >> 14;
-	SET_TILE_INFO_MEMBER(0,code,colour,flags);
+	const int index = 0x3000 + tile_index;
+	int code = m_spriteram[index] & 0x00ff;
+	int colour = (m_spriteram[index] & 0x0f00) >> 8;
+	int flags = (m_spriteram[index] & 0xc000) >> 14;
+	SET_TILE_INFO_MEMBER(0, code, colour, flags);
 }
 
 TILE_GET_INFO_MEMBER(x68k_state::get_bg1_tile)
 {
-	int code = m_spriteram[0x2000+tile_index] & 0x00ff;
-	int colour = (m_spriteram[0x2000+tile_index] & 0x0f00) >> 8;
-	int flags = (m_spriteram[0x2000+tile_index] & 0xc000) >> 14;
-	SET_TILE_INFO_MEMBER(0,code,colour,flags);
+	const int index = 0x2000 + tile_index;
+	int code = m_spriteram[index] & 0x00ff;
+	int colour = (m_spriteram[index] & 0x0f00) >> 8;
+	int flags = (m_spriteram[index] & 0xc000) >> 14;
+	SET_TILE_INFO_MEMBER(0, code, colour, flags);
 }
 
 TILE_GET_INFO_MEMBER(x68k_state::get_bg0_tile_16)
 {
-	int code = m_spriteram[0x3000+tile_index] & 0x00ff;
-	int colour = (m_spriteram[0x3000+tile_index] & 0x0f00) >> 8;
-	int flags = (m_spriteram[0x3000+tile_index] & 0xc000) >> 14;
-	SET_TILE_INFO_MEMBER(1,code,colour,flags);
+	const int index = 0x3000 + tile_index;
+	int code = m_spriteram[index] & 0x00ff;
+	int colour = (m_spriteram[index] & 0x0f00) >> 8;
+	int flags = (m_spriteram[index] & 0xc000) >> 14;
+	SET_TILE_INFO_MEMBER(1, code, colour, flags);
 }
 
 TILE_GET_INFO_MEMBER(x68k_state::get_bg1_tile_16)
 {
-	int code = m_spriteram[0x2000+tile_index] & 0x00ff;
-	int colour = (m_spriteram[0x2000+tile_index] & 0x0f00) >> 8;
-	int flags = (m_spriteram[0x2000+tile_index] & 0xc000) >> 14;
-	SET_TILE_INFO_MEMBER(1,code,colour,flags);
+	const int index = 0x2000 + tile_index;
+	int code = m_spriteram[index] & 0x00ff;
+	int colour = (m_spriteram[index] & 0x0f00) >> 8;
+	int flags = (m_spriteram[index] & 0xc000) >> 14;
+	SET_TILE_INFO_MEMBER(1, code, colour, flags);
 }
 
 void x68k_state::video_start()
 {
-	int gfx_index;
-
+	int gfx_index = 0;
 	for (gfx_index = 0; gfx_index < MAX_GFX_ELEMENTS; gfx_index++)
 		if (m_gfxdecode->gfx(gfx_index) == nullptr)
 			break;
@@ -609,27 +602,19 @@ void x68k_state::video_start()
 //  m_scanline_timer->adjust(attotime::zero, 0, attotime::from_hz(55.45)/568);
 }
 
-uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t x68k_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	rectangle rect(0,0,0,0);
-	int priority;
-	int xscr,yscr;
-	int x;
-	tilemap_t* x68k_bg0;
-	tilemap_t* x68k_bg1;
-	int pixel = 0, scanline = 0;
 	//uint8_t *rom;
 
-	if((m_spritereg[0x408] & 0x03) == 0x00)  // Sprite/BG H-Res 0=8x8, 1=16x16, 2 or 3 = undefined.
+	tilemap_t* x68k_bg0 = m_bg0_16;
+	tilemap_t* x68k_bg1 = m_bg1_16;
+	if ((m_spritereg[0x408] & 0x03) == 0x00)  // Sprite/BG H-Res 0=8x8, 1=16x16, 2 or 3 = undefined.
 	{
 		x68k_bg0 = m_bg0_8;
 		x68k_bg1 = m_bg1_8;
 	}
-	else
-	{
-		x68k_bg0 = m_bg0_16;
-		x68k_bg1 = m_bg1_16;
-	}
+
 //  rect.max_x=m_crtc->width();
 //  rect.max_y=m_crtc->height();
 	bitmap.fill(0, cliprect);
@@ -637,28 +622,28 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 	if(m_sysport.contrast == 0)  // if monitor contrast is 0, then don't bother displaying anything
 		return 0;
 
-	rect.min_x=m_crtc->hbegin();
-	rect.min_y=m_crtc->vbegin();
-//  rect.max_x=rect.min_x + m_crtc->visible_width()-1;
-//  rect.max_y=rect.min_y + m_crtc->visible_height()-1;
-	rect.max_x=m_crtc->hend();
-	rect.max_y=m_crtc->vend();
+	rect.min_x = m_crtc->hbegin();
+	rect.min_y = m_crtc->vbegin();
+//  rect.max_x = rect.min_x + m_crtc->visible_width() - 1;
+//  rect.max_y = rect.min_y + m_crtc->visible_height() - 1;
+	rect.max_x = m_crtc->hend();
+	rect.max_y = m_crtc->vend();
 
-	if(rect.min_y < cliprect.min_y)
+	if (rect.min_y < cliprect.min_y)
 		rect.min_y = cliprect.min_y;
-	if(rect.max_y > cliprect.max_y)
+	if (rect.max_y > cliprect.max_y)
 		rect.max_y = cliprect.max_y;
 
 	// update tiles
 	//rom = memregion("user1")->base();
-	for(x=0;x<256;x++)
+	for (int x = 0; x < 256; x++)
 	{
-		if(m_video.tile16_dirty[x] != 0)
+		if (m_video.tile16_dirty[x] != 0)
 		{
 			m_gfxdecode->gfx(1)->mark_dirty(x);
 			m_video.tile16_dirty[x] = 0;
 		}
-		if(m_video.tile8_dirty[x] != 0)
+		if (m_video.tile8_dirty[x] != 0)
 		{
 			m_gfxdecode->gfx(0)->mark_dirty(x);
 			m_video.tile8_dirty[x] = 0;
@@ -666,20 +651,20 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 	}
 
 
-	for(priority=2;priority>=0;priority--)
+	for (int priority = 2; priority >= 0; priority--)
 	{
 		// Graphics screen(s)
-		if(priority == m_video.gfx_pri)
+		if (priority == m_video.gfx_pri)
 			draw_gfx(bitmap,rect);
 
 		// Sprite / BG Tiles
-		if(priority == m_video.sprite_pri /*&& (m_spritereg[0x404] & 0x0200)*/ && (m_video.reg[2] & 0x0040))
+		if (priority == m_video.sprite_pri /*&& (m_spritereg[0x404] & 0x0200)*/ && (m_video.reg[2] & 0x0040))
 		{
 			m_pcgbitmap.fill(0, rect);
-			draw_sprites(m_pcgbitmap,1,rect);
-			if((m_spritereg[0x404] & 0x0008))
+			draw_sprites(m_pcgbitmap, 1, rect);
+			if ((m_spritereg[0x404] & 0x0008))
 			{
-				if((m_spritereg[0x404] & 0x0030) == 0x10)  // BG1 TXSEL
+				if ((m_spritereg[0x404] & 0x0030) == 0x10)  // BG1 TXSEL
 				{
 					x68k_bg0->set_scrollx(0,(m_spritereg[0x402] - m_crtc->hbegin() - m_video.bg_hshift) & 0x3ff);
 					x68k_bg0->set_scrolly(0,(m_spritereg[0x403] - m_crtc->vbegin()) & 0x3ff);
@@ -693,9 +678,9 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 				}
 			}
 			draw_sprites(m_pcgbitmap,2,rect);
-			if((m_spritereg[0x404] & 0x0001))
+			if ((m_spritereg[0x404] & 0x0001))
 			{
-				if((m_spritereg[0x404] & 0x0006) == 0x02)  // BG0 TXSEL
+				if ((m_spritereg[0x404] & 0x0006) == 0x02)  // BG0 TXSEL
 				{
 					x68k_bg0->set_scrollx(0,(m_spritereg[0x400] - m_crtc->hbegin() - m_video.bg_hshift) & 0x3ff);
 					x68k_bg0->set_scrolly(0,(m_spritereg[0x401] - m_crtc->vbegin()) & 0x3ff);
@@ -710,48 +695,47 @@ uint32_t x68k_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, 
 			}
 			draw_sprites(m_pcgbitmap,3,rect);
 
-			for(scanline=rect.min_y;scanline<=rect.max_y;scanline++)
+			for (int scanline = rect.min_y; scanline <= rect.max_y; scanline++)
 			{
-				for(pixel=m_crtc->hbegin();pixel<=m_crtc->hend();pixel++)
+				for (int pixel = m_crtc->hbegin(); pixel <= m_crtc->hend(); pixel++)
 				{
 					uint8_t colour = m_pcgbitmap.pix16(scanline, pixel) & 0xff;
-					if((colour && (m_pcgpalette->pen(colour) & 0xffffff)) || ((m_video.reg[1] & 0x3000) == 0x2000))
+					if ((colour && (m_pcgpalette->pen(colour) & 0xffffff)) || ((m_video.reg[1] & 0x3000) == 0x2000))
 						bitmap.pix32(scanline, pixel) = m_pcgpalette->pen(colour);
 				}
 			}
 		}
 
 		// Text screen
-		if(m_video.reg[2] & 0x0020 && priority == m_video.text_pri)
+		if (m_video.reg[2] & 0x0020 && priority == m_video.text_pri)
 		{
-			xscr = (m_crtc->xscr_text() & 0x3ff);
-			yscr = (m_crtc->yscr_text() & 0x3ff);
-			if(!m_crtc->text_layer_buffer())  // if text layer is set to buffer, then it's not visible
-				draw_text(bitmap,xscr,yscr,rect);
+			int xscr = (m_crtc->xscr_text() & 0x3ff);
+			int yscr = (m_crtc->yscr_text() & 0x3ff);
+			if (!m_crtc->text_layer_buffer())  // if text layer is set to buffer, then it's not visible
+				draw_text(bitmap, xscr, yscr, rect);
 		}
 	}
 
-	if((m_video.reg[2] & 0x1800) == 0x1000) // special priority
+	if ((m_video.reg[2] & 0x1800) == 0x1000) // special priority
 	{
-		uint16_t colour;
-		for(scanline=rect.min_y;scanline<=rect.max_y;scanline++)
+		for (int scanline = rect.min_y; scanline <= rect.max_y; scanline++)
 		{
-			for(pixel=m_crtc->hbegin();pixel<=m_crtc->hend();pixel++)
+			for (int pixel = m_crtc->hbegin(); pixel <= m_crtc->hend(); pixel++)
 			{
-				colour = m_special.pix16(scanline, pixel) & 0xff;
-				if(colour)
+				uint16_t colour = m_special.pix16(scanline, pixel) & 0xff;
+				if (colour)
 					bitmap.pix32(scanline, pixel) = m_gfxpalette->pen(colour & ~1);
 			}
 		}
 	}
 
 #ifdef MAME_DEBUG
-	if(machine().input().code_pressed(KEYCODE_9))
+	if (machine().input().code_pressed(KEYCODE_9))
 	{
 		m_sprite_shift--;
 		popmessage("Sprite shift = %i",m_sprite_shift);
 	}
-	if(machine().input().code_pressed(KEYCODE_0))
+	if (machine().input().code_pressed(KEYCODE_0))
 	{
 		m_sprite_shift++;
 		popmessage("Sprite shift = %i",m_sprite_shift);

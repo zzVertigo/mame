@@ -89,7 +89,7 @@ private:
 	DECLARE_MACHINE_RESET(moo);
 	DECLARE_VIDEO_START(moo);
 	DECLARE_VIDEO_START(bucky);
-	uint32_t screen_update_moo(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_moo(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(moo_interrupt);
 	INTERRUPT_GEN_MEMBER(moobl_interrupt);
 	TIMER_CALLBACK_MEMBER(dmaend_callback);

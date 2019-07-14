@@ -73,7 +73,7 @@ public:
 private:
 	DECLARE_READ8_MEMBER(unknown_r);
 	void carrera_palette(palette_device &palette) const;
-	uint32_t screen_update_carrera(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_carrera(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void carrera_map(address_map &map);
 	void io_map(address_map &map);
 
@@ -268,7 +268,7 @@ static GFXDECODE_START( gfx_carrera )
 	GFXDECODE_ENTRY( "gfx1", 0, tiles8x8_layout, 0, 1 )
 GFXDECODE_END
 
-uint32_t carrera_state::screen_update_carrera(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t carrera_state::screen_update_carrera(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y;
 	int count = 0;

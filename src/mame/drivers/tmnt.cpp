@@ -1922,7 +1922,6 @@ void tmnt_state::cuebrick(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(13*8, (64-13)*8-1, 2*8, 30*8-1);
 	screen.set_screen_update(FUNC(tmnt_state::screen_update_mia));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette).set_format(palette_device::xBGR_555, 1024);
 	m_palette->set_membits(8);
@@ -1974,7 +1973,6 @@ void tmnt_state::mia(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(13*8, (64-13)*8-1, 2*8, 30*8-1);
 	screen.set_screen_update(FUNC(tmnt_state::screen_update_mia));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette).set_format(palette_device::xBGR_555, 1024);
 	m_palette->set_membits(8);
@@ -2037,7 +2035,6 @@ void tmnt_state::tmnt(machine_config &config)
 	// verified against real hardware
 
 	screen.set_screen_update(FUNC(tmnt_state::screen_update_tmnt));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette).set_format(palette_device::xBGR_555, 1024);
 	m_palette->set_membits(8);
@@ -2100,7 +2097,6 @@ void tmnt_state::punkshot(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(14*8, (64-14)*8-1, 2*8, 30*8-1);
 	screen.set_screen_update(FUNC(tmnt_state::screen_update_punkshot));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette).set_format(palette_device::xBGR_555, 2048);
 	m_palette->enable_shadows();
@@ -2149,7 +2145,6 @@ void tmnt_state::lgtnfght(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(12*8, (64-12)*8-1, 2*8, 30*8-1);
 	screen.set_screen_update(FUNC(tmnt_state::screen_update_lgtnfght));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette).set_format(palette_device::xBGR_555, 2048);
 	m_palette->enable_shadows();
@@ -2205,7 +2200,6 @@ void tmnt_state::blswhstl(machine_config &config)
 	screen.set_visarea(12*8, (64-12)*8-1, 2*8, 30*8-1);
 	screen.set_screen_update(FUNC(tmnt_state::screen_update_lgtnfght));
 	screen.screen_vblank().set(FUNC(tmnt_state::screen_vblank_blswhstl));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette).set_format(palette_device::xBGR_555, 2048);
 	m_palette->enable_shadows();
@@ -2277,7 +2271,6 @@ void tmnt_state::glfgreat(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(14*8, (64-14)*8-1, 2*8, 30*8-1);
 	screen.set_screen_update(FUNC(tmnt_state::screen_update_glfgreat));
-	screen.set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_glfgreat);
 
@@ -2343,7 +2336,6 @@ void tmnt_state::prmrsocr(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(14*8, (64-14)*8-1, 2*8, 30*8-1);
 	screen.set_screen_update(FUNC(tmnt_state::screen_update_glfgreat));
-	screen.set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_glfgreat);
 
@@ -2407,7 +2399,6 @@ void tmnt_state::tmnt2(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(13*8, (64-13)*8-1, 2*8, 30*8-1);
 	screen.set_screen_update(FUNC(tmnt_state::screen_update_tmnt2));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette).set_format(palette_device::xBGR_555, 2048);
 	m_palette->enable_shadows();
@@ -2462,7 +2453,6 @@ void tmnt_state::ssriders(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(14*8, (64-14)*8-1, 2*8, 30*8-1);
 	screen.set_screen_update(FUNC(tmnt_state::screen_update_tmnt2));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette).set_format(palette_device::xBGR_555, 2048);
 	m_palette->enable_shadows();
@@ -2511,7 +2501,6 @@ void tmnt_state::sunsetbl(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(14*8, (64-14)*8-1, 2*8, 30*8-1);
 	screen.set_screen_update(FUNC(tmnt_state::screen_update_tmnt2));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette).set_format(palette_device::xBGR_555, 2048);
 	m_palette->enable_shadows();
@@ -2559,7 +2548,6 @@ void tmnt_state::thndrx2(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(14*8, (64-14)*8-1, 2*8, 30*8-1);
 	screen.set_screen_update(FUNC(tmnt_state::screen_update_thndrx2));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette).set_format(palette_device::xBGR_555, 2048);
 	m_palette->enable_shadows();

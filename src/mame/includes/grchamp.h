@@ -82,7 +82,7 @@ private:
 	INTERRUPT_GEN_MEMBER(cpu1_interrupt);
 	TIMER_CALLBACK_MEMBER(main_to_sub_comm_sync_w);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void draw_objects(int y, uint8_t *objdata);
 	void main_map(address_map &map);
 	void main_portmap(address_map &map);

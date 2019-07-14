@@ -13,7 +13,7 @@
 
 
 
-void djmain_state::draw_sprites( bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void djmain_state::draw_sprites( bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int offs, pri_code;
 	int sortedlist[NUM_SPRITES];
@@ -140,7 +140,7 @@ void djmain_state::video_start()
 	m_k056832->set_layer_offs(1, -88, -27);
 }
 
-uint32_t djmain_state::screen_update_djmain(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t djmain_state::screen_update_djmain(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int enables = m_k055555->K055555_read_register(K55_INPUT_ENABLES);
 	int pri[NUM_LAYERS + 1];

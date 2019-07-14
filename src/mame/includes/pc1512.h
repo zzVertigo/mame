@@ -211,7 +211,7 @@ public:
 
 	virtual void video_start() override;
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	int get_display_mode(uint8_t mode);
 	offs_t get_char_rom_offset();

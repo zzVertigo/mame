@@ -354,7 +354,7 @@ WRITE8_MEMBER(astrof_state::tomahawk_video_control_2_w)
 }
 
 
-void astrof_state::video_update_common( bitmap_rgb32 &bitmap, const rectangle &cliprect, pen_t *pens, int num_pens )
+void astrof_state::video_update_common( bitmap_argb32 &bitmap, const rectangle &cliprect, pen_t *pens, int num_pens )
 {
 	offs_t offs;
 
@@ -398,7 +398,7 @@ void astrof_state::video_update_common( bitmap_rgb32 &bitmap, const rectangle &c
 }
 
 
-uint32_t astrof_state::screen_update_astrof(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t astrof_state::screen_update_astrof(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	pen_t pens[ASTROF_NUM_PENS];
 
@@ -410,7 +410,7 @@ uint32_t astrof_state::screen_update_astrof(screen_device &screen, bitmap_rgb32 
 }
 
 
-uint32_t astrof_state::screen_update_tomahawk(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t astrof_state::screen_update_tomahawk(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	pen_t pens[TOMAHAWK_NUM_PENS];
 

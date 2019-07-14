@@ -173,8 +173,8 @@ private:
 	DECLARE_WRITE16_MEMBER(tv_ncf_oki6376_st_w);
 	DECLARE_READ8_MEMBER(nmi_clear_r);
 	DECLARE_WRITE8_MEMBER(nmi_clear_w);
-	uint32_t screen_update_tourvisn(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_brasil(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_tourvisn(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_brasil(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	required_device<cpu_device> m_maincpu;
 	required_device<okim6376_device> m_okim6376;
@@ -214,7 +214,7 @@ void highvdeo_state::machine_start()
 }
 
 
-uint32_t highvdeo_state::screen_update_tourvisn(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t highvdeo_state::screen_update_tourvisn(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y,count;
 
@@ -243,7 +243,7 @@ uint32_t highvdeo_state::screen_update_tourvisn(screen_device &screen, bitmap_rg
 }
 
 /*Later HW, RGB565 instead of RAM-based pens (+ ramdac).*/
-uint32_t highvdeo_state::screen_update_brasil(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t highvdeo_state::screen_update_brasil(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y,count;
 

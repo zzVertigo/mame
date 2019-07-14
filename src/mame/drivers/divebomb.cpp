@@ -440,7 +440,6 @@ void divebomb_state::divebomb(machine_config &config)
 	screen.set_size(256, 256);
 	screen.set_visarea(0, 256-1, 0, 256-1-32);
 	screen.set_screen_update(FUNC(divebomb_state::screen_update_divebomb));
-	screen.set_palette(m_palette);
 	screen.screen_vblank().set_inputline(m_fgcpu, INPUT_LINE_NMI);
 	screen.screen_vblank().append_inputline(m_spritecpu, INPUT_LINE_NMI);
 	screen.screen_vblank().append_inputline(m_rozcpu, INPUT_LINE_NMI);

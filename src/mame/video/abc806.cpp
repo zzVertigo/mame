@@ -386,7 +386,7 @@ WRITE_LINE_MEMBER( abc806_state::vs_w )
 //  hr_update - high resolution screen update
 //-------------------------------------------------
 
-void abc806_state::hr_update(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void abc806_state::hr_update(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *pen = m_palette->pens();
 
@@ -438,7 +438,7 @@ void abc806_state::video_start()
 //  SCREEN_UPDATE( abc806 )
 //-------------------------------------------------
 
-uint32_t abc806_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t abc806_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// clear screen
 	bitmap.fill(rgb_t::black(), cliprect);

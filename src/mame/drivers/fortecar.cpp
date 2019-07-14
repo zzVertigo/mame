@@ -368,7 +368,7 @@ private:
 	DECLARE_WRITE8_MEMBER(ayportb_w);
 
 	void fortecar_palette(palette_device &palette) const;
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void fortecar_map(address_map &map);
 	void fortecar_ports(address_map &map);
@@ -384,7 +384,7 @@ void fortecar_state::machine_start()
 	m_lamps.resolve();
 }
 
-uint32_t fortecar_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t fortecar_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int count = 0;
 

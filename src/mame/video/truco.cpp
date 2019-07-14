@@ -32,7 +32,7 @@ void truco_state::truco_palette(palette_device &palette) const
 	}
 }
 
-uint32_t truco_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t truco_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint8_t const *videoram = m_videoram;
 

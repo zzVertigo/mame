@@ -46,14 +46,14 @@ K051960_CB_MEMBER(spy_state::sprite_callback)
 
 ***************************************************************************/
 
-uint32_t spy_state::screen_update_spy(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t spy_state::screen_update_spy(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_k052109->tilemap_update();
 
 	screen.priority().fill(0, cliprect);
 
 	if (!m_video_enable)
-		bitmap.fill(768, cliprect); // ?
+		bitmap.fill(m_palette->pens()[768], cliprect); // ?
 	else
 	{
 		m_k052109->tilemap_draw(screen, bitmap, cliprect, 1, TILEMAP_DRAW_OPAQUE, 1);

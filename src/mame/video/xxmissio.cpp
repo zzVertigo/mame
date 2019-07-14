@@ -87,7 +87,7 @@ rgb_t xxmissio_state::BBGGRRII(uint32_t raw)
 	return rgb_t(r | (r << 4), g | (g << 4), b | (b << 4));
 }
 
-void xxmissio_state::draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect, gfx_element *gfx)
+void xxmissio_state::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, gfx_element *gfx)
 {
 	for (int offs = 0; offs < 0x800; offs += 0x20)
 	{
@@ -134,7 +134,7 @@ void xxmissio_state::draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprec
 }
 
 
-uint32_t xxmissio_state::screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t xxmissio_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	machine().tilemap().mark_all_dirty();
 	machine().tilemap().set_flip_all(m_flipscreen ? TILEMAP_FLIPX | TILEMAP_FLIPY : 0);

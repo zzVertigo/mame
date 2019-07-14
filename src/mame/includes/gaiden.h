@@ -134,8 +134,8 @@ private:
 	DECLARE_VIDEO_START(drgnbowl);
 	DECLARE_VIDEO_START(raiga);
 	DECLARE_WRITE_LINE_MEMBER(screen_vblank);
-	uint32_t screen_update_gaiden(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_raiga(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_gaiden(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_raiga(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	uint32_t screen_update_drgnbowl(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
 	void drgnbowl_draw_sprites(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
 	void descramble_drgnbowl(int descramble_cpu);

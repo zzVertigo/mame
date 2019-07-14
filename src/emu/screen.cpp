@@ -45,7 +45,7 @@ public:
 	int width() const;
 	int height() const;
 
-	int render(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	int render(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	static void output_notifier(const char *outname, s32 value, void *param);
 
@@ -86,7 +86,7 @@ private:
 	void compute_diff_image(const std::vector<u32> &rend, const bbox &bb, cached_bitmap &dest) const;
 	void compute_dual_diff_image(const std::vector<u32> &rend, const bbox &bb, const cached_bitmap &src1, const cached_bitmap &src2, cached_bitmap &dest) const;
 	void rebuild_cache();
-	void blit(bitmap_rgb32 &bitmap, const cached_bitmap &src) const;
+	void blit(bitmap_argb32 &bitmap, const cached_bitmap &src) const;
 };
 
 screen_device::svg_renderer::svg_renderer(memory_region *region)
@@ -172,7 +172,7 @@ void screen_device::svg_renderer::render_state(std::vector<u32> &dest, const std
 	}
 }
 
-void screen_device::svg_renderer::blit(bitmap_rgb32 &bitmap, const cached_bitmap &src) const
+void screen_device::svg_renderer::blit(bitmap_argb32 &bitmap, const cached_bitmap &src) const
 {
 	if(src.sy) {
 		const u32 *s = &src.image[0];
@@ -187,7 +187,7 @@ void screen_device::svg_renderer::blit(bitmap_rgb32 &bitmap, const cached_bitmap
 	}
 }
 
-int screen_device::svg_renderer::render(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+int screen_device::svg_renderer::render(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int nsx = bitmap.width();
 	int nsy = bitmap.height();
@@ -605,7 +605,7 @@ void screen_device::device_validity_check(validity_checker &valid) const
 			osd_printf_error("Invalid display area\n");
 
 		// sanity check screen formats
-		if (m_screen_update_ind16.isnull() && m_screen_update_rgb32.isnull())
+		if (m_screen_update_ind16.isnull() && m_screen_update_argb32.isnull())
 			osd_printf_error("Missing SCREEN_UPDATE function\n");
 	}
 
@@ -613,13 +613,13 @@ void screen_device::device_validity_check(validity_checker &valid) const
 	if (m_refresh == 0)
 		osd_printf_error("Invalid (zero) refresh rate\n");
 
-	texture_format texformat = !m_screen_update_ind16.isnull() ? TEXFORMAT_PALETTE16 : TEXFORMAT_RGB32;
+	texture_format texformat = !m_screen_update_ind16.isnull() ? TEXFORMAT_PALETTE16 : TEXFORMAT_ARGB32;
 	if (m_palette.finder_tag() != finder_base::DUMMY_TAG)
 	{
 		if (!m_palette)
 			osd_printf_error("Screen references non-existent palette tag %s\n", m_palette.finder_tag());
 
-		if (texformat == TEXFORMAT_RGB32)
+		if (texformat == TEXFORMAT_ARGB32)
 			osd_printf_warning("Screen does not need palette defined\n");
 	}
 	else if (texformat == TEXFORMAT_PALETTE16)
@@ -695,7 +695,7 @@ void screen_device::device_resolve_objects()
 {
 	// bind our handlers
 	m_screen_update_ind16.bind_relative_to(*owner());
-	m_screen_update_rgb32.bind_relative_to(*owner());
+	m_screen_update_argb32.bind_relative_to(*owner());
 	m_screen_vblank.resolve_safe();
 	m_scanline_cb.resolve();
 
@@ -735,8 +735,8 @@ void screen_device::device_start()
 	}
 
 	// configure bitmap formats and allocate screen bitmaps
-	// svg is RGB32 too, and doesn't have any update method
-	texture_format texformat = !m_screen_update_ind16.isnull() ? TEXFORMAT_PALETTE16 : TEXFORMAT_RGB32;
+	// svg is ARGB32 too, and doesn't have any update method
+	texture_format texformat = !m_screen_update_ind16.isnull() ? TEXFORMAT_PALETTE16 : TEXFORMAT_ARGB32;
 
 	for (auto & elem : m_bitmap)
 	{
@@ -1090,12 +1090,12 @@ bool screen_device::update_partial(int scanline)
 		{
 			default:
 			case BITMAP_FORMAT_IND16:   flags = m_screen_update_ind16(*this, curbitmap.as_ind16(), clip);   break;
-			case BITMAP_FORMAT_RGB32:   flags = m_screen_update_rgb32(*this, curbitmap.as_rgb32(), clip);   break;
+			case BITMAP_FORMAT_ARGB32:  flags = m_screen_update_argb32(*this, curbitmap.as_argb32(), clip);   break;
 		}
 	}
 	else
 	{
-		flags = m_svg->render(*this, m_bitmap[m_curbitmap].as_rgb32(), clip);
+		flags = m_svg->render(*this, m_bitmap[m_curbitmap].as_argb32(), clip);
 	}
 
 	m_partial_updates_this_frame++;
@@ -1163,8 +1163,8 @@ void screen_device::update_now()
 				switch (curbitmap.format())
 				{
 					default:
-					case BITMAP_FORMAT_IND16: m_screen_update_ind16(*this, curbitmap.as_ind16(), clip);   break;
-					case BITMAP_FORMAT_RGB32: m_screen_update_rgb32(*this, curbitmap.as_rgb32(), clip);   break;
+					case BITMAP_FORMAT_IND16:  m_screen_update_ind16(*this,  curbitmap.as_ind16(), clip);   break;
+					case BITMAP_FORMAT_ARGB32: m_screen_update_argb32(*this, curbitmap.as_argb32(), clip);  break;
 				}
 
 				m_partial_updates_this_frame++;
@@ -1200,8 +1200,8 @@ void screen_device::update_now()
 		switch (curbitmap.format())
 		{
 			default:
-			case BITMAP_FORMAT_IND16:   flags = m_screen_update_ind16(*this, curbitmap.as_ind16(), clip);   break;
-			case BITMAP_FORMAT_RGB32:   flags = m_screen_update_rgb32(*this, curbitmap.as_rgb32(), clip);   break;
+			case BITMAP_FORMAT_IND16:   flags = m_screen_update_ind16(*this,  curbitmap.as_ind16(), clip);   break;
+			case BITMAP_FORMAT_ARGB32:  flags = m_screen_update_argb32(*this, curbitmap.as_argb32(), clip);  break;
 		}
 
 		m_partial_updates_this_frame++;
@@ -1265,10 +1265,10 @@ u32 screen_device::pixel(s32 x, s32 y)
 			return (u32)palette[src];
 		}
 
-		case BITMAP_FORMAT_RGB32:
+		case BITMAP_FORMAT_ARGB32:
 		{
 			// iterate over rows in the destination
-			bitmap_rgb32 &srcbitmap = curbitmap.as_rgb32();
+			bitmap_argb32 &srcbitmap = curbitmap.as_argb32();
 			return (u32)srcbitmap.pix(y, x);
 		}
 
@@ -1308,9 +1308,9 @@ void screen_device::pixels(u32 *buffer)
 			break;
 		}
 
-		case BITMAP_FORMAT_RGB32:
+		case BITMAP_FORMAT_ARGB32:
 		{
-			bitmap_rgb32 &srcbitmap = curbitmap.as_rgb32();
+			bitmap_argb32 &srcbitmap = curbitmap.as_argb32();
 			for (int y = visarea.min_y; y <= visarea.max_y; y++)
 			{
 				const u32 *src = &srcbitmap.pix(y, visarea.min_x);
@@ -1593,10 +1593,10 @@ void screen_device::update_burnin()
 			break;
 		}
 
-		case BITMAP_FORMAT_RGB32:
+		case BITMAP_FORMAT_ARGB32:
 		{
 			// iterate over rows in the destination
-			bitmap_rgb32 &srcbitmap = curbitmap.as_rgb32();
+			bitmap_argb32 &srcbitmap = curbitmap.as_argb32();
 			for (y = 0, srcy = ystart; y < dstheight; y++, srcy += ystep)
 			{
 				u64 *dst = &m_burnin.pix64(y);

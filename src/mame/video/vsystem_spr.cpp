@@ -152,7 +152,7 @@ void vsystem_spr_device::sprite_attributes::get(uint16_t const *ram)
 }
 
 
-void vsystem_spr_device::common_sprite_drawgfx(bitmap_ind16 &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap)
+void vsystem_spr_device::common_sprite_drawgfx(bitmap_argb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap)
 {
 	gfx_element *gfx = m_gfxdecode->gfx(m_gfx_region);
 	int priority_mask = 0x00;
@@ -215,7 +215,7 @@ void vsystem_spr_device::common_sprite_drawgfx(bitmap_ind16 &bitmap, const recta
 
 
 
-void vsystem_spr_device::draw_sprites(uint16_t const *spriteram, int spriteram_bytes, screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, int prihack_mask, int prihack_val )
+void vsystem_spr_device::draw_sprites(uint16_t const *spriteram, int spriteram_bytes, screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int prihack_mask, int prihack_val )
 {
 	int offs;
 	int end = 0;

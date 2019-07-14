@@ -79,9 +79,9 @@ private:
 		return 0xff;
 	}
 
-	uint32_t screen_update_konmedal(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_shuriboy(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_fuusenpn(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_konmedal(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_shuriboy(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_fuusenpn(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	INTERRUPT_GEN_MEMBER(konmedal_interrupt);
 	K056832_CB_MEMBER(tile_callback);
@@ -179,9 +179,9 @@ void konmedal_state::video_start()
 {
 }
 
-uint32_t konmedal_state::screen_update_konmedal(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t konmedal_state::screen_update_konmedal(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
-	bitmap.fill(0, cliprect);
+	bitmap.fill(m_palette->pens()[0], cliprect);
 	screen.priority().fill(0, cliprect);
 
 	// game only draws on this layer, apparently
@@ -190,9 +190,9 @@ uint32_t konmedal_state::screen_update_konmedal(screen_device &screen, bitmap_in
 	return 0;
 }
 
-uint32_t konmedal_state::screen_update_shuriboy(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t konmedal_state::screen_update_shuriboy(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
-	bitmap.fill(0, cliprect);
+	bitmap.fill(m_palette->pens()[0], cliprect);
 	screen.priority().fill(0, cliprect);
 
 	m_k052109->tilemap_update();
@@ -203,9 +203,9 @@ uint32_t konmedal_state::screen_update_shuriboy(screen_device &screen, bitmap_in
 	return 0;
 }
 
-uint32_t konmedal_state::screen_update_fuusenpn(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t konmedal_state::screen_update_fuusenpn(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
-	bitmap.fill(0, cliprect);
+	bitmap.fill(m_palette->pens()[0], cliprect);
 	screen.priority().fill(0, cliprect);
 
 	m_k052109->tilemap_update();
@@ -410,7 +410,6 @@ void konmedal_state::tsukande(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(80, 400-1, 16, 240-1);
 	screen.set_screen_update(FUNC(konmedal_state::screen_update_konmedal));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette, FUNC(konmedal_state::konmedal_palette)).set_format(palette_device::xRGB_444, 256);
 	//m_palette->enable_shadows();
@@ -443,7 +442,6 @@ void konmedal_state::ddboy(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(80, 400-1, 16, 240-1);
 	screen.set_screen_update(FUNC(konmedal_state::screen_update_konmedal));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette, FUNC(konmedal_state::konmedal_palette)).set_format(palette_device::xRGB_444, 256);
 	//m_palette->enable_shadows();
@@ -555,7 +553,6 @@ void konmedal_state::shuriboy(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(96, 416-1, 16, 240-1);
 	screen.set_screen_update(FUNC(konmedal_state::screen_update_shuriboy));
-	screen.set_palette(m_palette);
 
 	PALETTE(config, m_palette, FUNC(konmedal_state::konmedal_palette)).set_format(palette_device::xRGB_444, 256); // not verified
 //  m_palette->enable_shadows();
@@ -585,7 +582,6 @@ void konmedal_state::fuusenpn(machine_config &config)
 	screen.set_size(64*8, 32*8);
 	screen.set_visarea(96, 416-1, 16, 240-1);
 	screen.set_screen_update(FUNC(konmedal_state::screen_update_fuusenpn));
-	screen.set_palette(m_palette);
 
 	K052109(config.replace(), m_k052109, 0);
 	m_k052109->set_palette(m_palette);

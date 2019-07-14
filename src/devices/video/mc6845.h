@@ -38,12 +38,12 @@
 /* callback definitions */
 #define MC6845_RECONFIGURE(name)  void name(int width, int height, const rectangle &visarea, attoseconds_t frame_period)
 
-#define MC6845_BEGIN_UPDATE(name)  void name(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+#define MC6845_BEGIN_UPDATE(name)  void name(bitmap_argb32 &bitmap, const rectangle &cliprect)
 
-#define MC6845_UPDATE_ROW(name)     void name(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint16_t ma, uint8_t ra, \
+#define MC6845_UPDATE_ROW(name)     void name(bitmap_argb32 &bitmap, const rectangle &cliprect, uint16_t ma, uint8_t ra, \
 												uint16_t y, uint8_t x_count, int8_t cursor_x, int de, int hbp, int vbp)
 
-#define MC6845_END_UPDATE(name)     void name(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+#define MC6845_END_UPDATE(name)     void name(bitmap_argb32 &bitmap, const rectangle &cliprect)
 
 #define MC6845_ON_UPDATE_ADDR_CHANGED(name) void name(int address, int strobe)
 
@@ -53,10 +53,10 @@ class mc6845_device :   public device_t,
 {
 public:
 	typedef device_delegate<void (int width, int height, const rectangle &visarea, attoseconds_t frame_period)> reconfigure_delegate;
-	typedef device_delegate<void (bitmap_rgb32 &bitmap, const rectangle &cliprect)> begin_update_delegate;
-	typedef device_delegate<void (bitmap_rgb32 &bitmap, const rectangle &cliprect, uint16_t ma, uint8_t ra,
+	typedef device_delegate<void (bitmap_argb32 &bitmap, const rectangle &cliprect)> begin_update_delegate;
+	typedef device_delegate<void (bitmap_argb32 &bitmap, const rectangle &cliprect, uint16_t ma, uint8_t ra,
 									uint16_t y, uint8_t x_count, int8_t cursor_x, int de, int hbp, int vbp)> update_row_delegate;
-	typedef device_delegate<void (bitmap_rgb32 &bitmap, const rectangle &cliprect)> end_update_delegate;
+	typedef device_delegate<void (bitmap_argb32 &bitmap, const rectangle &cliprect)> end_update_delegate;
 	typedef device_delegate<void (int address, int strobe)> on_update_addr_changed_delegate;
 
 	// construction/destruction
@@ -122,7 +122,7 @@ public:
 	/* updates the screen -- this will call begin_update(),
 	   followed by update_row() repeatedly and after all row
 	   updating is complete, end_update() */
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 protected:
 	mc6845_device(const machine_config &mconfig, device_type type, const char *tag, device_t *owner, uint32_t clock);
@@ -237,7 +237,7 @@ protected:
 	bool match_line();
 	void handle_line_timer();
 	virtual void update_cursor_state();
-	virtual uint8_t draw_scanline(int y, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	virtual uint8_t draw_scanline(int y, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	/************************
 	 interface CRTC - driver
@@ -447,7 +447,7 @@ protected:
 	int m_revision;
 
 	virtual void update_cursor_state() override;
-	virtual uint8_t draw_scanline(int y, bitmap_rgb32 &bitmap, const rectangle &cliprect) override;
+	virtual uint8_t draw_scanline(int y, bitmap_argb32 &bitmap, const rectangle &cliprect) override;
 
 	static const device_timer_id TIMER_BLOCK_COPY = 9;
 

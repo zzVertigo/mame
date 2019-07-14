@@ -88,11 +88,11 @@ private:
 	DECLARE_WRITE8_MEMBER(brake_gas_write);
 	DECLARE_WRITE8_MEMBER(palette_write);
 	virtual void machine_start() override;
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea);
 	INTERRUPT_GEN_MEMBER(vblank_callback);
-	void draw_tiles(bitmap_rgb32 &bitmap,const rectangle &cliprect);
-	inline void draw_pixel(bitmap_rgb32 &bitmap,const rectangle &cliprect,int x,int y,int color,int flip);
-	void draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void draw_tiles(bitmap_argb32 &bitmap,const rectangle &cliprect);
+	inline void draw_pixel(bitmap_argb32 &bitmap,const rectangle &cliprect,int x,int y,int color,int flip);
+	void draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	required_device<cpu_device> m_maincpu;
 	required_device<gfxdecode_device> m_gfxdecode;
 	required_device<palette_device> m_palette;
@@ -112,14 +112,12 @@ private:
 
 
 /* VIDEO GOODS */
-void gpworld_state::draw_tiles(bitmap_rgb32 &bitmap,const rectangle &cliprect)
+void gpworld_state::draw_tiles(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
-	uint8_t characterX, characterY;
-
 	/* Temporarily set to 64 wide to accommodate two screens */
-	for (characterX = 0; characterX < 64; characterX++)
+	for (uint8_t characterX = 0; characterX < 64; characterX++)
 	{
-		for (characterY = 0; characterY < 32; characterY++)
+		for (uint8_t characterY = 0; characterY < 32; characterY++)
 		{
 			int current_screen_character = (characterY*64) + characterX;
 
@@ -129,7 +127,7 @@ void gpworld_state::draw_tiles(bitmap_rgb32 &bitmap,const rectangle &cliprect)
 	}
 }
 
-void gpworld_state::draw_pixel(bitmap_rgb32 &bitmap,const rectangle &cliprect,int x,int y,int color,int flip)
+void gpworld_state::draw_pixel(bitmap_argb32 &bitmap,const rectangle &cliprect,int x,int y,int color,int flip)
 {
 	if (flip)
 	{
@@ -141,7 +139,7 @@ void gpworld_state::draw_pixel(bitmap_rgb32 &bitmap,const rectangle &cliprect,in
 		bitmap.pix32(y, x) = m_palette->pen(color);
 }
 
-void gpworld_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void gpworld_state::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const int SPR_Y_TOP     = 0;
 	const int SPR_Y_BOTTOM  = 1;
@@ -153,19 +151,15 @@ void gpworld_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect
 	const int SPR_GFXOFS_HI = 7;
 	int flip = flip_screen();
 
-	int i;
-
 	uint8_t *GFX = memregion("gfx2")->base();
 
 	/* Heisted from Daphne which heisted it from MAME */
-	for (i = 0; i < 0x800; i += 8)
+	for (int i = 0; i < 0x800; i += 8)
 	{
 		uint8_t *spr_reg = m_sprite_ram + i;
 
 		if (spr_reg[SPR_Y_BOTTOM] && spr_reg[SPR_X_LO] != 0xff)
 		{
-			int row;
-
 			int src  = spr_reg[SPR_GFXOFS_LO] + (spr_reg[SPR_GFXOFS_HI] << 8);
 			int skip = spr_reg[SPR_SKIP_LO] + (spr_reg[SPR_SKIP_HI] << 8);
 
@@ -185,28 +179,24 @@ void gpworld_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect
             draw_pixel(bitmap,cliprect,sx,sy,0xffffffff,flip);
 */
 
-			for (row = 0; row < height; row++)
+			for (int row = 0; row < height; row++)
 			{
-				int x, y;
 				int src2;
 
 				src = src2 = src + skip;
 
-				x = sx;
-				y = sy+row;
+				int x = sx;
+				int y = sy+row;
 
 				while (1)
 				{
-					int data_lo, data_high;
-					uint8_t pixel1, pixel2, pixel3, pixel4;
+					int data_lo   = GFX[(src2 & 0x7fff) | (sprite_bank << 16)];
+					int data_high = GFX[(src2 & 0x7fff) | 0x8000 | (sprite_bank << 16)];
 
-					data_lo   = GFX[(src2 & 0x7fff) | (sprite_bank << 16)];
-					data_high = GFX[(src2 & 0x7fff) | 0x8000 | (sprite_bank << 16)];
-
-					pixel1 = data_high >> 0x04;
-					pixel2 = data_high & 0x0f;
-					pixel3 = data_lo >> 0x04;
-					pixel4 = data_lo & 0x0f;
+					uint8_t pixel1 = data_high >> 0x04;
+					uint8_t pixel2 = data_high & 0x0f;
+					uint8_t pixel3 = data_lo >> 0x04;
+					uint8_t pixel4 = data_lo & 0x0f;
 
 					/* we'll see if this is still applicable */
 					if (src & 0x8000)
@@ -251,14 +241,12 @@ void gpworld_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect
 }
 
 
-uint32_t gpworld_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void gpworld_state::overlay_update(bitmap_argb32 &bitmap, const rectangle &cliprect, const rectangle &visarea)
 {
 	bitmap.fill(0, cliprect);
 
 	draw_tiles(bitmap, cliprect);
 	draw_sprites(bitmap, cliprect);
-
-	return 0;
 }
 
 
@@ -507,7 +495,7 @@ void gpworld_state::gpworld(machine_config &config)
 
 
 	PIONEER_LDV1000(config, m_laserdisc, 0);
-	m_laserdisc->set_overlay(512, 256, FUNC(gpworld_state::screen_update));
+	m_laserdisc->set_overlay(512, 256, FUNC(gpworld_state::overlay_update));
 	m_laserdisc->add_route(0, "lspeaker", 1.0);
 	m_laserdisc->add_route(1, "rspeaker", 1.0);
 

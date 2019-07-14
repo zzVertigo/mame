@@ -130,7 +130,7 @@ void light_video_device::device_reset()
 	memset(&m_framebuffer[0], 0, x_res*y_res);
 }
 
-uint32_t light_video_device::screen_update(screen_device &device, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t light_video_device::screen_update(screen_device &device, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const rgb_t *pens = m_palette->palette()->entry_list_raw();
 	const uint8_t *src = &m_framebuffer[0];

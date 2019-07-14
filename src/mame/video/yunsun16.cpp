@@ -106,9 +106,8 @@ void yunsun16_state::video_start()
 
 ***************************************************************************/
 
-void yunsun16_state::draw_sprites( screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect )
+void yunsun16_state::draw_sprites( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
-	int offs;
 	const rectangle &visarea = m_screen->visible_area();
 
 	int max_x = visarea.max_x + 1;
@@ -131,7 +130,7 @@ void yunsun16_state::draw_sprites( screen_device &screen, bitmap_ind16 &bitmap, 
 			break;
 	}
 
-	for (offs = (m_spriteram.bytes() - 8) / 2 ; offs >= 0; offs -= 8 / 2)
+	for (int offs = (m_spriteram.bytes() - 8) / 2 ; offs >= 0; offs -= 8 / 2)
 	{
 		int x = m_spriteram[offs + 0];
 		int y = m_spriteram[offs + 1];
@@ -169,7 +168,7 @@ void yunsun16_state::draw_sprites( screen_device &screen, bitmap_ind16 &bitmap, 
 ***************************************************************************/
 
 
-uint32_t yunsun16_state::screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t yunsun16_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_tilemap[0]->set_scrollx(0, m_scrollram[0][0]);
 	m_tilemap[0]->set_scrolly(0, m_scrollram[0][1]);

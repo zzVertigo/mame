@@ -52,7 +52,7 @@ public:
 	void write(offs_t offset, u8 data);
 
 	// screen  update method
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 protected:
 	// base type constructor

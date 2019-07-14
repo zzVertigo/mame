@@ -465,7 +465,7 @@ private:
 	DECLARE_WRITE_LINE_MEMBER(avtbingo_w);
 	TILE_GET_INFO_MEMBER(get_bg_tile_info);
 	void avt_palette(palette_device &palette) const;
-	uint32_t screen_update_avt(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_avt(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void avt_map(address_map &map);
 	void avt_portmap(address_map &map);
@@ -540,7 +540,7 @@ void avt_state::video_start()
 }
 
 
-uint32_t avt_state::screen_update_avt(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t avt_state::screen_update_avt(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x,y;
 	int count;

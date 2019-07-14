@@ -84,14 +84,14 @@ private:
 	TIMER_CALLBACK_MEMBER(interrupt_callback);
 	void start_interrupt_timer();
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	inline void shift_star_generator();
 	void get_starfield_pens(pen_t *pens);
-	void draw_starfield(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void draw_starfield(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void get_sprite_pens(pen_t *pens);
-	void draw_bullet(offs_t offs, pen_t pen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int flip);
-	void draw_sprite(offs_t offs, pen_t *pens, bitmap_rgb32 &bitmap, const rectangle &cliprect, int flip);
-	void draw_objects(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void draw_bullet(offs_t offs, pen_t pen, bitmap_argb32 &bitmap, const rectangle &cliprect, int flip);
+	void draw_sprite(offs_t offs, pen_t *pens, bitmap_argb32 &bitmap, const rectangle &cliprect, int flip);
+	void draw_objects(bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void spacefb_audio_map(address_map &map);
 	void spacefb_main_io_map(address_map &map);

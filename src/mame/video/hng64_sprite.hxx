@@ -40,7 +40,7 @@
 
  */
 
-void hng64_state::draw_sprites(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void hng64_state::draw_sprites(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	gfx_element *gfx;
 	uint32_t *source = m_spriteram;

@@ -93,7 +93,7 @@ private:
 	DECLARE_WRITE8_MEMBER(color_w);
 	DECLARE_WRITE8_MEMBER(audio_w);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void mmagic_io(address_map &map);
 	void mmagic_mem(address_map &map);
@@ -212,7 +212,7 @@ WRITE8_MEMBER( mmagic_state::color_w )
 	m_color = data;
 }
 
-uint32_t mmagic_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t mmagic_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// draw playfield
 	for (int y = 0; y < 192 / 12; y++)

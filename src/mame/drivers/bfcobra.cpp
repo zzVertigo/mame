@@ -257,7 +257,7 @@ protected:
 	DECLARE_WRITE_LINE_MEMBER(write_acia_clock);
 	virtual void machine_reset() override;
 	virtual void video_start() override;
-	uint32_t screen_update_bfcobra(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_bfcobra(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(timer_irq);
 	INTERRUPT_GEN_MEMBER(vblank_gen);
 	void RunBlit(address_space &space);
@@ -376,7 +376,7 @@ void bfcobra_state::video_start()
 	}
 }
 
-uint32_t bfcobra_state::screen_update_bfcobra(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t bfcobra_state::screen_update_bfcobra(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int x, y;
 	uint8_t  *src;

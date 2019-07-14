@@ -73,7 +73,7 @@ WRITE8_MEMBER(m79amb_state::ramtek_videoram_w)
 	m_videoram[offset] = data & ~*m_mask;
 }
 
-uint32_t m79amb_state::screen_update_ramtek(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t m79amb_state::screen_update_ramtek(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	offs_t offs;
 

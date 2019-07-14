@@ -216,7 +216,7 @@ private:
 
 	TIMER_DEVICE_CALLBACK_MEMBER(sun380_timer);
 
-	uint32_t bw2_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t bw2_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void sun3_460_mem(address_map &map);
 	void sun3_80_mem(address_map &map);
@@ -529,7 +529,7 @@ TIMER_DEVICE_CALLBACK_MEMBER(sun3x_state::sun380_timer)
 	}
 }
 
-uint32_t sun3x_state::bw2_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t sun3x_state::bw2_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t *scanline;
 	int x, y;

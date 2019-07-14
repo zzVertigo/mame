@@ -252,7 +252,7 @@ void ppu_vt03_device::make_sprite_pixel_data(uint8_t &pixel_data, int flipx)
 	}
 }
 
-void ppu_vt03_device::draw_sprite_pixel(int sprite_xpos, int color, int pixel, uint8_t pixel_data, bitmap_rgb32 &bitmap)
+void ppu_vt03_device::draw_sprite_pixel(int sprite_xpos, int color, int pixel, uint8_t pixel_data, bitmap_argb32 &bitmap)
 {
 	int is4bpp = get_201x_reg(0x0) & 0x04;
 	int is16pix = get_201x_reg(0x0) & 0x01;

@@ -57,7 +57,7 @@ private:
 	void io_map(address_map &map);
 	void bank_map(address_map &map);
 
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	required_device<mcs48_cpu_device> m_maincpu;
 	required_device<address_map_bank_device> m_bankdev;
@@ -153,7 +153,7 @@ WRITE_LINE_MEMBER(hazl1420_state::crtc_vblank_w)
 		m_mainint->in_w<0>(1);
 }
 
-u32 hazl1420_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 hazl1420_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

@@ -130,7 +130,7 @@ public:
 	DECLARE_MACHINE_START( megadriv );
 	DECLARE_MACHINE_RESET( megadriv );
 	DECLARE_VIDEO_START( megadriv );
-	uint32_t screen_update_megadriv(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_megadriv(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(screen_vblank_megadriv);
 
 	DECLARE_WRITE8_MEMBER(megadriv_tas_callback);

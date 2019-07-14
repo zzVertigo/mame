@@ -123,7 +123,7 @@ private:
 	DECLARE_WRITE_LINE_MEMBER(ptm_irq);
 	DECLARE_WRITE8_MEMBER(esripsys_dac_w);
 	virtual void video_start() override;
-	uint32_t screen_update_esripsys(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_esripsys(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(esripsys_vblank_irq);
 	TIMER_CALLBACK_MEMBER(delayed_bank_swap);
 	TIMER_CALLBACK_MEMBER(hblank_start_callback);

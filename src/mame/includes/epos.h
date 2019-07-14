@@ -44,7 +44,7 @@ private:
 	DECLARE_MACHINE_START(epos);
 	DECLARE_MACHINE_START(dealer);
 	void epos_palette(palette_device &palette) const;
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	static void set_pal_color(palette_device &palette, uint8_t offset, uint8_t data); // TODO: convert to an RGB converter and set_format
 	void dealer_io_map(address_map &map);
 	void dealer_map(address_map &map);

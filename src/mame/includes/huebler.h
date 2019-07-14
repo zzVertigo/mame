@@ -57,7 +57,7 @@ private:
 	required_ioport_array<16> m_key_row;
 	required_ioport m_special;
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ8_MEMBER( keyboard_r );
 

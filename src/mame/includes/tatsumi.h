@@ -57,7 +57,7 @@ protected:
 	uint16_t m_control_word;
 	uint8_t m_last_control;
 	tilemap_t *m_tx_layer;
-	bitmap_rgb32 m_temp_bitmap;
+	bitmap_argb32 m_temp_bitmap;
 	std::unique_ptr<uint8_t[]> m_shadow_pen_array;
 	DECLARE_WRITE16_MEMBER(text_w);
 	DECLARE_READ16_MEMBER(tatsumi_v30_68000_r);
@@ -75,7 +75,7 @@ protected:
 	void update_cluts(int fake_palette_offset, int object_base, int length);
 
 	uint8_t m_hd6445_reg[64];
-	void apply_shadow_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &shadow_bitmap, uint8_t xor_output);
+	void apply_shadow_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &shadow_bitmap, uint8_t xor_output);
 
 	uint8_t m_hd6445_address;
 };
@@ -112,7 +112,7 @@ private:
 
 	DECLARE_MACHINE_RESET(apache3);
 	DECLARE_VIDEO_START(apache3);
-	uint32_t screen_update_apache3(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_apache3(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(apache3_68000_reset);
 
 	void apache3_68000_map(address_map &map);
@@ -120,8 +120,8 @@ private:
 	void apache3_v30_map(address_map &map);
 	void apache3_z80_map(address_map &map);
 
-	void draw_sky(bitmap_rgb32 &bitmap, const rectangle &cliprect, int palette_base, int start_offset);
-	void draw_ground(bitmap_rgb32 &dst, const rectangle &cliprect);
+	void draw_sky(bitmap_argb32 &bitmap, const rectangle &cliprect, int palette_base, int start_offset);
+	void draw_ground(bitmap_argb32 &dst, const rectangle &cliprect);
 
 	required_device<cpu_device> m_subcpu2;
 
@@ -167,7 +167,7 @@ private:
 	DECLARE_WRITE8_MEMBER(output_w);
 
 	DECLARE_VIDEO_START(roundup5);
-	uint32_t screen_update_roundup5(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_roundup5(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void roundup5_68000_map(address_map &map);
 	void roundup5_v30_map(address_map &map);
@@ -175,8 +175,8 @@ private:
 
 //  virtual void machine_reset() override;
 
-	void draw_road(bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void draw_landscape(bitmap_rgb32 &bitmap, const rectangle &cliprect, uint8_t type);
+	void draw_road(bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_landscape(bitmap_argb32 &bitmap, const rectangle &cliprect, uint8_t type);
 
 	required_shared_ptr<uint16_t> m_vregs;
 	required_shared_ptr<uint16_t> m_bg_scrollx;
@@ -230,7 +230,7 @@ private:
 	template<int Bank> TILE_GET_INFO_MEMBER(get_tile_info_cyclwarr_road);
 	DECLARE_VIDEO_START(cyclwarr);
 	DECLARE_VIDEO_START(bigfight);
-	uint32_t screen_update_cyclwarr(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_cyclwarr(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void common_map(address_map &map);
 	void master_map(address_map &map);
@@ -257,9 +257,9 @@ private:
 	bool m_layer1_can_be_road;
 
 	void tile_expand();
-	void draw_bg(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, tilemap_t *src, const uint16_t* scrollx, const uint16_t* scrolly, const uint16_t layer_page_size, bool is_road, int hi_priority);
-	void draw_bg_layers(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int hi_priority);
-	void apply_highlight_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &highlight_bitmap);
+	void draw_bg(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, tilemap_t *src, const uint16_t* scrollx, const uint16_t* scrolly, const uint16_t layer_page_size, bool is_road, int hi_priority);
+	void draw_bg_layers(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int hi_priority);
+	void apply_highlight_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &highlight_bitmap);
 };
 
 #endif // MAME_INCLUDES_TATSUMI_H

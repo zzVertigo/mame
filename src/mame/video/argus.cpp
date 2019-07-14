@@ -677,7 +677,7 @@ void argus_state::bg_setting()
 	}
 }
 
-void argus_state::argus_draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect, int priority)
+void argus_state::argus_draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, int priority)
 {
 	/* Draw the sprites */
 	for (int offs = 0; offs < m_spriteram.bytes(); offs += 16)
@@ -717,7 +717,7 @@ void argus_state::argus_draw_sprites(bitmap_rgb32 &bitmap, const rectangle &clip
 }
 
 #if 1
-void argus_state::valtric_draw_mosaic(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void argus_state::valtric_draw_mosaic(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (m_valtric_mosaic!=0x80)
 	{
@@ -764,7 +764,7 @@ void argus_state::valtric_draw_mosaic(screen_device &screen, bitmap_rgb32 &bitma
 	}
 }
 #else
-void argus_state::valtric_draw_mosaic(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void argus_state::valtric_draw_mosaic(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int step = 0x10 - (m_valtric_mosaic & 0x0f);
 
@@ -804,7 +804,7 @@ void argus_state::valtric_draw_mosaic(screen_device &screen, bitmap_rgb32 &bitma
 }
 #endif
 
-void argus_state::valtric_draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void argus_state::valtric_draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* Draw the sprites */
 	for (int offs = 0; offs < m_spriteram.bytes(); offs += 16)
@@ -840,7 +840,7 @@ void argus_state::valtric_draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cl
 	}
 }
 
-void argus_state::butasan_draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void argus_state::butasan_draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* Draw the sprites */
 	for (int offs = 0; offs < m_spriteram.bytes(); offs += 16)
@@ -1000,7 +1000,7 @@ void argus_state::butasan_log_vram()
 #endif
 }
 
-uint32_t argus_state::screen_update_argus(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t argus_state::screen_update_argus(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bg_setting();
 
@@ -1013,7 +1013,7 @@ uint32_t argus_state::screen_update_argus(screen_device &screen, bitmap_rgb32 &b
 	return 0;
 }
 
-uint32_t argus_state::screen_update_valtric(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t argus_state::screen_update_valtric(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bg_setting();
 
@@ -1026,7 +1026,7 @@ uint32_t argus_state::screen_update_valtric(screen_device &screen, bitmap_rgb32 
 	return 0;
 }
 
-uint32_t argus_state::screen_update_butasan(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t argus_state::screen_update_butasan(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bg_setting();
 

@@ -1114,7 +1114,7 @@ void newport_base_device::device_timer(emu_timer &timer, device_timer_id id, int
 	}
 }
 
-uint32_t newport_base_device::screen_update(screen_device &device, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t newport_base_device::screen_update(screen_device &device, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const uint16_t cursor_msb = (uint16_t)m_xmap[0]->cursor_cmap() << 5;
 	const uint16_t popup_msb = (uint16_t)m_xmap[0]->popup_cmap() << 5;

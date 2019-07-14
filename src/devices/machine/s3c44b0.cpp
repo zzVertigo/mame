@@ -694,7 +694,7 @@ void s3c44b0_device::video_start()
 	// do nothing
 }
 
-uint32_t s3c44b0_device::video_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t s3c44b0_device::video_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (m_lcd.regs.lcdcon1 & (1 << 0))
 	{

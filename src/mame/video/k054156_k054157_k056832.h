@@ -81,8 +81,8 @@ public:
 	void mark_plane_dirty(int num);
 	void mark_all_tilemaps_dirty();
 	void tilemap_draw(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, int num, uint32_t flags, uint32_t priority);
-	void tilemap_draw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int num, uint32_t flags, uint32_t priority);
-	void tilemap_draw_dj(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int layer, uint32_t flags, uint32_t priority);
+	void tilemap_draw(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int num, uint32_t flags, uint32_t priority);
+	void tilemap_draw_dj(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int layer, uint32_t flags, uint32_t priority);
 	void set_layer_association(int status);
 	int  get_layer_association();
 	void set_layer_offs(int layer, int offsx, int offsy);
@@ -195,10 +195,10 @@ private:
 	void finalize_init();
 
 public:
-	void m_tilemap_draw(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, int num, uint32_t flags, uint32_t priority);
+	void m_tilemap_draw(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int num, uint32_t flags, uint32_t priority);
 
 private:
-	int altK056832_update_linemap(screen_device &screen, bitmap_rgb32 &bitmap, int page, int flags);
+	int altK056832_update_linemap(screen_device &screen, bitmap_argb32 &bitmap, int page, int flags);
 };
 
 DECLARE_DEVICE_TYPE(K056832, k056832_device)

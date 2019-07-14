@@ -52,7 +52,7 @@ public:
 	DECLARE_WRITE_LINE_MEMBER(hsync_n_w);
 	DECLARE_WRITE_LINE_MEMBER(vsync_n_w);
 
-	void update_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void update_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 protected:
 	// device-level overrides

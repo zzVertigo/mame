@@ -170,7 +170,7 @@ static inline void ATTR_PRINTF(3,4) verboselog(device_t &device, int n_level, co
 #include "machine/s3c24xx.hxx"
 #undef DEVICE_S3C2400
 
-uint32_t s3c2400_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t s3c2400_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return s3c24xx_video_update(screen, bitmap, cliprect);
 }

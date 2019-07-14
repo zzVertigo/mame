@@ -43,7 +43,7 @@ K056832_CB_MEMBER(asterix_state::tile_callback)
 	*code = (*code & 0x03ff) | m_tilebanks[(*code >> 10) & 3];
 }
 
-uint32_t asterix_state::screen_update_asterix(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t asterix_state::screen_update_asterix(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	static const int K053251_CI[4] = { k053251_device::CI0, k053251_device::CI2, k053251_device::CI3, k053251_device::CI4 };
 	int layer[3], plane, new_colorbase;
@@ -93,7 +93,7 @@ uint32_t asterix_state::screen_update_asterix(screen_device &screen, bitmap_ind1
 	konami_sortlayers3(layer, m_layerpri);
 
 	screen.priority().fill(0, cliprect);
-	bitmap.fill(0, cliprect);
+	bitmap.fill(m_palette->pens()[0], cliprect);
 
 	m_k056832->tilemap_draw(screen, bitmap, cliprect, layer[0], K056832_DRAW_FLAG_MIRROR, 1);
 	m_k056832->tilemap_draw(screen, bitmap, cliprect, layer[1], K056832_DRAW_FLAG_MIRROR, 2);

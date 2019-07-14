@@ -78,7 +78,7 @@ WRITE8_MEMBER(epos_state::port_1_w)
 }
 
 
-uint32_t epos_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t epos_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (offs_t offs = 0; offs < m_videoram.bytes(); offs++)
 	{

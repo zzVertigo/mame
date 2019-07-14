@@ -62,7 +62,7 @@ protected:
 	DECLARE_WRITE8_MEMBER(vectrex_via_w);
 	virtual void driver_start() override;
 	virtual void video_start() override;
-	uint32_t screen_update_vectrex(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_vectrex(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_CALLBACK_MEMBER(vectrex_imager_change_color);
 	TIMER_CALLBACK_MEMBER(update_level);
 	TIMER_CALLBACK_MEMBER(vectrex_imager_eye);

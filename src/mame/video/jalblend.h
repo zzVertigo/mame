@@ -18,7 +18,7 @@ public:
 	void drawgfx(palette_device &palette,bitmap_ind16 &dest_bmp,const rectangle &clip,gfx_element *gfx,
 							u32 code,u32 color,bool flipx,bool flipy,int offsx,int offsy,
 							u8 transparent_color);
-	void drawgfx(palette_device &palette,bitmap_rgb32 &dest_bmp,const rectangle &clip,gfx_element *gfx,
+	void drawgfx(palette_device &palette,bitmap_argb32 &dest_bmp,const rectangle &clip,gfx_element *gfx,
 							u32 code,u32 color,bool flipx,bool flipy,int offsx,int offsy,
 							u8 transparent_color);
 

@@ -86,7 +86,7 @@ public:
 	DECLARE_READ8_MEMBER(controller_r);
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
-	uint32_t screen_update_beaminv(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_beaminv(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	TIMER_CALLBACK_MEMBER(interrupt_callback);
 	void create_interrupt_timer();
 	void start_interrupt_timer();
@@ -178,7 +178,7 @@ void beaminv_state::machine_reset()
  *
  *************************************/
 
-uint32_t beaminv_state::screen_update_beaminv(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t beaminv_state::screen_update_beaminv(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	offs_t offs;
 

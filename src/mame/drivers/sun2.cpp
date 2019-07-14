@@ -188,7 +188,7 @@ private:
 	uint16_t edlc_mmu_r(offs_t offset, uint16_t mem_mask);
 	void edlc_mmu_w(offs_t offset, uint16_t data, uint16_t mem_mask);
 
-	uint32_t bw2_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t bw2_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void mbustype0space_map(address_map &map);
 	void mbustype1space_map(address_map &map);
@@ -622,7 +622,7 @@ void sun2_state::mbustype3space_map(address_map &map)
 {
 }
 
-uint32_t sun2_state::bw2_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t sun2_state::bw2_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint32_t *scanline;
 	int x, y;

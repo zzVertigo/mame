@@ -326,7 +326,7 @@ WRITE8_MEMBER(m52_alpha1v_state::alpha1v_flipscreen_w)
  *
  *************************************/
 
-void m52_state::draw_background(bitmap_rgb32 &bitmap, const rectangle &cliprect, int xpos, int ypos, int image)
+void m52_state::draw_background(bitmap_argb32 &bitmap, const rectangle &cliprect, int xpos, int ypos, int image)
 {
 	rectangle rect;
 	const rectangle &visarea = m_screen->visible_area();
@@ -389,7 +389,7 @@ void m52_state::draw_background(bitmap_rgb32 &bitmap, const rectangle &cliprect,
  *
  *************************************/
 
-void m52_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect, int initoffs)
+void m52_state::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, int initoffs)
 {
 	int offs;
 
@@ -446,7 +446,7 @@ void m52_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect, in
  *
  *************************************/
 
-uint32_t m52_state::screen_update_m52(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t m52_state::screen_update_m52(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int offs;
 	const pen_t *paldata = m_sp_palette->pens();

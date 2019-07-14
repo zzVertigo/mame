@@ -37,8 +37,8 @@ private:
 	TILE_GET_INFO_MEMBER(tx_get_tile_info);
 	DECLARE_VIDEO_START(digdug);
 	void digdug_palette(palette_device &palette) const;
-	uint32_t screen_update_digdug(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
-	void draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_digdug(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE8_MEMBER(digdug_videoram_w);
 	DECLARE_WRITE8_MEMBER(bg_select_w);
 	DECLARE_WRITE_LINE_MEMBER(tx_color_mode_w);

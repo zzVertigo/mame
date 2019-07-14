@@ -67,7 +67,7 @@ private:
 	void scroll_line();
 	void write_char(uint8_t data);
 	void clear();
-	uint32_t update(screen_device &device, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t update(screen_device &device, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	uint8_t m_framecnt;
 	uint8_t m_y_pos;

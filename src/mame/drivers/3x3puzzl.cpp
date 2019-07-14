@@ -82,7 +82,7 @@ private:
 	required_device<screen_device> m_screen;
 
 	// screen updates
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	/* video-related */
 	tilemap_t   *m_tilemap1;
@@ -185,7 +185,7 @@ void _3x3puzzle_state::video_start()
 	m_tilemap3->set_transparent_pen(0);
 }
 
-uint32_t _3x3puzzle_state::screen_update( screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect )
+uint32_t _3x3puzzle_state::screen_update( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	m_tilemap1->draw(screen, bitmap, cliprect, 0, 1);
 	m_tilemap2->draw(screen, bitmap, cliprect, 0, 2);

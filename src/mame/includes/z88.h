@@ -82,11 +82,11 @@ private:
 	DECLARE_WRITE8_MEMBER(bank3_cart_w);
 
 	// defined in video/z88.c
-	inline void plot_pixel(bitmap_ind16 &bitmap, int x, int y, uint16_t color);
+	inline void plot_pixel(bitmap_argb32 &bitmap, int x, int y, rgb_t color);
 	inline uint8_t* convert_address(uint32_t offset);
-	void vh_render_8x8(bitmap_ind16 &bitmap, int x, int y, uint16_t pen0, uint16_t pen1, uint8_t *gfx);
-	void vh_render_6x8(bitmap_ind16 &bitmap, int x, int y, uint16_t pen0, uint16_t pen1, uint8_t *gfx);
-	void vh_render_line(bitmap_ind16 &bitmap, int x, int y, uint16_t pen);
+	void vh_render_8x8(bitmap_argb32 &bitmap, int x, int y, rgb_t pen0, rgb_t pen1, uint8_t *gfx);
+	void vh_render_6x8(bitmap_argb32 &bitmap, int x, int y, rgb_t pen0, rgb_t pen1, uint8_t *gfx);
+	void vh_render_line(bitmap_argb32 &bitmap, int x, int y, rgb_t pen);
 
 	void z88_palette(palette_device &palette) const;
 

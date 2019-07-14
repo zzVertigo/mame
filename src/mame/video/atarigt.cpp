@@ -482,7 +482,7 @@ PrimRage GALs:
 */
 
 
-uint32_t atarigt_state::screen_update_atarigt(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t atarigt_state::screen_update_atarigt(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bitmap_ind16 &mo_bitmap = m_rle->vram(0);
 	bitmap_ind16 &tm_bitmap = m_rle->vram(1);

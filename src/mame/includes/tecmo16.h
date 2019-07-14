@@ -88,7 +88,7 @@ private:
 	DECLARE_VIDEO_START(ginkun);
 	DECLARE_VIDEO_START(riot);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void save_state();
 

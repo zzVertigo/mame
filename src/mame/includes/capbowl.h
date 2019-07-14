@@ -76,7 +76,7 @@ public:
 	INTERRUPT_GEN_MEMBER(interrupt);
 	TIMER_CALLBACK_MEMBER(update);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	inline rgb_t pen_for_pixel( uint8_t const *src, uint8_t pix );
 
 	void bowlrama(machine_config &config);

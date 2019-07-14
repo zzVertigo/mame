@@ -107,7 +107,7 @@ uint32_t taitob_state::screen_update_taitob(screen_device &screen, bitmap_ind16 
 
 
 
-uint32_t taitob_c_state::screen_update_realpunc(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t taitob_c_state::screen_update_realpunc(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *palette = m_palette->pens();
 	uint8_t const video_control = m_tc0180vcu->get_videoctrl();

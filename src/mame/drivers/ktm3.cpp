@@ -46,7 +46,7 @@ protected:
 	virtual void machine_start() override;
 
 private:
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	u8 allram_r(offs_t offset);
 	void allram_w(offs_t offset, u8 data);
@@ -75,7 +75,7 @@ void ktm3_state::machine_start()
 	save_item(NAME(m_signal));
 }
 
-u32 ktm3_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 ktm3_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

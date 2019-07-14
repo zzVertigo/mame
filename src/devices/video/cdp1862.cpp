@@ -191,7 +191,7 @@ WRITE_LINE_MEMBER( cdp1862_device::con_w )
 //  screen_update -
 //-------------------------------------------------
 
-uint32_t cdp1862_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t cdp1862_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	copybitmap(bitmap, m_bitmap, 0, 0, 0, 0, cliprect);
 

@@ -55,7 +55,7 @@ public:
 
 	uint8_t get_last_readback_word(int bitplane_number, int * pixel_offset);
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 protected:
 	// device-level overrides
@@ -118,7 +118,7 @@ private:
 	int m_readback_latch_pix_offset;
 
 	uint32_t clock_freq;
-	bitmap_rgb32 m_screen_out;
+	bitmap_argb32 m_screen_out;
 
 	// timers
 	emu_timer *m_busy_timer;

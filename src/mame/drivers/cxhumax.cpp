@@ -895,7 +895,7 @@ static inline uint32_t ycc_to_rgb(uint32_t ycc)
 	return rgb_t(clamp16_shift8(r), clamp16_shift8(g), clamp16_shift8(b));
 }
 
-uint32_t cxhumax_state::screen_update_cxhumax(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t cxhumax_state::screen_update_cxhumax(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i, j;
 

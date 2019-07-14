@@ -206,7 +206,7 @@ WRITE16_MEMBER( toobin_state::slip_w )
  *
  *************************************/
 
-uint32_t toobin_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t toobin_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	// start drawing
 	m_mob->draw_async(cliprect);

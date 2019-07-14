@@ -356,7 +356,6 @@ void yunsung8_state::yunsung8(machine_config &config)
 	screen_device &screen(SCREEN(config, "screen", SCREEN_TYPE_RASTER));
 	screen.set_raw(XTAL(16'000'000)/2, 512, 64, 512-64, 262, 8, 256-8); /* TODO: completely inaccurate */
 	screen.set_screen_update(FUNC(yunsung8_state::screen_update));
-	screen.set_palette(m_palette);
 
 	GFXDECODE(config, m_gfxdecode, m_palette, gfx_yunsung8);
 	PALETTE(config, m_palette).set_entries(2048);

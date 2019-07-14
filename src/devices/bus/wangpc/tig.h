@@ -45,7 +45,7 @@ protected:
 	virtual bool wangpcbus_have_dack(int line) override;
 
 private:
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	UPD7220_DRAW_TEXT_LINE_MEMBER( hgdc_draw_text );
 	UPD7220_DISPLAY_PIXELS_MEMBER( hgdc_display_pixels );

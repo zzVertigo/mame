@@ -18,7 +18,7 @@ public:
 
 	void set_pal_base(int pal_base) { m_pal_base = pal_base; }
 	void set_transparent_pen(pen_t pen) { m_tmap->set_transparent_pen(pen); }
-	void draw(screen_device &screen, bitmap_ind16& bitmap, const rectangle &cliprect, int priority);
+	void draw(screen_device &screen, bitmap_argb32& bitmap, const rectangle &cliprect, int priority);
 
 	TILEMAP_MAPPER_MEMBER(twc94_scan);
 
@@ -36,7 +36,7 @@ protected:
 
 private:
 
-	void draw_roz_core(screen_device &screen, bitmap_ind16 &destbitmap, const rectangle &cliprect,
+	void draw_roz_core(screen_device &screen, bitmap_argb32 &destbitmap, const rectangle &cliprect,
 		uint32_t startx, uint32_t starty, int incxx, int incxy, int incyx, int incyy, bool wraparound);
 
 	void reg_written(int num_reg);

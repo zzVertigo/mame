@@ -142,7 +142,7 @@ WRITE_LINE_MEMBER(qb3_state::vector_control_w)
  *
  *************************************/
 
-uint32_t cinemat_state::screen_update_cinemat(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t cinemat_state::screen_update_cinemat(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_vector->screen_update(screen, bitmap, cliprect);
 	m_vector->clear_list();
@@ -160,7 +160,7 @@ uint32_t cinemat_state::screen_update_cinemat(screen_device &screen, bitmap_rgb3
  *
  *************************************/
 
-uint32_t cinemat_state::screen_update_spacewar(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t cinemat_state::screen_update_spacewar(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int sw_option = ~m_inputs->read();
 

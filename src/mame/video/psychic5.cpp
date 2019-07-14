@@ -227,7 +227,7 @@ VIDEO_RESET_MEMBER(psychic5_state,psychic5)
 	else \
 		m_gfxdecode->gfx(0)->transpen(bitmap, cliprect, code, color, flipx, flipy, sx, sy, 15);
 
-void psychic5_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void psychic5_state::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* Draw the sprites */
 	for (int offs = 0; offs < m_spriteram.bytes(); offs += 16)
@@ -279,7 +279,7 @@ void psychic5_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprec
 	}
 }
 
-void psychic5_state::draw_background(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void psychic5_state::draw_background(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	rectangle clip = cliprect;
 
@@ -333,7 +333,7 @@ void psychic5_state::draw_background(screen_device &screen, bitmap_rgb32 &bitmap
 	m_bg_tilemap->draw(screen, bitmap, clip, 0, 0);
 }
 
-uint32_t psychic5_state::screen_update_psychic5(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t psychic5_state::screen_update_psychic5(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint16_t bg_scrollx = m_bg_control[0] | (m_bg_control[1] << 8);
 	m_bg_tilemap->set_scrollx(0, bg_scrollx);
@@ -349,7 +349,7 @@ uint32_t psychic5_state::screen_update_psychic5(screen_device &screen, bitmap_rg
 	return 0;
 }
 
-uint32_t psychic5_state::screen_update_bombsa(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t psychic5_state::screen_update_bombsa(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	uint16_t bg_scrollx = m_bg_control[0] | (m_bg_control[1] << 8);
 	m_bg_tilemap->set_scrollx(0, bg_scrollx);

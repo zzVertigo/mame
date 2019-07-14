@@ -218,8 +218,8 @@ private:
 	u8 m_bg15_select;
 	u8 m_bg15_bright;
 
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void render_15bpp_bitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void render_15bpp_bitmap(bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void patch_protection(u32 bra_offset,u16 bra_value,u16 checksum);
 	void berlwall_map(address_map &map);

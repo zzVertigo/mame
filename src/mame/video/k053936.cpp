@@ -288,7 +288,7 @@ READ16_MEMBER( k053936_device::linectrl_r )
 
 // there is another implementation of this in  video/konamigx.c (!)
 //  why? shall they be merged?
-void k053936_device::zoom_draw( screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, tilemap_t *tmap, int flags, uint32_t priority, int glfgreat_hack )
+void k053936_device::zoom_draw( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, tilemap_t *tmap, int flags, uint32_t priority, int glfgreat_hack )
 {
 	if (!tmap)
 		return;
@@ -433,7 +433,7 @@ void K053936GP_set_cliprect(int chip, int minx, int maxx, int miny, int maxy)
 }
 
 static inline void K053936GP_copyroz32clip( running_machine &machine,
-		bitmap_rgb32 &dst_bitmap, bitmap_ind16 &src_bitmap,
+		bitmap_argb32 &dst_bitmap, bitmap_ind16 &src_bitmap,
 		const rectangle &dst_cliprect, const rectangle &src_cliprect,
 		uint32_t _startx,uint32_t _starty,int _incxx,int _incxy,int _incyx,int _incyy,
 		int tilebpp, int blend, int alpha, int clip, int pixeldouble_output, palette_device &palette )
@@ -589,7 +589,7 @@ static inline void K053936GP_copyroz32clip( running_machine &machine,
 // adapted from generic K053936_zoom_draw()
 static void K053936GP_zoom_draw(running_machine &machine,
 		int chip, uint16_t *ctrl, uint16_t *linectrl,
-		bitmap_rgb32 &bitmap, const rectangle &cliprect, tilemap_t *tmap,
+		bitmap_argb32 &bitmap, const rectangle &cliprect, tilemap_t *tmap,
 		int tilebpp, int blend, int alpha, int pixeldouble_output, palette_device &palette)
 {
 	uint16_t *lineaddr;
@@ -657,7 +657,7 @@ static void K053936GP_zoom_draw(running_machine &machine,
 	}
 }
 
-void K053936GP_0_zoom_draw(running_machine &machine, bitmap_rgb32 &bitmap, const rectangle &cliprect,
+void K053936GP_0_zoom_draw(running_machine &machine, bitmap_argb32 &bitmap, const rectangle &cliprect,
 		tilemap_t *tmap, int tilebpp, int blend, int alpha, int pixeldouble_output, uint16_t* temp_m_k053936_0_ctrl_16, uint16_t* temp_m_k053936_0_linectrl_16,uint16_t* temp_m_k053936_0_ctrl, uint16_t* temp_m_k053936_0_linectrl, palette_device &palette)
 {
 	if (temp_m_k053936_0_ctrl_16)

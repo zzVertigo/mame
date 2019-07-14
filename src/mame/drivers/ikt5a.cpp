@@ -28,7 +28,7 @@ public:
 	void ikt5a(machine_config &config);
 
 private:
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void eeprom_w(u8 data);
 	u8 p1_r();
@@ -43,7 +43,7 @@ private:
 	required_region_ptr<u8> m_chargen;
 };
 
-u32 ikt5a_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 ikt5a_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

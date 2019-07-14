@@ -65,7 +65,7 @@ private:
 	void scanline_callback();
 	void update_leds();
 	void draw_scanline(uint32_t *p, uint16_t offset, uint8_t scanline);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void ie15core(machine_config &config);
 

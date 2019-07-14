@@ -1158,7 +1158,7 @@ void ef9365_device::ef9365_exec(uint8_t cmd)
 // screen_update: Framebuffer video output
 //-------------------------------------------------
 
-uint32_t ef9365_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t ef9365_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int i,j,ptr,p;
 	unsigned char color_index;

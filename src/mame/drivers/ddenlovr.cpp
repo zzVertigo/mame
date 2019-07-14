@@ -241,8 +241,8 @@ private:
 	DECLARE_MACHINE_START(funkyfig);
 	DECLARE_MACHINE_START(mjmyster);
 	DECLARE_MACHINE_START(hparadis);
-	uint32_t screen_update_ddenlovr(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	uint32_t screen_update_htengoku(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_ddenlovr(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_htengoku(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_WRITE_LINE_MEMBER(ddenlovr_irq);
 	DECLARE_WRITE_LINE_MEMBER(mmpanic_irq);
@@ -427,7 +427,7 @@ private:
 	inline void log_blit(int data );
 	void blitter_w(int blitter, offs_t offset, uint8_t data);
 	void blitter_w_funkyfig(int blitter, offs_t offset, uint8_t data);
-	void copylayer(bitmap_rgb32 &bitmap, const rectangle &cliprect, int layer);
+	void copylayer(bitmap_argb32 &bitmap, const rectangle &cliprect, int layer);
 	void mmpanic_update_leds();
 	void mjchuuka_get_romdata();
 	uint8_t hgokou_player_r( int player );
@@ -1609,7 +1609,7 @@ READ16_MEMBER(ddenlovr_state::ddenlovr_gfxrom_r)
 }
 
 
-void ddenlovr_state::copylayer(bitmap_rgb32 &bitmap, const rectangle &cliprect, int layer)
+void ddenlovr_state::copylayer(bitmap_argb32 &bitmap, const rectangle &cliprect, int layer)
 {
 	int x,y;
 	int scrollx = m_ddenlovr_scroll[layer / 4 * 8 + (layer % 4) + 0];
@@ -1643,7 +1643,7 @@ void ddenlovr_state::copylayer(bitmap_rgb32 &bitmap, const rectangle &cliprect, 
 	}
 }
 
-uint32_t ddenlovr_state::screen_update_ddenlovr(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t ddenlovr_state::screen_update_ddenlovr(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	static const int order[24][4] =
 	{
@@ -4177,7 +4177,7 @@ VIDEO_START_MEMBER(ddenlovr_state,htengoku)
 	m_screen->register_screen_bitmap(m_htengoku_layer);
 }
 
-uint32_t ddenlovr_state::screen_update_htengoku(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t ddenlovr_state::screen_update_htengoku(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int layer, x, y;
 

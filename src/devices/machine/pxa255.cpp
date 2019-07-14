@@ -1209,7 +1209,7 @@ void pxa255_periphs_device::device_reset()
 	m_lcd_regs.tcr = 0x0000754f;
 }
 
-uint32_t pxa255_periphs_device::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t pxa255_periphs_device::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (int y = 0; y <= (m_lcd_regs.lccr2 & PXA255_LCCR2_LPP); y++)
 	{

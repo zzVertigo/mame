@@ -53,7 +53,7 @@ protected:
 	virtual ioport_constructor device_input_ports() const override;
 	virtual const tiny_rom_entry *device_rom_region() const override;
 
-	virtual uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	virtual uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 public:
 	void mode_control_w(uint8_t data);
@@ -188,7 +188,7 @@ protected:
 public:
 	virtual DECLARE_READ8_MEMBER( io_read ) override;
 	virtual DECLARE_WRITE8_MEMBER( io_write ) override;
-	virtual uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect) override;
+	virtual uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect) override;
 	void change_resolution(uint8_t mode);
 
 	uint8_t m_bank_offset;

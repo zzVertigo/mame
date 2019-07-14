@@ -122,7 +122,7 @@ public:
 	DECLARE_WRITE32_MEMBER(bfm_swp_mem_w);
 
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 	{
 		return 0;
 	}

@@ -62,7 +62,7 @@ void lynx_state::video_start()
 	m_screen->register_screen_bitmap(m_bitmap);
 }
 
-uint32_t lynx_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t lynx_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	copybitmap(bitmap, m_bitmap, 0, 0, 0, 0, cliprect);
 	return 0;

@@ -115,7 +115,7 @@ uint32_t kaypro_state::screen_update_omni2(screen_device &screen, bitmap_ind16 &
 	return 0;
 }
 
-uint32_t kaypro_state::screen_update_kaypro484(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t kaypro_state::screen_update_kaypro484(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_framecnt++;
 	m_crtc->screen_update(screen, bitmap, cliprect);

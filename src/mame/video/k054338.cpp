@@ -93,7 +93,7 @@ void k054338_device::update_all_shadows( int rushingheroes_hack, palette_device 
 }
 
 // k054338 BG color fill
-void k054338_device::fill_solid_bg( bitmap_rgb32 &bitmap, const rectangle &cliprect )
+void k054338_device::fill_solid_bg( bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	uint32_t bgcolor = (register_r(K338_REG_BGC_R) & 0xff) << 16;
 	bgcolor |= register_r(K338_REG_BGC_GB);
@@ -102,7 +102,7 @@ void k054338_device::fill_solid_bg( bitmap_rgb32 &bitmap, const rectangle &clipr
 }
 
 // Unified k054338/K055555 BG color fill (see p.67)
-void k054338_device::fill_backcolor(bitmap_rgb32 &bitmap, const rectangle &cliprect, const pen_t *pal_ptr, int mode)
+void k054338_device::fill_backcolor(bitmap_argb32 &bitmap, const rectangle &cliprect, const pen_t *pal_ptr, int mode)
 {
 	if ((mode & 0x02) == 0) // solid fill
 	{

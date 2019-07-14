@@ -295,8 +295,10 @@ WRITE8_MEMBER(zaxxon_state::congo_sprite_custom_w)
  *
  *************************************/
 
-void zaxxon_state::draw_background(bitmap_ind16 &bitmap, const rectangle &cliprect, int skew)
+void zaxxon_state::draw_background(bitmap_argb32 &bitmap, const rectangle &cliprect, int skew)
 {
+	const pen_t *pen = m_palette->pens();
+
 	/* only draw if enabled */
 	if (m_bg_enable)
 	{
@@ -318,23 +320,21 @@ void zaxxon_state::draw_background(bitmap_ind16 &bitmap, const rectangle &clipre
 		/* loop over visible rows */
 		for (y = cliprect.min_y; y <= cliprect.max_y; y++)
 		{
-			uint16_t *dst = &bitmap.pix16(y);
-			int srcx, srcy, vf;
-			uint16_t *src;
+			uint32_t *dst = &bitmap.pix32(y);
 
 			/* VF = flipped V signals */
-			vf = y ^ flipmask;
+			int vf = y ^ flipmask;
 
 			/* base of the source row comes from VF plus the scroll value */
 			/* this is done by the 3 4-bit adders at U56, U74, U75 */
-			srcy = vf + ((m_bg_position << 1) ^ 0xfff) + 1;
-			src = &pixmap.pix16(srcy & ymask);
+			int srcy = vf + ((m_bg_position << 1) ^ 0xfff) + 1;
+			uint16_t *src = &pixmap.pix16(srcy & ymask);
 
 			/* loop over visible columns */
 			for (x = cliprect.min_x; x <= cliprect.max_x; x++)
 			{
 				/* start with HF = flipped H signals */
-				srcx = x ^ flipmask;
+				int srcx = x ^ flipmask;
 				if (skew)
 				{
 					/* position within source row is a two-stage addition */
@@ -348,7 +348,7 @@ void zaxxon_state::draw_background(bitmap_ind16 &bitmap, const rectangle &clipre
 				}
 
 				/* store the pixel, offset by the color offset */
-				dst[x] = src[srcx & xmask] + colorbase;
+				dst[x] = pen[src[srcx & xmask] + colorbase];
 			}
 		}
 	}
@@ -411,16 +411,15 @@ inline int zaxxon_state::find_minimum_x(uint8_t value, int flip)
 }
 
 
-void zaxxon_state::draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect, uint16_t flipxmask, uint16_t flipymask)
+void zaxxon_state::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, uint16_t flipxmask, uint16_t flipymask)
 {
 	uint8_t *spriteram = m_spriteram;
 	gfx_element *gfx = m_gfxdecode->gfx(2);
 	int flip = m_flip_screen;
 	int flipmask = flip ? 0xff : 0x00;
-	int offs;
 
 	/* only the lower half of sprite RAM is read during rendering */
-	for (offs = 0x7c; offs >= 0; offs -= 4)
+	for (int offs = 0x7c; offs >= 0; offs -= 4)
 	{
 		int sy = find_minimum_y(spriteram[offs], flip);
 		int flipy = (spriteram[offs + (flipymask >> 8)] ^ flipmask) & flipymask;
@@ -445,7 +444,7 @@ void zaxxon_state::draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect,
  *
  *************************************/
 
-uint32_t zaxxon_state::screen_update_zaxxon(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t zaxxon_state::screen_update_zaxxon(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	draw_background(bitmap, cliprect, true);
 	draw_sprites(bitmap, cliprect, 0x140, 0x180);
@@ -454,7 +453,7 @@ uint32_t zaxxon_state::screen_update_zaxxon(screen_device &screen, bitmap_ind16 
 }
 
 
-uint32_t zaxxon_state::screen_update_futspy(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t zaxxon_state::screen_update_futspy(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	draw_background(bitmap, cliprect, true);
 	draw_sprites(bitmap, cliprect, 0x180, 0x180);
@@ -463,7 +462,7 @@ uint32_t zaxxon_state::screen_update_futspy(screen_device &screen, bitmap_ind16 
 }
 
 
-uint32_t zaxxon_state::screen_update_razmataz(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t zaxxon_state::screen_update_razmataz(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	draw_background(bitmap, cliprect, false);
 	draw_sprites(bitmap, cliprect, 0x140, 0x180);
@@ -472,7 +471,7 @@ uint32_t zaxxon_state::screen_update_razmataz(screen_device &screen, bitmap_ind1
 }
 
 
-uint32_t zaxxon_state::screen_update_congo(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t zaxxon_state::screen_update_congo(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	draw_background(bitmap, cliprect, true);
 	draw_sprites(bitmap, cliprect, 0x280, 0x180);

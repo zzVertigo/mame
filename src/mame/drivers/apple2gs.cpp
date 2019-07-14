@@ -361,7 +361,7 @@ public:
 	virtual void machine_reset() override;
 
 	void palette_init(palette_device &palette);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void apple2gs(machine_config &config);
 	void apple2gsr1(machine_config &config);
@@ -1618,7 +1618,7 @@ void apple2gs_state::palette_init(palette_device &palette)
 	}
 }
 
-uint32_t apple2gs_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t apple2gs_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return m_video->screen_update_GS(screen, bitmap, cliprect);
 }

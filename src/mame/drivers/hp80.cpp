@@ -133,7 +133,7 @@ private:
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(vblank_w);
 
 	IRQ_CALLBACK_MEMBER(irq_callback);
@@ -194,7 +194,7 @@ private:
 	required_region_ptr<uint8_t> m_chargen;
 	required_region_ptr<uint8_t> m_prt_chargen;
 
-	bitmap_rgb32 m_bitmap;
+	bitmap_argb32 m_bitmap;
 	std::vector<uint8_t> m_video_mem;
 	uint16_t m_crt_sad;
 	uint16_t m_crt_bad;
@@ -346,7 +346,7 @@ void hp85_state::machine_reset()
 	}
 }
 
-uint32_t hp85_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t hp85_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	copybitmap(bitmap, m_bitmap, 0, 0, 0, 0, cliprect);
 	return 0;

@@ -145,7 +145,7 @@ private:
 	DECLARE_READ8_MEMBER(dips1_r);
 	DECLARE_WRITE8_MEMBER(input_mux_w);
 	void int_ack_w(uint8_t data);
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void init_stats(const uint8_t *table, int table_len, int address);
 	void main_mem(address_map &map);
 	void ramdac_map(address_map &map);
@@ -161,7 +161,7 @@ private:
 };
 
 
-uint32_t bmcbowl_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t bmcbowl_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 /*
       280x230,4 bitmap layers, 8bpp,

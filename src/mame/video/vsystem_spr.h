@@ -30,7 +30,7 @@ public:
 
 	vsystem_spr_device(const machine_config &mconfig, const char *tag, device_t *owner, uint32_t clock);
 
-	void draw_sprites(uint16_t const *spriteram, int spriteram_bytes, screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect, int prihack_mask = -1, int prihack_val = -1 );
+	void draw_sprites(uint16_t const *spriteram, int spriteram_bytes, screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, int prihack_mask = -1, int prihack_val = -1 );
 
 protected:
 	virtual void device_start() override;
@@ -56,7 +56,7 @@ private:
 	};
 
 	uint32_t tile_callback_noindirect(uint32_t tile);
-	void common_sprite_drawgfx(bitmap_ind16 &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap);
+	void common_sprite_drawgfx(bitmap_argb32 &bitmap, const rectangle &cliprect, bitmap_ind8 &priority_bitmap);
 
 	vsystem_tile_indirection_delegate m_newtilecb;
 

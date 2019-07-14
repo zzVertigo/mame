@@ -57,7 +57,7 @@ private:
 
 	virtual void machine_start() override;
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	TIMER_DEVICE_CALLBACK_MEMBER(rotaryf_interrupt);
 	void rotaryf_io_map(address_map &map);
@@ -167,7 +167,7 @@ TIMER_DEVICE_CALLBACK_MEMBER(rotaryf_state::rotaryf_interrupt)
  *
  *************************************/
 
-uint32_t rotaryf_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t rotaryf_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	offs_t offs;
 	pen_t pens[2];

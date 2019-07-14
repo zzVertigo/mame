@@ -31,7 +31,7 @@ protected:
 	virtual void driver_start() override;
 
 private:
-	u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	u8 p3_r();
 	u8 de00_r();
@@ -48,7 +48,7 @@ void wy30p_state::machine_start()
 {
 }
 
-u32 wy30p_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 wy30p_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

@@ -1099,7 +1099,7 @@ static png_error convert_bitmap_to_image_rgb(png_info &pnginfo, const bitmap_t &
 		}
 
 		/* 32-bit RGB direct */
-		else if (bitmap.format() == BITMAP_FORMAT_RGB32)
+		else if (bitmap.format() == BITMAP_FORMAT_ARGB32)
 		{
 			uint32_t *src32 = reinterpret_cast<uint32_t *>(bitmap.raw_pixptr(y));
 			for (x = 0; x < pnginfo.width; x++)

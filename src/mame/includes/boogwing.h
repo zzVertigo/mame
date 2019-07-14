@@ -51,8 +51,8 @@ public:
 	void init_boogwing();
 	virtual void machine_reset() override;
 	virtual void video_start() override;
-	uint32_t screen_update_boogwing(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
-	void mix_boogwing(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_boogwing(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void mix_boogwing(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_READ16_MEMBER( boogwing_protection_region_0_104_r );
 	DECLARE_WRITE16_MEMBER( boogwing_protection_region_0_104_w );
 

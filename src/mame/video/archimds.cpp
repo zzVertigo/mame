@@ -9,7 +9,7 @@
 #include "emu.h"
 #include "includes/archimds.h"
 
-uint32_t archimedes_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t archimedes_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int xstart,ystart,xend,yend;
 	int res_x,res_y;

@@ -125,7 +125,7 @@ inline rgb_t capbowl_state::pen_for_pixel( uint8_t const *src, uint8_t pix )
 }
 
 
-uint32_t capbowl_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t capbowl_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	/* first get the current display state */
 	m_tms34061->get_display_state();

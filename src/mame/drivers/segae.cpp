@@ -347,7 +347,7 @@ private:
 	DECLARE_WRITE8_MEMBER( hangonjr_port_fa_write );
 
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void banked_decrypted_opcodes_map(address_map &map);
 	void decrypted_opcodes_map(address_map &map);
@@ -863,10 +863,10 @@ static INPUT_PORTS_START( ridleofp ) /* Used By Riddle Of Pythagoras */
 INPUT_PORTS_END
 
 
-uint32_t systeme_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t systeme_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
-	bitmap_rgb32 &vdp1_bitmap = m_vdp1->get_bitmap();
-	bitmap_rgb32 &vdp2_bitmap = m_vdp2->get_bitmap();
+	bitmap_argb32 &vdp1_bitmap = m_vdp1->get_bitmap();
+	bitmap_argb32 &vdp2_bitmap = m_vdp2->get_bitmap();
 	bitmap_ind8 &vdp2_y1 = m_vdp2->get_y1_bitmap();
 
 	for( int y = cliprect.min_y; y <= cliprect.max_y; y++ )

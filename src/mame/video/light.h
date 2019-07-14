@@ -22,7 +22,7 @@ public:
 
 	light_video_device(const machine_config &mconfig, const char *tag, device_t *owner, uint32_t clock);
 
-	uint32_t screen_update(screen_device &device, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &device, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ32_MEMBER(entry_r);
 	DECLARE_WRITE32_MEMBER(entry_w);

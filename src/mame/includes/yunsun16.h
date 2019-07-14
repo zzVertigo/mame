@@ -34,7 +34,7 @@ protected:
 	virtual void machine_reset() override;
 	virtual void video_start() override;
 
-	uint32_t screen_update(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void main_map(address_map &map);
 
@@ -60,7 +60,7 @@ private:
 
 	TILEMAP_MAPPER_MEMBER(tilemap_scan_pages);
 	template<int Layer> TILE_GET_INFO_MEMBER(get_tile_info);
-	void draw_sprites(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect);
+	void draw_sprites(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 };
 
 

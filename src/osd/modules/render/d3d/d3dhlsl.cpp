@@ -147,7 +147,7 @@ private:
 
 	std::unique_ptr<avi_write> m_avi_writer;
 
-	bitmap_rgb32        m_frame;
+	bitmap_argb32       m_frame;
 	int                 m_width;
 	int                 m_height;
 	IDirect3DTexture9 * m_sys_texture; // texture in system memory
@@ -326,7 +326,7 @@ void shaders::render_snapshot(IDirect3DSurface9 *surface)
 		std::swap(width, height);
 	}
 
-	bitmap_rgb32 snapshot(width, height);
+	bitmap_argb32 snapshot(width, height);
 	if (!snapshot.valid())
 		return;
 

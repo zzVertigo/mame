@@ -303,7 +303,7 @@ private:
 	DECLARE_READ8_MEMBER(unk_r);
 
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	uint32_t a20_286(bool state);
 
 	void pc9801_keyboard(machine_config &config);

@@ -162,7 +162,7 @@ WRITE8_MEMBER(senjyo_state::bg3videoram_w)
 
 ***************************************************************************/
 
-void senjyo_state::draw_bgbitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void senjyo_state::draw_bgbitmap(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (m_bgstripes == 0xff) /* off */
 		bitmap.fill(m_palette->pen_color(0), cliprect);
@@ -195,7 +195,7 @@ void senjyo_state::draw_bgbitmap(bitmap_rgb32 &bitmap, const rectangle &cliprect
 	}
 }
 
-void senjyo_state::draw_radar(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void senjyo_state::draw_radar(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	for (int offs = 0;offs < 0x400;offs++)
 		for (int x = 0;x < 8;x++)
@@ -217,7 +217,7 @@ void senjyo_state::draw_radar(bitmap_rgb32 &bitmap, const rectangle &cliprect)
 			}
 }
 
-void senjyo_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect, int priority)
+void senjyo_state::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect, int priority)
 {
 	for (int offs = m_spriteram.bytes() - 4; offs >= 0; offs -= 4)
 	{
@@ -264,7 +264,7 @@ void senjyo_state::draw_sprites(bitmap_rgb32 &bitmap, const rectangle &cliprect,
 	}
 }
 
-uint32_t senjyo_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t senjyo_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int flip = flip_screen();
 

@@ -112,7 +112,7 @@ protected:
 
 private:
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ_LINE_MEMBER(kbd_matrix_r);
 	DECLARE_WRITE8_MEMBER(kbd_matrix_w);
@@ -184,7 +184,7 @@ protected:
 	virtual void machine_reset() override;
 private:
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ_LINE_MEMBER(kbd_matrix_r);
 	DECLARE_WRITE8_MEMBER(kbd_matrix_w);
@@ -901,7 +901,7 @@ static const gfx_layout extcharlayout =
 //  VIDEO - Alphatronic P1, P2, P2S, P2U and Hell 2069
 //**************************************************************************
 
-uint32_t alphatp_12_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t alphatp_12_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *pen = m_palette->pens();
 	int start = m_crtc->upscroll_offset();
@@ -943,7 +943,7 @@ static GFXDECODE_START( gfx_alphatp3 )
 	GFXDECODE_ENTRY("gfx", 0, charlayout, 0, 1)
 GFXDECODE_END
 
-uint32_t alphatp_34_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t alphatp_34_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	const pen_t *pen = m_palette->pens();
 	int start = m_crtc->upscroll_offset();

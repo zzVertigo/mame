@@ -282,7 +282,7 @@ public:
 	DECLARE_READ64_MEMBER(rex3_r);
 	DECLARE_WRITE64_MEMBER(rex3_w);
 
-	uint32_t screen_update(screen_device &device, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &device, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_WRITE_LINE_MEMBER(vrint_w);
 	DECLARE_WRITE_LINE_MEMBER(update_screen_size);

@@ -93,7 +93,7 @@ private:
 	DECLARE_WRITE8_MEMBER( flag_strobe_w );
 	DECLARE_WRITE8_MEMBER( endisp_w );
 
-	uint32_t screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	MC6845_UPDATE_ROW(crtc_update_row);
 	MC6845_ON_UPDATE_ADDR_CHANGED(crtc_update);

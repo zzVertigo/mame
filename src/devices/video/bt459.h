@@ -190,7 +190,7 @@ public:
 	DECLARE_READ8_MEMBER(palette_r);
 	DECLARE_WRITE8_MEMBER(palette_w);
 
-	void screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect, u8 *pixel_data);
+	void screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect, u8 *pixel_data);
 	void set_contrast(const u8 data) { m_contrast = data; }
 
 protected:

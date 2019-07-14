@@ -89,7 +89,7 @@ protected:
 		bool full;
 	} video_buffer_t;
 
-	bitmap_rgb32 m_bitmap;
+	bitmap_argb32 m_bitmap;
 	offs_t m_video_mar;
 	uint16_t m_video_word;
 	bool m_video_load_mar;

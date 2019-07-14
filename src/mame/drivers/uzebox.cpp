@@ -65,7 +65,7 @@ private:
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
 	void line_update();
-	uint32_t screen_update_uzebox(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_uzebox(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_DEVICE_IMAGE_LOAD_MEMBER(cart_load);
 
 	void uzebox_data_map(address_map &map);
@@ -79,7 +79,7 @@ private:
 	uint8_t           m_port_b;
 	uint8_t           m_port_c;
 	uint8_t           m_port_d;
-	bitmap_rgb32    m_bitmap;
+	bitmap_argb32    m_bitmap;
 };
 
 void uzebox_state::machine_start()
@@ -251,7 +251,7 @@ void uzebox_state::line_update()
 	m_line_pos_cycles = cycles;
 }
 
-uint32_t uzebox_state::screen_update_uzebox(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t uzebox_state::screen_update_uzebox(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	copybitmap(bitmap, m_bitmap, 0, 0, 0, 0, cliprect);
 	return 0;

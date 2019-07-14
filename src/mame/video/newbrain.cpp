@@ -76,7 +76,7 @@ void newbrain_state::video_start()
 	save_item(NAME(m_tvl));
 }
 
-void newbrain_state::screen_update(bitmap_rgb32 &bitmap, const rectangle &cliprect)
+void newbrain_state::screen_update(bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	int columns = m_80l ? 80 : 40;
 	int excess = m_32_40 ? 4 : 24;
@@ -152,7 +152,7 @@ void newbrain_state::screen_update(bitmap_rgb32 &bitmap, const rectangle &clipre
 	}
 }
 
-uint32_t newbrain_state::screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t newbrain_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (m_tvp)
 	{

@@ -78,7 +78,7 @@ void tms9928a_device::device_config_complete()
 		return;
 
 	if (!screen().has_screen_update())
-		screen().set_screen_update(screen_update_rgb32_delegate(FUNC(tms9928a_device::screen_update), this));
+		screen().set_screen_update(FUNC(tms9928a_device::screen_update));
 
 	if (!screen().refresh_attoseconds())
 	{
@@ -660,7 +660,7 @@ void tms9928a_device::device_timer(emu_timer &timer, device_timer_id id, int par
 }
 
 
-uint32_t tms9928a_device::screen_update( screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect )
+uint32_t tms9928a_device::screen_update( screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	copybitmap( bitmap, m_tmpbmp, 0, 0, 0, 0, cliprect );
 	return 0;

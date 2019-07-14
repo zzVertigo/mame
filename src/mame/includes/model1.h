@@ -170,7 +170,7 @@ private:
 	DECLARE_READ16_MEMBER(model1_listctl_r);
 	DECLARE_WRITE16_MEMBER(model1_listctl_w);
 
-	uint32_t screen_update_model1(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_model1(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	DECLARE_WRITE_LINE_MEMBER(screen_vblank_model1);
 
 	struct lightparam_t
@@ -465,18 +465,18 @@ private:
 	static void fclip_clip_right(view_t*, point_t*, point_t*, point_t*);
 
 	// Rendering
-	void    tgp_render(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void    tgp_render(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	void    tgp_scan();
 
 	void        sort_quads() const;
 	void        unsort_quads() const;
-	void        draw_quads(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void        draw_quads(bitmap_argb32 &bitmap, const rectangle &cliprect);
 	static void recompute_frustum(view_t *view);
-	static void draw_hline(bitmap_rgb32 &bitmap, int x1, int x2, int y, int color);
-	static void draw_hline_moired(bitmap_rgb32 &bitmap, int x1, int x2, int y, int color);
-	static void fill_slope(bitmap_rgb32 &bitmap, view_t *view, int color, int32_t x1, int32_t x2, int32_t sl1, int32_t sl2, int32_t y1, int32_t y2, int32_t *nx1, int32_t *nx2);
-	static void fill_line(bitmap_rgb32 &bitmap, view_t *view, int color, int32_t y, int32_t x1, int32_t x2);
-	void        fill_quad(bitmap_rgb32 &bitmap, view_t *view, const quad_t& q) const;
+	static void draw_hline(bitmap_argb32 &bitmap, int x1, int x2, int y, int color);
+	static void draw_hline_moired(bitmap_argb32 &bitmap, int x1, int x2, int y, int color);
+	static void fill_slope(bitmap_argb32 &bitmap, view_t *view, int color, int32_t x1, int32_t x2, int32_t sl1, int32_t sl2, int32_t y1, int32_t y2, int32_t *nx1, int32_t *nx2);
+	static void fill_line(bitmap_argb32 &bitmap, view_t *view, int color, int32_t y, int32_t x1, int32_t x2);
+	void        fill_quad(bitmap_argb32 &bitmap, view_t *view, const quad_t& q) const;
 
 	void    fclip_push_quad_next(int level, quad_t& q, point_t *p1, point_t *p2, point_t *p3, point_t *p4);
 	void    fclip_push_quad(int level, quad_t& q);
@@ -486,10 +486,10 @@ private:
 	static float    compute_specular(glm::vec3& normal, glm::vec3& light, float diffuse,int lmode);
 
 	int push_direct(int list_offset);
-	int draw_direct(bitmap_rgb32 &bitmap, const rectangle &cliprect, int list_offset);
+	int draw_direct(bitmap_argb32 &bitmap, const rectangle &cliprect, int list_offset);
 	int skip_direct(int list_offset) const;
 	void    push_object(uint32_t tex_adr, uint32_t poly_adr, uint32_t size);
-	void    draw_objects(bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	void    draw_objects(bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	void set_current_render_list();
 	int     get_list_number();

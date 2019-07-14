@@ -27,7 +27,7 @@ public:
 	void mt5510(machine_config &config);
 
 private:
-	u32 mt5510_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	u32 mt5510_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	DECLARE_READ8_MEMBER(c000_r);
 	SCN2674_DRAW_CHARACTER_MEMBER(draw_character);
@@ -42,7 +42,7 @@ private:
 	optional_region_ptr<u8> m_p_chargen;
 };
 
-u32 microterm_state::mt5510_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+u32 microterm_state::mt5510_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	return 0;
 }

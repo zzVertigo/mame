@@ -210,7 +210,7 @@ WRITE_LINE_MEMBER(digdug_state::bg_disable_w)
 
 ***************************************************************************/
 
-void digdug_state::draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect )
+void digdug_state::draw_sprites(bitmap_argb32 &bitmap, const rectangle &cliprect )
 {
 	uint8_t *spriteram = m_digdug_objram + 0x380;
 	uint8_t *spriteram_2 = m_digdug_posram + 0x380;
@@ -272,7 +272,7 @@ void digdug_state::draw_sprites(bitmap_ind16 &bitmap, const rectangle &cliprect 
 }
 
 
-uint32_t digdug_state::screen_update_digdug(screen_device &screen, bitmap_ind16 &bitmap, const rectangle &cliprect)
+uint32_t digdug_state::screen_update_digdug(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	m_bg_tilemap->draw(screen, bitmap, cliprect, 0,0);
 	m_fg_tilemap->draw(screen, bitmap, cliprect, 0,0);

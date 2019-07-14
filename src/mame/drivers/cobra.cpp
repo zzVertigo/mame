@@ -363,9 +363,9 @@ public:
 	{
 		m_texture_ram = std::make_unique<uint32_t[]>(0x100000);
 
-		m_framebuffer = std::make_unique<bitmap_rgb32>( 1024, 1024);
-		m_backbuffer = std::make_unique<bitmap_rgb32>( 1024, 1024);
-		m_overlay = std::make_unique<bitmap_rgb32>( 1024, 1024);
+		m_framebuffer = std::make_unique<bitmap_argb32>( 1024, 1024);
+		m_backbuffer = std::make_unique<bitmap_argb32>( 1024, 1024);
+		m_overlay = std::make_unique<bitmap_argb32>( 1024, 1024);
 		m_zbuffer = std::make_unique<bitmap_ind32>(1024, 1024);
 		m_stencil = std::make_unique<bitmap_ind32>(1024, 1024);
 
@@ -400,12 +400,12 @@ public:
 	uint64_t gfx_read_reg();
 	void gfx_write_reg(uint64_t data);
 
-	void display(bitmap_rgb32 *bitmap, const rectangle &cliprect);
+	void display(bitmap_argb32 *bitmap, const rectangle &cliprect);
 	inline rgb_t texture_fetch(uint32_t *texture, int u, int v, int width, int format);
 private:
-	std::unique_ptr<bitmap_rgb32> m_framebuffer;
-	std::unique_ptr<bitmap_rgb32> m_backbuffer;
-	std::unique_ptr<bitmap_rgb32> m_overlay;
+	std::unique_ptr<bitmap_argb32> m_framebuffer;
+	std::unique_ptr<bitmap_argb32> m_backbuffer;
+	std::unique_ptr<bitmap_argb32> m_overlay;
 	std::unique_ptr<bitmap_ind32> m_zbuffer;
 	std::unique_ptr<bitmap_ind32> m_stencil;
 
@@ -845,7 +845,7 @@ public:
 	virtual void machine_start() override;
 	virtual void machine_reset() override;
 	virtual void video_start() override;
-	uint32_t screen_update_cobra(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
+	uint32_t screen_update_cobra(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	INTERRUPT_GEN_MEMBER(cobra_vblank);
 	void cobra_video_exit();
 	int decode_debug_state_value(int v);
@@ -1130,7 +1130,7 @@ void cobra_state::video_start()
 	m_renderer->gfx_init();
 }
 
-uint32_t cobra_state::screen_update_cobra(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect)
+uint32_t cobra_state::screen_update_cobra(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (m_has_psac)
 	{
@@ -2093,7 +2093,7 @@ void cobra_state::cobra_sub_map(address_map &map)
 // SR12: 0x0000000c  SR13: 0x0000000d  SR14: 0x0000000e  SR15: 0x0000000f
 
 
-void cobra_renderer::display(bitmap_rgb32 *bitmap, const rectangle &cliprect)
+void cobra_renderer::display(bitmap_argb32 *bitmap, const rectangle &cliprect)
 {
 	if (m_gfx_register[0] & 0x4)
 	{
