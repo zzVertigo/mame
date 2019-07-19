@@ -337,7 +337,7 @@ void video_manager::save_snapshot(screen_device *screen, emu_file &file)
 	// now do the actual work
 	const rgb_t *palette = (screen != nullptr && screen->has_palette()) ? screen->palette().palette()->entry_list_adjusted() : nullptr;
 	int entries = (screen != nullptr && screen->has_palette()) ? screen->palette().entries() : 0;
-	png_error error = png_write_bitmap(file, &pnginfo, m_snap_bitmap, entries, palette);
+	png_error error = png_write_bitmap(file, &pnginfo, m_snap_bitmap, entries, palette, false);
 	if (error != PNGERR_NONE)
 		osd_printf_error("Error generating PNG for snapshot: png_error = %d\n", error);
 }

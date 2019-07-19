@@ -1003,16 +1003,13 @@ static png_error write_deflated_chunk(util::core_file &fp, uint8_t *data, uint32
 
 static png_error convert_bitmap_to_image_palette(png_info &pnginfo, const bitmap_t &bitmap, int palette_length, const rgb_t *palette)
 {
-	int rowbytes;
-	int x, y;
-
 	/* set the common info */
 	pnginfo.width = bitmap.width();
 	pnginfo.height = bitmap.height();
 	pnginfo.bit_depth = 8;
 	pnginfo.color_type = 3;
 	pnginfo.num_palette = 256;
-	rowbytes = pnginfo.width;
+	int rowbytes = pnginfo.width;
 
 	/* allocate memory for the palette */
 	try { pnginfo.palette.reset(new std::uint8_t [3 * 256]); }
@@ -1020,7 +1017,7 @@ static png_error convert_bitmap_to_image_palette(png_info &pnginfo, const bitmap
 
 	/* build the palette */
 	std::fill_n(pnginfo.palette.get(), 3 * 256, 0);
-	for (x = 0; x < palette_length; x++)
+	for (int x = 0; x < palette_length; x++)
 	{
 		rgb_t color = palette[x];
 		pnginfo.palette[3 * x + 0] = color.r();
@@ -1040,14 +1037,14 @@ static png_error convert_bitmap_to_image_palette(png_info &pnginfo, const bitmap
 	}
 
 	/* copy in the pixels, specifying a nullptr filter */
-	for (y = 0; y < pnginfo.height; y++)
+	for (int y = 0; y < pnginfo.height; y++)
 	{
 		uint16_t *src = reinterpret_cast<uint16_t *>(bitmap.raw_pixptr(y));
 		uint8_t *dst = &pnginfo.image[y * (rowbytes + 1)];
 
 		/* store the filter byte, then copy the data */
 		*dst++ = 0;
-		for (x = 0; x < pnginfo.width; x++)
+		for (int x = 0; x < pnginfo.width; x++)
 			*dst++ = *src++;
 	}
 
@@ -1060,25 +1057,23 @@ static png_error convert_bitmap_to_image_palette(png_info &pnginfo, const bitmap
     bitmap to an RGB image
 -------------------------------------------------*/
 
-static png_error convert_bitmap_to_image_rgb(png_info &pnginfo, const bitmap_t &bitmap, int palette_length, const rgb_t *palette)
+static png_error convert_bitmap_to_image_rgb(png_info &pnginfo, const bitmap_t &bitmap, int palette_length, const rgb_t *palette, bool convert_alpha)
 {
-	int alpha = (bitmap.format() == BITMAP_FORMAT_ARGB32);
-	int rowbytes;
-	int x, y;
+	bool use_alpha = (bitmap.format() == BITMAP_FORMAT_ARGB32 && convert_alpha);
 
 	/* set the common info */
 	pnginfo.width = bitmap.width();
 	pnginfo.height = bitmap.height();
 	pnginfo.bit_depth = 8;
-	pnginfo.color_type = alpha ? 6 : 2;
-	rowbytes = pnginfo.width * (alpha ? 4 : 3);
+	pnginfo.color_type = use_alpha ? 6 : 2;
+	int rowbytes = pnginfo.width * (use_alpha ? 4 : 3);
 
 	/* allocate memory for the image */
 	try { pnginfo.image.reset(new std::uint8_t [pnginfo.height * (rowbytes + 1)]); }
 	catch (std::bad_alloc const &) { return PNGERR_OUT_OF_MEMORY; }
 
 	/* copy in the pixels, specifying a nullptr filter */
-	for (y = 0; y < pnginfo.height; y++)
+	for (int y = 0; y < pnginfo.height; y++)
 	{
 		uint8_t *dst = &pnginfo.image[y * (rowbytes + 1)];
 
@@ -1089,7 +1084,7 @@ static png_error convert_bitmap_to_image_rgb(png_info &pnginfo, const bitmap_t &
 		if (bitmap.format() == BITMAP_FORMAT_IND16)
 		{
 			uint16_t *src16 = reinterpret_cast<uint16_t *>(bitmap.raw_pixptr(y));
-			for (x = 0; x < pnginfo.width; x++)
+			for (int x = 0; x < pnginfo.width; x++)
 			{
 				rgb_t color = palette[*src16++];
 				*dst++ = color.r();
@@ -1099,10 +1094,10 @@ static png_error convert_bitmap_to_image_rgb(png_info &pnginfo, const bitmap_t &
 		}
 
 		/* 32-bit RGB direct */
-		else if (bitmap.format() == BITMAP_FORMAT_ARGB32)
+		else if (bitmap.format() == BITMAP_FORMAT_RGB32 || (bitmap.format() == BITMAP_FORMAT_ARGB32 && !convert_alpha))
 		{
 			uint32_t *src32 = reinterpret_cast<uint32_t *>(bitmap.raw_pixptr(y));
-			for (x = 0; x < pnginfo.width; x++)
+			for (int x = 0; x < pnginfo.width; x++)
 			{
 				rgb_t raw = *src32++;
 				*dst++ = raw.r();
@@ -1112,10 +1107,10 @@ static png_error convert_bitmap_to_image_rgb(png_info &pnginfo, const bitmap_t &
 		}
 
 		/* 32-bit ARGB direct */
-		else if (bitmap.format() == BITMAP_FORMAT_ARGB32)
+		else if (bitmap.format() == BITMAP_FORMAT_ARGB32 && use_alpha)
 		{
 			uint32_t *src32 = reinterpret_cast<uint32_t *>(bitmap.raw_pixptr(y));
-			for (x = 0; x < pnginfo.width; x++)
+			for (int x = 0; x < pnginfo.width; x++)
 			{
 				rgb_t raw = *src32++;
 				*dst++ = raw.r();
@@ -1139,7 +1134,7 @@ static png_error convert_bitmap_to_image_rgb(png_info &pnginfo, const bitmap_t &
     chunks to the given file
 -------------------------------------------------*/
 
-static png_error write_png_stream(util::core_file &fp, png_info &pnginfo, const bitmap_t &bitmap, int palette_length, const rgb_t *palette)
+static png_error write_png_stream(util::core_file &fp, png_info &pnginfo, const bitmap_t &bitmap, int palette_length, const rgb_t *palette, bool write_rgb32_alpha)
 {
 	uint8_t tempbuff[16];
 	png_error error;
@@ -1148,7 +1143,7 @@ static png_error write_png_stream(util::core_file &fp, png_info &pnginfo, const 
 	if (bitmap.format() == BITMAP_FORMAT_IND16 && palette_length <= 256)
 		error = convert_bitmap_to_image_palette(pnginfo, bitmap, palette_length, palette);
 	else
-		error = convert_bitmap_to_image_rgb(pnginfo, bitmap, palette_length, palette);
+		error = convert_bitmap_to_image_rgb(pnginfo, bitmap, palette_length, palette, write_rgb32_alpha);
 	if (error != PNGERR_NONE)
 		return error;
 
@@ -1222,7 +1217,7 @@ static png_error write_png_stream(util::core_file &fp, png_info &pnginfo, const 
 }
 
 
-png_error png_write_bitmap(util::core_file &fp, png_info *info, bitmap_t const &bitmap, int palette_length, const rgb_t *palette)
+png_error png_write_bitmap(util::core_file &fp, png_info *info, bitmap_t const &bitmap, int palette_length, const rgb_t *palette, bool write_rgb32_alpha)
 {
 	// use a dummy pnginfo if none passed to us
 	png_info pnginfo;
@@ -1234,7 +1229,7 @@ png_error png_write_bitmap(util::core_file &fp, png_info *info, bitmap_t const &
 		return PNGERR_FILE_ERROR;
 
 	/* write the rest of the PNG data */
-	return write_png_stream(fp, *info, bitmap, palette_length, palette);
+	return write_png_stream(fp, *info, bitmap, palette_length, palette, write_rgb32_alpha);
 }
 
 
@@ -1286,9 +1281,9 @@ png_error mng_capture_start(util::core_file &fp, bitmap_t &bitmap, double rate)
  * @return  A png_error.
  */
 
-png_error mng_capture_frame(util::core_file &fp, png_info &info, bitmap_t const &bitmap, int palette_length, const rgb_t *palette)
+png_error mng_capture_frame(util::core_file &fp, png_info &info, bitmap_t const &bitmap, int palette_length, const rgb_t *palette, bool write_rgb32_alpha)
 {
-	return write_png_stream(fp, info, bitmap, palette_length, palette);
+	return write_png_stream(fp, info, bitmap, palette_length, palette, write_rgb32_alpha);
 }
 
 /**

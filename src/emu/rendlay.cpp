@@ -3486,7 +3486,7 @@ int layout_view::item::get_blend_mode(environment &env, util::xml::data_node con
 
 	// fall back to implicit blend mode based on element type
 	if (!strcmp(itemnode.get_name(), "screen"))
-		return BLENDMODE_ADD;
+		return BLENDMODE_ALPHA;
 	else if (!strcmp(itemnode.get_name(), "overlay"))
 		return BLENDMODE_RGB_MULTIPLY;
 	else

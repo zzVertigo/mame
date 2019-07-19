@@ -1683,7 +1683,7 @@ void screen_device::finalize_burnin()
 		pnginfo.add_text("System", text);
 
 		// now do the actual work
-		png_write_bitmap(file, &pnginfo, finalmap, 0, nullptr);
+		png_write_bitmap(file, &pnginfo, finalmap, 0, nullptr, false);
 	}
 }
 
