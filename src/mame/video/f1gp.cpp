@@ -153,7 +153,7 @@ uint32_t f1gp_state::screen_update_f1gp(screen_device &screen, bitmap_argb32 &bi
 uint32_t f1gp2_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	if (m_gfxctrl & 4)  /* blank screen */
-		bitmap.fill(m_palette->pens()[m_palette->black_pen()], cliprect);
+		bitmap.fill(m_palette->black_pen(), cliprect);
 	else
 	{
 		switch (m_gfxctrl & 3)

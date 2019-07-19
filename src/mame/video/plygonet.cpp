@@ -122,7 +122,7 @@ void polygonet_state::video_start()
 uint32_t polygonet_state::screen_update_polygonet(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	screen.priority().fill(0);
-	bitmap.fill(m_palette->pens()[m_palette->black_pen()], cliprect);
+	bitmap.fill(m_palette->black_pen(), cliprect);
 
 	m_k053936->zoom_draw(screen, bitmap, cliprect, m_roz_tilemap, 0, 0, 0);
 

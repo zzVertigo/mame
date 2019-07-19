@@ -113,7 +113,7 @@ uint32_t crshrace_state::screen_update_crshrace(screen_device &screen, bitmap_ar
 {
 	if (m_gfxctrl & 0x04)   /* display disable? */
 	{
-		bitmap.fill(m_palette->pens()[m_palette->black_pen()], cliprect);
+		bitmap.fill(m_palette->black_pen(), cliprect);
 		return 0;
 	}
 

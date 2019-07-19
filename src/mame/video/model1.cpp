@@ -94,7 +94,7 @@ void model1_state::draw_hline(bitmap_argb32 &bitmap, int x1, int x2, int y, int 
 	uint32_t *base = &bitmap.pix32(y);
 	while(x1 <= x2)
 	{
-		base[x1] = color;
+		base[x1] = 0xff000000 | color;
 		x1++;
 	}
 }
@@ -106,7 +106,7 @@ void model1_state::draw_hline_moired(bitmap_argb32 &bitmap, int x1, int x2, int 
 	{
 		if((x1^y) & 1)
 		{
-			base[x1] = color;
+			base[x1] = 0xff000000 | color;
 		}
 		x1++;
 	}

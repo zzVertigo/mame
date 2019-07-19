@@ -73,7 +73,7 @@ uint32_t suprslam_state::screen_update_suprslam(screen_device &screen, bitmap_ar
 {
 	m_screen_tilemap->set_scrollx(0, m_screen_vregs[0x04/2] );
 
-	bitmap.fill(m_palette->pens()[m_palette->black_pen()], cliprect);
+	bitmap.fill(m_palette->black_pen(), cliprect);
 	m_k053936->zoom_draw(screen, bitmap, cliprect, m_bg_tilemap, 0, 0, 1);
 	if(!(m_spr_ctrl & 8))
 		m_spr->draw_sprites(m_spriteram, m_spriteram.bytes(), screen, bitmap, cliprect);

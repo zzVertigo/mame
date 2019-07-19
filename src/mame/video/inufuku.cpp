@@ -136,7 +136,7 @@ void inufuku_state::video_start()
 
 uint32_t inufuku_state::screen_update_inufuku(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
-	bitmap.fill(m_palette->pens()[m_palette->black_pen()], cliprect);
+	bitmap.fill(m_palette->black_pen(), cliprect);
 	screen.priority().fill(0);
 
 	if (m_bg_raster)
