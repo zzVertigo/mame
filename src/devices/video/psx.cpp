@@ -3542,5 +3542,5 @@ void psxgpu_device::device_config_complete()
 	}
 
 	if (!screen().has_screen_update())
-		screen().set_screen_update(FUNC(psxgpu_device::update_screen));
+		screen().set_screen_update(screen_update_argb32_delegate(FUNC(psxgpu_device::update_screen), this));
 }
