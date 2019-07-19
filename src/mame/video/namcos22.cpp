@@ -2058,7 +2058,7 @@ void namcos22_state::namcos22_mix_text_layer(screen_device &screen, bitmap_argb3
 			}
 
 			// apply gamma
-			dest[x] = (rlut[(pixel >> 16) & 0xff] << 16) | (glut[(pixel >> 8) & 0xff] << 8) | blut[pixel & 0xff];
+			dest[x] = (0xff << 24) | (rlut[(pixel >> 16) & 0xff] << 16) | (glut[(pixel >> 8) & 0xff] << 8) | blut[pixel & 0xff];
 		}
 	}
 }
@@ -2412,7 +2412,7 @@ u32 namcos22s_state::screen_update_namcos22s(screen_device &screen, bitmap_argb3
 			int r = rlut[NATIVE_ENDIAN_VALUE_LE_BE(3, 0) ^ ((rgb >> 16) & 0xff)];
 			int g = glut[NATIVE_ENDIAN_VALUE_LE_BE(3, 0) ^ ((rgb >> 8) & 0xff)];
 			int b = blut[NATIVE_ENDIAN_VALUE_LE_BE(3, 0) ^ (rgb & 0xff)];
-			dest[x] = (r << 16) | (g << 8) | b;
+			dest[x] = (0xff << 24) | (r << 16) | (g << 8) | b;
 		}
 	}
 
