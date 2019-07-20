@@ -935,7 +935,7 @@ int renderer_d3d9::device_create_resources()
 	result = m_device->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 	result = m_device->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_FLAT);
 	result = m_device->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
-	result = m_device->SetRenderState(D3DRS_ALPHATESTENABLE, TRUE);
+	result = m_device->SetRenderState(D3DRS_ALPHATESTENABLE, FALSE);
 	result = m_device->SetRenderState(D3DRS_LASTPIXEL, TRUE);
 	result = m_device->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 	result = m_device->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESS);
