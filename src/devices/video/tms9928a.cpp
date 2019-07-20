@@ -78,7 +78,7 @@ void tms9928a_device::device_config_complete()
 		return;
 
 	if (!screen().has_screen_update())
-		screen().set_screen_update(FUNC(tms9928a_device::screen_update));
+		screen().set_screen_update(screen_update_argb32_delegate(FUNC(tms9928a_device::screen_update), this));
 
 	if (!screen().refresh_attoseconds())
 	{

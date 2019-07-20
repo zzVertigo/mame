@@ -599,7 +599,7 @@ void mc6847_base_device::device_config_complete()
 	}
 
 	if (!screen().has_screen_update())
-		screen().set_screen_update(FUNC(mc6847_base_device::screen_update));
+		screen().set_screen_update(screen_update_argb32_delegate(FUNC(mc6847_base_device::screen_update), this));
 }
 
 

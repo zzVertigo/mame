@@ -180,7 +180,7 @@ void fixedfreq_device::device_config_complete()
 			m_monitor.m_vbackporch);
 
 	if (!screen().has_screen_update())
-		screen().set_screen_update(FUNC(fixedfreq_device::screen_update));
+		screen().set_screen_update(screen_update_argb32_delegate(FUNC(fixedfreq_device::screen_update), this));
 }
 
 void fixedfreq_device::device_start()
