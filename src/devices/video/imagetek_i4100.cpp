@@ -1311,6 +1311,16 @@ uint32_t imagetek_i4100_device::screen_update(screen_device &screen, bitmap_argb
 
 	draw_sprites(screen, bitmap, cliprect);
 
+	// Since our alpha channel contains garbage at this point, make everything opaque
+	for (int y = cliprect.min_y; y <= cliprect.max_y; y++)
+	{
+		u32 *dst = &bitmap.pix32(y, cliprect.min_x);
+		for (int x = cliprect.min_x; x <= cliprect.max_x; x++)
+		{
+			*dst++ |= 0xff << 24;
+		}
+	}
+
 	return 0;
 }
 

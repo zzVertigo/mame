@@ -64,7 +64,7 @@ rgb_t jaleco_blend_device::func(rgb_t dest, rgb_t addMe)
 		return func(dest, addMe, addMe.a());
 
 	// Skip the costly alpha step altogether
-	return addMe;
+	return rgb_t(addMe.r(), addMe.g(), addMe.b());
 }
 
 /* basically an add/subtract function with clamping */

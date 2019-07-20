@@ -186,7 +186,16 @@ uint32_t dragngun_state::screen_update(screen_device &screen, bitmap_argb32 &bit
 		rectangle clip(cliprect.left(), cliprect.right(), 8, 247);
 
 		m_sprgenzoom->dragngun_draw_sprites(bitmap,clip,m_spriteram->buffer(), m_sprite_layout_ram[0], m_sprite_layout_ram[1], m_sprite_lookup_ram[0], m_sprite_lookup_ram[1], m_sprite_ctrl, screen.priority(), m_temp_render_bitmap );
+	}
 
+	// Make the pixels in the buffer opaque, as they will have an indeterminate alpha level due to the sprite device.
+	for (int y = cliprect.min_y; y <= cliprect.max_y; y++)
+	{
+		uint32_t *dst = &bitmap.pix32(y, cliprect.min_x);
+		for (int x = cliprect.min_x; x <= cliprect.max_x; x++)
+		{
+			*dst++ |= 0xff000000;
+		}
 	}
 
 	return 0;

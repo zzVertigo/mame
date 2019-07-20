@@ -861,8 +861,8 @@ MC6845_UPDATE_ROW( fanucspmg_state::crtc_update_row )
 				uint8_t chr = m_vram[offset + 0x600];
 				uint8_t attr = m_vram[offset];
 				uint8_t data = chargen[ chr + (ra * 256) ];
-				uint32_t fg = 0;
-				uint32_t bg = 0;
+				uint32_t fg = 0xff << 24;
+				uint32_t bg = 0xff << 24;
 
 				if (attr & 0x20) fg |= 0xff0000;
 				if (attr & 0x40) fg |= 0x00ff00;

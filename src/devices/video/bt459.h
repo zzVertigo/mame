@@ -210,6 +210,8 @@ private:
 		if (m_contrast != 0xff)
 			rgb.scale8(m_contrast + 1);
 
+		rgb.set_a(0xff);
+
 		return rgb;
 	}
 

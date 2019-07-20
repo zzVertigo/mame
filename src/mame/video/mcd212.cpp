@@ -1030,7 +1030,7 @@ void mcd212_device::mix_lines(uint8_t *plane_a_r, uint8_t *plane_a_g, uint8_t *p
 			uint8_t abr = MCD212_LIM(((MCD212_LIM((int32_t)plane_a_r[x] - 16) * m_channel[0].weight_factor_a[x]) >> 6) + ((MCD212_LIM((int32_t)plane_b_r[x] - 16) * m_channel[1].weight_factor_b[x]) >> 6) + 16);
 			uint8_t abg = MCD212_LIM(((MCD212_LIM((int32_t)plane_a_g[x] - 16) * m_channel[0].weight_factor_a[x]) >> 6) + ((MCD212_LIM((int32_t)plane_b_g[x] - 16) * m_channel[1].weight_factor_b[x]) >> 6) + 16);
 			uint8_t abb = MCD212_LIM(((MCD212_LIM((int32_t)plane_a_b[x] - 16) * m_channel[0].weight_factor_a[x]) >> 6) + ((MCD212_LIM((int32_t)plane_b_b[x] - 16) * m_channel[1].weight_factor_b[x]) >> 6) + 16);
-			out[x] = (abr << 16) | (abg << 8) | abb;
+			out[x] = (0xff << 24) | (abr << 16) | (abg << 8) | abb;
 		}
 		else
 		{
@@ -1147,21 +1147,21 @@ void mcd212_device::mix_lines(uint8_t *plane_a_r, uint8_t *plane_a_g, uint8_t *p
 				case MCD212_POR_AB:
 					if(plane_enable_a)
 					{
-						out[x] = (plane_a_r_cur << 16) | (plane_a_g_cur << 8) | plane_a_b_cur;
+						out[x] = (0xff << 24) | (plane_a_r_cur << 16) | (plane_a_g_cur << 8) | plane_a_b_cur;
 					}
 					else if(plane_enable_b)
 					{
-						out[x] = (plane_b_r_cur << 16) | (plane_b_g_cur << 8) | plane_b_b_cur;
+						out[x] = (0xff << 24) | (plane_b_r_cur << 16) | (plane_b_g_cur << 8) | plane_b_b_cur;
 					}
 					break;
 				case MCD212_POR_BA:
 					if(plane_enable_b)
 					{
-						out[x] = (plane_b_r_cur << 16) | (plane_b_g_cur << 8) | plane_b_b_cur;
+						out[x] = (0xff << 24) | (plane_b_r_cur << 16) | (plane_b_g_cur << 8) | plane_b_b_cur;
 					}
 					else if(plane_enable_a)
 					{
-						out[x] = (plane_a_r_cur << 16) | (plane_a_g_cur << 8) | plane_a_b_cur;
+						out[x] = (0xff << 24) | (plane_a_r_cur << 16) | (plane_a_g_cur << 8) | plane_a_b_cur;
 					}
 					break;
 			}

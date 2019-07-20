@@ -1573,7 +1573,7 @@ uint32_t sms_state::screen_update_gamegear(screen_device &screen, bitmap_argb32 
 				uint8_t r = (uint8_t)((r0 + r1) >> 1);
 				uint8_t g = (uint8_t)((g0 + g1) >> 1);
 				uint8_t b = (uint8_t)((b0 + b1) >> 1);
-				linedst[x] = (r << 16) | (g << 8) | b;
+				linedst[x] = (0xff << 24) | (r << 16) | (g << 8) | b;
 			}
 		}
 		copybitmap(m_prev_bitmap, *source_bitmap, 0, 0, 0, 0, cliprect);

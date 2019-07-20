@@ -512,7 +512,10 @@ uint32_t spg2xx_video_device::screen_update(screen_device &screen, bitmap_argb32
 	{
 		uint32_t *dest = &bitmap.pix32(y, cliprect.min_x);
 		uint32_t *src = &m_screenbuf[cliprect.min_x + 320 * y];
-		memcpy(dest, src, sizeof(uint32_t) * ((cliprect.max_x - cliprect.min_x) + 1));
+		for (int x = cliprect.min_x; x <= cliprect.max_x; x++)
+		{
+			*dest++ = (0xff << 24) | *src++;
+		}
 	}
 
 	if (SPG_DEBUG_VIDEO && m_debug_palette)
@@ -528,7 +531,7 @@ uint32_t spg2xx_video_device::screen_update(screen_device &screen, bitmap_argb32
 				const uint16_t color = m_paletteram[palette_entry];
 				if (!(color & 0x8000))
 				{
-					*dest = m_rgb555_to_rgb888[color & 0x7fff];
+					*dest = (0xff << 24) | m_rgb555_to_rgb888[color & 0x7fff];
 				}
 				dest++;
 			}

@@ -112,9 +112,9 @@ uint32_t wpc_dmd_device::screen_update(screen_device &screen, bitmap_argb32 &bit
 			v1 = 255*v1/5;
 			v2 = 255*v2/5;
 
-			uint32_t xv0 = (v0 << 16) | (v0 << 8);
-			uint32_t xv1 = (v1 << 16) | (v1 << 8);
-			uint32_t xv2 = (v2 << 16) | (v2 << 8);
+			uint32_t xv0 = (0xff << 24) | (v0 << 16) | (v0 << 8);
+			uint32_t xv1 = (0xff << 24) | (v1 << 16) | (v1 << 8);
+			uint32_t xv2 = (0xff << 24) | (v2 << 16) | (v2 << 8);
 			*pix0++ = xv0;
 			*pix0++ = xv1;
 			*pix0++ = xv1;

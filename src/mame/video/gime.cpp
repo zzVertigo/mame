@@ -252,7 +252,7 @@ inline gime_device::pixel_t gime_device::get_composite_color(int color)
 		0x77e683, 0x80e170, 0x92d56b, 0xacc466, 0xeaac71, 0xffa385, 0xff95c1, 0xffffff
 	};
 
-	return (m_composite_phase_invert) ? composite_palette_180[color] : composite_palette[color];
+	return (0xff << 24) | ((m_composite_phase_invert) ? composite_palette_180[color] : composite_palette[color]);
 }
 
 
@@ -265,7 +265,8 @@ inline gime_device::pixel_t gime_device::get_rgb_color(int color)
 {
 	return  (((color >> 4) & 2) | ((color >> 2) & 1)) * 0x550000
 		|   (((color >> 3) & 2) | ((color >> 1) & 1)) * 0x005500
-		|   (((color >> 2) & 2) | ((color >> 0) & 1)) * 0x000055;
+		|   (((color >> 2) & 2) | ((color >> 0) & 1)) * 0x000055
+		|   0xff000000;
 }
 
 

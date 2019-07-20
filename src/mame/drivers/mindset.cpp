@@ -322,7 +322,7 @@ void mindset_state::dispreg_w(u16 data)
 			g = g * 0.75;
 			b = b * 0.75;
 		}
-		m_palette[m_borderidx] = (r << 16) | (g << 8) | b;
+		m_palette[m_borderidx] = (0xff << 24) | (r << 16) | (g << 8) | b;
 		m_genlock[m_borderidx] = data & 0x0200;
 		logerror("palette[%x] = %04x -> %06x.%d\n", m_borderidx, data, m_palette[m_borderidx], m_genlock[m_borderidx]);
 		m_borderidx = (m_borderidx + 1) & 0xf;

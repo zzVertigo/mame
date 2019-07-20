@@ -815,6 +815,16 @@ void epic12_device::draw_screen(bitmap_argb32 &bitmap, const rectangle &cliprect
 	else
 #endif
 		copyscrollbitmap(bitmap, *m_bitmaps, 1, &scroll_0_x, 1, &scroll_0_y, cliprect);
+
+	for (int y = cliprect.min_y; y <= cliprect.max_y; y++)
+	{
+		u32 *dst = &bitmap.pix32(y, cliprect.min_x);
+		for (int x = cliprect.min_x; x <= cliprect.max_x; x++)
+		{
+			*dst |= (*dst & 0x20000000) ? 0xff000000 : 0;
+			dst++;
+		}
+	}
 }
 
 

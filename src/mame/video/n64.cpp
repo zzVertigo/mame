@@ -154,7 +154,7 @@ uint32_t n64_state::screen_update_n64(screen_device &screen, bitmap_argb32 &bitm
 
 	if (m_rcp_periphs->vi_blank)
 	{
-		bitmap.fill(0, screen.visible_area());
+		bitmap.fill(0xff000000, screen.visible_area());
 		return 0;
 	}
 
@@ -249,7 +249,7 @@ void n64_periphs::video_update16(bitmap_argb32 &bitmap)
 				const uint8_t r = ((pix >> 8) & 0xf8) | (pix >> 13);
 				const uint8_t g = ((pix >> 3) & 0xf8) | ((pix >>  8) & 0x07);
 				const uint8_t b = ((pix << 2) & 0xf8) | ((pix >>  3) & 0x07);
-				d[i] = (r << 16) | (g << 8) | b;
+				d[i] = (0xff << 24) | (r << 16) | (g << 8) | b;
 				pixels++;
 			}
 			pixels += invisiblewidth;
@@ -327,10 +327,10 @@ void n64_periphs::video_update32(bitmap_argb32 &bitmap)
 						if (b < 255)
 							b += (dith & 1);
 					}
-					pix = (r << 24) | (g << 16) | (b << 8);
+					pix = (0xff << 24) | (r << 16) | (g <<  8) | (b << 0);
 				}
 
-				d[i] = (pix >> 8);
+				d[i] = pix;
 			}
 			frame_buffer32 += invisiblewidth;
 		}

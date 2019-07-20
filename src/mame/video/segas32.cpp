@@ -2053,7 +2053,7 @@ void segas32_state::mix_all_layers(int which, int xoffs, bitmap_argb32 &bitmap, 
 				firstpix |= 31 << (0+3);
 			else if (b > 0)
 				firstpix |= b << (0+3);
-			dest[x] = firstpix;
+			dest[x] = (0xff << 24) | firstpix;
 		}
 	}
 

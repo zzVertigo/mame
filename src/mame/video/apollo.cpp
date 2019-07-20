@@ -1579,7 +1579,7 @@ void apollo_graphics_15i::screen_update1(bitmap_argb32 &bitmap, const rectangle 
 			{
 				for (mask = 0x8000; mask; mask >>= 1)
 				{
-					bitmap.pix32(y, dest++) = 0;
+					bitmap.pix32(y, dest++) = (0xff << 24);
 				}
 			}
 			source_ptr += (m_buffer_width - m_width) / 16;
@@ -1603,7 +1603,7 @@ void apollo_graphics_15i::screen_update1(bitmap_argb32 &bitmap, const rectangle 
 					data |= (data1 & mask) ? 2 : 0;
 					data |= (data2 & mask) ? 4 : 0;
 					data |= (data3 & mask) ? 8 : 0;
-					bitmap.pix32(y, dest++) = m_color_lookup_table[data];
+					bitmap.pix32(y, dest++) = (0xff << 24) | m_color_lookup_table[data];
 				}
 			}
 			source_ptr += (m_buffer_width - m_width) / 16;
@@ -1635,7 +1635,7 @@ void apollo_graphics_15i::screen_update1(bitmap_argb32 &bitmap, const rectangle 
 					data |= (data5 & mask) ? 0x20 : 0;
 					data |= (data6 & mask) ? 0x40 : 0;
 					data |= (data7 & mask) ? 0x80 : 0;
-					bitmap.pix32(y, dest++) = m_bt458->get_rgb(data);
+					bitmap.pix32(y, dest++) = (0xff << 24) | m_bt458->get_rgb(data);
 				}
 			}
 			source_ptr += (m_buffer_width - m_width) / 16;
@@ -1651,7 +1651,7 @@ void apollo_graphics_15i::screen_update1(bitmap_argb32 &bitmap, const rectangle 
 				data = *source_ptr++ ^ inverse;
 				for (mask = 0x8000; mask; mask >>= 1)
 				{
-					bitmap.pix32(y, dest++) = data & mask ? 0 : 0x00ffffff;
+					bitmap.pix32(y, dest++) = data & mask ? 0xff000000 : 0xffffffff;
 				}
 			}
 			source_ptr += (m_buffer_width - m_width) / 16;

@@ -645,7 +645,7 @@ uint32_t mplay_state::screen_update_megplay(screen_device &screen, bitmap_argb32
 			if (src)
 			{
 				if (x>=16)
-					lineptr[x-16] = src;
+					lineptr[x-16] = (0xff << 24) | src;
 
 			}
 		}

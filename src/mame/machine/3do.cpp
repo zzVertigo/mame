@@ -1064,10 +1064,10 @@ uint32_t _3do_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap,
 			g = (g << 3) | (g & 7);
 			b = (b << 3) | (b & 7);
 
-			dest_p0[0] = r << 16 | g << 8 | b;
-			dest_p0[1] = r << 16 | g << 8 | b;
-			dest_p0[2] = r << 16 | g << 8 | b;
-			dest_p0[3] = r << 16 | g << 8 | b;
+			dest_p0[0] = 0xff << 24 | r << 16 | g << 8 | b;
+			dest_p0[1] = 0xff << 24 | r << 16 | g << 8 | b;
+			dest_p0[2] = 0xff << 24 | r << 16 | g << 8 | b;
+			dest_p0[3] = 0xff << 24 | r << 16 | g << 8 | b;
 
 			r = (lower & 0x7c00) >> 10;
 			g = (lower & 0x03e0) >> 5;
@@ -1076,10 +1076,10 @@ uint32_t _3do_state::screen_update(screen_device &screen, bitmap_argb32 &bitmap,
 			g = (g << 3) | (g & 7);
 			b = (b << 3) | (b & 7);
 
-			dest_p1[0] = r << 16 | g << 8 | b;
-			dest_p1[1] = r << 16 | g << 8 | b;
-			dest_p1[2] = r << 16 | g << 8 | b;
-			dest_p1[3] = r << 16 | g << 8 | b;
+			dest_p1[0] = 0xff << 24 | r << 16 | g << 8 | b;
+			dest_p1[1] = 0xff << 24 | r << 16 | g << 8 | b;
+			dest_p1[2] = 0xff << 24 | r << 16 | g << 8 | b;
+			dest_p1[3] = 0xff << 24 | r << 16 | g << 8 | b;
 
 			source_p++;
 			dest_p0 += 4;

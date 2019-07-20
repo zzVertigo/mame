@@ -342,7 +342,7 @@ void mediagx_state::draw_framebuffer(bitmap_argb32 &bitmap, const rectangle &cli
 				int g = pal[(c*3)+1] << 2;
 				int b = pal[(c*3)+2] << 2;
 
-				p[i] = r << 16 | g << 8 | b;
+				p[i] = 0xff << 24 | r << 16 | g << 8 | b;
 			}
 		}
 	}
@@ -364,7 +364,7 @@ void mediagx_state::draw_framebuffer(bitmap_argb32 &bitmap, const rectangle &cli
 					int g = ((c >> 5) & 0x3f) << 2;
 					int b = (c & 0x1f) << 3;
 
-					p[i] = r << 16 | g << 8 | b;
+					p[i] = 0xff << 24 | r << 16 | g << 8 | b;
 				}
 			}
 		}
@@ -382,7 +382,7 @@ void mediagx_state::draw_framebuffer(bitmap_argb32 &bitmap, const rectangle &cli
 					int g = ((c >> 5) & 0x1f) << 3;
 					int b = (c & 0x1f) << 3;
 
-					p[i] = r << 16 | g << 8 | b;
+					p[i] = 0xff << 24 | r << 16 | g << 8 | b;
 				}
 			}
 		}

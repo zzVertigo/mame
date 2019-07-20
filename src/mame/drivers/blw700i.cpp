@@ -125,7 +125,7 @@ uint32_t lw700i_state::screen_update(screen_device &screen, bitmap_argb32 &bitma
 	uint32_t *scanline;
 	int x, y;
 	uint8_t pixels;
-	static const uint32_t palette[2] = { 0xffffff, 0 };
+	static const uint32_t palette[2] = { 0xffffffff, 0xff000000 };
 	uint8_t *pVRAM = (uint8_t *)m_mainram.target();
 
 	pVRAM += 0x3e200;

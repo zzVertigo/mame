@@ -238,7 +238,7 @@ uint32_t zeus2_device::screen_update(screen_device &screen, bitmap_argb32 &bitma
 			uint32_t *colorptr = &m_frameColor[frame_addr_from_xy(0, y, false)];
 			uint32_t *dest = &bitmap.pix32(y);
 			for (x = cliprect.min_x; x <= cliprect.max_x; x++) {
-				dest[x] = colorptr[x];
+				dest[x] = (0xff << 24) | colorptr[x];
 			}
 		}
 	}

@@ -117,6 +117,7 @@ public:
 	uint32_t screen_update_argus(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	uint32_t screen_update_valtric(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
 	uint32_t screen_update_butasan(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect);
+	void fixup_alpha(bitmap_argb32 &bitmap, const rectangle &cliprect);
 
 	TIMER_DEVICE_CALLBACK_MEMBER(scanline);
 	TIMER_DEVICE_CALLBACK_MEMBER(butasan_scanline);

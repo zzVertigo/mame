@@ -1000,6 +1000,19 @@ void argus_state::butasan_log_vram()
 #endif
 }
 
+void argus_state::fixup_alpha(bitmap_argb32 &bitmap, const rectangle &cliprect)
+{
+	// Fix up the fact that palette entries will have scribbled into the alpha channel.
+	for (int y = cliprect.min_y; y <= cliprect.max_y; y++)
+	{
+		u32 *dst = &bitmap.pix32(y, cliprect.min_x);
+		for (int x = cliprect.min_x; x <= cliprect.max_x; x++)
+		{
+			*dst++ |= 0xff000000;
+		}
+	}
+}
+
 uint32_t argus_state::screen_update_argus(screen_device &screen, bitmap_argb32 &bitmap, const rectangle &cliprect)
 {
 	bg_setting();
@@ -1010,6 +1023,9 @@ uint32_t argus_state::screen_update_argus(screen_device &screen, bitmap_argb32 &
 		m_bg_tilemap[1]->draw(screen, bitmap, cliprect, 0, 0);
 	argus_draw_sprites(bitmap, cliprect, 1);
 	m_tx_tilemap->draw(screen, bitmap, cliprect, 0, 0);
+
+	fixup_alpha(bitmap, cliprect);
+
 	return 0;
 }
 
@@ -1023,6 +1039,9 @@ uint32_t argus_state::screen_update_valtric(screen_device &screen, bitmap_argb32
 		bitmap.fill(m_palette->black_pen(), cliprect);
 	valtric_draw_sprites(bitmap, cliprect);
 	m_tx_tilemap->draw(screen, bitmap, cliprect, 0, 0);
+
+	fixup_alpha(bitmap, cliprect);
+
 	return 0;
 }
 
@@ -1037,6 +1056,8 @@ uint32_t argus_state::screen_update_butasan(screen_device &screen, bitmap_argb32
 	if (m_butasan_bg1_status & 1) m_bg_tilemap[1]->draw(screen, bitmap, cliprect, 0, 0);
 	butasan_draw_sprites(bitmap, cliprect);
 	m_tx_tilemap->draw(screen, bitmap, cliprect, 0, 0);
+
+	fixup_alpha(bitmap, cliprect);
 
 	butasan_log_vram();
 	return 0;

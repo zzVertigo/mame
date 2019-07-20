@@ -278,10 +278,11 @@ UPD3301_DRAW_CHARACTER_MEMBER( olyboss_state::olyboss_display_pixels )
 		data = 0xff;
 	}
 
+	static const uint32_t palette[2] = { 0xff000000, 0xffffffff };
 	for (i = 0; i < 8; i++)
 	{
 		int color = BIT(data, 7) ^ rvv;
-		bitmap.pix32(y, (sx * 8) + i) = color?0xffffff:0;
+		bitmap.pix32(y, (sx * 8) + i) = palette[color];
 		data <<= 1;
 	}
 }

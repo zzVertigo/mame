@@ -1012,7 +1012,7 @@ void model2_state::draw_framebuffer( bitmap_argb32 &bitmap, const rectangle &cli
 			r = pal5bit(r);
 			g = pal5bit(g);
 			b = pal5bit(b);
-			bitmap.pix32(y, x) = r << 16 | g << 8 | b;
+			bitmap.pix32(y, x) = 0xff << 24 | r << 16 | g << 8 | b;
 		}
 	}
 }

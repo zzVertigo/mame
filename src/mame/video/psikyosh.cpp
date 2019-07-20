@@ -68,7 +68,7 @@ The only viable way to do this is to have one tilemap per bank (0x0a-0x20), and 
 #include "drawgfxm.h"
 #include "includes/psikyosh.h"
 
-static constexpr u32 BG_TRANSPEN = 0x00ff00ff; // used for representing transparency in temporary bitmaps
+static constexpr u32 BG_TRANSPEN = 0xffff00ff; // used for representing transparency in temporary bitmaps
 
 //#define DEBUG_KEYS
 //#define DEBUG_MESSAGE
@@ -1160,6 +1160,17 @@ popmessage   ("%08x %08x %08x %08x\n%08x %08x %08x %08x",
 			postlineblend(bitmap, cliprect, i); // assume this has highest priority at same priority level
 		}
 	}
+
+	// Since our alpha channel contains garbage at this point, make everything opaque
+	for (int y = cliprect.min_y; y <= cliprect.max_y; y++)
+	{
+		u32 *dst = &bitmap.pix32(y, cliprect.min_x);
+		for (int x = cliprect.min_x; x <= cliprect.max_x; x++)
+		{
+			*dst++ |= 0xff << 24;
+		}
+	}
+
 	return 0;
 }
 

@@ -3461,13 +3461,13 @@ void powervr2_device::pvr_drawframebuffer(bitmap_argb32 &bitmap,const rectangle 
 						r = (c & 0x7c00) >> 7;
 
 						if (cliprect.contains(res_x, res_y))
-							*fbaddr = b | (g<<8) | (r<<16);
+							*fbaddr = b | (g<<8) | (r<<16) | (0xff<<24);
 
 						res_x = x*2+1 + hstart;
 
 						fbaddr=&bitmap.pix32(res_y, res_x);
 						if (cliprect.contains(res_x, res_y))
-							*fbaddr = b | (g<<8) | (r<<16);
+							*fbaddr = b | (g<<8) | (r<<16) | (0xff<<24);
 						addrp+=2;
 					}
 				}
@@ -3486,7 +3486,7 @@ void powervr2_device::pvr_drawframebuffer(bitmap_argb32 &bitmap,const rectangle 
 						r = (c & 0x7c00) >> 7;
 
 						if (cliprect.contains(res_x, res_y))
-							*fbaddr = b | (g<<8) | (r<<16);
+							*fbaddr = b | (g<<8) | (r<<16) | (0xff<<24);
 						addrp+=2;
 					}
 				}
@@ -3512,14 +3512,14 @@ void powervr2_device::pvr_drawframebuffer(bitmap_argb32 &bitmap,const rectangle 
 						r = (c & 0xf800) >> 8;
 
 						if (cliprect.contains(res_x, res_y))
-							*fbaddr = b | (g<<8) | (r<<16);
+							*fbaddr = b | (g<<8) | (r<<16) | (0xff<<24);
 
 						res_x = x*2+1 + hstart;
 						//res_y = y + ystart_f1;
 						fbaddr=&bitmap.pix32(res_y, res_x);
 
 						if (cliprect.contains(res_x, res_y))
-							*fbaddr = b | (g<<8) | (r<<16);
+							*fbaddr = b | (g<<8) | (r<<16) | (0xff<<24);
 
 						addrp+=2;
 					}
@@ -3538,7 +3538,7 @@ void powervr2_device::pvr_drawframebuffer(bitmap_argb32 &bitmap,const rectangle 
 						r = (c & 0xf800) >> 8;
 
 						if (cliprect.contains(res_x, res_y))
-							*fbaddr = b | (g<<8) | (r<<16);
+							*fbaddr = b | (g<<8) | (r<<16) | (0xff<<24);
 						addrp+=2;
 					}
 				}
@@ -3569,13 +3569,13 @@ void powervr2_device::pvr_drawframebuffer(bitmap_argb32 &bitmap,const rectangle 
 						r = c;
 
 						if (cliprect.contains(res_x, res_y))
-							*fbaddr = b | (g<<8) | (r<<16);
+							*fbaddr = b | (g<<8) | (r<<16) | (0xff<<24);
 
 						res_x = x*2+1 + hstart;
 
 						fbaddr=&bitmap.pix32(res_y, res_x);
 						if (cliprect.contains(res_x, res_y))
-							*fbaddr = b | (g<<8) | (r<<16);
+							*fbaddr = b | (g<<8) | (r<<16) | (0xff<<24);
 
 						addrp+=3;
 					}
@@ -3598,7 +3598,7 @@ void powervr2_device::pvr_drawframebuffer(bitmap_argb32 &bitmap,const rectangle 
 						r = c;
 
 						if (cliprect.contains(res_x, res_y))
-							*fbaddr = b | (g<<8) | (r<<16);
+							*fbaddr = b | (g<<8) | (r<<16) | (0xff<<24);
 
 						addrp+=3;
 					}
@@ -3626,13 +3626,13 @@ void powervr2_device::pvr_drawframebuffer(bitmap_argb32 &bitmap,const rectangle 
 						r = (c & 0xff0000) >> 16;
 
 						if (cliprect.contains(res_x, res_y))
-							*fbaddr = b | (g<<8) | (r<<16);
+							*fbaddr = b | (g<<8) | (r<<16) | (0xff<<24);
 
 						res_x = x*2+1 + hstart;
 
 						fbaddr=&bitmap.pix32(res_y, res_x);
 						if (cliprect.contains(res_x, res_y))
-							*fbaddr = b | (g<<8) | (r<<16);
+							*fbaddr = b | (g<<8) | (r<<16) | (0xff<<24);
 
 						addrp+=4;
 					}
@@ -3651,7 +3651,7 @@ void powervr2_device::pvr_drawframebuffer(bitmap_argb32 &bitmap,const rectangle 
 						r = (c & 0xff0000) >> 16;
 
 						if (cliprect.contains(res_x, res_y))
-							*fbaddr = b | (g<<8) | (r<<16);
+							*fbaddr = b | (g<<8) | (r<<16) | (0xff<<24);
 
 						addrp+=4;
 					}
